@@ -36,9 +36,9 @@ namespace ExamplePlugin
                 var limit = keyValuePair.Value;
                 switch (limit.mode)
                 {
-                    case TierLimitMode.None:
-                        parts.Add($"{tier}=None");
-                        break;
+                    //case TierLimitMode.None:
+                    //    parts.Add($"{tier}=None");
+                    //    break;
                     case TierLimitMode.Restricted:
                         parts.Add($"{tier}=[{string.Join(",", limit.allowed)}]");
                         parts.Add($",restricted=[{string.Join(",", limit.restrictedByVoid)}]");

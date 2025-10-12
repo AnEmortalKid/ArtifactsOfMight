@@ -85,10 +85,10 @@ namespace ExamplePlugin.Messages
             writer.Write((byte)nativeTier.mode);
 
             // nothing elsse is written
-            if (nativeTier.mode == TierLimitMode.None)
-            {
-                return;
-            }
+            //if (nativeTier.mode == TierLimitMode.None)
+            //{
+            //    return;
+            //}
 
 
             // selected count and data
@@ -120,10 +120,10 @@ namespace ExamplePlugin.Messages
             tierLimit.restrictedByVoid.Clear();
             
             // nothing else is written
-            if (tierMode == TierLimitMode.None)
-            {
-                return tierLimit;
-            }
+            //if (tierMode == TierLimitMode.None)
+            //{
+            //    return tierLimit;
+            //}
 
             // handle restricted logic
             var allowedCount = reader.ReadInt32();

@@ -57,6 +57,13 @@ namespace ExamplePlugin.UI.Drafting
 
             BuildDialogShell(parentRectTransform);
             BuildUI();
+            // Used to set the mode to none then on restrict update state
+            // Now we set that limit state on creation
+            // TODO draft loaodut seed limits call
+            RefreshTabs();
+            draftSummaryBar.UpdateSummary();
+
+            // refresh all tabs so we're up to date
             // draftingDialog = this.BuildDraftPickerRootStructure(parentRectTransform);
         }
 
@@ -84,16 +91,17 @@ namespace ExamplePlugin.UI.Drafting
 
         private void HandleModeChangeRequest(DraftItemTier tabTier, bool isRestricted)
         {
-            var currMode = DraftLoadout.Instance.GetMode(tabTier);
-            Log.Info($"[DraftArtifact] mode current: {currMode}");
+            Log.Info("Outdated");
+            //var currMode = DraftLoadout.Instance.GetMode(tabTier);
+            //Log.Info($"[DraftArtifact] mode current: {currMode}");
 
-            var wantedMode = isRestricted ? DraftLimitMode.Restricted : DraftLimitMode.None;
-            Log.Info($"[DraftArtifact] switch to: {wantedMode}");
-            DraftLoadout.Instance.SetMode(tabTier, wantedMode);
+            //var wantedMode = isRestricted ? DraftLimitMode.Restricted : DraftLimitMode.None;
+            //Log.Info($"[DraftArtifact] switch to: {wantedMode}");
+            //DraftLoadout.Instance.SetMode(tabTier, wantedMode);
 
-            // ask the tab to do its thing
-            var tabController = tabsByTier[tabTier].GetComponent<DraftTabController>();
-            tabController.RefreshMode();
+            //// ask the tab to do its thing
+            //var tabController = tabsByTier[tabTier].GetComponent<DraftTabController>();
+            //tabController.RefreshMode();
         }
 
         private void HandleLimitIncreaseRequest(DraftItemTier tabTier)
@@ -170,7 +178,7 @@ namespace ExamplePlugin.UI.Drafting
             {
                 return UnpickVoid(pickupDef);
             }
- 
+
             return PickVoid(pickupDef);
         }
 
@@ -192,7 +200,7 @@ namespace ExamplePlugin.UI.Drafting
             {
                 // if its locked, then unlock
                 var normalLocked = DraftLoadout.Instance.IsLocked(normalDef);
-                if(normalLocked)
+                if (normalLocked)
                 {
                     DraftLoadout.Instance.Unlock(normalDef);
                     var tabForItem = DraftTierMaps.ToDraft(normalDef.itemTier);
@@ -211,7 +219,7 @@ namespace ExamplePlugin.UI.Drafting
         private bool PickVoid(PickupDef voidDef)
         {
             var wasPicked = DraftLoadout.Instance.TryPick(voidDef, out var _);
-            if(!wasPicked)
+            if (!wasPicked)
             {
                 return false;
             }
@@ -237,7 +245,7 @@ namespace ExamplePlugin.UI.Drafting
 
                 // TODO handle if it didn't work
                 var couldLock = DraftLoadout.Instance.TryLock(normalDef);
-                if(couldLock)
+                if (couldLock)
                 {
                     tabsToUpdate.Add(tabForItem);
                 }
@@ -299,6 +307,14 @@ namespace ExamplePlugin.UI.Drafting
             tabController.RefreshLimit();
         }
 
+
+        private void RefreshTabs()
+        {
+            foreach (var tabEntry in tabsByTier)
+            {
+                tabEntry.Value.GetComponent<DraftTabController>().RefreshLimit();
+            }
+        }
 
         #endregion
 

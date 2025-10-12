@@ -12,7 +12,7 @@ namespace ExamplePlugin.Loadout
         /// <summary>
         /// No limit has been set for this item tier
         /// </summary>
-        None = 0,
+        //None = 0,
 
         /// <summary>
         /// Only a certain set of items is allowed

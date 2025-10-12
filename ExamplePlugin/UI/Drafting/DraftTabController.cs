@@ -126,17 +126,17 @@ namespace ExamplePlugin.UI.Drafting
             var currMode = DraftLoadout.Instance.GetMode(tabTier);
             Log.Info($"[DraftArtifact] refresh state: {currMode}");
 
-            if (currMode == DraftLimitMode.None)
-            {
-                // TODO hide controls
-            }
-            else
-            {
+            //if (currMode == DraftLimitMode.None)
+            //{
+            //    // TODO hide controls
+            //}
+            //else
+            //{
                 // TODO show controls
 
                 // update the label
                 UpdateLimitLabel();
-            }
+            //}
         }
 
         private void UpdateLimitLabel()

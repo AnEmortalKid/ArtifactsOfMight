@@ -9,10 +9,10 @@ namespace ExamplePlugin.Loadout.Draft
     /// </summary>
     public enum DraftLimitMode
     {
-        /// <summary>
-        /// A limit does not exist to be enforced, could be any number of items
-        /// </summary>
-        None, 
+        ///// <summary>
+        ///// A limit does not exist to be enforced, could be any number of items
+        ///// </summary>
+        //None, 
         /// <summary>
         /// Restrict count of items
         /// </summary>

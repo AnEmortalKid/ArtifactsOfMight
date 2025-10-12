@@ -256,11 +256,11 @@ namespace ExamplePlugin
                 var pickupTier = PickupCatalog.GetPickupDef(first.pickupIndex).itemTier;
 
                 var limitDefByTier = playerLoadout.byTier.Get(pickupTier);
-                if (limitDefByTier.mode == Loadout.TierLimitMode.None)
-                {
-                    // bypass filtering
-                    return originalPPCOptions;
-                }
+                //if (limitDefByTier.mode == Loadout.TierLimitMode.None)
+                //{
+                //    // bypass filtering
+                //    return originalPPCOptions;
+                //}
 
                 Log.Info($"[DraftArtifact] Build filter for tier: {limitDefByTier}");
 

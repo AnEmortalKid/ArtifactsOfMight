@@ -34,17 +34,20 @@ namespace ExamplePlugin.UI.Drafting
                 var mode = DraftLoadout.Instance.GetMode(tier);
 
                 var textUpdate = DraftTierLabels.GetUIName(tier) + ": ";
-                if(mode == DraftLimitMode.None)
-                {
-                    textUpdate += INFINITY;
-                }
-                if(mode != DraftLimitMode.None)
-                {
+                //if(mode == DraftLimitMode.None)
+                //{
+                //    textUpdate += INFINITY;
+                //}
+                //if(mode != DraftLimitMode.None)
+                //{
+
+                // mode is always restricted
+
                     var limit = DraftLoadout.Instance.GetLimit(tier);
                     var currCount = DraftLoadout.Instance.GetCount(tier);
 
                     textUpdate += currCount.ToString() + " / " + limit;
-                }
+                //}
 
                textAreasByTier[tier].text = textUpdate;
             }

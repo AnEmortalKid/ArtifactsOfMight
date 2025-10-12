@@ -56,8 +56,13 @@ namespace ExamplePlugin.Loadout.Draft
         {
             foreach (DraftItemTier draftTier in Enum.GetValues(typeof(DraftItemTier)))
             {
-                settingsByDraftTier[draftTier] = new DraftTierRestrictionSettings();
+                var draftSettings = new DraftTierRestrictionSettings();
+                settingsByDraftTier[draftTier] = draftSettings;
                 pickOrderByDraftTier[draftTier] = new List<DraftPick>();
+                // mode always restricted , allows for a none mode later if we want
+                draftSettings.Mode = DraftLimitMode.Restricted;
+                draftSettings.Max = GetSeedMaxForTier(draftTier);
+                draftSettings.HasSeededMax = true;
             }
         }
 
@@ -118,10 +123,10 @@ namespace ExamplePlugin.Loadout.Draft
         public int GetCount(DraftItemTier tier)
         {
             var settings = GetOrCreate(tier);
-            if (settings.Mode == DraftLimitMode.None)
-            {
-                return 0;
-            }
+            //if (settings.Mode == DraftLimitMode.None)
+            //{
+            //    return 0;
+            //}
 
             return GetPickedCountForDraftTier(tier);
         }
@@ -151,10 +156,10 @@ namespace ExamplePlugin.Loadout.Draft
             var settings = GetOrCreate(draftTier);
 
             // unrestricted
-            if (settings.Mode == DraftLimitMode.None)
-            {
-                return true;
-            }
+            //if (settings.Mode == DraftLimitMode.None)
+            //{
+            //    return true;
+            //}
 
             if (settings.Max <= 0)
             {
@@ -193,11 +198,11 @@ namespace ExamplePlugin.Loadout.Draft
             var draftTier = DraftTierMaps.ToDraft(pickupDef.itemTier);
             var settings = GetOrCreate(draftTier);
 
-            if (settings.Mode == DraftLimitMode.None)
-            {
-                // always available
-                return true;
-            }
+            //if (settings.Mode == DraftLimitMode.None)
+            //{
+            //    // always available
+            //    return true;
+            //}
 
             return IsPicked(pickupDef);
         }
@@ -212,11 +217,11 @@ namespace ExamplePlugin.Loadout.Draft
             var draftTier = DraftTierMaps.ToDraft(pickupDef.itemTier);
             var settings = GetOrCreate(draftTier);
 
-            if (settings.Mode == DraftLimitMode.None)
-            {
-                // always picked
-                return true;
-            }
+            //if (settings.Mode == DraftLimitMode.None)
+            //{
+            //    // always picked
+            //    return true;
+            //}
 
             var itemTier = pickupDef.itemTier;
             var selectedSet = GetOrCreateNativeSet(itemTier);
@@ -268,16 +273,16 @@ namespace ExamplePlugin.Loadout.Draft
         public void TrimToLimit(DraftItemTier draftTier)
         {
             var settings = GetOrCreate(draftTier);
-            // nothing to do
-            if (settings.Mode == DraftLimitMode.None)
-            {
-                return;
-            }
+            //// nothing to do
+            //if (settings.Mode == DraftLimitMode.None)
+            //{
+            //    return;
+            //}
 
             var desiredAmount = Math.Max(0, settings.Max);
             var currAmount = GetPickedCountForDraftTier(draftTier);
             var amountToRemove = currAmount - desiredAmount;
-            if(amountToRemove <= 0)
+            if (amountToRemove <= 0)
             {
                 // we are within bounds
                 return;
@@ -320,7 +325,7 @@ namespace ExamplePlugin.Loadout.Draft
         {
             // if its already locked do nothing
             var currentlyLocked = IsLocked(pickupDef);
-            if(currentlyLocked)
+            if (currentlyLocked)
             {
                 // TODO remove warning this is fine or well we check if already locked
                 Log.Warning($"Attempting to relock {pickupDef.itemIndex}");
@@ -336,7 +341,7 @@ namespace ExamplePlugin.Loadout.Draft
 
         public void Unlock(PickupDef pickupDef)
         {
-            if(!IsLocked(pickupDef))
+            if (!IsLocked(pickupDef))
             {
                 return;
             }
@@ -382,7 +387,7 @@ namespace ExamplePlugin.Loadout.Draft
 
                         // If we have any locked ones in the tier, add them here
                         var lockedIndices = GetOrCreateLockedSet(draftTier);
-                        foreach(var index in lockedIndices)
+                        foreach (var index in lockedIndices)
                         {
                             playerLoadoutTierLimit.restrictedByVoid.Add(index);
                         }
@@ -399,8 +404,8 @@ namespace ExamplePlugin.Loadout.Draft
         {
             switch (limitMode)
             {
-                case DraftLimitMode.None:
-                    return TierLimitMode.None;
+                //case DraftLimitMode.None:
+                //    return TierLimitMode.None;
                 case DraftLimitMode.Restricted:
                     return TierLimitMode.Restricted;
             }
@@ -445,7 +450,7 @@ namespace ExamplePlugin.Loadout.Draft
 
         private HashSet<ItemIndex> GetOrCreateLockedSet(DraftItemTier draftTier)
         {
-            if(!itemsLockedByDraftTier.TryGetValue(draftTier, out var set))
+            if (!itemsLockedByDraftTier.TryGetValue(draftTier, out var set))
             {
                 set = new HashSet<ItemIndex>();
                 itemsLockedByDraftTier[draftTier] = set;
@@ -468,9 +473,19 @@ namespace ExamplePlugin.Loadout.Draft
 
         private static int GetSeedMaxForTier(DraftItemTier tier)
         {
-            // TODO base this on the actual items
-            return 10;
+            switch (tier)
+            {
+                case DraftItemTier.White: return 7;
+                case DraftItemTier.Green: return 5;
+                case DraftItemTier.Red: return 3;
+                case DraftItemTier.Yellow: return 1;
+                case DraftItemTier.Purple: return 1;
+                // catchall
+                default:
+                    return 10;
+            }
         }
+
         private static DraftPick ToDraftPick(PickupDef pickupDef)
         {
             return ToDraftPick(pickupDef.itemIndex, pickupDef.itemTier);
