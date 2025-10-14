@@ -33,6 +33,7 @@ namespace ExamplePlugin.UI.Drafting
         // The data portion
         private DraftItemTier tabTier;
 
+        #region Events
         /// <summary>
         /// Fired when a click occurs on an item square
         /// </summary>
@@ -53,6 +54,12 @@ namespace ExamplePlugin.UI.Drafting
         /// </summary>
         public Action<DraftItemTier> OnLimitDecreaseRequest;
 
+        /// <summary>
+        /// Fired when the randomize button is pressed
+        /// </summary>
+        public Action<DraftItemTier> OnRandomizeTabRequest;
+        #endregion
+
         public void SetTabTier(DraftItemTier tabTier)
         {
             this.tabTier = tabTier;
@@ -71,6 +78,7 @@ namespace ExamplePlugin.UI.Drafting
             tabControls.OnRestrictModeChanged += PropagateChangeMode;
             tabControls.OnIncreaseItemLimit += PropagateIncreaseLimit;
             tabControls.OnDecreaseItemLimit += PropagateDecreaseLimit;
+            tabControls.OnRandomizeTier += PropagateRandomizeTab;
         }
 
         /// <summary>
@@ -101,6 +109,7 @@ namespace ExamplePlugin.UI.Drafting
             this.gridController.RefreshSquares();
         }
 
+        #region EventHandlers
         private void OnSquareClicked(PickupDef pickup)
         {
             OnItemClicked?.Invoke(tabTier, pickup);
@@ -121,6 +130,12 @@ namespace ExamplePlugin.UI.Drafting
             OnModeChangeRequest?.Invoke(tabTier, isRestricted);
         }
 
+        private void PropagateRandomizeTab()
+        {
+            OnRandomizeTabRequest?.Invoke(tabTier);
+        }
+        #endregion
+
         private void RefreshControls()
         {
             var currMode = DraftLoadout.Instance.GetMode(tabTier);
@@ -132,10 +147,10 @@ namespace ExamplePlugin.UI.Drafting
             //}
             //else
             //{
-                // TODO show controls
+            // TODO show controls
 
-                // update the label
-                UpdateLimitLabel();
+            // update the label
+            UpdateLimitLabel();
             //}
         }
 

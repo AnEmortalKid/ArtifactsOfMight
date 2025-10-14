@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 using RoR2;
 
 namespace ExamplePlugin.Loadout.Draft

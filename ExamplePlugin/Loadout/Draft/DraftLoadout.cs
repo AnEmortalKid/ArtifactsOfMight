@@ -186,6 +186,7 @@ namespace ExamplePlugin.Loadout.Draft
         /// Determines whether this item will be available in our run or not
         /// </summary>
         /// <param name="pickupDef">the pickup definition</param>
+        /// TODO rename
         /// <returns></returns>
         public bool IsAvailable(PickupDef pickupDef)
         {
@@ -270,7 +271,7 @@ namespace ExamplePlugin.Loadout.Draft
         /// Uses a First In Last Out approach when trimming the picked items if the limit decreases the current capacity
         /// </summary>
         /// <param name="draftTier"></param>
-        public void TrimToLimit(DraftItemTier draftTier)
+        public HashSet<ItemIndex> TrimToLimit(DraftItemTier draftTier)
         {
             var settings = GetOrCreate(draftTier);
             //// nothing to do
@@ -285,7 +286,7 @@ namespace ExamplePlugin.Loadout.Draft
             if (amountToRemove <= 0)
             {
                 // we are within bounds
-                return;
+                return [];
             }
 
             // cap to list size
@@ -293,18 +294,23 @@ namespace ExamplePlugin.Loadout.Draft
             amountToRemove = Math.Min(amountToRemove, pickOrderList.Count);
 
 
+            var removedIndices = new HashSet<ItemIndex>();
             // work backwards
             for (int i = 0; i < amountToRemove; i++)
             {
                 var itemToRemove = pickOrderList[^1];
+                var itemToRemoveIndex = itemToRemove.ItemIndex;
 
                 // remove our pick
                 pickOrderList.Remove(itemToRemove);
+                removedIndices.Add(itemToRemoveIndex);
 
                 // remove it from the tier set
                 var nativeSet = GetOrCreateNativeSet(itemToRemove.ItemTier);
-                nativeSet.Remove(itemToRemove.ItemIndex);
+                nativeSet.Remove(itemToRemoveIndex);
             }
+
+            return removedIndices;
         }
 
         public bool IsLocked(PickupDef pickupDef)
@@ -350,6 +356,44 @@ namespace ExamplePlugin.Loadout.Draft
             var itemsLocked = GetOrCreateLockedSet(draftTier);
             itemsLocked.Remove(pickupDef.itemIndex);
         }
+
+        /// <summary>
+        /// Removes all picks and locks
+        /// </summary>
+        public void ClearAllPicksAndLocks()
+        {
+            foreach (DraftItemTier draftTier in Enum.GetValues(typeof(DraftItemTier)))
+            {
+                var itemTiers = DraftTierMaps.ToNativeSet(draftTier);
+                foreach (var itemTier in itemTiers)
+                {
+                    var selectedSet = GetOrCreateNativeSet(itemTier);
+                    selectedSet.Clear();
+                }
+
+                var pickOrderList = GetOrCreatePickupOrder(draftTier);
+                pickOrderList.Clear();
+
+                var itemsLocked = GetOrCreateLockedSet(draftTier);
+                itemsLocked.Clear();
+            }
+        }
+
+        public HashSet<ItemIndex> ClearPicks(DraftItemTier draftTier)
+        {
+            var originallyPicked = new HashSet<ItemIndex>();
+
+            var itemTiers = DraftTierMaps.ToNativeSet(draftTier);
+            foreach (var itemTier in itemTiers)
+            {
+                var selectedSet = GetOrCreateNativeSet(itemTier);
+                originallyPicked.UnionWith(selectedSet);
+                selectedSet.Clear();
+            }
+
+            return originallyPicked;
+        }
+
         #endregion
 
         #region Model Translation

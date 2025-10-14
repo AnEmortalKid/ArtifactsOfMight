@@ -23,13 +23,24 @@ namespace ExamplePlugin.Loadout.Corruption
 
 
         /// <summary>
-        /// Gets the set of ItemIndexes that are corrupted by a given void item
+        /// Gets the set of PickupDefs that are corrupted by a given void item
         /// </summary>
         /// <param name="voidIndex"></param>
         /// <returns></returns>
-        public static HashSet<ItemIndex> GetNormalsForVoid(ItemIndex voidIndex)
+        public static List<PickupDef> GetNormalsPickupDefsForVoid(ItemIndex voidIndex)
         {
-            return VoidToNormals[voidIndex];
+            var normalDefs = new List<PickupDef>();
+            foreach (var normalIndex in VoidToNormals[voidIndex])
+            {
+                var normalDef = PickupCatalog.GetPickupDef(PickupCatalog.FindPickupIndex(normalIndex));
+                if (normalDef == null)
+                {
+                    Log.Warning($"Got a null PickupDef with index {normalIndex}");
+                }
+                normalDefs.Add(normalDef);
+            }
+
+            return normalDefs;
         }
 
         /// <summary>

@@ -4,6 +4,7 @@ using System.Text;
 using ExamplePlugin.Loadout.Draft;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace ExamplePlugin.UI.Drafting
 {
@@ -20,6 +21,15 @@ namespace ExamplePlugin.UI.Drafting
 
         private Dictionary<DraftItemTier, TextMeshProUGUI> textAreasByTier = new();
 
+
+        private Button randomizeButton;
+
+        #region Events
+        /// <summary>
+        /// Fired when a click event is received on the randomize all button
+        /// </summary>
+        public Action OnRandomizeClick;
+        #endregion
 
         public void BindTextArea(DraftItemTier draftTier, TextMeshProUGUI textArea)
         {
@@ -51,6 +61,18 @@ namespace ExamplePlugin.UI.Drafting
 
                textAreasByTier[tier].text = textUpdate;
             }
+        }
+
+        public void BindRandomizeButton(Button button)
+        {
+            this.randomizeButton = button;
+
+            this.randomizeButton.onClick.AddListener(PropagateRandomizeClick);
+        }
+
+        private void PropagateRandomizeClick()
+        {
+            OnRandomizeClick?.Invoke();
         }
     }
 }

@@ -15,7 +15,7 @@ namespace ExamplePlugin.Loadout.Corruption
             { CorruptedItem.Needletick, "RoR2/DLC1/BleedOnHitVoid/BleedOnHitVoid.asset" },
             { CorruptedItem.NewlyHatchedZoea, "RoR2/DLC1/VoidMegaCrabItem.asset" },
             { CorruptedItem.PlasmaShrimp, "RoR2/DLC1/MissileVoid/MissileVoid.asset" },
-            { CorruptedItem.PluripotentLarva, "RoR2/DLC1/BearVoid/BearVoid.asset" },
+            { CorruptedItem.PluripotentLarva, "RoR2/DLC1/ExtraLifeVoid/ExtraLifeVoid.asset" },
             { CorruptedItem.Polylute,  "RoR2/DLC1/ChainLightningVoid/ChainLightningVoid.asset"},
             { CorruptedItem.SaferSpaces, "RoR2/DLC1/BearVoid/BearVoid.asset" },
             { CorruptedItem.SingularityBand, "RoR2/DLC1/ElementalRingVoid/ElementalRingVoid.asset" },

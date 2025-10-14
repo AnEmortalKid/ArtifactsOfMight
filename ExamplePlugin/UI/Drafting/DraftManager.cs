@@ -45,9 +45,9 @@ namespace ExamplePlugin.UI.Drafting
         private DraftSummaryBar draftSummaryBar;
 
         /// <summary>
-        ///  MEGA WIP
+        ///  Stores a reference to our DraftTabController based on the tier
         /// </summary>
-        private static Dictionary<DraftItemTier, GameObject> tabsByTier = new();
+        private static Dictionary<DraftItemTier, DraftTabController> tabControllersByTier = new();
 
         public void Initialize(RectTransform parentRectTransform)
         {
@@ -132,6 +132,22 @@ namespace ExamplePlugin.UI.Drafting
         }
 
 
+        private void HandleRandomizeAll()
+        {
+            // handles the logic needed to randomize everything
+            DraftLoadoutRandomizer.RandomizeAll();
+
+            RefreshTabs();
+            this.draftSummaryBar.UpdateSummary();
+        }
+
+        private void HandleRandomizeTabRequest(DraftItemTier tier)
+        {
+            DraftLoadoutRandomizer.RandomizeTab(tier);
+
+            RefreshTabs();
+            this.draftSummaryBar.UpdateSummary();
+        }
 
         #endregion
 
@@ -159,7 +175,7 @@ namespace ExamplePlugin.UI.Drafting
 
             // TODO if corrupted, unpick corresponding item
             // Reflect any tabs that have changed
-            tabsByTier[tabTier].GetComponent<DraftTabController>().RefreshItems();
+            tabControllersByTier[tabTier].RefreshItems();
 
             return true;
         }
@@ -195,22 +211,17 @@ namespace ExamplePlugin.UI.Drafting
                 DraftItemTier.Purple
             };
 
-            var normalDefs = GetNormalsForVoid(voidDef);
-            foreach (var normalDef in normalDefs)
+            var unlockedItems = UnlockRelatedToVoid(voidDef.itemIndex);
+            foreach (var unlockedItem in unlockedItems)
             {
-                // if its locked, then unlock
-                var normalLocked = DraftLoadout.Instance.IsLocked(normalDef);
-                if (normalLocked)
-                {
-                    DraftLoadout.Instance.Unlock(normalDef);
-                    var tabForItem = DraftTierMaps.ToDraft(normalDef.itemTier);
-                    tabsToUpdate.Add(tabForItem);
-                }
+                var unlockDef = PickupCatalog.GetPickupDef(PickupCatalog.FindPickupIndex(unlockedItem));
+                var tabForItem = DraftTierMaps.ToDraft(unlockDef.itemTier);
+                tabsToUpdate.Add(tabForItem);
             }
 
             foreach (var tabTier in tabsToUpdate)
             {
-                tabsByTier[tabTier].GetComponent<DraftTabController>().RefreshItems();
+                tabControllersByTier[tabTier].RefreshItems();
             }
 
             return true;
@@ -230,7 +241,7 @@ namespace ExamplePlugin.UI.Drafting
             };
 
             // picked so try to lock things
-            var normalDefs = GetNormalsForVoid(voidDef);
+            var normalDefs = CorruptionMaps.GetNormalsPickupDefsForVoid(voidDef.itemIndex);
             foreach (var normalDef in normalDefs)
             {
                 var tabForItem = DraftTierMaps.ToDraft(normalDef.itemTier);
@@ -253,27 +264,11 @@ namespace ExamplePlugin.UI.Drafting
 
             foreach (var tabTier in tabsToUpdate)
             {
-                tabsByTier[tabTier].GetComponent<DraftTabController>().RefreshItems();
+                tabControllersByTier[tabTier].RefreshItems();
 
             }
 
             return true;
-        }
-
-        private List<PickupDef> GetNormalsForVoid(PickupDef voidDef)
-        {
-            var normalDefs = new List<PickupDef>();
-            foreach (var normalIndex in CorruptionMaps.GetNormalsForVoid(voidDef.itemIndex))
-            {
-                var normalDef = PickupCatalog.GetPickupDef(PickupCatalog.FindPickupIndex(normalIndex));
-                if (normalDef == null)
-                {
-                    Log.Warning($"Got a null PickupDef with index {normalIndex}");
-                }
-                normalDefs.Add(normalDef);
-            }
-
-            return normalDefs;
         }
 
         private void ToggleValidPick(PickupDef pickupDef)
@@ -300,20 +295,67 @@ namespace ExamplePlugin.UI.Drafting
             // only if we decrase do we reconsolidate
             if (amount < 0)
             {
-                DraftLoadout.Instance.TrimToLimit(tabTier);
+                Log.Info("Reconsolidate trim");
+                var removedItems = DraftLoadout.Instance.TrimToLimit(tabTier);
+                Log.Info($"Removed {removedItems.Count}");
+                if (tabTier == DraftItemTier.Purple && removedItems.Count > 0)
+                {
+                    UnlockAllRelatedToVoid(removedItems);
+                }
             }
 
-            var tabController = tabsByTier[tabTier].GetComponent<DraftTabController>();
+            var tabController = tabControllersByTier[tabTier];
             tabController.RefreshLimit();
         }
 
 
         private void RefreshTabs()
         {
-            foreach (var tabEntry in tabsByTier)
+            foreach (var tabEntry in tabControllersByTier)
             {
-                tabEntry.Value.GetComponent<DraftTabController>().RefreshLimit();
+                tabEntry.Value.RefreshLimit();
             }
+        }
+
+        private void UnlockAllRelatedToVoid(HashSet<ItemIndex> voidIndexes)
+        {
+            foreach (var voidIndex in voidIndexes)
+            {
+                // dont need the result
+                UnlockRelatedToVoid(voidIndex);
+            }
+
+            // refresh the possible tabs
+            tabControllersByTier[DraftItemTier.White].RefreshItems();
+            tabControllersByTier[DraftItemTier.Green].RefreshItems();
+            tabControllersByTier[DraftItemTier.Red].RefreshItems();
+        }
+
+        /// <summary>
+        /// Unlocks any currently locked items by the void
+        /// Useful when the void is no longer picked and we need to unlock state
+        /// </summary>
+        /// <param name="voidIndex">the item index for the void</param>
+        /// <returns>the item indexes that were unlocked</returns>
+        private HashSet<ItemIndex> UnlockRelatedToVoid(ItemIndex voidIndex)
+        {
+            Log.Info($"Unlocking related to void {voidIndex}");
+
+            var unlockedItems = new HashSet<ItemIndex>();
+
+            var normalDefs = CorruptionMaps.GetNormalsPickupDefsForVoid(voidIndex);
+            foreach (var normalDef in normalDefs)
+            {
+                // if its locked, then unlock
+                var normalLocked = DraftLoadout.Instance.IsLocked(normalDef);
+                if (normalLocked)
+                {
+                    DraftLoadout.Instance.Unlock(normalDef);
+                    unlockedItems.Add(normalDef.itemIndex);
+                }
+            }
+
+            return unlockedItems;
         }
 
         #endregion
@@ -423,13 +465,13 @@ namespace ExamplePlugin.UI.Drafting
 
         private void WipTabToggles(DraftItemTier desiredTier)
         {
-
-            foreach (var key in tabsByTier.Keys)
+            // TODO track inactive and swap
+            foreach (var key in tabControllersByTier.Keys)
             {
-                tabsByTier[key].SetActive(false);
+                tabControllersByTier[key].gameObject.SetActive(false);
             }
 
-            tabsByTier[desiredTier].SetActive(true);
+            tabControllersByTier[desiredTier].gameObject.SetActive(true);
         }
 
 
@@ -644,7 +686,7 @@ namespace ExamplePlugin.UI.Drafting
             foreach (DraftItemTier draftTier in Enum.GetValues(typeof(DraftItemTier)))
             {
                 var draftTab = DraftTabFactory.BuildDraftTab(contentAreaRt, nameof(draftTier) + "_Tab", draftTier);
-                tabsByTier[draftTier] = draftTab.gameObject;
+                tabControllersByTier[draftTier] = draftTab;
                 // all off
                 draftTab.gameObject.SetActive(false);
 
@@ -653,13 +695,15 @@ namespace ExamplePlugin.UI.Drafting
                 draftTab.OnModeChangeRequest += HandleModeChangeRequest;
                 draftTab.OnLimitIncreaseRequest += HandleLimitIncreaseRequest;
                 draftTab.OnLimitDecreaseRequest += HandleLimitDecreaseRequest;
+                draftTab.OnRandomizeTabRequest += HandleRandomizeTabRequest;
             }
 
             // Pick the white tab first
-            tabsByTier[DraftItemTier.White].gameObject.SetActive(true);
+            tabControllersByTier[DraftItemTier.White].gameObject.SetActive(true);
 
             return contentAreaRt;
         }
+
 
 
         private RectTransform BuildBottomBar()
@@ -692,6 +736,10 @@ namespace ExamplePlugin.UI.Drafting
 
             // our nice summary bar probs
             this.draftSummaryBar = DraftSummaryBarFactory.CreateBar(tabsBarRt);
+
+
+            // bind stuff
+            this.draftSummaryBar.OnRandomizeClick += HandleRandomizeAll;
 
             return tabsBarRt;
         }

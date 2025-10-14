@@ -46,6 +46,8 @@ namespace ExamplePlugin.UI.Drafting.Summary
             var diceIcon = Addressables.LoadAssetAsync<Sprite>("RoR2/Base/Common/MiscIcons/texRandomizeIcon.png").WaitForCompletion();
             var diceGO = FactoryUtils.CreateImageButton("Summary" + "_Dice", new Vector2(40, 40), diceIcon);
             FactoryUtils.ParentToRectTransform(diceGO, barGORT);
+            draftSummaryBar.BindRandomizeButton(diceGO.GetComponent<Button>());
+
 
             // Testing
             var lockIconMaybe = Addressables.LoadAssetAsync<Sprite>("RoR2/Base/VoidIcon_2.png").WaitForCompletion();
