@@ -1,4 +1,7 @@
-﻿using RoR2;
+﻿using ExamplePlugin.Loadout.Draft;
+using ExamplePlugin.UI.Tooltips;
+using R2API;
+using RoR2;
 using UnityEngine;
 using UnityEngine.AddressableAssets;
 using UnityEngine.UI;
@@ -148,16 +151,27 @@ namespace ExamplePlugin.UI
 
             var lockOverlay = CreateLockOverlay(sqRt);
 
-            var itemName = pickupDef.nameToken;
             var button = sq.GetComponent<Button>();
-
             // setup the controller
             var controller = sq.AddComponent<ItemPickerSquareController>();
             controller.BindComponents(pickupDef, button, backgroundImage, icon, uiOutline, lockOverlay);
 
-            // Do NOT set size/pos; GridLayoutGroup will handle it.
-            // (If you want a visible icon, set an Image sprite)
-            //sq.GetComponent<Image>().color = new Color(0.2f, 0.2f, 0.2f, 1f); // dark tile bg
+
+            // tooltip stuff
+            var tooltipTrigger = sq.AddComponent<TooltipTrigger>();
+            // snap relative to me
+            tooltipTrigger.Anchor = sqRt;
+
+            var draftTier = DraftTierMaps.ToDraft(pickupDef.itemTier);
+            var itemDef = ItemCatalog.GetItemDef(pickupDef.itemIndex);
+            var itemName = Language.GetString(itemDef.nameToken);
+            var description = Language.GetString(itemDef.descriptionToken);
+            tooltipTrigger.Data = new TooltipData
+            {
+                Title = itemName,
+                Body = description,
+                HeaderColor = GetTooltipHeaderColor(draftTier)
+            };
 
             return sq;
         }
@@ -260,6 +274,26 @@ namespace ExamplePlugin.UI
 
             go.transform.SetAsLastSibling(); // render on top
             return rt;
+        }
+
+        private static Color GetTooltipHeaderColor(DraftItemTier draftItemTier)
+        {
+            switch (draftItemTier)
+            {
+                case DraftItemTier.White:
+                    return ColorPalette.HeaderWhite;
+                case DraftItemTier.Green:
+                    return ColorPalette.HeaderGreen;
+                case DraftItemTier.Red:
+                    return ColorPalette.HeaderRed;
+                case DraftItemTier.Yellow:
+                    return ColorPalette.HeaderYellow;
+                case DraftItemTier.Purple:
+                    return ColorPalette.HeaderPurple;
+            }
+
+            // Default and obvious
+            return Color.cyan;
         }
     }
 }

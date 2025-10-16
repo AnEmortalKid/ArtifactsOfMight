@@ -9,6 +9,9 @@ using System.Collections.Generic;
 using ExamplePlugin.Loadout.Draft;
 using ExamplePlugin.UI.Drafting;
 using System.Diagnostics.CodeAnalysis;
+using ExamplePlugin.UI.Tooltips;
+using ExamplePlugin.UI.Utils;
+using ExamplePlugin.UI.Branding.Inspection;
 
 namespace ExamplePlugin.UI
 {
@@ -49,7 +52,9 @@ namespace ExamplePlugin.UI
 
         private GameObject testDraftMObject;
 
-        private GameObject wipDraftManagerRoot;
+        private GameObject wipSpawnOverlay;
+
+        private GameObject testAssetGrid;
 
         void Awake()
         {
@@ -255,7 +260,6 @@ namespace ExamplePlugin.UI
             return draftManagerRoot;
         }
 
-
         private static void SetLayerRecursively(GameObject go, int layer)
         {
             go.layer = layer;
@@ -290,7 +294,60 @@ namespace ExamplePlugin.UI
         {
             //var testMO = BuildDraftPickerRootStructureNoContents("TestNoContents");
             var testMO = BuildDraftPickerRootStructureNoWorky();
+            var tooltipGO = BuildToolTipStructure();
+
             return testMO;
+        }
+
+        private GameObject BuildToolTipStructure()
+        {
+            var tooltipRoot = new GameObject("TooltipTest", typeof(RectTransform), typeof(TooltipSystem));
+            FactoryUtils.ParentToRectTransform(tooltipRoot, SafeArea);
+
+            var tooltipRootRT = (RectTransform)tooltipRoot.transform;
+            FactoryUtils.StretchToFillParent(tooltipRootRT);
+
+            // ==== Debug Teal Background ====
+            var debugBG = new GameObject("ToolTipTest" + "_DebugBG", typeof(RectTransform), typeof(Image));
+            var bgRt = (RectTransform)debugBG.transform;
+            bgRt.SetParent(tooltipRootRT, worldPositionStays: false);
+            bgRt.anchorMin = Vector2.zero;
+            bgRt.anchorMax = Vector2.one;
+            bgRt.pivot = new Vector2(0.5f, 0.5f);
+            bgRt.offsetMin = Vector2.zero;   // no margins
+            bgRt.offsetMax = Vector2.zero;
+
+            // Debug only
+            var img = debugBG.GetComponent<Image>();
+            // set it to transparent, turn it back to .25f for debug
+            img.color = new Color(0.5f, 0f, 0.5f, 0f);
+            img.raycastTarget = false;        
+
+            // DEBUG: print rect sizes to verify
+            LogRect("SafeArea", SafeArea);
+            LogRect("Root", tooltipRootRT);
+            LogRect("BG", bgRt);
+
+            var system = tooltipRoot.GetComponent<TooltipSystem>();
+            var tooltipView = TooltipFactory.CreateTooltipView(tooltipRootRT);
+            system.Initialize(tooltipRootRT, tooltipView);
+            tooltipView.transform.SetAsLastSibling();
+
+            return tooltipRoot;
+        }
+
+        GameObject SpawnOverlayProbe(RectTransform parent)
+        {
+            var go = new GameObject("TooltipProbe", typeof(RectTransform), typeof(UnityEngine.UI.Image));
+            var rt = (RectTransform)go.transform;
+            rt.SetParent(parent, false);
+            rt.sizeDelta = new Vector2(220, 80);
+            rt.anchorMin = rt.anchorMax = new Vector2(0.5f, 0.5f);
+            rt.anchoredPosition = Vector2.zero;
+            var img = go.GetComponent<UnityEngine.UI.Image>();
+            img.color = Color.blue;
+            img.raycastTarget = false;
+            return go;
         }
 
         private GameObject TestDraftManagerFlow()
@@ -326,7 +383,7 @@ namespace ExamplePlugin.UI
             //LogRect("Parent", SafeArea);
             //LogTree(draftManagerRootRt);
 
-         
+
 
             //var draftManager = draftManagerRoot.AddComponent<DraftManager>();
             //draftManager.Initialize(draftManagerRootRt);
@@ -380,35 +437,15 @@ namespace ExamplePlugin.UI
 
             if (Input.GetKeyDown(KeyCode.F6))
             {
-                var sceneName = SceneManager.GetActiveScene().name;
-                if (sceneName != "lobby")
+                if(!testAssetGrid)
                 {
-                    Log.Warning("DraftPickerToggleDuringLobby in scene " + sceneName);
-                    return;
-                }
-
-                Log.Info("DraftPickerToggle Respond F6");
-                if (wipDraftManagerRoot == null)
-                {
-                    Log.Info("DraftPickerToggle TestDraftManagerFlow");
-                    wipDraftManagerRoot = TestDraftManagerFlow();
-                    return;
-                }
-
-                if (!wipDraftManagerRoot)
-                {
-                    Log.Warning("DraftPickerToggleDuringLobby no DraftManager after init");
-                    return;
-                }
-
-                if (wipDraftManagerRoot.activeSelf)
-                {
-                    wipDraftManagerRoot.SetActive(false);
+                    testAssetGrid = AssetDebugGridFactory.BuildTestGrid(SafeArea);
                 }
                 else
                 {
-                    wipDraftManagerRoot.SetActive(true);
+                    testAssetGrid.SetActive(!testAssetGrid.activeSelf);
                 }
+                
             }
 
             if (Input.GetKeyDown(KeyCode.F7))
@@ -447,8 +484,48 @@ namespace ExamplePlugin.UI
 
             if (Input.GetKeyDown(KeyCode.F5))
             {
-                DumpActiveHierarchy();
+                var hierarchyResult = HierarchyDumper.DumpActiveHierarchy("SceneHierarchy");
+                Log.Debug(hierarchyResult);
             }
+
+            // We know this works
+            //if(Input.GetKeyDown(KeyCode.F8))
+            //{
+            //    var canvas = SafeArea.GetComponentInParent<Canvas>();
+            //    var uiCam = canvas && canvas.renderMode != RenderMode.ScreenSpaceOverlay
+            //        ? canvas.worldCamera
+            //        : null;
+
+            //    this.wipSpawnOverlay.SetActive(false);
+
+            //    var overlayRect = wipSpawnOverlay.GetComponent<RectTransform>();
+
+            //    bool nowActive = !wipSpawnOverlay.activeSelf;
+            //    wipSpawnOverlay.SetActive(nowActive);
+
+            //    if (nowActive)
+            //    {
+            //        Vector2 local;
+            //        RectTransformUtility.ScreenPointToLocalPointInRectangle(
+            //            SafeArea, Input.mousePosition, uiCam, out local);
+
+            //        // optional: set anchors to top-left so anchoredPosition behaves consistently
+            //        overlayRect.anchorMin = overlayRect.anchorMax = new Vector2(0, 1);
+            //        overlayRect.pivot = new Vector2(0, 1);
+
+            //        // local is centered; convert to top-left space (safeArea pivot = 0.5,0.5)
+            //        Vector2 half = SafeArea.rect.size * 0.5f;
+            //        Vector2 anchored = local + new Vector2(half.x, -half.y);
+
+            //        overlayRect.anchoredPosition = anchored;
+
+            //        Debug.Log($"[SpawnOverlay] Activated at mouse {Input.mousePosition} => anchored {anchored}");
+            //    }
+            //    else
+            //    {
+            //        Debug.Log("[SpawnOverlay] Deactivated");
+            //    }
+            //}
         }
 
 
@@ -506,19 +583,30 @@ namespace ExamplePlugin.UI
 
         static void DumpActiveHierarchy(string title = "Lobby Dump", int maxDepth = 5)
         {
+
             var scene = SceneManager.GetActiveScene();
+            Log.Info($"Dumping: {scene.name}");
+
             var sb = new StringBuilder();
             sb.AppendLine($"==== {title}: Scene '{scene.name}' ====");
 
             foreach (var root in scene.GetRootGameObjects())
+            {
                 Recurse(root.transform, 0, maxDepth, sb);
+            }
 
             Log.Info(sb.ToString());
 
             static void Recurse(Transform t, int depth, int maxDepth, StringBuilder sb)
             {
-                if (!t.gameObject.activeInHierarchy) return;
-                if (depth > maxDepth) return;
+                if (!t || !t.gameObject.activeInHierarchy)
+                {
+                    return;
+                }
+
+                if (depth > maxDepth) { return; }
+
+                Log.Info($"Recurse {t}");
 
                 var rt = t as RectTransform;
                 var tag = rt ? " [RectTransform]" : "";

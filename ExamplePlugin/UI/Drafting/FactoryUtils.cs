@@ -55,17 +55,6 @@ namespace ExamplePlugin.UI.Drafting
                 SetLayerRecursively(go.transform.GetChild(i).gameObject, layer);
         }
 
-        public static void StretchFull(RectTransform rt)
-        {
-            rt.anchorMin = Vector2.zero;   // bottom-left
-            rt.anchorMax = Vector2.one;    // top-right
-            rt.pivot = new Vector2(0.5f, 0.5f);
-            rt.offsetMin = Vector2.zero;   // no left/bottom padding
-            rt.offsetMax = Vector2.zero;   // no right/top padding
-            rt.anchoredPosition = Vector2.zero;
-        }
-
-
         /// <summary>
         /// Creates a component that acts as a spacer element designed to stretch between 2 components
         /// with fixed sizes in order to keep them in the same spot
