@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -10,6 +11,11 @@ namespace ExamplePlugin.UI.Drafting
     {
         private static Vector2 CENTER = new Vector2(0.5f, 0.5f);
 
+        /// <summary>
+        /// Parents the given gameObject to the desired rectTransform, with world position stays
+        /// </summary>
+        /// <param name="child"></param>
+        /// <param name="parentRect"></param>
         public static void ParentToRectTransform(GameObject child, RectTransform parentRect)
         {
             var parentGO = parentRect.gameObject;
@@ -20,7 +26,7 @@ namespace ExamplePlugin.UI.Drafting
         }
 
         /// <summary>
-        /// Use this when the child should fill or scale with its parent.
+        /// Stretches the child to the full bounds of the parent (no borders/margins,etc)
         /// </summary>
         /// <param name="childRT"></param>
         public static void StretchToFillParent(RectTransform childRT)
@@ -66,7 +72,6 @@ namespace ExamplePlugin.UI.Drafting
         {
             var spacerGO = new GameObject(spacerName, typeof(RectTransform), typeof(LayoutElement));
             ParentToRectTransform(spacerGO, parentRect);
-            UIDebugOutline.AddOutline(spacerGO.GetComponent<RectTransform>(), Color.white, 2f);
 
             var spacerLE = spacerGO.GetComponent<LayoutElement>();
             spacerLE.flexibleWidth = 1;
@@ -100,6 +105,31 @@ namespace ExamplePlugin.UI.Drafting
             button.transition = Selectable.Transition.ColorTint;
 
             return buttonParentGO;
+        }
+
+       public static TMP_Text CreateTMP(string name, RectTransform parent, int size, FontStyles style, Color fontColor)
+        {
+            var go = new GameObject(name, typeof(RectTransform), typeof(TextMeshProUGUI));
+            FactoryUtils.ParentToRectTransform(go, parent);
+            var rt = (RectTransform)go.transform;
+
+            var tmp = go.GetComponent<TextMeshProUGUI>();
+            tmp.text = "";
+            tmp.fontSize = size;
+            tmp.fontStyle = style;
+            tmp.raycastTarget = false;
+            tmp.enableWordWrapping = false;
+            tmp.margin = Vector4.zero;
+            tmp.alignment = TextAlignmentOptions.TopLeft;
+            return tmp;
+        }
+
+        public static Vector4 GetSpriteBorderAsUIPadding(Sprite s)
+        {
+            if (!s) return Vector4.zero;
+            float ppu = s.pixelsPerUnit > 0 ? s.pixelsPerUnit : 100f;
+            var b = s.border; // (L,B,R,T) in pixels
+            return new Vector4(b.x / ppu, b.w / ppu, b.z / ppu, b.y / ppu); // (L,T,R,B)
         }
     }
 }

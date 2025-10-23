@@ -12,6 +12,8 @@ using System.Diagnostics.CodeAnalysis;
 using ExamplePlugin.UI.Tooltips;
 using ExamplePlugin.UI.Utils;
 using ExamplePlugin.UI.Branding.Inspection;
+using ExamplePlugin.UI.Branding.Panel;
+using Rewired.UI;
 
 namespace ExamplePlugin.UI
 {
@@ -52,9 +54,11 @@ namespace ExamplePlugin.UI
 
         private GameObject testDraftMObject;
 
-        private GameObject wipSpawnOverlay;
-
         private GameObject testAssetGrid;
+        private GameObject testSecondGrid;
+
+        RectTransform _glassContent;
+        RectTransform _glassHolder;
 
         void Awake()
         {
@@ -228,35 +232,7 @@ namespace ExamplePlugin.UI
 
         private GameObject BuildDraftPickerRootStructureNoWorky()
         {
-            var draftManagerRoot = new GameObject(DraftManagerRootName, typeof(RectTransform));
-            FactoryUtils.ParentToRectTransform(draftManagerRoot, SafeArea);
-
-            var draftManagerRootRT = (RectTransform)draftManagerRoot.transform;
-            FactoryUtils.StretchToFillParent(draftManagerRootRT);
-
-            // ==== Debug Teal Background ====
-            var debugBG = new GameObject(DraftManagerRootName + "_DebugBG", typeof(RectTransform), typeof(Image));
-            var bgRt = (RectTransform)debugBG.transform;
-            bgRt.SetParent(draftManagerRootRT, worldPositionStays: false);
-            bgRt.anchorMin = Vector2.zero;
-            bgRt.anchorMax = Vector2.one;
-            bgRt.pivot = new Vector2(0.5f, 0.5f);
-            bgRt.offsetMin = Vector2.zero;   // no margins
-            bgRt.offsetMax = Vector2.zero;
-
-            var img = debugBG.GetComponent<Image>();
-            img.color = new Color(0f, 0.5f, 0.5f, .25f);           // some sorta blueish
-            img.raycastTarget = true;        // optional click blocker
-
-
-            var draftManager = draftManagerRoot.AddComponent<DraftManager>();
-            draftManager.Initialize(draftManagerRootRT);
-
-            // DEBUG: print rect sizes to verify
-            LogRect("SafeArea", SafeArea);
-            LogRect("Root", draftManagerRootRT);
-            LogRect("BG", bgRt);
-
+            var draftManagerRoot = DraftManagerFactory.Create(SafeArea);
             return draftManagerRoot;
         }
 
@@ -293,10 +269,10 @@ namespace ExamplePlugin.UI
         private GameObject TestDraftManagerParenting()
         {
             //var testMO = BuildDraftPickerRootStructureNoContents("TestNoContents");
-            var testMO = BuildDraftPickerRootStructureNoWorky();
-            var tooltipGO = BuildToolTipStructure();
+            var testHierarchyObject = BuildDraftPickerRootStructureNoWorky();
+            //var tooltipGO = BuildToolTipStructure();
 
-            return testMO;
+            return testHierarchyObject;
         }
 
         private GameObject BuildToolTipStructure()
@@ -321,7 +297,7 @@ namespace ExamplePlugin.UI
             var img = debugBG.GetComponent<Image>();
             // set it to transparent, turn it back to .25f for debug
             img.color = new Color(0.5f, 0f, 0.5f, 0f);
-            img.raycastTarget = false;        
+            img.raycastTarget = false;
 
             // DEBUG: print rect sizes to verify
             LogRect("SafeArea", SafeArea);
@@ -437,7 +413,7 @@ namespace ExamplePlugin.UI
 
             if (Input.GetKeyDown(KeyCode.F6))
             {
-                if(!testAssetGrid)
+                if (!testAssetGrid)
                 {
                     testAssetGrid = AssetDebugGridFactory.BuildTestGrid(SafeArea);
                 }
@@ -445,8 +421,20 @@ namespace ExamplePlugin.UI
                 {
                     testAssetGrid.SetActive(!testAssetGrid.activeSelf);
                 }
-                
             }
+
+            if (Input.GetKeyDown(KeyCode.F2))
+            {
+                if (!testSecondGrid)
+                {
+                    testSecondGrid = AssetDebugGridFactory.BuildTestGrid(SafeArea);
+                }
+                else
+                {
+                    testSecondGrid.SetActive(!testSecondGrid.activeSelf);
+                }
+            }
+
 
             if (Input.GetKeyDown(KeyCode.F7))
             {
@@ -484,8 +472,18 @@ namespace ExamplePlugin.UI
 
             if (Input.GetKeyDown(KeyCode.F5))
             {
-                var hierarchyResult = HierarchyDumper.DumpActiveHierarchy("SceneHierarchy");
+                var hierarchyResult = HierarchyDumper.DumpActiveHierarchy("SceneHierarchy", 10);
                 Log.Debug(hierarchyResult);
+            }
+
+            if (Input.GetKeyDown(KeyCode.F8))
+            {
+                //EnsureGlassBuilt();
+
+                //var currVis = _glassHolder.gameObject.activeSelf;
+                //Log.Debug("F8: " + currVis + " => " + !currVis);
+                //_glassHolder.gameObject.SetActive(!currVis);
+                HierarchyDumper.TryDumpAllTooltips();
             }
 
             // We know this works
@@ -931,5 +929,124 @@ namespace ExamplePlugin.UI
             rt.offsetMax = Vector2.zero;   // no right/top padding
             rt.anchoredPosition = Vector2.zero;
         }
+
+        // Build once, keep hidden
+        void EnsureGlassBuilt()
+        {
+            if (_glassHolder)
+            {
+                Log.Debug("Glass built");
+                return;
+            }
+
+            Log.Debug("Build Test Glass");
+            var safe = SafeArea;
+
+
+            // 1) Full-screen holder under SafeArea (blocks clicks if you want)
+            var root = new GameObject("TestGridPanelRoot", typeof(RectTransform), typeof(Image)).GetComponent<RectTransform>();
+            root.SetParent(SafeArea, false);
+            root.anchorMin = Vector2.zero; root.anchorMax = Vector2.one;
+            root.pivot = new Vector2(0.5f, 0.5f);
+            root.offsetMin = root.offsetMax = Vector2.zero;
+
+            // set to transparent but give option to add color for debug viz
+            var rootImg = root.GetComponent<Image>();
+            rootImg.color = new Color(0, 0, 0, 0);
+            rootImg.raycastTarget = true;
+
+            var desiredPanelSize = new Vector2(720, 780);
+
+            // 2) Anchor node you can position/size
+            var anchorRect = new GameObject("PanelAnchor", typeof(RectTransform)).GetComponent<RectTransform>();
+            anchorRect.SetParent(root, false);
+            anchorRect.anchorMin = anchorRect.anchorMax = new Vector2(0.5f, 0.5f); // start centered
+            anchorRect.pivot = new Vector2(0.5f, 0.5f);
+            anchorRect.sizeDelta = desiredPanelSize;
+
+            anchorRect.anchoredPosition = Vector2.zero;
+
+            var glassContainer = GlassPanelFactory.BuildGlassBody("anchorTest", anchorRect,
+                desiredPanelSize, shouldBlockClicks: false,
+                borderOptions: new BorderOptions
+                {
+                    Style = BorderStyle.None,
+                    Color = new Color(0.363f, 0.376f, 0.472f, 1f),
+                    RespectSpritePadding = true
+                });
+            // no reflow since we want to not be inset for the tooltip
+            _glassHolder = glassContainer.glassPanelHolder.GetComponent<RectTransform>();
+
+            // try placing in the same spot as in inkscape
+            // inkscape is top-left coordinate so this should align nicely
+            anchorRect.anchorMin = new Vector2(0f, 1f);
+            anchorRect.anchorMax = new Vector2(0f, 1f);
+            anchorRect.pivot = new Vector2(0f, 1f);
+            // TODO need to do some math
+            anchorRect.anchoredPosition = new Vector2(660, -60);
+
+            // PlaceCenter(anchorRect);
+
+            //// Holder (anchors center — adjust if needed)
+            //_glassHolder = new GameObject("GlassOverlayHolder",
+            //    typeof(RectTransform), typeof(CanvasGroup)).GetComponent<RectTransform>();
+            //_glassHolder.SetParent(safe, false);
+            //_glassHolder.anchorMin = _glassHolder.anchorMax = new Vector2(0.5f, 0.5f);
+            //_glassHolder.pivot = new Vector2(0.5f, 0.5f);
+            //_glassHolder.sizeDelta = new Vector2(520, 220);
+            //_glassHolder.anchoredPosition = Vector2.zero;
+
+            //var _glassCG = _glassHolder.GetComponent<CanvasGroup>();
+            //_glassCG.alpha = 1f;
+
+
+            //var glassHolderRT = _glassHolder.GetComponent<RectTransform>();
+            //var glassPanel = GlassPanelFactory.BuildGlassBody(glassHolderRT, new Vector2(520, 220), false);
+        }
+
+        public static void PlaceCenter(RectTransform rt)
+        {
+            rt.anchorMin = rt.anchorMax = new Vector2(0.5f, 0.5f);
+            rt.pivot = new Vector2(0.5f, 0.5f);
+            rt.anchoredPosition = Vector2.zero;
+        }
+
+        public static Vector2 InkscapeToAnchoredTopLeft(Vector2 inkscapePos, Vector2 parentSize, Vector2 inkscapeCanvas = default)
+        {
+            // default to 1920x1080 if not provided
+            if (inkscapeCanvas == default)
+            {
+                inkscapeCanvas = new Vector2(1920, 1080);
+            }
+
+            var sx = parentSize.x / inkscapeCanvas.x;
+            var sy = parentSize.y / inkscapeCanvas.y;
+            return new Vector2(inkscapePos.x * sx, -inkscapePos.y * sy);
+        }
+
+        /// <summary>
+        /// Determines the center based anchor position based on a set of coordinates
+        /// found when positioning things in Inkscape (a 1920x1080) document, scaled
+        /// correctly to the size of the SafeArea(parentSize), so things are in the right spot
+        /// </summary>
+        /// <param name="inkscapeCenter">the center position on our inkscape mockup</param>
+        /// <param name="parentSize">the size of the parent, usually SafeArea</param>
+        /// <param name="inkscapeCanvas">the size of our inkscape reference canvas</param>
+        /// <returns></returns>
+        public static Vector2 InkscapeCenterToAnchoredCenter(
+            Vector2 inkscapeCenter, Vector2 parentSize, Vector2 inkscapeCanvas = default)
+        {
+            if (inkscapeCanvas == default)
+            {
+                inkscapeCanvas = new Vector2(1920, 1080);
+            }
+
+            var scaledX = parentSize.x / inkscapeCanvas.x;
+            var scaledY = parentSize.y / inkscapeCanvas.y;
+            var centeredX = inkscapeCenter.x * scaledX;
+            var centeredY = inkscapeCenter.y * scaledY;
+            return new Vector2(centeredX - parentSize.x * 0.5f, -centeredY + parentSize.y * 0.5f);
+        }
+
     }
 }

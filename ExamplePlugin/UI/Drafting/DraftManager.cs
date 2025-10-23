@@ -4,8 +4,8 @@ using ExamplePlugin.Loadout.Corruption;
 using ExamplePlugin.Loadout.Draft;
 using ExamplePlugin.UI.Branding.Buttons;
 using ExamplePlugin.UI.Drafting.Summary;
+using ExamplePlugin.UI.Drafting.Tabs;
 using RoR2;
-using RoR2BepInExPack.GameAssetPaths;
 using TMPro;
 using UnityEngine;
 using UnityEngine.AddressableAssets;
@@ -23,26 +23,12 @@ namespace ExamplePlugin.UI.Drafting
     /// </summary>
     public class DraftManager : MonoBehaviour
     {
-
-
-
-        /// <summary>
-        /// Game object that encompasses our dialog for drafting items
-        /// </summary>
-        private GameObject draftingDialog;
-
-
         private DraftTabController[] draftTabs;
-
-        /// <summary>
-        /// Parent for our full layout, 
-        /// currently this is already stretched to the SafeArea on the Lobby UI
-        /// </summary>
-        private RectTransform rootParent;
 
         private RectTransform draftingDialogRect;
 
         private DraftSummaryBar draftSummaryBar;
+        private DraftTabsBar draftTabsBar;
 
         /// <summary>
         ///  Stores a reference to our DraftTabController based on the tier
@@ -53,8 +39,6 @@ namespace ExamplePlugin.UI.Drafting
         {
             Log.Info("DraftManager.Initialize");
 
-            this.rootParent = parentRectTransform;
-
             BuildDialogShell(parentRectTransform);
             BuildUI();
             // Used to set the mode to none then on restrict update state
@@ -62,29 +46,6 @@ namespace ExamplePlugin.UI.Drafting
             // TODO draft loaodut seed limits call
             RefreshTabs();
             draftSummaryBar.UpdateSummary();
-
-            // refresh all tabs so we're up to date
-            // draftingDialog = this.BuildDraftPickerRootStructure(parentRectTransform);
-        }
-
-
-        public bool IsVisible()
-        {
-            var currVis = draftingDialog.activeSelf;
-            Log.Info($"DraftManager.isVisible {currVis}");
-            return currVis;
-        }
-
-        public void Show()
-        {
-            Log.Info("DraftManager.Show");
-            draftingDialog.SetActive(true);
-        }
-
-        public void Hide()
-        {
-            Log.Info("DraftManager.Hide");
-            draftingDialog.SetActive(false);
         }
 
         #region Event Handlers
@@ -362,15 +323,17 @@ namespace ExamplePlugin.UI.Drafting
 
         private void BuildDialogShell(RectTransform parentRectTransform)
         {
-            draftingDialog = new GameObject("DraftManagerDialog", typeof(RectTransform), typeof(VerticalLayoutGroup));
+            var draftingDialog = new GameObject("DraftManagerDialog", typeof(RectTransform), typeof(VerticalLayoutGroup));
             FactoryUtils.ParentToRectTransform(draftingDialog, parentRectTransform);
 
+            // fill the content root
             var center = new Vector2(0.5f, 0.5f);
             draftingDialogRect = (RectTransform)draftingDialog.transform;
-            draftingDialogRect.sizeDelta = new Vector2(720, 720);
+            draftingDialogRect.anchorMin = Vector2.zero;
+            draftingDialogRect.anchorMax = Vector2.one;
             draftingDialogRect.pivot = center;
-            draftingDialogRect.anchorMin = center;
-            draftingDialogRect.anchorMax = center;
+            draftingDialogRect.offsetMin = Vector2.zero;
+            draftingDialogRect.offsetMax = Vector2.zero;
 
             var layout = draftingDialog.GetComponent<VerticalLayoutGroup>();
             layout.spacing = 8;
@@ -469,9 +432,11 @@ namespace ExamplePlugin.UI.Drafting
             foreach (var key in tabControllersByTier.Keys)
             {
                 tabControllersByTier[key].gameObject.SetActive(false);
+                this.draftTabsBar.UnselectTab(key);
             }
 
             tabControllersByTier[desiredTier].gameObject.SetActive(true);
+            this.draftTabsBar.SelectTab(desiredTier);
         }
 
 
@@ -533,7 +498,7 @@ namespace ExamplePlugin.UI.Drafting
             controlsHG.childAlignment = TextAnchor.MiddleCenter;
             controlsHG.padding = new RectOffset(8, 8, 8, 8);
 
-            var draftTabsBar = tabsBar.AddComponent<DraftTabsBar>();
+            draftTabsBar = tabsBar.AddComponent<DraftTabsBar>();
 
             // ==== Full-bleed blue background ====
             var bg = new GameObject("TabsBarBG", typeof(RectTransform), typeof(Image));
@@ -550,25 +515,34 @@ namespace ExamplePlugin.UI.Drafting
             img.raycastTarget = true;        // optional click blocker
 
 
-            var buttonDimensions = new Vector2(128, 64);
+            var buttonDimensions = new Vector2(128, 48);
             foreach (DraftItemTier draftTier in Enum.GetValues(typeof(DraftItemTier)))
             {
-                var tierButtonGO = DraftTabsBarFactory.CreateTextButton(
-                    nameof(draftTier) + "_TabButton",
-                    buttonDimensions,
-                    DraftTierLabels.GetUIName(draftTier)
-                );
-                FactoryUtils.ParentToRectTransform(tierButtonGO, tabsBarRt);
-                draftTabsBar.BindButton(draftTier, tierButtonGO.GetComponent<Button>());
+                // OLD
+                //var tierButtonGO = DraftTabsBarFactory.CreateTextButton(
+                //    nameof(draftTier) + "_TabButton",
+                //    buttonDimensions,
+                //    DraftTierLabels.GetUIName(draftTier)
+                //);
+                var draftTarButton = DraftTabButtonFactory.CreateTabButton(
+                    draftTier, DraftTierLabels.GetUIName(draftTier),
+                    buttonDimensions, DraftTabButtonPalette.GetColorsForTab(draftTier));
+                var buttonGO = draftTarButton.gameObject;
+                FactoryUtils.ParentToRectTransform(buttonGO, tabsBarRt);
+                // TODO this should live in the drafttar i think
+                //draftTabsBar.BindButton(draftTier, buttonGO.GetComponent<Button>());
+                draftTabsBar.RegisterButton(draftTier, draftTarButton);
+                draftTarButton.OnTabButtonClicked += WipTabToggles;
             }
 
-            draftTabsBar.OnTabButtonClicked += WipTabToggles;
+            // Old way when we used to make the button
+            // draftTabsBar.OnTabButtonClicked += WipTabToggles;
 
-            // Test add styled component
-            var testb = CreateDoubleRimButton(tabsBarRt, "Test", new Vector2(128, 64));
+            //          var testb = CreateDoubleRimButton(tabsBarRt, "Test", new Vector2(128, 64));
 
             return tabsBarRt;
         }
+
         private static readonly string RimPath = "RoR2/Base/UI/texUIAnimateSliceNakedButton.png";
         private static readonly string CleanBtnPath = "RoR2/Base/UI/texUICleanButton.png";
         private static readonly string CleanPanelPath = "RoR2/Base/UI/texUICleanPanel.png";
@@ -698,10 +672,17 @@ namespace ExamplePlugin.UI.Drafting
                 draftTab.OnRandomizeTabRequest += HandleRandomizeTabRequest;
             }
 
-            // Pick the white tab first
-            tabControllersByTier[DraftItemTier.White].gameObject.SetActive(true);
+            MarkFirstTab(DraftItemTier.White);
 
             return contentAreaRt;
+        }
+
+        private void MarkFirstTab(DraftItemTier itemTier)
+        {
+            // TODO porbaly better way to do this
+            // Pick the white tab first
+            tabControllersByTier[itemTier].gameObject.SetActive(true);
+            draftTabsBar.SelectTab(itemTier);
         }
 
 

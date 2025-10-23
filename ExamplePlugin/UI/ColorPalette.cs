@@ -46,6 +46,31 @@ namespace ExamplePlugin.UI
         public static Color HeaderYellow = FromRGB(189, 180, 59);
         public static Color HeaderPurple = FromRGB(164, 77, 132);
 
+
+        public static readonly Color TabHeaderWhite = new(0.75f, 0.75f, 0.75f);
+        public static readonly Color TabHeaderGreen = new(0.36f, 0.72f, 0.38f);
+        public static readonly Color TabHeaderRed = new(0.77f, 0.23f, 0.24f);
+        public static readonly Color TabHeaderYellow = new(0.89f, 0.80f, 0.31f);
+        public static readonly Color TabHeaderPurple = new(0.73f, 0.40f, 0.70f);
+
+        /// <summary>
+        /// Color that can be used as a sort of frosted pane effect, matches the
+        /// lightness of the character select panels (the artifact modal) selection.
+        /// 
+        /// You can use the ColorTunerUI to tweak values of custom panels/images to try to mirror 
+        /// the colors of other risk of rain components
+        /// </summary>
+        public static Color GlassPaneBackgroundColor = FromRGB_AlphaPercent(24, 20, 25, 60);
+
+        /// <summary>
+        /// Color that can be used as a sort of frosted pane effect on tooltips,
+        /// selected to be darker just for readability
+        /// 
+        /// You can use the ColorTunerUI to tweak values of custom panels/images to try to mirror 
+        /// the colors of other risk of rain components
+        /// </summary>
+        public static Color TooltipGlassPaneBackgroundColor = FromRGB_AlphaPercent(37, 39, 42, 76);
+
         // Tooltip blue green 78, 85, 113
 
         public static Color FromRGB(int r, int g, int b, float alpha = 1f)
@@ -53,9 +78,28 @@ namespace ExamplePlugin.UI
             return new Color(r / 255f, g / 255f, b / 255f, alpha);
         }
 
+        /// <summary>
+        /// Creates a color based on the given RGB (255) and Alpha (100)
+        /// </summary>
+        /// <param name="r">red tone in 0-255</param>
+        /// <param name="g">green tone in 0-255</param>
+        /// <param name="b">blue tone in 0-255</param>
+        /// <param name="a">alpha percentage 0-100</param>
+        /// <returns></returns>
+        public static Color FromRGB_AlphaPercent(int r, int g, int b, int a = 100)
+        {
+            return new Color(r / 255f, g / 255f, b / 255f, a / 100f);
+        }
+
+        /// <summary>
+        /// Creates a new color with the same RGB but different alpha
+        /// </summary>
+        /// <param name="color">reference color to keep RGB from</param>
+        /// <param name="newAlpha">range 0 to 100</param>
+        /// <returns></returns>
         public static Color WithAlpha(Color color, float newAlpha)
         {
-            return new Color(color.r, color.g, color.b, newAlpha);
+            return new Color(color.r, color.g, color.b, newAlpha / 100f);
         }
     }
 }

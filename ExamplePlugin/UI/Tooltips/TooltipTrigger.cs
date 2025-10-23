@@ -14,13 +14,11 @@ namespace ExamplePlugin.UI.Tooltips
 
         public void OnPointerEnter(PointerEventData e)
         {
-            Log.Info("PointerEnter");
-            TooltipSystem.Instance.QueueShow(Data, Anchor, snapToAnchor: false);
+            TooltipSystem.Instance.QueueShow(Data, Anchor);
         }
 
         public void OnPointerExit(PointerEventData e)
         {
-            Log.Info("PointerExit");
             TooltipSystem.Instance.CancelShow();
         }
 

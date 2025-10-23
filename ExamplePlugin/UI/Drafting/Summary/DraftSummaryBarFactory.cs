@@ -33,7 +33,7 @@ namespace ExamplePlugin.UI.Drafting.Summary
                 var tmp = textGO.GetComponent<TextMeshProUGUI>();
                 tmp.text = DraftTierLabels.GetUIName(draftTier);
                 tmp.alignment = TextAlignmentOptions.Center;
-                tmp.fontSize = 14;
+                tmp.fontSize = 18;
                 tmp.fontStyle = FontStyles.Normal;
                 tmp.color = Color.white;
                 tmp.enableWordWrapping = false;
@@ -47,12 +47,6 @@ namespace ExamplePlugin.UI.Drafting.Summary
             var diceGO = FactoryUtils.CreateImageButton("Summary" + "_Dice", new Vector2(40, 40), diceIcon);
             FactoryUtils.ParentToRectTransform(diceGO, barGORT);
             draftSummaryBar.BindRandomizeButton(diceGO.GetComponent<Button>());
-
-
-            // Testing
-            var lockIconMaybe = Addressables.LoadAssetAsync<Sprite>("RoR2/Base/VoidIcon_2.png").WaitForCompletion();
-            var lockGO = FactoryUtils.CreateImageButton("Summary" + "_Lock", new Vector2(40, 40), lockIconMaybe);
-            FactoryUtils.ParentToRectTransform(lockGO, barGORT);
 
             return draftSummaryBar;
         }

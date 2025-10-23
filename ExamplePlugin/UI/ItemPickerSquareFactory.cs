@@ -11,6 +11,56 @@ namespace ExamplePlugin.UI
     public static class ItemPickerSquareFactory
     {
 
+        private static Color DIMMING_MID_OVERLAY = new Color(0f, 0f, 0f, 0.45f);
+
+        // Try with multiplying towards gray
+        // old = new Color(0f, 0f, 0f, 0.9f)
+        private static Color DIMMING_HARD_OVERLAY = new Color(.1f, .1f, .1f, 0.8f);
+
+        // Bleed offset on selection
+        private static float SELECT_OUTLINE_PAD = 3f;
+
+
+        /// <summary>
+        /// Visual alignment constants for hover outlines.
+        /// 
+        /// Risk of Rain 2’s UI outlines aren’t expanded equally in all directions — they’re
+        /// intentionally shifted slightly to keep the border visually centered after
+        /// expanding the rect on only the right and bottom sides.
+        /// 
+        /// Here's how it works conceptually:
+        /// 
+        /// - The outline’s anchors are stretched to fill the parent:  
+        ///   <c>anchorMin = (0,0)</c>, <c>anchorMax = (1,1)</c>.
+        /// 
+        /// - To make the outline appear "thicker" and extend past the tile edge,
+        ///   we expand the rect by increasing its offsets on two sides:
+        ///   <c>offsetMin = (0, -PAD)</c> → pushes the bottom down  
+        ///   <c>offsetMax = (+PAD, 0)</c> → pushes the right side out
+        /// 
+        ///   This makes the outline’s total size larger by <c>PAD</c> pixels
+        ///   on those two edges only, causing the frame to visually shift
+        ///   down and to the right.
+        /// 
+        /// - To re-center the enlarged outline so it still appears even around the tile,
+        ///   we nudge it back by half that distance:
+        ///   <c>anchoredPosition = (+PAD/2, -PAD/2)</c>.
+        /// 
+        ///   This offset perfectly cancels the visual drift — the outline
+        ///   expands outward on all sides *as if* it were centered growth.
+        /// 
+        /// TL;DR:
+        ///   offsetMin = (0, -HOVER_OUTLINE_PAD_LARGE)
+        ///   offsetMax = (+HOVER_OUTLINE_PAD_LARGE, 0)
+        ///   anchoredPosition = (+HOVER_OUTLINE_ANCHOR_OFFSET, -HOVER_OUTLINE_ANCHOR_OFFSET)
+        ///   where HOVER_OUTLINE_ANCHOR_OFFSET = HOVER_OUTLINE_PAD_LARGE / 2.
+        ///   
+        /// We found this by using the hierarchy dumper on a selected character on the selection grid and
+        /// looking at its offsets
+        /// </summary>
+        private static float HOVER_OUTLINE_PAD_LARGE = 8f;
+        private static float HOVER_OUTLINE_ANCHOR_OFFSET = 4f;
+
         public static Transform CreateGrid(Transform parent, string name = "DraftGrid", Vector2 cellSize = default, Vector2 spacing = default, RectOffset padding = null)
         {
             var gridGo = new GameObject(name, typeof(RectTransform), typeof(ContentSizeFitter), typeof(GridLayoutGroup));
@@ -112,8 +162,10 @@ namespace ExamplePlugin.UI
             return ctrl;
         }
 
-        public static GameObject TestItemSquare(RectTransform parentRectTransform, PickupDef pickupDef, Color squareOutline)
+        public static GameObject TestItemSquare(RectTransform parentRectTransform, PickupDef pickupDef, Color squareOutline, Color hoverColor = default)
         {
+            var draftTier = DraftTierMaps.ToDraft(pickupDef.itemTier);
+
             var parentObject = parentRectTransform.gameObject;
 
             var sq = new GameObject("ItemSquare", typeof(RectTransform), typeof(Image), typeof(Button));
@@ -121,14 +173,18 @@ namespace ExamplePlugin.UI
             var sqRt = (RectTransform)sq.transform;
             sqRt.SetParent(parentRectTransform, worldPositionStays: false);
 
-            var uiOutline = sq.AddComponent<Outline>();
-            uiOutline.effectColor = squareOutline;            // color sent to us
-            uiOutline.effectDistance = new Vector2(2, 2);  // “thickness”
-            uiOutline.enabled = true;                      // toggle on/off
+            // HID outline
+            if(hoverColor==default)
+            {
+                hoverColor = squareOutline;
+            }        
 
             var backgroundImage = sq.GetComponent<Image>();
-            backgroundImage.color = new Color(0.25f, 0.25f, 0.25f, 1f); // dark gray background
-            // optionally inset image so outline sits inside the tile
+            // Load it as white and get the sprite
+            var spriteForITer = GetSpriteForTier(draftTier);
+            backgroundImage.color = Color.white;
+            backgroundImage.sprite = spriteForITer;
+            // outline sits inside the tile
             sqRt.offsetMin = new Vector2(2, 2);
             sqRt.offsetMax = new Vector2(-2, -2);
 
@@ -142,19 +198,26 @@ namespace ExamplePlugin.UI
             iconRt.pivot = new Vector2(0.5f, 0.5f);
             iconRt.offsetMin = new Vector2(8, 8);   // padding (left,bottom)
             iconRt.offsetMax = new Vector2(-8, -8); // padding (right,top)
-           
+
             var iconSprite = pickupDef.iconSprite;
             var icon = iconGo.GetComponent<Image>();
             icon.sprite = iconSprite;
             icon.preserveAspect = true;
 
 
+            var dimmingOverlay = CreateDarkeningOverlay(sqRt);
+            var hoverOverlay = CreateHoverOverlay(sqRt, squareOutline);
+
+            var selectionOverlay = CreateSelectionOverlay(sqRt, squareOutline);
             var lockOverlay = CreateLockOverlay(sqRt);
 
             var button = sq.GetComponent<Button>();
             // setup the controller
             var controller = sq.AddComponent<ItemPickerSquareController>();
-            controller.BindComponents(pickupDef, button, backgroundImage, icon, uiOutline, lockOverlay);
+            controller.BindComponents(pickupDef, button, backgroundImage, icon, null, lockOverlay,
+                selectionOverlay.GetComponent<Image>(),
+                dimmingOverlay.GetComponent<Image>(),
+                hoverOverlay.GetComponent<Image>());
 
 
             // tooltip stuff
@@ -162,7 +225,7 @@ namespace ExamplePlugin.UI
             // snap relative to me
             tooltipTrigger.Anchor = sqRt;
 
-            var draftTier = DraftTierMaps.ToDraft(pickupDef.itemTier);
+
             var itemDef = ItemCatalog.GetItemDef(pickupDef.itemIndex);
             var itemName = Language.GetString(itemDef.nameToken);
             var description = Language.GetString(itemDef.descriptionToken);
@@ -195,16 +258,11 @@ namespace ExamplePlugin.UI
 
             // dimmer
             var overlayImg = overlayGo.GetComponent<Image>();
-            overlayImg.color = new Color(0f, 0f, 0f, 0.45f); // semi-transparent black
-            overlayImg.raycastTarget = false;                // let clicks pass if you want (or keep true to eat clicks)
-
-            // lock icon on top
-            // Alternative lock icon and have the item that's locking it
-            // var lockIconSprite = Addressables.LoadAssetAsync<Sprite>("RoR2/Base/Common/MiscIcons/texUnlockIcon.png").WaitForCompletion();
-            // AddBadge(overlayRt, lockIconSprite, new Vector2(32, 32), BadgeAnchor.Center, Vector2.zero);
+            overlayImg.color = DIMMING_MID_OVERLAY;
+            overlayImg.raycastTarget = false;
 
             // corrupt sprite bottom right
-             var corruptSprite = Addressables.LoadAssetAsync<Sprite>("RoR2/Base/VoidIcon_2.png").WaitForCompletion();
+            var corruptSprite = Addressables.LoadAssetAsync<Sprite>("RoR2/Base/VoidIcon_2.png").WaitForCompletion();
             var corruptBadge = AddBadge(overlayRt, corruptSprite, new Vector2(32, 32), BadgeAnchor.Center, Vector2.zero);
             var corruptImg = corruptBadge.gameObject.GetComponent<Image>();
             corruptImg.color = ColorPalette.OutlinePurple;
@@ -217,6 +275,118 @@ namespace ExamplePlugin.UI
             return overlayGo;
         }
 
+        // TODO hover overlay vs selection overlay probs
+        private static GameObject CreateHoverTint(RectTransform parentRect, Color tintColor)
+        {
+            var go = new GameObject("HoverTint", typeof(RectTransform), typeof(Image));
+            go.layer = parentRect.gameObject.layer;
+            go.transform.SetParent(parentRect, false);
+
+            var rt = (RectTransform)go.transform;
+            rt.anchorMin = Vector2.zero;
+            rt.anchorMax = Vector2.one;
+            rt.pivot = new Vector2(0.5f, 0.5f);
+            rt.offsetMin = Vector2.zero;
+            rt.offsetMax = Vector2.zero;
+
+            var img = go.GetComponent<Image>();
+            img.color = tintColor; 
+            img.raycastTarget = false;
+            img.type = Image.Type.Sliced;
+            img.enabled = false;
+
+            return go;
+        }
+
+        private static GameObject CreateSelectionOverlay(RectTransform parentRect, Color outlineColor)
+        {
+            var parentObject = parentRect.gameObject;
+
+            var overlayGo = new GameObject("SelectOverlay", typeof(RectTransform), typeof(Image), typeof(CanvasGroup));
+            overlayGo.layer = parentObject.layer;
+            overlayGo.transform.SetParent(parentRect, false);
+
+            // stretch to full tile
+            var overlayRt = (RectTransform)overlayGo.transform;
+            overlayRt.anchorMin = Vector2.zero;
+            overlayRt.anchorMax = Vector2.one;
+            overlayRt.pivot = new Vector2(0.5f, 0.5f);
+            overlayRt.offsetMin = new Vector2(-SELECT_OUTLINE_PAD, -SELECT_OUTLINE_PAD);
+            overlayRt.offsetMax = new Vector2(+SELECT_OUTLINE_PAD, +SELECT_OUTLINE_PAD);
+
+            // selection highlight
+            var overlayImg = overlayGo.GetComponent<Image>();
+            overlayImg.sprite = Addressables.LoadAssetAsync<Sprite>("RoR2/Base/UI/texUIHighlightBoxOutlineThickIcon.png").WaitForCompletion();
+            overlayImg.type = Image.Type.Sliced;
+            overlayImg.color = outlineColor;
+            overlayImg.raycastTarget = false;
+
+            // deactivate the image
+            overlayImg.enabled = false;
+
+            return overlayGo;
+        }
+
+        /// <summary>
+        /// A square we can use to darken the icons without messing with the root background and icon
+        /// </summary>
+        /// <param name="parentRect"></param>
+        /// <returns></returns>
+        private static GameObject CreateDarkeningOverlay(RectTransform parentRect)
+        {
+            var parentObject = parentRect.gameObject;
+
+            var overlayGo = new GameObject("UnselectedOverlay", typeof(RectTransform), typeof(Image));
+            overlayGo.layer = parentObject.layer;
+            overlayGo.transform.SetParent(parentRect, false);
+
+            // stretch to full tile
+            var overlayRt = (RectTransform)overlayGo.transform;
+            overlayRt.anchorMin = Vector2.zero;
+            overlayRt.anchorMax = Vector2.one;
+            overlayRt.pivot = new Vector2(0.5f, 0.5f);
+            overlayRt.offsetMin = Vector2.zero;
+            overlayRt.offsetMax = Vector2.zero;
+
+            // dimmer
+            var overlayImg = overlayGo.GetComponent<Image>();
+            overlayImg.color = DIMMING_HARD_OVERLAY;
+            overlayImg.raycastTarget = false;
+
+            return overlayGo;
+        }
+
+        private static GameObject CreateHoverOverlay(RectTransform parentRect, Color outlineColor)
+        {
+            var parentObject = parentRect.gameObject;
+
+            var overlayGo = new GameObject("HoverOverlay", typeof(RectTransform), typeof(Image));
+            overlayGo.layer = parentObject.layer;
+            overlayGo.transform.SetParent(parentRect, false);
+
+            // stretch to full tile
+            var overlayRt = (RectTransform)overlayGo.transform;
+            overlayRt.anchorMin = Vector2.zero;
+            overlayRt.anchorMax = Vector2.one;
+            overlayRt.pivot = new Vector2(0.5f, 0.5f);
+            
+            overlayRt.anchoredPosition = new Vector2(HOVER_OUTLINE_ANCHOR_OFFSET, -HOVER_OUTLINE_ANCHOR_OFFSET);
+
+            overlayRt.offsetMin = new Vector2(0, -HOVER_OUTLINE_PAD_LARGE);
+            overlayRt.offsetMax = new Vector2(+HOVER_OUTLINE_PAD_LARGE, 0);
+
+            // selection highlight
+            var overlayImg = overlayGo.GetComponent<Image>();
+            overlayImg.sprite = Addressables.LoadAssetAsync<Sprite>("RoR2/Base/UI/texUIHighlightBoxOutlineThick.png").WaitForCompletion();
+            overlayImg.type = Image.Type.Sliced;
+            overlayImg.color = outlineColor;
+            overlayImg.raycastTarget = false;
+
+            // deactivate the image
+            overlayImg.enabled = false;
+
+            return overlayGo;
+        }
 
         public static Sprite MakePlaceholderSprite(Color c)
         {
@@ -227,7 +397,7 @@ namespace ExamplePlugin.UI
 
         private enum BadgeAnchor
         {
-             Center, TL, TR, BL, BR
+            Center, TL, TR, BL, BR
         }
 
         private static RectTransform AddBadge(RectTransform parent, Sprite sprite, Vector2 size, BadgeAnchor where, Vector2 margin)
@@ -294,6 +464,34 @@ namespace ExamplePlugin.UI
 
             // Default and obvious
             return Color.cyan;
+        }
+
+        private static Sprite GetSpriteForTier(DraftItemTier draftItemTier)
+        {
+
+            //    "RoR2/Base/Common/texTier1BGIcon.png",
+            //"RoR2/Base/Common/texTier2BGIcon.png",
+            //"RoR2/Base/Common/texTier3BGIcon.png",
+            //"RoR2/Base/Common/texBossBGIcon.png",
+            //"RoR2/Base/Common/texEquipmentBGIcon.png",
+            //"RoR2/Base/Common/texLunarBGIcon.png",
+            //"RoR2/DLC1/Common/IconBackgroundTextures/texVoidBGIcon.png",
+            switch (draftItemTier)
+            {
+                case DraftItemTier.White:
+                    return Addressables.LoadAssetAsync<Sprite>("RoR2/Base/Common/texTier1BGIcon.png").WaitForCompletion();
+                case DraftItemTier.Green:
+                    return Addressables.LoadAssetAsync<Sprite>("RoR2/Base/Common/texTier2BGIcon.png").WaitForCompletion();
+                case DraftItemTier.Red:
+                    return Addressables.LoadAssetAsync<Sprite>("RoR2/Base/Common/texTier3BGIcon.png").WaitForCompletion();
+                case DraftItemTier.Yellow:
+                    return Addressables.LoadAssetAsync<Sprite>("RoR2/Base/Common/texBossBGIcon.png").WaitForCompletion();
+                case
+                    DraftItemTier.Purple:
+                    return Addressables.LoadAssetAsync<Sprite>("RoR2/DLC1/Common/IconBackgroundTextures/texVoidBGIcon.png").WaitForCompletion();
+                default:
+                    return Addressables.LoadAssetAsync<Sprite>("RoR2/DLC1/Common/IconBackgroundTextures/texLunarBGIcon.png").WaitForCompletion();
+            }
         }
     }
 }

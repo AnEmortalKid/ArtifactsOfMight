@@ -1,8 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using Rewired.UI;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace ExamplePlugin.UI.Tooltips
 {
@@ -20,7 +18,18 @@ namespace ExamplePlugin.UI.Tooltips
 
         private float showDelay = 0.15f;
         private Vector2 cursorOffset = new(16, -16);
-        private bool followCursor = true;
+
+        /// <summary>
+        /// space between anchor and tooltip
+        /// </summary>
+        private const float anchorGap = 8f;
+
+        private const float bleedPad = 8f;
+
+        /// <summary>
+        /// How much to offset by in the tile's scale
+        /// </summary>
+        private const float tileOffsetFactor = 1.0f;
 
         float hoverStartTime;
         bool pendingShow;
@@ -54,21 +63,9 @@ namespace ExamplePlugin.UI.Tooltips
             this.uiCamera = canvas && canvas.renderMode != RenderMode.ScreenSpaceOverlay
                 ? canvas.worldCamera
                 : null;
-        }
 
-        void Update()
-        {
-            if (pendingShow && Time.unscaledTime >= hoverStartTime + showDelay)
-            {
-                DoShow(pendingData, anchorPoint, lockToAnchor);
-                pendingShow = false;
-            }
-
-            //if (tooltipView && followCursor && !lockToAnchor)
-            //{
-            //    Vector2 anchored = ReturnCursorAnchor();
-            //    PositionTipClamped(anchored + cursorOffset);
-            //}
+            // start with tooltip off
+            tooltipView.gameObject.SetActive(false);
         }
 
         /// <summary>
@@ -115,34 +112,39 @@ namespace ExamplePlugin.UI.Tooltips
 
         public void Move(Vector2 screenPosition)
         {
-            if (!tooltipView)
-            {
-                return;
-            }
-            if (!followCursor)
-            {
-                return;
-            }
-            if (lockToAnchor)
+            if (!tooltipView || !tooltipView.gameObject.activeSelf)
             {
                 return;
             }
 
-            RectTransformUtility.ScreenPointToLocalPointInRectangle(tooltipParent, screenPosition, this.uiCamera, out var local);
-            Debug.Log($"Mouse {Input.mousePosition} -> Local {local}, Parent Rect rect {tooltipParent.rect}");
-            PositionTipClamped(local + cursorOffset);
+            var tipRT = (RectTransform)tooltipView.transform;
+            // anchorPoint is the tile RectTransform you passed in QueueShow (can be null)
+            PlaceOffTileFollowingMouse(tipRT, anchorPoint, screenPosition);
         }
 
-        void DoShow(TooltipData data, RectTransform preferredAnchor, bool snap)
+        void DoShow(TooltipData data, RectTransform preferredAnchor)
         {
             tooltipView.SetData(data);
             tooltipView.gameObject.SetActive(true);
 
+            // Place immediately
+            var tipRT = (RectTransform)tooltipView.transform;
+            PlaceOffTileFollowingMouse(tipRT, preferredAnchor, Input.mousePosition);
+        }
 
-            Vector2 local;
-            RectTransformUtility.ScreenPointToLocalPointInRectangle(
-                this.tooltipParent, Input.mousePosition, this.uiCamera, out local);
-            PositionTipClamped(local + cursorOffset);
+        void Update()
+        {
+            if (pendingShow && Time.unscaledTime >= hoverStartTime + showDelay)
+            {
+                DoShow(pendingData, anchorPoint);
+                pendingShow = false;
+            }
+
+            if (tooltipView && tooltipView.gameObject.activeSelf)
+            {
+                var tipRT = (RectTransform)tooltipView.transform;
+                PlaceOffTileFollowingMouse(tipRT, anchorPoint, Input.mousePosition);
+            }
         }
 
         /// <summary>
@@ -176,55 +178,157 @@ namespace ExamplePlugin.UI.Tooltips
             // top edge
             float maxAY = -pad;
             // bottom edge
-            float minAY = -(pRect.height - size.y - pad);            
+            float minAY = -(pRect.height - size.y - pad);
 
             anchored.x = Mathf.Clamp(anchored.x, minAX, maxAX);
             anchored.y = Mathf.Clamp(anchored.y, minAY, maxAY);
 
-
             tipRT.anchoredPosition = anchored;
         }
 
-        void PositionTipClampedSmart(Vector2 localPos)
+        void PlaceOffTileFollowingMouse(RectTransform tipRT, RectTransform tileRT, Vector2 mouseScreen)
         {
-            var tipRT = tooltipView.GetComponent<RectTransform>();
-            var parent = tooltipParent;
+            ForceLayout(tipRT);
+            RectTransformUtility.ScreenPointToLocalPointInRectangle(tooltipParent, mouseScreen, uiCamera, out var mouseLocal);
 
-            // Force layout to get correct rect sizes
-            UnityEngine.UI.LayoutRebuilder.ForceRebuildLayoutImmediate(tipRT);
+            // edge-aware vertical pivot so it grows inward
+            var p = tooltipParent.rect;
+            float tY = Mathf.InverseLerp(p.yMin, p.yMax, mouseLocal.y);
+            float pivotY = (tY > 0.66f) ? 1f : (tY < 0.33f ? 0f : 0.5f);
 
-            var pRect = parent.rect;
-            var tRect = tipRT.rect;
-            var pPivot = parent.pivot;  // (0.5, 0.5) by default
-            var tPivot = tipRT.pivot;   // (0,1) for TL tooltip
-            const float pad = 4f;
+            Vector2 pivot, posLocal;
 
-            // --------------------------------------------------------
-            // 1. Convert local (pivot-centered) → anchored space
-            // --------------------------------------------------------
-            // Unity's RectTransform rect is always centered around its own pivot.
-            // To translate the coordinate system so (0,0) means the parent's top-left corner:
-            Vector2 anchored;
-            anchored.x = localPos.x + (pRect.width * (pPivot.x - 0f)); // add offset if parent pivot ≠ 0
-            anchored.y = localPos.y - (pRect.height * (1f - pPivot.y)); // account for top/bottom pivot difference
+            if (tileRT)
+            {
+                var tile = LocalRectInParent(tileRT, tooltipParent);
+                var tipSize = tipRT.rect.size;
+                var side = ChooseSideLeftBias(tile, p, tipSize);
 
-            // --------------------------------------------------------
-            // 2. Calculate clamp limits based on parent pivot and tooltip pivot
-            // --------------------------------------------------------
-            float left = pRect.xMin - (pRect.width * (pPivot.x - 0f)) + pad;
-            float right = pRect.xMax - (pRect.width * (pPivot.x - 0f)) - tRect.width - pad;
-            float top = pRect.yMax - (pRect.height * (pPivot.y - 1f)) - pad;
-            float bottom = pRect.yMin - (pRect.height * (pPivot.y - 1f)) + tRect.height + pad;
+                if (side == Side.Left)
+                {
+                    pivot = new Vector2(1f, pivotY);
+                    posLocal = new Vector2(tile.xMin - anchorGap - tile.width * tileOffsetFactor, mouseLocal.y);
+                }
+                else // Right fallback
+                {
+                    pivot = new Vector2(0f, pivotY);
+                    posLocal = new Vector2(tile.xMax + anchorGap + tile.width * tileOffsetFactor, mouseLocal.y);
+                }
+            }
+            else
+            {
+                pivot = new Vector2(0f, 1f);
+                posLocal = mouseLocal + cursorOffset;
+            }
 
-            // --------------------------------------------------------
-            // 3. Clamp inside parent rect (works for any parent/tooltip pivot combo)
-            // --------------------------------------------------------
-            anchored.x = Mathf.Clamp(anchored.x, left, right);
-            anchored.y = Mathf.Clamp(anchored.y, bottom, top);
+            tipRT.anchorMin = tipRT.anchorMax = new Vector2(0f, 1f);
+            tipRT.pivot = pivot;
 
+            var anchored = LocalToAnchored(posLocal, tipRT);
+            anchored = ClampAnchoredSoft(anchored, tipRT, pivot);
             tipRT.anchoredPosition = anchored;
+        }
 
-            Log.Info($"[TooltipSmart] Parent pivot={pPivot}, Tooltip pivot={tPivot}, pRect={pRect}, final anchored={anchored}");
+        /// <summary>
+        /// Determines which side of the tile (Left, Right, Top, Bottom)
+        /// the mouse cursor is on, relative to the tile’s local rect.
+        /// </summary>
+        private enum Side { Left, Right, Top, Bottom }
+
+        Side SideFromMouse(Rect tileLocal, Vector2 mouseLocal)
+        {
+            // Find tile center
+            float cx = (tileLocal.xMin + tileLocal.xMax) * 0.5f;
+            float cy = (tileLocal.yMin + tileLocal.yMax) * 0.5f;
+
+            // Offset of mouse from center
+            float dx = mouseLocal.x - cx;
+            float dy = mouseLocal.y - cy;
+
+            // Whichever axis has greater magnitude determines the side
+            if (Mathf.Abs(dx) > Mathf.Abs(dy))
+                return dx >= 0 ? Side.Right : Side.Left;
+            else
+                return dy >= 0 ? Side.Top : Side.Bottom;
+        }
+
+        // --- Call this once right after SetData and before reading size ---
+        static void ForceLayout(RectTransform rt)
+        {
+            LayoutRebuilder.ForceRebuildLayoutImmediate(rt);
+        }
+
+        // Rect of a child in the local space of 'parent' (SafeArea)
+        static Rect LocalRectInParent(RectTransform child, RectTransform parent)
+        {
+            Vector3[] w = new Vector3[4];
+            child.GetWorldCorners(w);
+            for (int i = 0; i < 4; i++) w[i] = parent.InverseTransformPoint(w[i]);
+            float xMin = w[0].x, yMin = w[0].y, xMax = w[2].x, yMax = w[2].y;
+            return Rect.MinMaxRect(xMin, yMin, xMax, yMax);
+        }
+
+        // Does a tooltip of 'size' placed at 'pos' with 'pivot' fit in 'bounds' with padding?
+        static bool FitsIn(Rect bounds, Vector2 pos, Vector2 size, Vector2 pivot, float pad)
+        {
+            var min = pos - Vector2.Scale(size, pivot);
+            var max = min + size;
+            min.x -= -bounds.xMin + pad; max.x -= bounds.xMax - pad;
+            min.y -= -bounds.yMin + pad; max.y -= bounds.yMax - pad;
+            return (min.x >= 0 && max.x <= 0 && min.y >= 0 && max.y <= 0);
+        }
+
+       
+        /// <summary>
+        /// Converts a point in the tooltip parent’s local space (center-origin)
+        /// into anchored-space coordinates (0,1) top-left anchor convention).
+        /// </summary>
+        Vector2 LocalToAnchored(Vector2 local, RectTransform tipRT)
+        {
+            var p = tooltipParent.rect;
+            // (0,0) anchoredPosition is top-left; +x = right, +y = down
+            Vector2 anchored;
+            anchored.x = local.x - p.xMin;
+            anchored.y = local.y - p.yMax;   // flip because anchoredPosition.y is inverted
+            return anchored;
+        }
+
+        // Always try LEFT; if it can't fit, use RIGHT. (No top/bottom.)
+        Side ChooseSideLeftBias(Rect tile, Rect parent, Vector2 tipSize)
+        {
+            bool leftOK = (tile.xMin - parent.xMin) >= (anchorGap + tipSize.x + bleedPad + tile.width * tileOffsetFactor);
+            bool rightOK = (parent.xMax - tile.xMax) >= (anchorGap + tipSize.x + bleedPad + tile.width * tileOffsetFactor);
+            if (leftOK) return Side.Left;
+            if (rightOK) return Side.Right;
+            return Side.Left; // fallback; we'll clamp softly
+        }
+
+        /// <summary>
+        /// Keeps the tooltip inside the SafeArea, but allows a small soft bleed margin
+        /// so it feels less rigid than a hard clamp.
+        /// </summary>
+        Vector2 ClampAnchoredSoft(Vector2 anchored, RectTransform tipRT, Vector2 pivot)
+        {
+            var p = tooltipParent.rect;
+            Vector2 size = tipRT.rect.size;
+
+            // Calculate the tooltip's bounds in anchored space (top-left anchor system)
+            Vector2 min = anchored - Vector2.Scale(size, pivot);
+            Vector2 max = min + size;
+
+            const float bleed = 12f; // how far outside screen edges we allow before clamping
+
+            float minAX = -bleed;
+            float maxAX = p.width + bleed;
+            float maxAY = -bleed;                  // top edge (negative down)
+            float minAY = -(p.height) - bleed;     // bottom edge
+
+            if (min.x < minAX) anchored.x += minAX - min.x;
+            if (max.x > maxAX) anchored.x -= max.x - maxAX;
+            if (max.y > maxAY) anchored.y -= max.y - maxAY;
+            if (min.y < minAY) anchored.y += minAY - min.y;
+
+            return anchored;
         }
     }
 }

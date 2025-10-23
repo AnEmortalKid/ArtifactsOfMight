@@ -5,6 +5,7 @@ using ExamplePlugin.Loadout.Draft;
 using UnityEngine.UI;
 using UnityEngine;
 using RoR2;
+using ExamplePlugin.UI.Drafting.Grid;
 
 namespace ExamplePlugin.UI.Drafting
 {
@@ -72,19 +73,14 @@ namespace ExamplePlugin.UI.Drafting
             gridBG.color = ColorPalette.FromRGB(49, 60, 77);
             gridBG.raycastTarget = true;
 
-            //rootRt.anchorMin = Vector2.zero;
-            //rootRt.anchorMax = Vector2.one;
-            //rootRt.pivot = new Vector2(0.5f, 0.5f);
-            //rootRt.offsetMin = Vector2.zero;
-            //rootRt.offsetMax = Vector2.zero;
-
             var grid = gridGO.GetComponent<GridLayoutGroup>();
             grid.startCorner = GridLayoutGroup.Corner.UpperLeft;
             grid.startAxis = GridLayoutGroup.Axis.Horizontal;
             grid.childAlignment = TextAnchor.UpperLeft;
             grid.cellSize = new Vector2(72, 72);
-            grid.spacing = new Vector2(8, 8);
-            // TODO fix the alignment too
+            // formula is selection offset * 2 + 4
+            grid.spacing = new Vector2(10, 10);
+            grid.padding = new RectOffset(10, 10, 10, 10);
 
             // The command card uses 5 columns
             // but we have more real estate here so we will go with 8
@@ -93,11 +89,12 @@ namespace ExamplePlugin.UI.Drafting
 
             var squareControllers = new List<ItemPickerSquareController>();
             var draftPickups = DraftPools.Instance.GetDraftablePickups(tabTier);
-            var squareOutline = GetOutlineColor(tabTier);
+            var squareOutline = GetSelectionOutlineColor(tabTier);
+            var hoverColor = GridSquarePalette.GetHoverOutlineColor(tabTier);
             foreach (var pickIndex in draftPickups)
             {
                 var pickDef = PickupCatalog.GetPickupDef(pickIndex);
-                var singleSquare = ItemPickerSquareFactory.TestItemSquare(gridRt, pickDef, squareOutline);
+                var singleSquare = ItemPickerSquareFactory.TestItemSquare(gridRt, pickDef, squareOutline, hoverColor);
                 var singleController = singleSquare.GetComponent<ItemPickerSquareController>();
                 squareControllers.Add(singleController);
             }
@@ -118,7 +115,7 @@ namespace ExamplePlugin.UI.Drafting
             rt.anchoredPosition = Vector2.zero;
         }
 
-        private static Color GetOutlineColor(DraftItemTier draftItemTier)
+        private static Color GetSelectionOutlineColor(DraftItemTier draftItemTier)
         {
             switch (draftItemTier)
             {

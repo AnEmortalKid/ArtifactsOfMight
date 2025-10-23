@@ -8,7 +8,6 @@ namespace ExamplePlugin.UI.Drafting
     public static class DraftTierLabels
     {
 
-
         /// <summary>
         /// Returns a user friendly display version of the draft tier
         /// </summary>

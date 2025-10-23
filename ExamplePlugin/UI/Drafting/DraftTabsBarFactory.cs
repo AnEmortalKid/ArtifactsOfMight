@@ -10,7 +10,7 @@ namespace ExamplePlugin.UI.Drafting
     public class DraftTabsBarFactory
     {
 
-
+        // TODO this is where our new fancy button would g
 
         public static GameObject CreateTextButton(
             string componentName,

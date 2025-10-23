@@ -183,31 +183,10 @@ namespace ExamplePlugin.Loadout.Draft
         }
 
         /// <summary>
-        /// Determines whether this item will be available in our run or not
+        /// Determines whether this item will be available in our run or not because the user currently picked it
         /// </summary>
         /// <param name="pickupDef">the pickup definition</param>
-        /// TODO rename
         /// <returns></returns>
-        public bool IsAvailable(PickupDef pickupDef)
-        {
-            if (pickupDef == null)
-            {
-                return false;
-            }
-
-
-            var draftTier = DraftTierMaps.ToDraft(pickupDef.itemTier);
-            var settings = GetOrCreate(draftTier);
-
-            //if (settings.Mode == DraftLimitMode.None)
-            //{
-            //    // always available
-            //    return true;
-            //}
-
-            return IsPicked(pickupDef);
-        }
-
         public bool IsPicked(PickupDef pickupDef)
         {
             if (pickupDef == null)

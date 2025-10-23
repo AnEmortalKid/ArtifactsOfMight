@@ -314,7 +314,6 @@ namespace ExamplePlugin.UI
         {
             var spacerGO = new GameObject(spacerName, typeof(RectTransform), typeof(LayoutElement));
             ParentToRectTransform(spacerGO, parentRect);
-            UIDebugOutline.AddOutline(spacerGO.GetComponent<RectTransform>(), Color.white, 2f);
 
             var spacerLE = spacerGO.GetComponent<LayoutElement>();
             spacerLE.flexibleWidth = 1;
