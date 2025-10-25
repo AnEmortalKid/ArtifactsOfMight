@@ -328,3 +328,7 @@ ASALocalRun/
 
 # MFractors (Xamarin productivity tool) working folder 
 .mfractor/
+
+# Files that i def dont want up there
+./HierarchyDump.txt
+./ActiveHierarchyDump.md
