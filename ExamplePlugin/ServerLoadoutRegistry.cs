@@ -15,7 +15,7 @@ namespace ExamplePlugin
         public static void SetFor(NetworkUser user, PlayerLoadout playerLoadout)
         {
             loadoutByUser[user.netId] = playerLoadout;
-            Log.Info($"[DraftArtifact] Stored loadout for {user.name}: {playerLoadout}");
+            Log.Info($"Stored loadout for {user.name}: {playerLoadout}");
         }
 
         public static bool TryGetFor(NetworkUser user, out PlayerLoadout loadout)

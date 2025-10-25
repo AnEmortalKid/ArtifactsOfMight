@@ -17,6 +17,7 @@ using ExamplePlugin.Loadout.Corruption;
 using ExamplePlugin.Loadout.Draft;
 using ExamplePlugin.DraftArtifact.Game;
 using static RoR2.Chat;
+using ExamplePlugin.RunConfig;
 
 namespace ExamplePlugin
 {
@@ -46,15 +47,10 @@ namespace ExamplePlugin
     // More information in the Unity Docs: https://docs.unity3d.com/ScriptReference/MonoBehaviour.html
     public class ExamplePlugin : BaseUnityPlugin
     {
-        // The Plugin GUID should be a unique ID for this plugin,
-        // which is human readable (as it is used in places like the config).
-        // If we see this PluginGUID as it is on thunderstore,
-        // we will deprecate this mod.
-        // Change the PluginAuthor and the PluginName !
         public const string PluginGUID = PluginAuthor + "." + PluginName;
-        public const string PluginAuthor = "AuthorName";
-        public const string PluginName = "ExamplePlugin";
-        public const string PluginVersion = "1.0.0";
+        public const string PluginAuthor = "AnEmortalKid";
+        public const string PluginName = "ArtifactsOfMight";
+        public const string PluginVersion = "0.1.0";
 
         // We need our item definition to persist through our functions, and therefore make it a class field.
         private static ItemDef myItemDef;
@@ -63,66 +59,17 @@ namespace ExamplePlugin
 
         private DraftPickerUI DraftPickerUI;
 
-        // The Awake() method is run at the very start when the game is initialized.
+        /// <summary>
+        /// Unity lifecycle function, that we will use to hook our UI
+        /// </summary>
+        [SuppressMessage("CodeQuality", "IDE0051", Justification = "MonoBehavior lifecycle")]
         public void Awake()
         {
             // Init our logging class so that we can properly log for debugging
             Log.Init(Logger);
-
-            Log.Info("[DraftArtifact] Awake");
-
-            //            // load the hooof
-            //            HoofDef = Addressables.LoadAssetAsync<ItemDef>("RoR2/Base/Hoof/Hoof.asset").WaitForCompletion();
-
-            //            // First let's define our item
-            //            myItemDef = ScriptableObject.CreateInstance<ItemDef>();
-
-            //            // Language Tokens, explained there https://risk-of-thunder.github.io/R2Wiki/Mod-Creation/Assets/Localization/
-            //            myItemDef.name = "EXAMPLE_CLOAKONKILL_NAME";
-            //            myItemDef.nameToken = "EXAMPLE_CLOAKONKILL_NAME";
-            //            myItemDef.pickupToken = "EXAMPLE_CLOAKONKILL_PICKUP";
-            //            myItemDef.descriptionToken = "EXAMPLE_CLOAKONKILL_DESC";
-            //            myItemDef.loreToken = "EXAMPLE_CLOAKONKILL_LORE";
-
-            //            // The tier determines what rarity the item is:
-            //            // Tier1=white, Tier2=green, Tier3=red, Lunar=Lunar, Boss=yellow,
-            //            // and finally NoTier is generally used for helper items, like the tonic affliction
-            //#pragma warning disable Publicizer001 // Accessing a member that was not originally public. Here we ignore this warning because with how this example is setup we are forced to do this
-            //            myItemDef._itemTierDef = Addressables.LoadAssetAsync<ItemTierDef>("RoR2/Base/Common/Tier2Def.asset").WaitForCompletion();
-            //#pragma warning restore Publicizer001
-            //            // Instead of loading the itemtierdef directly, you can also do this like below as a workaround
-            //            // myItemDef.deprecatedTier = ItemTier.Tier2;
-
-            //            // You can create your own icons and prefabs through assetbundles, but to keep this boilerplate brief, we'll be using question marks.
-            //            myItemDef.pickupIconSprite = Addressables.LoadAssetAsync<Sprite>("RoR2/Base/Common/MiscIcons/texMysteryIcon.png").WaitForCompletion();
-            //            myItemDef.pickupModelPrefab = Addressables.LoadAssetAsync<GameObject>("RoR2/Base/Mystery/PickupMystery.prefab").WaitForCompletion();
-
-            //            // Can remove determines
-            //            // if a shrine of order,
-            //            // or a printer can take this item,
-            //            // generally true, except for NoTier items.
-            //            myItemDef.canRemove = true;
-
-            //            // Hidden means that there will be no pickup notification,
-            //            // and it won't appear in the inventory at the top of the screen.
-            //            // This is useful for certain noTier helper items, such as the DrizzlePlayerHelper.
-            //            myItemDef.hidden = false;
-
-            //            // You can add your own display rules here,
-            //            // where the first argument passed are the default display rules:
-            //            // the ones used when no specific display rules for a character are found.
-            //            // For this example, we are omitting them,
-            //            // as they are quite a pain to set up without tools like https://thunderstore.io/package/KingEnderBrine/ItemDisplayPlacementHelper/
-            //            var displayRules = new ItemDisplayRuleDict(null);
-
-            //            // Then finally add it to R2API
-            //            ItemAPI.Add(new CustomItem(myItemDef, displayRules));
-
-            //            // But now we have defined an item, but it doesn't do anything yet. So we'll need to define that ourselves.
-            //            //GlobalEventManager.onCharacterDeathGlobal += GlobalEventManager_onCharacterDeathGlobal;
+            Log.Info("Initializing via Awake");
 
             On.RoR2.UI.CharacterSelectController.ClientSetReady += OnClientSetReady;
-
             On.RoR2.UI.CharacterSelectController.Awake += CSC_Awake;
         }
 
@@ -132,25 +79,32 @@ namespace ExamplePlugin
 
             // Find SafeArea under CharacterSelectUIMain
             var canvas = self.GetComponentInChildren<Canvas>(true);
-            if (!canvas) { Logger.LogWarning("[DraftArtifact] No Canvas under CSC."); return; }
+            if (!canvas)
+            {
+                Log.Warning("No Canvas under CSC.");
+                return;
+            }
 
             var safeArea = canvas.transform.Find("SafeArea") as RectTransform;
-            if (!safeArea) { Logger.LogWarning("[DraftArtifact] SafeArea not found."); return; }
+            if (!safeArea)
+            {
+                Log.Warning("SafeArea not found.");
+                return;
+            }
 
             if (!self.GetComponent<DraftPickerUI>())
             {
                 var ui = self.gameObject.AddComponent<DraftPickerUI>();
                 ui.SafeArea = safeArea;
-                Logger.LogInfo("[DraftArtifact] DraftPickerUI attached to CharacterSelectController GameObject.");
-
-                // (Optional) If you want a child GameObject for your UI root:
-                // var go = new GameObject("DraftPickerRoot");
-                // var rt = go.AddComponent<RectTransform>();
-                // rt.SetParent(self.transform, false);
-                // ui.SetRoot(rt); // add a setter on your component if you need refs
+                Log.Warning("DraftPickerUI attached to CharacterSelectController GameObject.");
             }
         }
 
+        /// <summary>
+        /// Ensure we can send our loadout on set read
+        /// </summary>
+        /// <param name="orig"></param>
+        /// <param name="self"></param>
         private void OnClientSetReady(On.RoR2.UI.CharacterSelectController.orig_ClientSetReady orig, RoR2.UI.CharacterSelectController self)
         {
             orig(self);
@@ -169,7 +123,11 @@ namespace ExamplePlugin
             ClientLoadoutSender.SendNow();
         }
 
-        // Unity MonoBehavior stuff
+
+        /// <summary>
+        /// Here we attach to the Game/Run side of the game
+        /// </summary>
+        [SuppressMessage("CodeQuality", "IDE0051", Justification = "MonoBehavior lifecycle")]
         public void OnEnable()
         {
             On.RoR2.PickupPickerController.OnInteractionBegin += PopulateOnOpen;
@@ -499,46 +457,15 @@ namespace ExamplePlugin
         [SuppressMessage("CodeQuality", "IDE0051", Justification = "MonoBehavior lifecycle")]
         private void Update()
         {
+            // dont let us unintentionally cheat
+            if (!DebugSettings.IS_DEV_MODE)
+            {
+                return;
+            }
+
             // This if statement checks if the player has currently pressed F2.
             if (Input.GetKeyDown(KeyCode.F2))
             {
-                // Get the player body to use a position:
-                // var transform = PlayerCharacterMasterController.instances[0].master.GetBodyObject().transform;
-
-                // And then drop our defined item in front of the player.
-
-                //  Log.Info($"Player pressed F2. Spawning our custom item at coordinates {transform.position}");
-                // Changed
-                // Make a pickup item controller that only makes certain things available
-                //PickupPickerController.Option[] pickerOptions = [
-                //    new() {
-                //        // ArmorPlate
-                //        pickupIndex = PickupCatalog.FindPickupIndex("ArmorPlate"),
-                //        available = true
-                //    }
-                // ];
-
-                //  Log.Info($"Creating Picker {transform.position}");
-                // Was unhappy cause no network behavior
-                //GenericPickupController.CreatePickupInfo genericInfo = new()
-                //{
-                //    position = transform.position,
-                //    rotation = Quaternion.identity,
-                //    pickerOptions = pickerOptions,
-                //    artifactFlag = GenericPickupController.PickupArtifactFlag.COMMAND,
-                //    prefabOverride = myItemDef.pickupModelPrefab
-                //};
-                //PickupDropletController.CreatePickupDroplet(genericInfo, transform.position, transform.forward * 20f);
-
-                // Old Sample
-                //PickupDropletController.CreatePickupDroplet(PickupCatalog.FindPickupIndex(myItemDef.itemIndex), transform.position, transform.forward * 20f);
-                //   var hoofIndex = PickupCatalog.FindPickupIndex(HoofDef.itemIndex);
-                //   Log.Info($"Found index: {hoofIndex}");
-                //  PickupDropletController.CreatePickupDroplet(PickupCatalog.FindPickupIndex(myItemDef.itemIndex), transform.position, transform.forward * 20f);
-                //Log.Info($"Doing sample code");
-                // can also use the assembly def my guy
-                //   PickupDropletController.CreatePickupDroplet(PickupCatalog.FindPickupIndex(RoR2.RoR2Content.Items.Hoof.itemIndex), transform.position, transform.forward * 20f);
-                // Log.Info($"Trying the dump");
 
                 // Grab the first player’s master (works SP/host)
                 var pcmc = PlayerCharacterMasterController.instances[0];
@@ -556,47 +483,13 @@ namespace ExamplePlugin
                     Log.Info("[DraftArtifact] No player master found.");
                 }
 
-                
+
             }
 
 
             // This if statement checks if the player has currently pressed F2.
             if (Input.GetKeyDown(KeyCode.F3))
             {
-                // Get the player body to use a position:
-
-                // And then drop our defined item in front of the player.
-
-                //  Log.Info($"Player pressed F2. Spawning our custom item at coordinates {transform.position}");
-                // Changed
-                // Make a pickup item controller that only makes certain things available
-                //PickupPickerController.Option[] pickerOptions = [
-                //    new() {
-                //        // ArmorPlate
-                //        pickupIndex = PickupCatalog.FindPickupIndex("ArmorPlate"),
-                //        available = true
-                //    }
-                // ];
-
-                //  Log.Info($"Creating Picker {transform.position}");
-                // Was unhappy cause no network behavior
-                //GenericPickupController.CreatePickupInfo genericInfo = new()
-                //{
-                //    position = transform.position,
-                //    rotation = Quaternion.identity,
-                //    pickerOptions = pickerOptions,
-                //    artifactFlag = GenericPickupController.PickupArtifactFlag.COMMAND,
-                //    prefabOverride = myItemDef.pickupModelPrefab
-                //};
-                //PickupDropletController.CreatePickupDroplet(genericInfo, transform.position, transform.forward * 20f);
-
-                // Old Sample
-                //  PickupDropletController.CreatePickupDroplet(PickupCatalog.FindPickupIndex(myItemDef.itemIndex), transform.position, transform.forward * 20f);
-                //   var hoofIndex = PickupCatalog.FindPickupIndex(HoofDef.itemIndex);
-                //   Log.Info($"Found index: {hoofIndex}");
-                //    PickupDropletController.CreatePickupDroplet(PickupCatalog.FindPickupIndex(myItemDef.itemIndex), transform.position, transform.forward * 20f);
-                //Log.Info($"Doing sample code");
-
                 // shoot a needletick option for testing
                 var playerTransform = PlayerCharacterMasterController.instances[0].master.GetBodyObject().transform;
                 if (CorruptedItemDefs.TryGetItemDef(CorruptedItem.Needletick, out var itemDef))
@@ -605,9 +498,7 @@ namespace ExamplePlugin
                    PickupCatalog.FindPickupIndex(itemDef.itemIndex),
                    playerTransform.position, playerTransform.forward * 20f);
                 }
-                // Log.Info($"Trying the dump");
             }
-
 
             if (Input.GetKeyDown(KeyCode.F4))
             {
