@@ -140,6 +140,12 @@ namespace ExamplePlugin.UI
 
                 isSelectionOn = false;
 
+                // if it was previously selected before it gets locked, hide state
+                if (selectionOverlayImg != null)
+                {
+                    selectionOverlayImg.enabled = false;
+                }
+
                 return;
             }
             

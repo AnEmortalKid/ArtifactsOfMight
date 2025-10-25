@@ -43,6 +43,8 @@ namespace ExamplePlugin.UI.Drafting
             var draftManagerRootRT = (RectTransform)draftManagerRoot.transform;
             FactoryUtils.StretchToFillParent(draftManagerRootRT);
 
+            // TODO block raycasts here
+
             if (SHOW_ROOT_DEBUG)
             {
                 var debugBG = new GameObject(DraftManagerRootName + "_DebugBG", typeof(RectTransform), typeof(Image));

@@ -82,23 +82,12 @@ namespace ExamplePlugin.UI.Drafting
         }
 
         /// <summary>
-        /// Requests that this controller refreshes due to a mode change
-        /// </summary>
-        public void RefreshMode()
-        {
-            gridController.RefreshSquares();
-
-            // handle mode specific ui
-            RefreshControls();
-        }
-
-        /// <summary>
         /// Requests that this controller refreshes due to a limit change
         /// </summary>
         public void RefreshLimit()
         {
-            UpdateLimitLabel();
-            gridController.RefreshSquares();
+            UpdateItemLabels();
+            this.gridController.RefreshSquares();
         }
 
         /// <summary>
@@ -107,6 +96,8 @@ namespace ExamplePlugin.UI.Drafting
         public void RefreshItems()
         {
             this.gridController.RefreshSquares();
+
+            UpdateItemLabels();
         }
 
         #region EventHandlers
@@ -136,28 +127,13 @@ namespace ExamplePlugin.UI.Drafting
         }
         #endregion
 
-        private void RefreshControls()
-        {
-            var currMode = DraftLoadout.Instance.GetMode(tabTier);
-            Log.Info($"[DraftArtifact] refresh state: {currMode}");
-
-            //if (currMode == DraftLimitMode.None)
-            //{
-            //    // TODO hide controls
-            //}
-            //else
-            //{
-            // TODO show controls
-
-            // update the label
-            UpdateLimitLabel();
-            //}
-        }
-
-        private void UpdateLimitLabel()
+        private void UpdateItemLabels()
         {
             var currLimit = DraftLoadout.Instance.GetLimit(tabTier);
             tabControls.SetItemLimitCount(currLimit);
+
+            var currChosen = DraftLoadout.Instance.GetCount(tabTier);
+            tabControls.SetSelectionState(currChosen, currLimit);
         }
     }
 }

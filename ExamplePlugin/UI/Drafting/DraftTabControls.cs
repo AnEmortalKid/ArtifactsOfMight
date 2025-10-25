@@ -24,6 +24,8 @@ namespace ExamplePlugin.UI.Drafting
         private TextMeshProUGUI limitLabel;
         private Button increaseButton;
 
+        private TextMeshProUGUI selectionsLabel;
+
         private Button diceButton;
 
         /// <summary>
@@ -60,6 +62,11 @@ namespace ExamplePlugin.UI.Drafting
             this.increaseButton.onClick.AddListener(HandleIncreaseRequest);
         }
 
+        public void BindItemSelectionElements(TextMeshProUGUI selectionLabel)
+        {
+            this.selectionsLabel = selectionLabel;
+        }
+
         public void BindDiceButton(Button diceButton)
         {
             this.diceButton = diceButton;
@@ -70,6 +77,11 @@ namespace ExamplePlugin.UI.Drafting
         public void SetItemLimitCount(int currentCount)
         {
             limitLabel.text = currentCount.ToString();
+        }
+
+        public void SetSelectionState(int picked, int limit)
+        {
+            selectionsLabel.text = "Selected: " + picked.ToString() + "/" + limit.ToString();
         }
 
         public void HideRestrictionOptions()

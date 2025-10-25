@@ -20,6 +20,13 @@ namespace ExamplePlugin.UI.Branding.Inspection
         // Addressable keys to preview
         static readonly string[] Keys =
         {
+            "RoR2/Base/Common/MiscIcons/texInventoryIcon.png",
+            "RoR2/Base/Common/MiscIcons/texInventoryIconOutlined.png",
+            "RoR2/Base/Common/MiscIcons/texLootIconOutlined.png",
+            "RoR2/Base/Common/MiscIcons/texLunarPillarIcon.png",
+            "RoR2/Base/Common/MiscIcons/texMysteryIcon.png",
+            "RoR2/Base/Common/MiscIcons/texRuleMapIsRandom.png",
+
             "RoR2/Base/UI/texDetailPanel.png",
             "RoR2/Base/UI/texDetailPanelFrame.png",
             "RoR2/Base/UI/texUICleanPanel.png",

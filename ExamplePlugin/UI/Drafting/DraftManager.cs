@@ -23,6 +23,10 @@ namespace ExamplePlugin.UI.Drafting
     /// </summary>
     public class DraftManager : MonoBehaviour
     {
+        #region Debuggiong
+        private static bool SHOW_DEBUG_COLORS = false;
+        #endregion
+
         private DraftTabController[] draftTabs;
 
         private RectTransform draftingDialogRect;
@@ -343,7 +347,7 @@ namespace ExamplePlugin.UI.Drafting
             layout.childForceExpandWidth = true;
 
             // Debug BG
-            var debugBG = new GameObject("BG", typeof(RectTransform), typeof(Image));
+            var debugBG = new GameObject("BG", typeof(RectTransform));
             FactoryUtils.ParentToRectTransform(debugBG, draftingDialogRect);
 
             var debugBGRt = (RectTransform)debugBG.transform;
@@ -353,71 +357,41 @@ namespace ExamplePlugin.UI.Drafting
             debugBGRt.offsetMin = Vector2.zero;   // no margins
             debugBGRt.offsetMax = Vector2.zero;
 
-            // greenish
-            var img = debugBG.GetComponent<Image>();
-            img.color = new Color(0.5f, 0, 0, 1);
-            img.raycastTarget = true;
+            if (SHOW_DEBUG_COLORS)
+            {
+                // greenish
+                var img = debugBG.AddComponent<Image>();
+                img.color = new Color(0.5f, 0, 0, 1);
+                img.raycastTarget = true;
+            }
         }
 
 
         private void BuildUI()
         {
+            RectTransform headerBar = BuildHeaderBar();
+            headerBar.SetParent(draftingDialogRect, false);
+            var headerLE = headerBar.gameObject.AddComponent<LayoutElement>();
+            headerLE.preferredHeight = 44;
+            headerLE.flexibleHeight = 0;
+
             RectTransform tabsBar = BuildTabsBar();
             tabsBar.SetParent(draftingDialogRect, false);
             var tabsLE = tabsBar.gameObject.AddComponent<LayoutElement>();
-            tabsLE.preferredHeight = 64;
+            tabsLE.preferredHeight = 40;
             tabsLE.flexibleHeight = 0;
 
             // let it fill rest
             RectTransform contentArea = BuildContentArea();
             contentArea.SetParent(draftingDialogRect, false);
             var contentAreaLE = contentArea.gameObject.AddComponent<LayoutElement>();
-            contentAreaLE.flexibleHeight = 1;
             contentAreaLE.preferredHeight = 472;
 
             RectTransform bottomBar = BuildBottomBar();
             bottomBar.SetParent(draftingDialogRect, false);
             var bottomAreaLE = bottomBar.gameObject.AddComponent<LayoutElement>();
-            bottomAreaLE.preferredHeight = 64;
+            bottomAreaLE.preferredHeight = 44;
             bottomAreaLE.flexibleHeight = 0;
-
-            // TODO here we would have the Summary area
-
-        }
-
-        private GameObject BuildDraftPickerRootStructure(RectTransform parentTransform)
-        {
-            var draftDialogRoot = new GameObject("DraftManagerDialog", typeof(RectTransform));
-            FactoryUtils.ParentToRectTransform(draftDialogRoot, parentTransform);
-
-            // TODO figure out our preferred sizing            
-            var draftDialogRectTransform = (RectTransform)draftDialogRoot.transform;
-            draftDialogRectTransform.sizeDelta = new Vector2(720, 720);
-
-            // ==== Full-bleed RED background ====
-            var bg = new GameObject("BG", typeof(RectTransform), typeof(Image));
-            var bgRt = (RectTransform)bg.transform;
-            bgRt.SetParent(draftDialogRectTransform, worldPositionStays: false);
-            bgRt.anchorMin = Vector2.zero;
-            bgRt.anchorMax = Vector2.one;
-            bgRt.pivot = new Vector2(0.5f, 0.5f);
-            bgRt.offsetMin = Vector2.zero;   // no margins
-            bgRt.offsetMax = Vector2.zero;
-
-            var img = bg.GetComponent<Image>();
-            img.color = new Color(1f, 0, 0, .25f);           // solid red to verify full stretch
-            img.raycastTarget = true;        // optional click blocker
-
-            // The content, we will tinker with the layout in a bit
-            var tabsGroup = BuildTabsGroup(draftDialogRectTransform);
-
-            // DEBUG: print rect sizes to verify
-            LogRect("Parent", parentTransform);
-            LogRect("Root", draftDialogRectTransform);
-            LogRect("BG", bgRt);
-            //  LogRect("TabsGroup", tabsGroup);
-
-            return draftDialogRoot;
         }
 
         static void LogRect(string name, RectTransform rt)
@@ -439,48 +413,80 @@ namespace ExamplePlugin.UI.Drafting
             this.draftTabsBar.SelectTab(desiredTier);
         }
 
-
-        private RectTransform BuildTabsGroup(RectTransform parentRectTransform)
+        private RectTransform BuildHeaderBar()
         {
-            var group = new GameObject("TabGroup", typeof(RectTransform), typeof(VerticalLayoutGroup));
+            var root = new GameObject("Title and Subtitle", typeof(RectTransform), typeof(VerticalLayoutGroup), typeof(LayoutElement));
+            var rt = (RectTransform)root.transform;
 
-            FactoryUtils.ParentToRectTransform(group, parentRectTransform);
+            var vg = root.GetComponent<VerticalLayoutGroup>();
+            // L/R = 16, top = 16
+            vg.padding = new RectOffset(8, 8, 8, 8);
+            vg.spacing = 8f;
+            vg.childControlWidth = true;
+            vg.childForceExpandWidth = true;
+            vg.childControlHeight = true;
+            vg.childForceExpandHeight = false;
 
-            var groupRt = (RectTransform)group.transform;
-            FactoryUtils.StretchToFillParent(groupRt);
+            var le = root.GetComponent<LayoutElement>();
+            le.flexibleWidth = 1f;
+            le.flexibleHeight = 0f;
 
-            // TODO iono why this is not respecting parent probably cause i do stretch?
-            // groupRt.sizeDelta = new Vector2(720, 720);
+            // TITLE
+            var titleGO = new GameObject("Title Text", typeof(RectTransform), typeof(TextMeshProUGUI));
+            var titleRT = (RectTransform)titleGO.transform;
+            titleRT.SetParent(rt, false);
 
-            var layout = group.GetComponent<VerticalLayoutGroup>();
-            layout.spacing = 8;
-            layout.childControlHeight = true;
-            layout.childControlWidth = true;
-            layout.childForceExpandHeight = true;
-            layout.childForceExpandWidth = true;
+            var titleTMP = titleGO.GetComponent<TextMeshProUGUI>();
+            titleTMP.text = "Artifact of Choice";
+            titleTMP.fontSize = 32;
+            titleTMP.fontStyle = FontStyles.Bold;
+            titleTMP.color = Color.white;
+            titleTMP.alignment = TextAlignmentOptions.Center;
+            titleTMP.enableWordWrapping = false;
+            titleTMP.raycastTarget = false;
 
-            RectTransform tabsBar = BuildTabsBar();
-            tabsBar.SetParent(groupRt, false);
-            var tabsLE = tabsBar.gameObject.AddComponent<LayoutElement>();
-            tabsLE.preferredHeight = 64;
-            tabsLE.flexibleHeight = 0;
+            //// DESCRIPTION / SUBTITLE
+            //var subGO = new GameObject("Subtitle Text", typeof(RectTransform), typeof(TextMeshProUGUI));
+            //var subRT = (RectTransform)subGO.transform;
+            //subRT.SetParent(rt, false);
 
-            // let it fill rest
-            RectTransform contentArea = BuildContentArea();
-            contentArea.SetParent(groupRt, false);
-            var contentAreaLE = contentArea.gameObject.AddComponent<LayoutElement>();
-            contentAreaLE.flexibleHeight = 1;
-            contentAreaLE.preferredHeight = 472;
+            //var subTMP = subGO.GetComponent<TextMeshProUGUI>();
+            //subTMP.text = "Only these <style=cIsUtility>Items</style> will be available when using the <style=cArtifact>Artifact of Command</style>.";
+            //subTMP.fontSize = 22;
+            //subTMP.color = new Color(0.641f, 0.667f, 0.670f, 1f);
+            //subTMP.alignment = TextAlignmentOptions.Left;
+            //subTMP.enableWordWrapping = true;
+            //subTMP.richText = true;
+            //subTMP.raycastTarget = false;
 
-            RectTransform bottomBar = BuildBottomBar();
-            bottomBar.SetParent(groupRt, false);
-            var bottomAreaLE = bottomBar.gameObject.AddComponent<LayoutElement>();
-            bottomAreaLE.preferredHeight = 64;
-            bottomAreaLE.flexibleHeight = 0;
+            // DIVIDER holder (lets us inset the line by 16 on each side while using a VLG)
+            var dividerHolder = new GameObject("BorderBreak", typeof(RectTransform), typeof(LayoutElement));
+            var divHoldRT = (RectTransform)dividerHolder.transform;
+            divHoldRT.SetParent(rt, false);
 
-            // TODO here we would have the Summary area
+            var divLE = dividerHolder.GetComponent<LayoutElement>();
+            divLE.minHeight = 9f;
+            divLE.preferredHeight = 9f;
+            divLE.flexibleWidth = 1f;
 
-            return groupRt;
+            // Actual divider image stretches inside holder with L/R insets
+            var divImgGO = new GameObject("Image", typeof(RectTransform), typeof(Image));
+            var divImgRT = (RectTransform)divImgGO.transform;
+            divImgRT.SetParent(divHoldRT, false);
+            divImgRT.anchorMin = new Vector2(0, 0.5f);
+            divImgRT.anchorMax = new Vector2(1, 0.5f);
+            divImgRT.pivot = new Vector2(0.5f, 0.5f);
+            divImgRT.sizeDelta = new Vector2(0, 9);
+            divImgRT.offsetMin = new Vector2(16, -9);  // L = 16, bottom = -9 (matches your dump)
+            divImgRT.offsetMax = new Vector2(-16, 0);  // R = 16
+
+            var divImg = divImgGO.GetComponent<Image>();
+            divImg.sprite = Addressables.LoadAssetAsync<Sprite>("RoR2/Base/UI/texUIHeaderSingle.png").WaitForCompletion();
+            divImg.type = Image.Type.Sliced;
+            divImg.color = new Color(0.753f, 0.753f, 0.753f, 1f);
+            divImg.raycastTarget = false;
+
+            return rt;
         }
 
         private RectTransform BuildTabsBar()
@@ -518,27 +524,16 @@ namespace ExamplePlugin.UI.Drafting
             var buttonDimensions = new Vector2(128, 48);
             foreach (DraftItemTier draftTier in Enum.GetValues(typeof(DraftItemTier)))
             {
-                // OLD
-                //var tierButtonGO = DraftTabsBarFactory.CreateTextButton(
-                //    nameof(draftTier) + "_TabButton",
-                //    buttonDimensions,
-                //    DraftTierLabels.GetUIName(draftTier)
-                //);
+
                 var draftTarButton = DraftTabButtonFactory.CreateTabButton(
                     draftTier, DraftTierLabels.GetUIName(draftTier),
                     buttonDimensions, DraftTabButtonPalette.GetColorsForTab(draftTier));
                 var buttonGO = draftTarButton.gameObject;
                 FactoryUtils.ParentToRectTransform(buttonGO, tabsBarRt);
-                // TODO this should live in the drafttar i think
-                //draftTabsBar.BindButton(draftTier, buttonGO.GetComponent<Button>());
+
                 draftTabsBar.RegisterButton(draftTier, draftTarButton);
                 draftTarButton.OnTabButtonClicked += WipTabToggles;
             }
-
-            // Old way when we used to make the button
-            // draftTabsBar.OnTabButtonClicked += WipTabToggles;
-
-            //          var testb = CreateDoubleRimButton(tabsBarRt, "Test", new Vector2(128, 64));
 
             return tabsBarRt;
         }
@@ -548,101 +543,13 @@ namespace ExamplePlugin.UI.Drafting
         private static readonly string CleanPanelPath = "RoR2/Base/UI/texUICleanPanel.png";
         private static readonly string BackdropPath = "RoR2/Base/UI/texUIBackdrop.png";
 
-        private GameObject BrandedButton(RectTransform parent, string text)
-        {
-            var rim = Addressables.LoadAssetAsync<Sprite>(RimPath).WaitForCompletion();
-            Log.Info("rim: " + rim);
-            var backdrop = Addressables.LoadAssetAsync<Sprite>(BackdropPath).WaitForCompletion();
-            Log.Info("backdrop: " + backdrop);
-            var clean = Addressables.LoadAssetAsync<Sprite>(CleanBtnPath).WaitForCompletion()
-                     ?? Addressables.LoadAssetAsync<Sprite>(CleanPanelPath).WaitForCompletion();
-            Log.Info("clean: " + clean);
-
-            var root = new GameObject($"Btn_{text}", typeof(RectTransform), typeof(Button), typeof(LayoutElement));
-            var rt = (RectTransform)root.transform;
-            rt.SetParent(parent, false);
-            rt.anchorMin = rt.anchorMax = new Vector2(0.5f, 0.5f);
-            rt.sizeDelta = new Vector2(128, 64);
-            rt.pivot = new Vector2(0.5f, 0.5f);
-
-            var buttonDimensions = new Vector2(64, 64);
-            var le = root.GetComponent<LayoutElement>();
-            le.preferredWidth = buttonDimensions.x;
-            le.preferredHeight = buttonDimensions.y;
-            le.minWidth = buttonDimensions.x;
-            le.minHeight = buttonDimensions.y;
-            le.flexibleWidth = 0;
-            le.flexibleHeight = 0;
-
-            // BG (rim)
-            var bgGO = new GameObject("Bg", typeof(RectTransform), typeof(Image));
-            var bgRT = (RectTransform)bgGO.transform;
-            bgRT.SetParent(rt, false);
-            bgRT.anchorMin = Vector2.zero;
-            bgRT.anchorMax = Vector2.one;
-            bgRT.offsetMin = Vector2.zero;
-            bgRT.offsetMax = Vector2.zero;
-            var bgImg = bgGO.GetComponent<Image>();
-            bgImg.sprite = rim;
-            bgImg.type = Image.Type.Sliced;        // IMPORTANT for nine-slice
-            bgImg.raycastTarget = true;
-
-            // Fill (inner)
-            var fillGO = new GameObject("Fill", typeof(RectTransform), typeof(Image));
-            var fillRT = (RectTransform)fillGO.transform;
-            fillRT.SetParent(rt, false);
-            fillRT.anchorMin = Vector2.zero; fillRT.anchorMax = Vector2.one;
-            // inset so the rim is visible
-            fillRT.offsetMin = new Vector2(4f, 4f);
-            fillRT.offsetMax = new Vector2(-4f, -4f);
-            var fillImg = fillGO.GetComponent<Image>();
-            fillImg.sprite = clean;
-
-            // Content + Label
-            var content = new GameObject("Content", typeof(RectTransform));
-            var contentRT = (RectTransform)content.transform;
-            contentRT.SetParent(rt, false);
-            contentRT.anchorMin = Vector2.zero; contentRT.anchorMax = Vector2.one;
-            contentRT.offsetMin = new Vector2(8f, 6f);
-            contentRT.offsetMax = new Vector2(-8f, -6f);
-
-            var label = new GameObject("Label", typeof(RectTransform), typeof(TextMeshProUGUI));
-            var labelRT = (RectTransform)label.transform;
-            labelRT.SetParent(contentRT, false);
-            labelRT.anchorMin = labelRT.anchorMax = new Vector2(0.5f, 0.5f);
-            labelRT.sizeDelta = Vector2.zero;
-
-            var tmp = label.GetComponent<TextMeshProUGUI>();
-            tmp.text = text;
-            tmp.alignment = TextAlignmentOptions.Center;
-            tmp.enableAutoSizing = true;
-            tmp.fontSizeMin = 14;
-            tmp.fontSizeMax = 28;
-            tmp.raycastTarget = false;
-            tmp.color = Color.white;
-
-            // Button tint targets the rim only
-            var btn = root.GetComponent<Button>();
-            btn.targetGraphic = bgImg;
-            var colors = btn.colors;
-            colors.fadeDuration = 0.08f;
-            colors.normalColor = Color.white;
-            colors.highlightedColor = new Color(1f, 1f, 1f, .9f);
-            colors.pressedColor = new Color(0.85f, 0.85f, 0.85f, .75f);
-            colors.selectedColor = new Color(1f, 1f, 1f, .85f);
-            colors.disabledColor = new Color(1f, 1f, 1f, 0.4f);
-            btn.colors = colors;
-
-            return root;
-        }
-
         private RectTransform BuildContentArea()
         {
             var contentArea = new GameObject("ContentArea", typeof(RectTransform));
             var contentAreaRt = (RectTransform)contentArea.transform;
 
             // ==== Full-bleed blue background ====
-            var bg = new GameObject("ContentAreaBG", typeof(RectTransform), typeof(Image));
+            var bg = new GameObject("ContentAreaBG", typeof(RectTransform));
             var bgRt = (RectTransform)bg.transform;
             bgRt.SetParent(contentAreaRt, worldPositionStays: false);
             bgRt.anchorMin = Vector2.zero;
@@ -651,15 +558,17 @@ namespace ExamplePlugin.UI.Drafting
             bgRt.offsetMin = Vector2.zero;   // no margins
             bgRt.offsetMax = Vector2.zero;
 
-            var img = bg.GetComponent<Image>();
-            img.color = Color.yellow;           // solid red to verify full stretch
-
-            img.raycastTarget = true;        // optional click blocker
+            if(SHOW_DEBUG_COLORS)
+            {
+                var img = bg.AddComponent<Image>();
+                img.color = Color.yellow;        
+                img.raycastTarget = false;       
+            }
 
 
             foreach (DraftItemTier draftTier in Enum.GetValues(typeof(DraftItemTier)))
             {
-                var draftTab = DraftTabFactory.BuildDraftTab(contentAreaRt, nameof(draftTier) + "_Tab", draftTier);
+                var draftTab = DraftTabFactory.BuildDraftTabNew(contentAreaRt, nameof(draftTier) + "_Tab", draftTier);
                 tabControllersByTier[draftTier] = draftTab;
                 // all off
                 draftTab.gameObject.SetActive(false);
@@ -679,20 +588,16 @@ namespace ExamplePlugin.UI.Drafting
 
         private void MarkFirstTab(DraftItemTier itemTier)
         {
-            // TODO porbaly better way to do this
             // Pick the white tab first
             tabControllersByTier[itemTier].gameObject.SetActive(true);
             draftTabsBar.SelectTab(itemTier);
         }
-
-
 
         private RectTransform BuildBottomBar()
         {
             // build the tabs bar
             var bottomSection = new GameObject("BottomBar", typeof(RectTransform), typeof(VerticalLayoutGroup));
             var tabsBarRt = (RectTransform)bottomSection.transform;
-
 
             // ==== Full-bleed blue background ====
             var bg = new GameObject("BottomBarBG", typeof(RectTransform), typeof(Image));

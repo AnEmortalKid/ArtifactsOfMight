@@ -22,7 +22,7 @@
               Image color=RGBA(1.000, 1.000, 1.000, 0.286) sprite=texUIOutlineOnly type=Sliced
             • HoverOutline  (layer=5, active=True)  RT aMin=(0.00, 0.00) aMax=(1.00, 1.00) piv=(0.50, 0.50) pos=(4.00, -4.00) size=(77.60, 78.00) oMin=(0.00, -8.00) oMax=(8.00, 0.00)
               Canvas sortingLayer=0 order=1 override=True mode=ScreenSpaceCamera
-              Image color=RGBA(1.000, 1.000, 1.000, 1.000) sprite=texUIHighlightBoxOutlineThick type=Sliced
+              Image color=RGBA(1.000, 1.000, 1.000, 0.000) sprite=texUIHighlightBoxOutlineThick type=Sliced
             • ButtonSelectionHighlight, Checkbox  (layer=5, active=True)  RT aMin=(0.00, 0.00) aMax=(1.00, 1.00) piv=(0.50, 0.50) pos=(0.00, 0.00) size=(69.60, 70.00) oMin=(0.00, 0.00) oMax=(0.00, 0.00)
               Canvas sortingLayer=0 order=1 override=True mode=ScreenSpaceCamera
               • ButtonFlashPanel  (layer=5, active=True)  RT aMin=(0.00, 0.00) aMax=(1.00, 1.00) piv=(0.50, 0.50) pos=(0.00, 0.00) size=(69.60, 70.00) oMin=(0.00, 0.00) oMax=(0.00, 0.00)
@@ -145,7 +145,7 @@
               • Highlight  (layer=5, active=True)  RT aMin=(0.00, 0.00) aMax=(1.00, 1.00) piv=(0.50, 0.50) pos=(0.00, 0.00) size=(69.60, 70.00) oMin=(0.00, 0.00) oMax=(0.00, 0.00)
                 Image color=RGBA(1.000, 0.901, 0.316, 1.000) sprite=texUIHighlightHeader type=Sliced
               • Shine  (layer=5, active=True)  RT aMin=(0.00, 0.00) aMax=(1.00, 1.00) piv=(0.50, 0.50) pos=(0.00, 0.00) size=(61.60, 62.00) oMin=(4.00, 4.00) oMax=(-4.00, -4.00)
-                Image color=RGBA(1.000, 0.997, 0.825, 0.518) sprite=texUIShineGradient type=Simple
+                Image color=RGBA(1.000, 0.997, 0.825, 1.000) sprite=texUIShineGradient type=Simple
               • Button-Specific  (layer=5, active=False)  RT aMin=(0.00, 0.00) aMax=(1.00, 1.00) piv=(1.00, 0.50) pos=(-8.00, 0.00) size=(53.60, 54.00) oMin=(8.00, 8.00) oMax=(-8.00, -8.00)
                 Image color=RGBA(1.000, 0.689, 0.000, 0.608) sprite=texUIHighlightHeader type=Sliced
                 • Label  (layer=5, active=False)  RT aMin=(1.00, 0.00) aMax=(1.00, 1.00) piv=(1.00, 0.50) pos=(0.00, 0.00) size=(80.00, 54.00) oMin=(-80.00, 0.00) oMax=(0.00, 0.00)
@@ -250,7 +250,7 @@
               • Highlight  (layer=5, active=True)  RT aMin=(0.00, 0.00) aMax=(1.00, 1.00) piv=(0.50, 0.50) pos=(0.00, 0.00) size=(69.60, 70.00) oMin=(0.00, 0.00) oMax=(0.00, 0.00)
                 Image color=RGBA(1.000, 0.901, 0.316, 1.000) sprite=texUIHighlightHeader type=Sliced
               • Shine  (layer=5, active=True)  RT aMin=(0.00, 0.00) aMax=(1.00, 1.00) piv=(0.50, 0.50) pos=(0.00, 0.00) size=(61.60, 62.00) oMin=(4.00, 4.00) oMax=(-4.00, -4.00)
-                Image color=RGBA(1.000, 0.997, 0.825, 0.518) sprite=texUIShineGradient type=Simple
+                Image color=RGBA(1.000, 0.997, 0.825, 1.000) sprite=texUIShineGradient type=Simple
               • Button-Specific  (layer=5, active=False)  RT aMin=(0.00, 0.00) aMax=(1.00, 1.00) piv=(1.00, 0.50) pos=(-8.00, 0.00) size=(53.60, 54.00) oMin=(8.00, 8.00) oMax=(-8.00, -8.00)
                 Image color=RGBA(1.000, 0.689, 0.000, 0.608) sprite=texUIHighlightHeader type=Sliced
                 • Label  (layer=5, active=False)  RT aMin=(1.00, 0.00) aMax=(1.00, 1.00) piv=(1.00, 0.50) pos=(0.00, 0.00) size=(80.00, 54.00) oMin=(-80.00, 0.00) oMax=(0.00, 0.00)
@@ -319,7 +319,7 @@
               • Highlight  (layer=5, active=True)  RT aMin=(0.00, 0.00) aMax=(1.00, 1.00) piv=(0.50, 0.50) pos=(0.00, 0.00) size=(69.60, 70.00) oMin=(0.00, 0.00) oMax=(0.00, 0.00)
                 Image color=RGBA(1.000, 0.901, 0.316, 1.000) sprite=texUIHighlightHeader type=Sliced
               • Shine  (layer=5, active=True)  RT aMin=(0.00, 0.00) aMax=(1.00, 1.00) piv=(0.50, 0.50) pos=(0.00, 0.00) size=(61.60, 62.00) oMin=(4.00, 4.00) oMax=(-4.00, -4.00)
-                Image color=RGBA(1.000, 0.997, 0.825, 0.518) sprite=texUIShineGradient type=Simple
+                Image color=RGBA(1.000, 0.997, 0.825, 1.000) sprite=texUIShineGradient type=Simple
               • Button-Specific  (layer=5, active=False)  RT aMin=(0.00, 0.00) aMax=(1.00, 1.00) piv=(1.00, 0.50) pos=(-8.00, 0.00) size=(53.60, 54.00) oMin=(8.00, 8.00) oMax=(-8.00, -8.00)
                 Image color=RGBA(1.000, 0.689, 0.000, 0.608) sprite=texUIHighlightHeader type=Sliced
                 • Label  (layer=5, active=False)  RT aMin=(1.00, 0.00) aMax=(1.00, 1.00) piv=(1.00, 0.50) pos=(0.00, 0.00) size=(80.00, 54.00) oMin=(-80.00, 0.00) oMax=(0.00, 0.00)
@@ -468,12 +468,12 @@
             • DescriptionPanel, Skill  (layer=5, active=True)  RT aMin=(1.00, 1.00) aMax=(1.00, 1.00) piv=(0.00, 1.00) pos=(0.00, -4.00) size=(600.00, 0.00) oMin=(0.00, -4.00) oMax=(600.00, -4.00)
               Canvas sortingLayer=0 order=0 override=False mode=ScreenSpaceCamera
               • DescriptionPanelContent (Layer: Secondary)  (layer=5, active=True)  RT aMin=(0.00, 1.00) aMax=(1.00, 1.00) piv=(0.50, 1.00) pos=(0.00, 0.00) size=(568.00, 0.00) oMin=(16.00, 0.00) oMax=(-16.00, 0.00)
-                • BlurPanel  (layer=5, active=False)  RT aMin=(0.00, 0.00) aMax=(1.00, 1.00) piv=(0.50, 0.50) pos=(0.00, 0.00) size=(568.00, 0.00) oMin=(0.00, 0.00) oMax=(0.00, 0.00)
+                • BlurPanel  (layer=5, active=True)  RT aMin=(0.00, 0.00) aMax=(1.00, 1.00) piv=(0.50, 0.50) pos=(0.00, 0.00) size=(568.00, 0.00) oMin=(0.00, 0.00) oMax=(0.00, 0.00)
                   Image color=RGBA(0.000, 0.000, 0.000, 1.000) sprite=null type=Simple
                 • DescriptionText  (layer=5, active=True)  RT aMin=(0.00, 1.00) aMax=(0.00, 1.00) piv=(0.50, 0.50) pos=(284.00, 0.00) size=(568.00, 0.00) oMin=(0.00, 0.00) oMax=(568.00, 0.00)
                   TMP text='' color=RGBA(1.000, 1.000, 1.000, 1.000) size=24
                   • TMP SubMeshUI [NotoSans-Regular Atlas Material + NotoSansCJKsc-Regular SDF (Korean) Atlas]  (layer=5, active=True)  RT aMin=(0.00, 0.00) aMax=(1.00, 1.00) piv=(0.50, 0.50) pos=(0.00, 0.00) size=(568.00, 0.00) oMin=(0.00, 0.00) oMax=(0.00, 0.00)
-                • CornerRect  (layer=5, active=False)  RT aMin=(0.00, 0.00) aMax=(1.00, 1.00) piv=(0.50, 0.50) pos=(0.00, 0.00) size=(568.00, 0.00) oMin=(0.00, 0.00) oMax=(0.00, 0.00)
+                • CornerRect  (layer=5, active=True)  RT aMin=(0.00, 0.00) aMax=(1.00, 1.00) piv=(0.50, 0.50) pos=(0.00, 0.00) size=(568.00, 0.00) oMin=(0.00, 0.00) oMax=(0.00, 0.00)
                   Image color=RGBA(0.363, 0.376, 0.472, 1.000) sprite=texUIHighlightHeader type=Sliced
             • SkillStripPrefab(Clone)  (layer=5, active=True)  RT aMin=(0.00, 1.00) aMax=(0.00, 1.00) piv=(0.50, 0.50) pos=(292.40, -65.14) size=(552.80, 98.28) oMin=(16.00, -114.28) oMax=(568.80, -16.00)
               Image color=RGBA(0.093, 0.093, 0.113, 0.365) sprite=texUICleanPanel type=Sliced
@@ -597,7 +597,7 @@
               • ButtonContainer  (layer=5, active=False)  RT aMin=(0.00, 0.00) aMax=(1.00, 1.00) piv=(0.50, 0.50) pos=(0.00, 0.00) size=(0.00, 0.00) oMin=(0.00, 0.00) oMax=(0.00, 0.00)
                 Image color=RGBA(1.000, 0.000, 1.000, 1.000) sprite=UISprite type=Sliced
                 • LoadoutButton(Clone)  (layer=5, active=False)  RT aMin=(0.00, 0.00) aMax=(0.00, 0.00) piv=(0.00, 0.50) pos=(0.00, 0.00) size=(16.00, 16.00) oMin=(0.00, -8.00) oMax=(16.00, 8.00)
-                  Image color=RGBA(1.000, 1.000, 1.000, 1.000) sprite=texEngiSkillIcons_0 type=Simple
+                  Image color=RGBA(1.000, 1.000, 1.000, 1.000) sprite=texCommandoSkillIcons_0 type=Simple
                   • BaseOutline  (layer=5, active=False)  RT aMin=(0.00, 0.00) aMax=(1.00, 1.00) piv=(0.50, 0.50) pos=(4.00, -4.00) size=(28.00, 28.00) oMin=(-2.00, -10.00) oMax=(10.00, 2.00)
                     Image color=RGBA(0.453, 0.453, 0.453, 1.000) sprite=texUIHighlightBoxOutlineThick type=Sliced
                   • HoverOutline  (layer=5, active=False)  RT aMin=(0.00, 0.00) aMax=(1.00, 1.00) piv=(0.50, 0.50) pos=(0.00, 0.00) size=(20.00, 20.00) oMin=(-2.00, -2.00) oMax=(2.00, 2.00)
@@ -615,20 +615,14 @@
               • Panel  (layer=5, active=False)  RT aMin=(0.00, 0.00) aMax=(0.00, 1.00) piv=(0.00, 0.50) pos=(0.00, 0.00) size=(120.00, 0.00) oMin=(0.00, 0.00) oMax=(120.00, 0.00)
                 Image color=RGBA(0.208, 0.185, 0.185, 1.000) sprite=texUICleanButton type=Sliced
               • SlotLabel  (layer=5, active=False)  RT aMin=(0.00, 0.00) aMax=(0.00, 1.00) piv=(0.00, 0.50) pos=(0.00, 0.00) size=(120.00, 0.00) oMin=(0.00, 0.00) oMax=(120.00, 0.00)
-                TMP text='Primary' color=RGBA(0.373, 0.886, 0.525, 1.000) size=12
+                TMP text='Primary' color=RGBA(0.929, 0.588, 0.071, 1.000) size=12
             • Row(Clone)  (layer=5, active=False)  RT aMin=(0.00, 0.00) aMax=(0.00, 0.00) piv=(0.50, 0.50) pos=(0.00, 0.00) size=(0.00, 0.00) oMin=(0.00, 0.00) oMax=(0.00, 0.00)
               Canvas sortingLayer=0 order=0 override=False mode=WorldSpace
               Image color=RGBA(0.145, 0.146, 0.149, 0.678) sprite=texUICleanPanel type=Sliced
               • ButtonContainer  (layer=5, active=False)  RT aMin=(0.00, 0.00) aMax=(1.00, 1.00) piv=(0.50, 0.50) pos=(0.00, 0.00) size=(0.00, 0.00) oMin=(0.00, 0.00) oMax=(0.00, 0.00)
                 Image color=RGBA(1.000, 0.000, 1.000, 1.000) sprite=UISprite type=Sliced
                 • LoadoutButton(Clone)  (layer=5, active=False)  RT aMin=(0.00, 0.00) aMax=(0.00, 0.00) piv=(0.00, 0.50) pos=(0.00, 0.00) size=(16.00, 16.00) oMin=(0.00, -8.00) oMax=(16.00, 8.00)
-                  Image color=RGBA(1.000, 1.000, 1.000, 1.000) sprite=texEngiSkillIcons_5 type=Simple
-                  • BaseOutline  (layer=5, active=False)  RT aMin=(0.00, 0.00) aMax=(1.00, 1.00) piv=(0.50, 0.50) pos=(4.00, -4.00) size=(28.00, 28.00) oMin=(-2.00, -10.00) oMax=(10.00, 2.00)
-                    Image color=RGBA(0.453, 0.453, 0.453, 1.000) sprite=texUIHighlightBoxOutlineThick type=Sliced
-                  • HoverOutline  (layer=5, active=False)  RT aMin=(0.00, 0.00) aMax=(1.00, 1.00) piv=(0.50, 0.50) pos=(0.00, 0.00) size=(20.00, 20.00) oMin=(-2.00, -2.00) oMax=(2.00, 2.00)
-                    Image color=RGBA(1.000, 1.000, 1.000, 0.000) sprite=texUIHighlightBoxOutlineThickIcon type=Sliced
-                • LoadoutButton(Clone)  (layer=5, active=False)  RT aMin=(0.00, 0.00) aMax=(0.00, 0.00) piv=(0.00, 0.50) pos=(0.00, 0.00) size=(16.00, 16.00) oMin=(0.00, -8.00) oMax=(16.00, 8.00)
-                  Image color=RGBA(1.000, 1.000, 1.000, 1.000) sprite=texEngiSkillIcons_1 type=Simple
+                  Image color=RGBA(1.000, 1.000, 1.000, 1.000) sprite=texCommandoSkillIcons_1 type=Simple
                   • BaseOutline  (layer=5, active=False)  RT aMin=(0.00, 0.00) aMax=(1.00, 1.00) piv=(0.50, 0.50) pos=(4.00, -4.00) size=(28.00, 28.00) oMin=(-2.00, -10.00) oMax=(10.00, 2.00)
                     Image color=RGBA(0.453, 0.453, 0.453, 1.000) sprite=texUIHighlightBoxOutlineThick type=Sliced
                   • HoverOutline  (layer=5, active=False)  RT aMin=(0.00, 0.00) aMax=(1.00, 1.00) piv=(0.50, 0.50) pos=(0.00, 0.00) size=(20.00, 20.00) oMin=(-2.00, -2.00) oMax=(2.00, 2.00)
@@ -641,25 +635,25 @@
                       Image color=RGBA(1.000, 0.950, 0.571, 1.000) sprite=texUIOutlineOnly type=Sliced
                     • Checkbox  (layer=5, active=False)  RT aMin=(0.50, 0.00) aMax=(0.50, 0.00) piv=(0.50, 0.50) pos=(0.00, 0.00) size=(24.00, 24.00) oMin=(-12.00, -12.00) oMax=(12.00, 12.00)
                       Image color=RGBA(0.150, 0.172, 0.179, 1.000) sprite=texUICheckboxes_0 type=Simple
+                • LoadoutButton(Clone)  (layer=5, active=False)  RT aMin=(0.00, 0.00) aMax=(0.00, 0.00) piv=(0.00, 0.50) pos=(0.00, 0.00) size=(16.00, 16.00) oMin=(0.00, -8.00) oMax=(16.00, 8.00)
+                  Image color=RGBA(1.000, 1.000, 1.000, 1.000) sprite=texCommandoSkillIcons_5 type=Simple
+                  • BaseOutline  (layer=5, active=False)  RT aMin=(0.00, 0.00) aMax=(1.00, 1.00) piv=(0.50, 0.50) pos=(4.00, -4.00) size=(28.00, 28.00) oMin=(-2.00, -10.00) oMax=(10.00, 2.00)
+                    Image color=RGBA(0.453, 0.453, 0.453, 1.000) sprite=texUIHighlightBoxOutlineThick type=Sliced
+                  • HoverOutline  (layer=5, active=False)  RT aMin=(0.00, 0.00) aMax=(1.00, 1.00) piv=(0.50, 0.50) pos=(0.00, 0.00) size=(20.00, 20.00) oMin=(-2.00, -2.00) oMax=(2.00, 2.00)
+                    Image color=RGBA(1.000, 1.000, 1.000, 0.000) sprite=texUIHighlightBoxOutlineThickIcon type=Sliced
                 • Spacer  (layer=5, active=False)  RT aMin=(0.00, 0.00) aMax=(0.00, 0.00) piv=(0.50, 0.50) pos=(0.00, 0.00) size=(0.00, 0.00) oMin=(0.00, 0.00) oMax=(0.00, 0.00)
                   Image color=RGBA(0.109, 0.109, 0.113, 0.412) sprite=texUIAnimateSliceNakedButton type=Sliced
               • Panel  (layer=5, active=False)  RT aMin=(0.00, 0.00) aMax=(0.00, 1.00) piv=(0.00, 0.50) pos=(0.00, 0.00) size=(120.00, 0.00) oMin=(0.00, 0.00) oMax=(120.00, 0.00)
                 Image color=RGBA(0.208, 0.185, 0.185, 1.000) sprite=texUICleanButton type=Sliced
               • SlotLabel  (layer=5, active=False)  RT aMin=(0.00, 0.00) aMax=(0.00, 1.00) piv=(0.00, 0.50) pos=(0.00, 0.00) size=(120.00, 0.00) oMin=(0.00, 0.00) oMax=(120.00, 0.00)
-                TMP text='Secondary' color=RGBA(0.373, 0.886, 0.525, 1.000) size=12
+                TMP text='Secondary' color=RGBA(0.929, 0.588, 0.071, 1.000) size=12
             • Row(Clone)  (layer=5, active=False)  RT aMin=(0.00, 0.00) aMax=(0.00, 0.00) piv=(0.50, 0.50) pos=(0.00, 0.00) size=(0.00, 0.00) oMin=(0.00, 0.00) oMax=(0.00, 0.00)
               Canvas sortingLayer=0 order=0 override=False mode=WorldSpace
               Image color=RGBA(0.145, 0.146, 0.149, 0.678) sprite=texUICleanPanel type=Sliced
               • ButtonContainer  (layer=5, active=False)  RT aMin=(0.00, 0.00) aMax=(1.00, 1.00) piv=(0.50, 0.50) pos=(0.00, 0.00) size=(0.00, 0.00) oMin=(0.00, 0.00) oMax=(0.00, 0.00)
                 Image color=RGBA(1.000, 0.000, 1.000, 1.000) sprite=UISprite type=Sliced
                 • LoadoutButton(Clone)  (layer=5, active=False)  RT aMin=(0.00, 0.00) aMax=(0.00, 0.00) piv=(0.00, 0.50) pos=(0.00, 0.00) size=(16.00, 16.00) oMin=(0.00, -8.00) oMax=(16.00, 8.00)
-                  Image color=RGBA(1.000, 1.000, 1.000, 1.000) sprite=texEngiSkillIcons_2 type=Simple
-                  • BaseOutline  (layer=5, active=False)  RT aMin=(0.00, 0.00) aMax=(1.00, 1.00) piv=(0.50, 0.50) pos=(4.00, -4.00) size=(28.00, 28.00) oMin=(-2.00, -10.00) oMax=(10.00, 2.00)
-                    Image color=RGBA(0.453, 0.453, 0.453, 1.000) sprite=texUIHighlightBoxOutlineThick type=Sliced
-                  • HoverOutline  (layer=5, active=False)  RT aMin=(0.00, 0.00) aMax=(1.00, 1.00) piv=(0.50, 0.50) pos=(0.00, 0.00) size=(20.00, 20.00) oMin=(-2.00, -2.00) oMax=(2.00, 2.00)
-                    Image color=RGBA(1.000, 1.000, 1.000, 0.000) sprite=texUIHighlightBoxOutlineThickIcon type=Sliced
-                • LoadoutButton(Clone)  (layer=5, active=False)  RT aMin=(0.00, 0.00) aMax=(0.00, 0.00) piv=(0.00, 0.50) pos=(0.00, 0.00) size=(16.00, 16.00) oMin=(0.00, -8.00) oMax=(16.00, 8.00)
-                  Image color=RGBA(1.000, 1.000, 1.000, 1.000) sprite=texEngiClearTeleporterWithZeroMonstersIcon type=Simple
+                  Image color=RGBA(1.000, 1.000, 1.000, 1.000) sprite=texCommandoSkillIcons_2 type=Simple
                   • BaseOutline  (layer=5, active=False)  RT aMin=(0.00, 0.00) aMax=(1.00, 1.00) piv=(0.50, 0.50) pos=(4.00, -4.00) size=(28.00, 28.00) oMin=(-2.00, -10.00) oMax=(10.00, 2.00)
                     Image color=RGBA(0.453, 0.453, 0.453, 1.000) sprite=texUIHighlightBoxOutlineThick type=Sliced
                   • HoverOutline  (layer=5, active=False)  RT aMin=(0.00, 0.00) aMax=(1.00, 1.00) piv=(0.50, 0.50) pos=(0.00, 0.00) size=(20.00, 20.00) oMin=(-2.00, -2.00) oMax=(2.00, 2.00)
@@ -672,19 +666,25 @@
                       Image color=RGBA(1.000, 0.950, 0.571, 1.000) sprite=texUIOutlineOnly type=Sliced
                     • Checkbox  (layer=5, active=False)  RT aMin=(0.50, 0.00) aMax=(0.50, 0.00) piv=(0.50, 0.50) pos=(0.00, 0.00) size=(24.00, 24.00) oMin=(-12.00, -12.00) oMax=(12.00, 12.00)
                       Image color=RGBA(0.150, 0.172, 0.179, 1.000) sprite=texUICheckboxes_0 type=Simple
+                • LoadoutButton(Clone)  (layer=5, active=False)  RT aMin=(0.00, 0.00) aMax=(0.00, 0.00) piv=(0.00, 0.50) pos=(0.00, 0.00) size=(16.00, 16.00) oMin=(0.00, -8.00) oMax=(16.00, 8.00)
+                  Image color=RGBA(1.000, 1.000, 1.000, 1.000) sprite=texUnlockIcon type=Simple
+                  • BaseOutline  (layer=5, active=False)  RT aMin=(0.00, 0.00) aMax=(1.00, 1.00) piv=(0.50, 0.50) pos=(4.00, -4.00) size=(28.00, 28.00) oMin=(-2.00, -10.00) oMax=(10.00, 2.00)
+                    Image color=RGBA(0.453, 0.453, 0.453, 1.000) sprite=texUIHighlightBoxOutlineThick type=Sliced
+                  • HoverOutline  (layer=5, active=False)  RT aMin=(0.00, 0.00) aMax=(1.00, 1.00) piv=(0.50, 0.50) pos=(0.00, 0.00) size=(20.00, 20.00) oMin=(-2.00, -2.00) oMax=(2.00, 2.00)
+                    Image color=RGBA(1.000, 1.000, 1.000, 0.000) sprite=texUIHighlightBoxOutlineThickIcon type=Sliced
                 • Spacer  (layer=5, active=False)  RT aMin=(0.00, 0.00) aMax=(0.00, 0.00) piv=(0.50, 0.50) pos=(0.00, 0.00) size=(0.00, 0.00) oMin=(0.00, 0.00) oMax=(0.00, 0.00)
                   Image color=RGBA(0.109, 0.109, 0.113, 0.412) sprite=texUIAnimateSliceNakedButton type=Sliced
               • Panel  (layer=5, active=False)  RT aMin=(0.00, 0.00) aMax=(0.00, 1.00) piv=(0.00, 0.50) pos=(0.00, 0.00) size=(120.00, 0.00) oMin=(0.00, 0.00) oMax=(120.00, 0.00)
                 Image color=RGBA(0.208, 0.185, 0.185, 1.000) sprite=texUICleanButton type=Sliced
               • SlotLabel  (layer=5, active=False)  RT aMin=(0.00, 0.00) aMax=(0.00, 1.00) piv=(0.00, 0.50) pos=(0.00, 0.00) size=(120.00, 0.00) oMin=(0.00, 0.00) oMax=(120.00, 0.00)
-                TMP text='Utility' color=RGBA(0.373, 0.886, 0.525, 1.000) size=12
+                TMP text='Utility' color=RGBA(0.929, 0.588, 0.071, 1.000) size=12
             • Row(Clone)  (layer=5, active=False)  RT aMin=(0.00, 0.00) aMax=(0.00, 0.00) piv=(0.50, 0.50) pos=(0.00, 0.00) size=(0.00, 0.00) oMin=(0.00, 0.00) oMax=(0.00, 0.00)
               Canvas sortingLayer=0 order=0 override=False mode=WorldSpace
               Image color=RGBA(0.145, 0.146, 0.149, 0.678) sprite=texUICleanPanel type=Sliced
               • ButtonContainer  (layer=5, active=False)  RT aMin=(0.00, 0.00) aMax=(1.00, 1.00) piv=(0.50, 0.50) pos=(0.00, 0.00) size=(0.00, 0.00) oMin=(0.00, 0.00) oMax=(0.00, 0.00)
                 Image color=RGBA(1.000, 0.000, 1.000, 1.000) sprite=UISprite type=Sliced
                 • LoadoutButton(Clone)  (layer=5, active=False)  RT aMin=(0.00, 0.00) aMax=(0.00, 0.00) piv=(0.00, 0.50) pos=(0.00, 0.00) size=(16.00, 16.00) oMin=(0.00, -8.00) oMax=(16.00, 8.00)
-                  Image color=RGBA(1.000, 1.000, 1.000, 1.000) sprite=texEngiSkillIcons_3 type=Simple
+                  Image color=RGBA(1.000, 1.000, 1.000, 1.000) sprite=texCommandoSkillIcons_3 type=Simple
                   • BaseOutline  (layer=5, active=False)  RT aMin=(0.00, 0.00) aMax=(1.00, 1.00) piv=(0.50, 0.50) pos=(4.00, -4.00) size=(28.00, 28.00) oMin=(-2.00, -10.00) oMax=(10.00, 2.00)
                     Image color=RGBA(0.453, 0.453, 0.453, 1.000) sprite=texUIHighlightBoxOutlineThick type=Sliced
                   • HoverOutline  (layer=5, active=False)  RT aMin=(0.00, 0.00) aMax=(1.00, 1.00) piv=(0.50, 0.50) pos=(0.00, 0.00) size=(20.00, 20.00) oMin=(-2.00, -2.00) oMax=(2.00, 2.00)
@@ -698,7 +698,7 @@
                     • Checkbox  (layer=5, active=False)  RT aMin=(0.50, 0.00) aMax=(0.50, 0.00) piv=(0.50, 0.50) pos=(0.00, 0.00) size=(24.00, 24.00) oMin=(-12.00, -12.00) oMax=(12.00, 12.00)
                       Image color=RGBA(0.150, 0.172, 0.179, 1.000) sprite=texUICheckboxes_0 type=Simple
                 • LoadoutButton(Clone)  (layer=5, active=False)  RT aMin=(0.00, 0.00) aMax=(0.00, 0.00) piv=(0.00, 0.50) pos=(0.00, 0.00) size=(16.00, 16.00) oMin=(0.00, -8.00) oMax=(16.00, 8.00)
-                  Image color=RGBA(1.000, 1.000, 1.000, 1.000) sprite=texEngiSkillIcons_7 type=Simple
+                  Image color=RGBA(1.000, 1.000, 1.000, 1.000) sprite=texUnlockIcon type=Simple
                   • BaseOutline  (layer=5, active=False)  RT aMin=(0.00, 0.00) aMax=(1.00, 1.00) piv=(0.50, 0.50) pos=(4.00, -4.00) size=(28.00, 28.00) oMin=(-2.00, -10.00) oMax=(10.00, 2.00)
                     Image color=RGBA(0.453, 0.453, 0.453, 1.000) sprite=texUIHighlightBoxOutlineThick type=Sliced
                   • HoverOutline  (layer=5, active=False)  RT aMin=(0.00, 0.00) aMax=(1.00, 1.00) piv=(0.50, 0.50) pos=(0.00, 0.00) size=(20.00, 20.00) oMin=(-2.00, -2.00) oMax=(2.00, 2.00)
@@ -708,26 +708,20 @@
               • Panel  (layer=5, active=False)  RT aMin=(0.00, 0.00) aMax=(0.00, 1.00) piv=(0.00, 0.50) pos=(0.00, 0.00) size=(120.00, 0.00) oMin=(0.00, 0.00) oMax=(120.00, 0.00)
                 Image color=RGBA(0.208, 0.185, 0.185, 1.000) sprite=texUICleanButton type=Sliced
               • SlotLabel  (layer=5, active=False)  RT aMin=(0.00, 0.00) aMax=(0.00, 1.00) piv=(0.00, 0.50) pos=(0.00, 0.00) size=(120.00, 0.00) oMin=(0.00, 0.00) oMax=(120.00, 0.00)
-                TMP text='Special' color=RGBA(0.373, 0.886, 0.525, 1.000) size=12
+                TMP text='Special' color=RGBA(0.929, 0.588, 0.071, 1.000) size=12
             • Row(Clone)  (layer=5, active=False)  RT aMin=(0.00, 0.00) aMax=(0.00, 0.00) piv=(0.50, 0.50) pos=(0.00, 0.00) size=(0.00, 0.00) oMin=(0.00, 0.00) oMax=(0.00, 0.00)
               Canvas sortingLayer=0 order=0 override=False mode=WorldSpace
               Image color=RGBA(0.145, 0.146, 0.149, 0.678) sprite=texUICleanPanel type=Sliced
               • ButtonContainer  (layer=5, active=False)  RT aMin=(0.00, 0.00) aMax=(1.00, 1.00) piv=(0.50, 0.50) pos=(0.00, 0.00) size=(0.00, 0.00) oMin=(0.00, 0.00) oMax=(0.00, 0.00)
                 Image color=RGBA(1.000, 0.000, 1.000, 1.000) sprite=UISprite type=Sliced
                 • LoadoutButton(Clone)  (layer=5, active=False)  RT aMin=(0.00, 0.00) aMax=(0.00, 0.00) piv=(0.00, 0.50) pos=(0.00, 0.00) size=(16.00, 16.00) oMin=(0.00, -8.00) oMax=(16.00, 8.00)
-                  Image color=RGBA(1.000, 1.000, 1.000, 1.000) sprite=texSkinSwatches_1 type=Simple
+                  Image color=RGBA(1.000, 1.000, 1.000, 1.000) sprite=texSkinSwatches_0 type=Simple
                   • BaseOutline  (layer=5, active=False)  RT aMin=(0.00, 0.00) aMax=(1.00, 1.00) piv=(0.50, 0.50) pos=(4.00, -4.00) size=(28.00, 28.00) oMin=(-2.00, -10.00) oMax=(10.00, 2.00)
                     Image color=RGBA(0.453, 0.453, 0.453, 1.000) sprite=texUIHighlightBoxOutlineThick type=Sliced
                   • HoverOutline  (layer=5, active=False)  RT aMin=(0.00, 0.00) aMax=(1.00, 1.00) piv=(0.50, 0.50) pos=(0.00, 0.00) size=(20.00, 20.00) oMin=(-2.00, -2.00) oMax=(2.00, 2.00)
                     Image color=RGBA(1.000, 1.000, 1.000, 0.000) sprite=texUIHighlightBoxOutlineThickIcon type=Sliced
                 • LoadoutButton(Clone)  (layer=5, active=False)  RT aMin=(0.00, 0.00) aMax=(0.00, 0.00) piv=(0.00, 0.50) pos=(0.00, 0.00) size=(16.00, 16.00) oMin=(0.00, -8.00) oMax=(16.00, 8.00)
-                  Image color=RGBA(1.000, 1.000, 1.000, 1.000) sprite=texSkinSwatches_9 type=Simple
-                  • BaseOutline  (layer=5, active=False)  RT aMin=(0.00, 0.00) aMax=(1.00, 1.00) piv=(0.50, 0.50) pos=(4.00, -4.00) size=(28.00, 28.00) oMin=(-2.00, -10.00) oMax=(10.00, 2.00)
-                    Image color=RGBA(0.453, 0.453, 0.453, 1.000) sprite=texUIHighlightBoxOutlineThick type=Sliced
-                  • HoverOutline  (layer=5, active=False)  RT aMin=(0.00, 0.00) aMax=(1.00, 1.00) piv=(0.50, 0.50) pos=(0.00, 0.00) size=(20.00, 20.00) oMin=(-2.00, -2.00) oMax=(2.00, 2.00)
-                    Image color=RGBA(1.000, 1.000, 1.000, 0.000) sprite=texUIHighlightBoxOutlineThickIcon type=Sliced
-                • LoadoutButton(Clone)  (layer=5, active=False)  RT aMin=(0.00, 0.00) aMax=(0.00, 0.00) piv=(0.00, 0.50) pos=(0.00, 0.00) size=(16.00, 16.00) oMin=(0.00, -8.00) oMax=(16.00, 8.00)
-                  Image color=RGBA(1.000, 1.000, 1.000, 1.000) sprite=texDLC2AltSkinSwatches_8 type=Simple
+                  Image color=RGBA(1.000, 1.000, 1.000, 1.000) sprite=texSkinSwatches_8 type=Simple
                   • BaseOutline  (layer=5, active=False)  RT aMin=(0.00, 0.00) aMax=(1.00, 1.00) piv=(0.50, 0.50) pos=(4.00, -4.00) size=(28.00, 28.00) oMin=(-2.00, -10.00) oMax=(10.00, 2.00)
                     Image color=RGBA(0.453, 0.453, 0.453, 1.000) sprite=texUIHighlightBoxOutlineThick type=Sliced
                   • HoverOutline  (layer=5, active=False)  RT aMin=(0.00, 0.00) aMax=(1.00, 1.00) piv=(0.50, 0.50) pos=(0.00, 0.00) size=(20.00, 20.00) oMin=(-2.00, -2.00) oMax=(2.00, 2.00)
@@ -740,13 +734,19 @@
                       Image color=RGBA(1.000, 0.950, 0.571, 1.000) sprite=texUIOutlineOnly type=Sliced
                     • Checkbox  (layer=5, active=False)  RT aMin=(0.50, 0.00) aMax=(0.50, 0.00) piv=(0.50, 0.50) pos=(0.00, 0.00) size=(24.00, 24.00) oMin=(-12.00, -12.00) oMax=(12.00, 12.00)
                       Image color=RGBA(0.150, 0.172, 0.179, 1.000) sprite=texUICheckboxes_0 type=Simple
+                • LoadoutButton(Clone)  (layer=5, active=False)  RT aMin=(0.00, 0.00) aMax=(0.00, 0.00) piv=(0.00, 0.50) pos=(0.00, 0.00) size=(16.00, 16.00) oMin=(0.00, -8.00) oMax=(16.00, 8.00)
+                  Image color=RGBA(1.000, 1.000, 1.000, 1.000) sprite=texUnlockIcon type=Simple
+                  • BaseOutline  (layer=5, active=False)  RT aMin=(0.00, 0.00) aMax=(1.00, 1.00) piv=(0.50, 0.50) pos=(4.00, -4.00) size=(28.00, 28.00) oMin=(-2.00, -10.00) oMax=(10.00, 2.00)
+                    Image color=RGBA(0.453, 0.453, 0.453, 1.000) sprite=texUIHighlightBoxOutlineThick type=Sliced
+                  • HoverOutline  (layer=5, active=False)  RT aMin=(0.00, 0.00) aMax=(1.00, 1.00) piv=(0.50, 0.50) pos=(0.00, 0.00) size=(20.00, 20.00) oMin=(-2.00, -2.00) oMax=(2.00, 2.00)
+                    Image color=RGBA(1.000, 1.000, 1.000, 0.000) sprite=texUIHighlightBoxOutlineThickIcon type=Sliced
                 • Spacer  (layer=5, active=False)  RT aMin=(0.00, 0.00) aMax=(0.00, 0.00) piv=(0.50, 0.50) pos=(0.00, 0.00) size=(0.00, 0.00) oMin=(0.00, 0.00) oMax=(0.00, 0.00)
                   Image color=RGBA(0.109, 0.109, 0.113, 0.412) sprite=texUIAnimateSliceNakedButton type=Sliced
               • Panel  (layer=5, active=False)  RT aMin=(0.00, 0.00) aMax=(0.00, 1.00) piv=(0.00, 0.50) pos=(0.00, 0.00) size=(120.00, 0.00) oMin=(0.00, 0.00) oMax=(120.00, 0.00)
                 Image color=RGBA(0.208, 0.185, 0.185, 1.000) sprite=texUICleanButton type=Sliced
               • SlotLabel  (layer=5, active=False)  RT aMin=(0.00, 0.00) aMax=(0.00, 1.00) piv=(0.00, 0.50) pos=(0.00, 0.00) size=(120.00, 0.00) oMin=(0.00, 0.00) oMax=(120.00, 0.00)
-                TMP text='Skin' color=RGBA(0.373, 0.886, 0.525, 1.000) size=12
-        • PanelHighlightHolder (Layer: Secondary)  (layer=5, active=True)  RT aMin=(0.00, 0.00) aMax=(1.00, 1.00) piv=(0.50, 0.50) pos=(0.00, 0.00) size=(596.80, 658.20) oMin=(0.00, 0.00) oMax=(0.00, 0.00)
+                TMP text='Skin' color=RGBA(0.929, 0.588, 0.071, 1.000) size=12
+        • PanelHighlightHolder (Layer: Secondary)  (layer=5, active=False)  RT aMin=(0.00, 0.00) aMax=(1.00, 1.00) piv=(0.50, 0.50) pos=(0.00, 0.00) size=(596.80, 658.20) oMin=(0.00, 0.00) oMax=(0.00, 0.00)
           • PanelSelectionHighlight  (layer=5, active=False)  RT aMin=(0.00, 0.00) aMax=(1.00, 1.00) piv=(0.50, 0.50) pos=(0.00, 0.00) size=(596.80, 658.20) oMin=(0.00, 0.00) oMax=(0.00, 0.00)
             • ButtonFlashPanel  (layer=5, active=False)  RT aMin=(0.00, 0.00) aMax=(1.00, 1.00) piv=(0.50, 0.50) pos=(0.00, 0.00) size=(596.80, 658.20) oMin=(0.00, 0.00) oMax=(0.00, 0.00)
               Image color=RGBA(0.708, 0.695, 0.324, 1.000) sprite=texUIAnimateHeaderGradientInverted type=Simple
@@ -931,7 +931,7 @@
                       Image color=RGBA(1.000, 1.000, 1.000, 0.286) sprite=texUIOutlineOnly type=Sliced
                     • HoverOutline  (layer=5, active=True)  RT aMin=(0.00, 0.00) aMax=(1.00, 1.00) piv=(0.50, 0.50) pos=(0.00, 0.00) size=(287.04, 60.00) oMin=(0.00, 0.00) oMax=(0.00, 0.00)
                       Canvas sortingLayer=0 order=1 override=True mode=ScreenSpaceCamera
-                      Image color=RGBA(1.000, 1.000, 1.000, 0.000) sprite=texUIHighlightBoxOutline type=Sliced
+                      Image color=RGBA(1.000, 1.000, 1.000, 1.000) sprite=texUIHighlightBoxOutline type=Sliced
                     • Hover  (layer=5, active=True)  RT aMin=(0.00, 0.00) aMax=(1.00, 1.00) piv=(0.50, 0.50) pos=(0.00, 0.00) size=(287.04, 60.00) oMin=(0.00, 0.00) oMax=(0.00, 0.00)
                       Image color=RGBA(1.000, 1.000, 1.000, 0.000) sprite=null type=Simple
                   • HeaderText  (layer=5, active=True)  RT aMin=(0.00, 0.00) aMax=(1.00, 1.00) piv=(0.50, 0.50) pos=(0.00, 0.00) size=(287.04, 60.00) oMin=(0.00, 0.00) oMax=(0.00, 0.00)
@@ -2750,46 +2750,46 @@ sadasdasdasdasdfg' color=RGBA(1.000, 1.000, 1.000, 1.000) size=24
               Image color=RGBA(0.136, 0.138, 0.189, 1.000) sprite=texOptionsArrowRight type=Simple
               • Arrow  (layer=5, active=False)  RT aMin=(0.00, 0.50) aMax=(0.00, 0.50) piv=(0.00, 0.50) pos=(-8.70, 0.00) size=(32.00, 64.00) oMin=(-8.70, -32.00) oMax=(23.30, 32.00)
                 Image color=RGBA(0.361, 0.376, 0.471, 1.000) sprite=texOptionsArrowRight type=Simple
-        • PopoutPanelPrefab(Clone)  (layer=5, active=False)  RT aMin=(0.00, 0.00) aMax=(1.00, 1.00) piv=(1.00, 1.00) pos=(0.00, 0.00) size=(680.00, 860.00) oMin=(0.00, 0.00) oMax=(0.00, 0.00)
-          Canvas sortingLayer=0 order=3 override=False mode=WorldSpace
-          • Canvas  (layer=5, active=False)  RT aMin=(0.00, 0.00) aMax=(1.00, 1.00) piv=(0.50, 1.00) pos=(0.00, 0.00) size=(680.00, 860.00) oMin=(0.00, 0.00) oMax=(0.00, 0.00)
-            Canvas sortingLayer=0 order=0 override=False mode=WorldSpace
-            • Main  (layer=5, active=False)  RT aMin=(0.00, 0.00) aMax=(1.00, 1.00) piv=(0.50, 0.50) pos=(0.00, 0.00) size=(680.00, 860.00) oMin=(0.00, 0.00) oMax=(0.00, 0.00)
-              • BlurPanel  (layer=5, active=False)  RT aMin=(0.00, 0.00) aMax=(1.00, 1.00) piv=(0.50, 0.50) pos=(0.00, 0.00) size=(680.00, 860.00) oMin=(0.00, 0.00) oMax=(0.00, 0.00)
+        • PopoutPanelPrefab(Clone)  (layer=5, active=True)  RT aMin=(0.00, 0.00) aMax=(1.00, 1.00) piv=(1.00, 1.00) pos=(0.00, 0.00) size=(680.00, 860.00) oMin=(0.00, 0.00) oMax=(0.00, 0.00)
+          Canvas sortingLayer=0 order=2 override=True mode=ScreenSpaceCamera
+          • Canvas  (layer=5, active=True)  RT aMin=(0.00, 0.00) aMax=(1.00, 1.00) piv=(0.50, 1.00) pos=(0.00, 0.00) size=(680.00, 860.00) oMin=(0.00, 0.00) oMax=(0.00, 0.00)
+            Canvas sortingLayer=0 order=3 override=True mode=ScreenSpaceCamera
+            • Main  (layer=5, active=True)  RT aMin=(0.00, 0.00) aMax=(1.00, 1.00) piv=(0.50, 0.50) pos=(0.00, 0.00) size=(680.00, 767.46) oMin=(0.00, 46.27) oMax=(0.00, -46.27)
+              • BlurPanel  (layer=5, active=True)  RT aMin=(0.00, 0.00) aMax=(1.00, 1.00) piv=(0.50, 0.50) pos=(0.00, 0.00) size=(680.00, 767.46) oMin=(0.00, 0.00) oMax=(0.00, 0.00)
                 Image color=RGBA(0.000, 0.000, 0.000, 1.000) sprite=null type=Simple
-              • Background  (layer=5, active=False)  RT aMin=(0.00, 0.00) aMax=(1.00, 1.00) piv=(0.50, 0.50) pos=(0.00, 0.00) size=(668.00, 848.00) oMin=(6.00, 6.00) oMax=(-6.00, -6.00)
+              • Background  (layer=5, active=True)  RT aMin=(0.00, 0.00) aMax=(1.00, 1.00) piv=(0.50, 0.50) pos=(0.00, 0.00) size=(668.00, 755.46) oMin=(6.00, 6.00) oMax=(-6.00, -6.00)
                 Image color=RGBA(0.085, 0.085, 0.085, 1.000) sprite=texUIPopupRect type=Sliced
-              • BorderImage  (layer=5, active=False)  RT aMin=(0.00, 0.00) aMax=(1.00, 1.00) piv=(0.50, 0.50) pos=(0.00, 0.00) size=(680.00, 860.00) oMin=(0.00, 0.00) oMax=(0.00, 0.00)
+              • BorderImage  (layer=5, active=True)  RT aMin=(0.00, 0.00) aMax=(1.00, 1.00) piv=(0.50, 0.50) pos=(0.00, 0.00) size=(680.00, 767.46) oMin=(0.00, 0.00) oMax=(0.00, 0.00)
                 Image color=RGBA(0.363, 0.376, 0.472, 1.000) sprite=texUIHighlightHeader type=Sliced
-              • Title and Subtitle  (layer=5, active=False)  RT aMin=(0.00, 0.00) aMax=(0.00, 0.00) piv=(0.50, 1.00) pos=(0.00, 0.00) size=(0.00, 0.00) oMin=(0.00, 0.00) oMax=(0.00, 0.00)
-                • Title Text  (layer=5, active=False)  RT aMin=(0.00, 0.00) aMax=(0.00, 0.00) piv=(0.50, 0.50) pos=(0.00, 0.00) size=(0.00, 0.00) oMin=(0.00, 0.00) oMax=(0.00, 0.00)
+              • Title and Subtitle  (layer=5, active=True)  RT aMin=(0.00, 1.00) aMax=(0.00, 1.00) piv=(0.50, 1.00) pos=(340.00, -16.00) size=(648.00, 215.46) oMin=(16.00, -231.46) oMax=(664.00, -16.00)
+                • Title Text  (layer=5, active=True)  RT aMin=(0.00, 1.00) aMax=(0.00, 1.00) piv=(0.50, 0.50) pos=(324.00, -35.05) size=(616.00, 38.09) oMin=(16.00, -54.09) oMax=(632.00, -16.00)
                   TMP text='Artifacts' color=RGBA(1.000, 1.000, 1.000, 1.000) size=36
-                • Subtitle Text  (layer=5, active=False)  RT aMin=(0.00, 0.00) aMax=(0.00, 0.00) piv=(0.50, 0.50) pos=(0.00, 0.00) size=(0.00, 0.00) oMin=(0.00, 0.00) oMax=(0.00, 0.00)
+                • Subtitle Text  (layer=5, active=True)  RT aMin=(0.00, 1.00) aMax=(0.00, 1.00) piv=(0.50, 0.50) pos=(324.00, -134.78) size=(616.00, 129.37) oMin=(16.00, -199.46) oMax=(632.00, -70.09)
                   TMP text='<style=cArtifact>Artifacts</style> are game modifiers that can dramatically change the way the game is played. <style=cArtifact>Artifacts</style> can be found in the world in a <style=cArtifact>secret location</style>.
 
 <i>Challenges can still be unlocked while Artifacts are enabled.<i>' color=RGBA(0.641, 0.667, 0.670, 1.000) size=24
-                • BorderBreak  (layer=5, active=False)  RT aMin=(0.00, 0.00) aMax=(1.00, 0.00) piv=(0.50, 1.00) pos=(0.00, 0.00) size=(-32.00, 9.00) oMin=(16.00, -9.00) oMax=(-16.00, 0.00)
+                • BorderBreak  (layer=5, active=True)  RT aMin=(0.00, 0.00) aMax=(1.00, 0.00) piv=(0.50, 1.00) pos=(0.00, 0.00) size=(616.00, 9.00) oMin=(16.00, -9.00) oMax=(-16.00, 0.00)
                   Image color=RGBA(1.000, 1.000, 1.000, 1.000) sprite=texUIHeaderSingle type=Sliced
-              • DynamicText  (layer=5, active=False)  RT aMin=(0.00, 0.00) aMax=(0.00, 0.00) piv=(0.50, 1.00) pos=(0.00, 0.00) size=(0.00, 0.00) oMin=(0.00, 0.00) oMax=(0.00, 0.00)
-                • Text  (layer=5, active=False)  RT aMin=(0.00, 0.00) aMax=(1.00, 1.00) piv=(0.50, 0.50) pos=(0.00, 37.00) size=(0.00, -74.00) oMin=(0.00, 74.00) oMax=(0.00, 0.00)
-                  TMP text='Artifact of Glass
+              • DynamicText  (layer=5, active=True)  RT aMin=(0.00, 1.00) aMax=(0.00, 1.00) piv=(0.50, 1.00) pos=(340.00, -257.46) size=(648.00, 110.00) oMin=(16.00, -367.46) oMax=(664.00, -257.46)
+                • Text  (layer=5, active=True)  RT aMin=(0.00, 0.00) aMax=(1.00, 1.00) piv=(0.50, 0.50) pos=(0.00, 37.00) size=(648.00, 36.00) oMin=(0.00, 74.00) oMax=(0.00, 0.00)
+                  TMP text='<mark=#64646433><b>[ Artifact of Swarms ]</b>
 
-sadasdasdasdasdfg' color=RGBA(1.000, 1.000, 1.000, 1.000) size=24
-                • BorderBreak  (layer=5, active=False)  RT aMin=(0.00, 0.00) aMax=(1.00, 0.00) piv=(0.50, 1.00) pos=(0.00, 0.00) size=(-128.00, 4.00) oMin=(64.00, -4.00) oMax=(-64.00, 0.00)
+</mark><style=cSub>Monster spawns are doubled, but monster maximum health is halved.</style>' color=RGBA(1.000, 1.000, 1.000, 1.000) size=24
+                • BorderBreak  (layer=5, active=True)  RT aMin=(0.00, 0.00) aMax=(1.00, 0.00) piv=(0.50, 1.00) pos=(0.00, 0.00) size=(520.00, 4.00) oMin=(64.00, -4.00) oMax=(-64.00, 0.00)
                   Image color=RGBA(1.000, 1.000, 1.000, 1.000) sprite=texUIHeaderSingle type=Sliced
-              • ContentContainer  (layer=5, active=False)  RT aMin=(0.00, 0.00) aMax=(0.00, 0.00) piv=(0.50, 1.00) pos=(0.00, 0.00) size=(0.00, 0.00) oMin=(0.00, 0.00) oMax=(0.00, 0.00)
+              • ContentContainer  (layer=5, active=True)  RT aMin=(0.00, 1.00) aMax=(0.00, 1.00) piv=(0.50, 1.00) pos=(340.00, -393.46) size=(648.00, 158.00) oMin=(16.00, -551.46) oMax=(664.00, -393.46)
                 Image color=RGBA(1.000, 1.000, 1.000, 1.000) sprite=null type=Simple
-                • Choice (Artifacts.Bomb.Off)  (layer=5, active=False)  RT aMin=(0.50, 0.50) aMax=(0.50, 0.50) piv=(0.50, 0.50) pos=(0.00, 0.00) size=(64.00, 64.00) oMin=(-32.00, -32.00) oMax=(32.00, 32.00)
+                • Choice (Artifacts.Bomb.Off)  (layer=5, active=True)  RT aMin=(0.00, 1.00) aMax=(0.00, 1.00) piv=(0.50, 0.50) pos=(44.00, -44.00) size=(64.00, 64.00) oMin=(12.00, -76.00) oMax=(76.00, -12.00)
                   Image color=RGBA(0.145, 0.145, 0.149, 0.839) sprite=texUICleanPanel type=Sliced
-                  • Button  (layer=5, active=False)  RT aMin=(0.00, 0.00) aMax=(1.00, 1.00) piv=(0.50, 0.50) pos=(0.00, 0.00) size=(64.00, 64.00) oMin=(0.00, 0.00) oMax=(0.00, 0.00)
+                  • Button  (layer=5, active=True)  RT aMin=(0.00, 0.00) aMax=(1.00, 1.00) piv=(0.50, 0.50) pos=(0.00, 0.00) size=(64.00, 64.00) oMin=(0.00, 0.00) oMax=(0.00, 0.00)
                     Image color=RGBA(0.306, 0.321, 0.340, 1.000) sprite=texUICleanButton type=Sliced
-                    • BG  (layer=5, active=False)  RT aMin=(0.00, 0.00) aMax=(1.00, 1.00) piv=(0.50, 0.50) pos=(0.00, 0.00) size=(64.00, 64.00) oMin=(0.00, 0.00) oMax=(0.00, 0.00)
+                    • BG  (layer=5, active=True)  RT aMin=(0.00, 0.00) aMax=(1.00, 1.00) piv=(0.50, 0.50) pos=(0.00, 0.00) size=(64.00, 64.00) oMin=(0.00, 0.00) oMax=(0.00, 0.00)
                       Image color=RGBA(0.056, 0.062, 0.066, 0.831) sprite=texUICleanPanel type=Sliced
-                    • Icon  (layer=5, active=False)  RT aMin=(0.00, 0.00) aMax=(1.00, 1.00) piv=(0.50, 0.50) pos=(0.00, 0.00) size=(56.00, 56.00) oMin=(4.00, 4.00) oMax=(-4.00, -4.00)
+                    • Icon  (layer=5, active=True)  RT aMin=(0.00, 0.00) aMax=(1.00, 1.00) piv=(0.50, 0.50) pos=(0.00, 0.00) size=(56.00, 56.00) oMin=(4.00, 4.00) oMax=(-4.00, -4.00)
                       Image color=RGBA(1.000, 1.000, 1.000, 1.000) sprite=texArtifactBombDisabled type=Simple
-                    • BaseOutline  (layer=5, active=False)  RT aMin=(0.00, 0.00) aMax=(1.00, 1.00) piv=(0.50, 0.50) pos=(0.00, 0.00) size=(64.00, 64.00) oMin=(0.00, 0.00) oMax=(0.00, 0.00)
+                    • BaseOutline  (layer=5, active=True)  RT aMin=(0.00, 0.00) aMax=(1.00, 1.00) piv=(0.50, 0.50) pos=(0.00, 0.00) size=(64.00, 64.00) oMin=(0.00, 0.00) oMax=(0.00, 0.00)
                       Image color=RGBA(1.000, 1.000, 1.000, 0.314) sprite=texUIOutlineOnly type=Sliced
-                    • HoverOutline  (layer=5, active=False)  RT aMin=(0.00, 0.00) aMax=(1.00, 1.00) piv=(0.50, 0.50) pos=(0.00, 0.00) size=(68.00, 68.00) oMin=(-2.00, -2.00) oMax=(2.00, 2.00)
+                    • HoverOutline  (layer=5, active=True)  RT aMin=(0.00, 0.00) aMax=(1.00, 1.00) piv=(0.50, 0.50) pos=(0.00, 0.00) size=(68.00, 68.00) oMin=(-2.00, -2.00) oMax=(2.00, 2.00)
                       Image color=RGBA(1.000, 1.000, 1.000, 0.000) sprite=texUIHighlightBoxOutlineThickIcon type=Sliced
                   • ButtonSelectionHighlight, Checkbox  (layer=5, active=False)  RT aMin=(0.00, 0.00) aMax=(1.00, 1.00) piv=(0.50, 0.50) pos=(0.00, 0.00) size=(64.00, 64.00) oMin=(0.00, 0.00) oMax=(0.00, 0.00)
                     Canvas sortingLayer=0 order=0 override=False mode=WorldSpace
@@ -2808,7 +2808,7 @@ sadasdasdasdasdfg' color=RGBA(1.000, 1.000, 1.000, 1.000) size=24
                     • Checkbox  (layer=5, active=False)  RT aMin=(0.50, 0.00) aMax=(0.50, 0.00) piv=(0.50, 0.50) pos=(0.00, 0.00) size=(24.00, 24.00) oMin=(-12.00, -12.00) oMax=(12.00, 12.00)
                       Image color=RGBA(0.150, 0.172, 0.179, 1.000) sprite=texUICheckboxes_0 type=Simple
                   • ButtonSelectionHighlight, Locked  (layer=5, active=False)  RT aMin=(0.00, 0.00) aMax=(1.00, 1.00) piv=(0.50, 0.50) pos=(0.00, 0.00) size=(64.00, 64.00) oMin=(0.00, 0.00) oMax=(0.00, 0.00)
-                    Canvas sortingLayer=0 order=0 override=False mode=WorldSpace
+                    Canvas sortingLayer=0 order=4 override=True mode=WorldSpace
                     • ButtonFlashPanel  (layer=5, active=False)  RT aMin=(0.00, 0.00) aMax=(1.00, 1.00) piv=(0.50, 0.50) pos=(0.00, 0.00) size=(64.00, 64.00) oMin=(0.00, 0.00) oMax=(0.00, 0.00)
                     • Highlight  (layer=5, active=False)  RT aMin=(0.00, 0.00) aMax=(1.00, 1.00) piv=(0.50, 0.50) pos=(0.00, 0.00) size=(72.00, 72.00) oMin=(-4.00, -4.00) oMax=(4.00, 4.00)
                       Image color=RGBA(0.709, 0.746, 0.858, 1.000) sprite=texUIOutlineOnly type=Sliced
@@ -2816,20 +2816,20 @@ sadasdasdasdasdfg' color=RGBA(1.000, 1.000, 1.000, 1.000) size=24
                       Image color=RGBA(0.150, 0.172, 0.179, 1.000) sprite=texUICheckboxes_0 type=Simple
                   • SelectionIndicatorPanel  (layer=5, active=False)  RT aMin=(0.00, 0.00) aMax=(1.00, 1.00) piv=(0.50, 0.50) pos=(0.00, 0.00) size=(76.00, 76.00) oMin=(-6.00, -6.00) oMax=(6.00, 6.00)
                     Image color=RGBA(1.000, 1.000, 1.000, 1.000) sprite=texUIHighlightHeader type=Sliced
-                  • VoteLabel  (layer=5, active=False)  RT aMin=(0.00, 0.00) aMax=(1.00, 1.00) piv=(0.50, 0.50) pos=(0.00, 0.00) size=(52.00, 60.00) oMin=(6.00, 2.00) oMax=(-6.00, -2.00)
+                  • VoteLabel  (layer=5, active=True)  RT aMin=(0.00, 0.00) aMax=(1.00, 1.00) piv=(0.50, 0.50) pos=(0.00, 0.00) size=(52.00, 60.00) oMin=(6.00, 2.00) oMax=(-6.00, -2.00)
                     TMP text='2
 ' color=RGBA(1.000, 0.923, 0.000, 1.000) size=20
-                • Choice (Artifacts.Command.Off)  (layer=5, active=False)  RT aMin=(0.50, 0.50) aMax=(0.50, 0.50) piv=(0.50, 0.50) pos=(0.00, 0.00) size=(64.00, 64.00) oMin=(-32.00, -32.00) oMax=(32.00, 32.00)
+                • Choice (Artifacts.Command.Off)  (layer=5, active=True)  RT aMin=(0.00, 1.00) aMax=(0.00, 1.00) piv=(0.50, 0.50) pos=(114.00, -44.00) size=(64.00, 64.00) oMin=(82.00, -76.00) oMax=(146.00, -12.00)
                   Image color=RGBA(0.145, 0.145, 0.149, 0.839) sprite=texUICleanPanel type=Sliced
-                  • Button  (layer=5, active=False)  RT aMin=(0.00, 0.00) aMax=(1.00, 1.00) piv=(0.50, 0.50) pos=(0.00, 0.00) size=(64.00, 64.00) oMin=(0.00, 0.00) oMax=(0.00, 0.00)
+                  • Button  (layer=5, active=True)  RT aMin=(0.00, 0.00) aMax=(1.00, 1.00) piv=(0.50, 0.50) pos=(0.00, 0.00) size=(64.00, 64.00) oMin=(0.00, 0.00) oMax=(0.00, 0.00)
                     Image color=RGBA(0.306, 0.321, 0.340, 1.000) sprite=texUICleanButton type=Sliced
-                    • BG  (layer=5, active=False)  RT aMin=(0.00, 0.00) aMax=(1.00, 1.00) piv=(0.50, 0.50) pos=(0.00, 0.00) size=(64.00, 64.00) oMin=(0.00, 0.00) oMax=(0.00, 0.00)
+                    • BG  (layer=5, active=True)  RT aMin=(0.00, 0.00) aMax=(1.00, 1.00) piv=(0.50, 0.50) pos=(0.00, 0.00) size=(64.00, 64.00) oMin=(0.00, 0.00) oMax=(0.00, 0.00)
                       Image color=RGBA(0.056, 0.062, 0.066, 0.831) sprite=texUICleanPanel type=Sliced
-                    • Icon  (layer=5, active=False)  RT aMin=(0.00, 0.00) aMax=(1.00, 1.00) piv=(0.50, 0.50) pos=(0.00, 0.00) size=(56.00, 56.00) oMin=(4.00, 4.00) oMax=(-4.00, -4.00)
+                    • Icon  (layer=5, active=True)  RT aMin=(0.00, 0.00) aMax=(1.00, 1.00) piv=(0.50, 0.50) pos=(0.00, 0.00) size=(56.00, 56.00) oMin=(4.00, 4.00) oMax=(-4.00, -4.00)
                       Image color=RGBA(1.000, 1.000, 1.000, 1.000) sprite=texArtifactCommandDisabled type=Simple
-                    • BaseOutline  (layer=5, active=False)  RT aMin=(0.00, 0.00) aMax=(1.00, 1.00) piv=(0.50, 0.50) pos=(0.00, 0.00) size=(64.00, 64.00) oMin=(0.00, 0.00) oMax=(0.00, 0.00)
+                    • BaseOutline  (layer=5, active=True)  RT aMin=(0.00, 0.00) aMax=(1.00, 1.00) piv=(0.50, 0.50) pos=(0.00, 0.00) size=(64.00, 64.00) oMin=(0.00, 0.00) oMax=(0.00, 0.00)
                       Image color=RGBA(1.000, 1.000, 1.000, 0.314) sprite=texUIOutlineOnly type=Sliced
-                    • HoverOutline  (layer=5, active=False)  RT aMin=(0.00, 0.00) aMax=(1.00, 1.00) piv=(0.50, 0.50) pos=(0.00, 0.00) size=(68.00, 68.00) oMin=(-2.00, -2.00) oMax=(2.00, 2.00)
+                    • HoverOutline  (layer=5, active=True)  RT aMin=(0.00, 0.00) aMax=(1.00, 1.00) piv=(0.50, 0.50) pos=(0.00, 0.00) size=(68.00, 68.00) oMin=(-2.00, -2.00) oMax=(2.00, 2.00)
                       Image color=RGBA(1.000, 1.000, 1.000, 0.000) sprite=texUIHighlightBoxOutlineThickIcon type=Sliced
                   • ButtonSelectionHighlight, Checkbox  (layer=5, active=False)  RT aMin=(0.00, 0.00) aMax=(1.00, 1.00) piv=(0.50, 0.50) pos=(0.00, 0.00) size=(64.00, 64.00) oMin=(0.00, 0.00) oMax=(0.00, 0.00)
                     Canvas sortingLayer=0 order=0 override=False mode=WorldSpace
@@ -2848,7 +2848,7 @@ sadasdasdasdasdfg' color=RGBA(1.000, 1.000, 1.000, 1.000) size=24
                     • Checkbox  (layer=5, active=False)  RT aMin=(0.50, 0.00) aMax=(0.50, 0.00) piv=(0.50, 0.50) pos=(0.00, 0.00) size=(24.00, 24.00) oMin=(-12.00, -12.00) oMax=(12.00, 12.00)
                       Image color=RGBA(0.150, 0.172, 0.179, 1.000) sprite=texUICheckboxes_0 type=Simple
                   • ButtonSelectionHighlight, Locked  (layer=5, active=False)  RT aMin=(0.00, 0.00) aMax=(1.00, 1.00) piv=(0.50, 0.50) pos=(0.00, 0.00) size=(64.00, 64.00) oMin=(0.00, 0.00) oMax=(0.00, 0.00)
-                    Canvas sortingLayer=0 order=0 override=False mode=WorldSpace
+                    Canvas sortingLayer=0 order=4 override=True mode=WorldSpace
                     • ButtonFlashPanel  (layer=5, active=False)  RT aMin=(0.00, 0.00) aMax=(1.00, 1.00) piv=(0.50, 0.50) pos=(0.00, 0.00) size=(64.00, 64.00) oMin=(0.00, 0.00) oMax=(0.00, 0.00)
                     • Highlight  (layer=5, active=False)  RT aMin=(0.00, 0.00) aMax=(1.00, 1.00) piv=(0.50, 0.50) pos=(0.00, 0.00) size=(72.00, 72.00) oMin=(-4.00, -4.00) oMax=(4.00, 4.00)
                       Image color=RGBA(0.709, 0.746, 0.858, 1.000) sprite=texUIOutlineOnly type=Sliced
@@ -2856,20 +2856,20 @@ sadasdasdasdasdfg' color=RGBA(1.000, 1.000, 1.000, 1.000) size=24
                       Image color=RGBA(0.150, 0.172, 0.179, 1.000) sprite=texUICheckboxes_0 type=Simple
                   • SelectionIndicatorPanel  (layer=5, active=False)  RT aMin=(0.00, 0.00) aMax=(1.00, 1.00) piv=(0.50, 0.50) pos=(0.00, 0.00) size=(76.00, 76.00) oMin=(-6.00, -6.00) oMax=(6.00, 6.00)
                     Image color=RGBA(1.000, 1.000, 1.000, 1.000) sprite=texUIHighlightHeader type=Sliced
-                  • VoteLabel  (layer=5, active=False)  RT aMin=(0.00, 0.00) aMax=(1.00, 1.00) piv=(0.50, 0.50) pos=(0.00, 0.00) size=(52.00, 60.00) oMin=(6.00, 2.00) oMax=(-6.00, -2.00)
+                  • VoteLabel  (layer=5, active=True)  RT aMin=(0.00, 0.00) aMax=(1.00, 1.00) piv=(0.50, 0.50) pos=(0.00, 0.00) size=(52.00, 60.00) oMin=(6.00, 2.00) oMax=(-6.00, -2.00)
                     TMP text='2
 ' color=RGBA(1.000, 0.923, 0.000, 1.000) size=20
-                • Choice (Artifacts.Delusion.Off)  (layer=5, active=False)  RT aMin=(0.50, 0.50) aMax=(0.50, 0.50) piv=(0.50, 0.50) pos=(0.00, 0.00) size=(64.00, 64.00) oMin=(-32.00, -32.00) oMax=(32.00, 32.00)
+                • Choice (Artifacts.Delusion.Off)  (layer=5, active=True)  RT aMin=(0.00, 1.00) aMax=(0.00, 1.00) piv=(0.50, 0.50) pos=(184.00, -44.00) size=(64.00, 64.00) oMin=(152.00, -76.00) oMax=(216.00, -12.00)
                   Image color=RGBA(0.145, 0.145, 0.149, 0.839) sprite=texUICleanPanel type=Sliced
-                  • Button  (layer=5, active=False)  RT aMin=(0.00, 0.00) aMax=(1.00, 1.00) piv=(0.50, 0.50) pos=(0.00, 0.00) size=(64.00, 64.00) oMin=(0.00, 0.00) oMax=(0.00, 0.00)
+                  • Button  (layer=5, active=True)  RT aMin=(0.00, 0.00) aMax=(1.00, 1.00) piv=(0.50, 0.50) pos=(0.00, 0.00) size=(64.00, 64.00) oMin=(0.00, 0.00) oMax=(0.00, 0.00)
                     Image color=RGBA(0.306, 0.321, 0.340, 1.000) sprite=texUICleanButton type=Sliced
-                    • BG  (layer=5, active=False)  RT aMin=(0.00, 0.00) aMax=(1.00, 1.00) piv=(0.50, 0.50) pos=(0.00, 0.00) size=(64.00, 64.00) oMin=(0.00, 0.00) oMax=(0.00, 0.00)
+                    • BG  (layer=5, active=True)  RT aMin=(0.00, 0.00) aMax=(1.00, 1.00) piv=(0.50, 0.50) pos=(0.00, 0.00) size=(64.00, 64.00) oMin=(0.00, 0.00) oMax=(0.00, 0.00)
                       Image color=RGBA(0.056, 0.062, 0.066, 0.831) sprite=texUICleanPanel type=Sliced
-                    • Icon  (layer=5, active=False)  RT aMin=(0.00, 0.00) aMax=(1.00, 1.00) piv=(0.50, 0.50) pos=(0.00, 0.00) size=(56.00, 56.00) oMin=(4.00, 4.00) oMax=(-4.00, -4.00)
+                    • Icon  (layer=5, active=True)  RT aMin=(0.00, 0.00) aMax=(1.00, 1.00) piv=(0.50, 0.50) pos=(0.00, 0.00) size=(56.00, 56.00) oMin=(4.00, 4.00) oMax=(-4.00, -4.00)
                       Image color=RGBA(1.000, 1.000, 1.000, 1.000) sprite=texArtifactDelusionDisabled type=Simple
-                    • BaseOutline  (layer=5, active=False)  RT aMin=(0.00, 0.00) aMax=(1.00, 1.00) piv=(0.50, 0.50) pos=(0.00, 0.00) size=(64.00, 64.00) oMin=(0.00, 0.00) oMax=(0.00, 0.00)
+                    • BaseOutline  (layer=5, active=True)  RT aMin=(0.00, 0.00) aMax=(1.00, 1.00) piv=(0.50, 0.50) pos=(0.00, 0.00) size=(64.00, 64.00) oMin=(0.00, 0.00) oMax=(0.00, 0.00)
                       Image color=RGBA(1.000, 1.000, 1.000, 0.314) sprite=texUIOutlineOnly type=Sliced
-                    • HoverOutline  (layer=5, active=False)  RT aMin=(0.00, 0.00) aMax=(1.00, 1.00) piv=(0.50, 0.50) pos=(0.00, 0.00) size=(68.00, 68.00) oMin=(-2.00, -2.00) oMax=(2.00, 2.00)
+                    • HoverOutline  (layer=5, active=True)  RT aMin=(0.00, 0.00) aMax=(1.00, 1.00) piv=(0.50, 0.50) pos=(0.00, 0.00) size=(68.00, 68.00) oMin=(-2.00, -2.00) oMax=(2.00, 2.00)
                       Image color=RGBA(1.000, 1.000, 1.000, 0.000) sprite=texUIHighlightBoxOutlineThickIcon type=Sliced
                   • ButtonSelectionHighlight, Checkbox  (layer=5, active=False)  RT aMin=(0.00, 0.00) aMax=(1.00, 1.00) piv=(0.50, 0.50) pos=(0.00, 0.00) size=(64.00, 64.00) oMin=(0.00, 0.00) oMax=(0.00, 0.00)
                     Canvas sortingLayer=0 order=0 override=False mode=WorldSpace
@@ -2888,7 +2888,7 @@ sadasdasdasdasdfg' color=RGBA(1.000, 1.000, 1.000, 1.000) size=24
                     • Checkbox  (layer=5, active=False)  RT aMin=(0.50, 0.00) aMax=(0.50, 0.00) piv=(0.50, 0.50) pos=(0.00, 0.00) size=(24.00, 24.00) oMin=(-12.00, -12.00) oMax=(12.00, 12.00)
                       Image color=RGBA(0.150, 0.172, 0.179, 1.000) sprite=texUICheckboxes_0 type=Simple
                   • ButtonSelectionHighlight, Locked  (layer=5, active=False)  RT aMin=(0.00, 0.00) aMax=(1.00, 1.00) piv=(0.50, 0.50) pos=(0.00, 0.00) size=(64.00, 64.00) oMin=(0.00, 0.00) oMax=(0.00, 0.00)
-                    Canvas sortingLayer=0 order=0 override=False mode=WorldSpace
+                    Canvas sortingLayer=0 order=4 override=True mode=WorldSpace
                     • ButtonFlashPanel  (layer=5, active=False)  RT aMin=(0.00, 0.00) aMax=(1.00, 1.00) piv=(0.50, 0.50) pos=(0.00, 0.00) size=(64.00, 64.00) oMin=(0.00, 0.00) oMax=(0.00, 0.00)
                     • Highlight  (layer=5, active=False)  RT aMin=(0.00, 0.00) aMax=(1.00, 1.00) piv=(0.50, 0.50) pos=(0.00, 0.00) size=(72.00, 72.00) oMin=(-4.00, -4.00) oMax=(4.00, 4.00)
                       Image color=RGBA(0.709, 0.746, 0.858, 1.000) sprite=texUIOutlineOnly type=Sliced
@@ -2896,20 +2896,20 @@ sadasdasdasdasdfg' color=RGBA(1.000, 1.000, 1.000, 1.000) size=24
                       Image color=RGBA(0.150, 0.172, 0.179, 1.000) sprite=texUICheckboxes_0 type=Simple
                   • SelectionIndicatorPanel  (layer=5, active=False)  RT aMin=(0.00, 0.00) aMax=(1.00, 1.00) piv=(0.50, 0.50) pos=(0.00, 0.00) size=(76.00, 76.00) oMin=(-6.00, -6.00) oMax=(6.00, 6.00)
                     Image color=RGBA(1.000, 1.000, 1.000, 1.000) sprite=texUIHighlightHeader type=Sliced
-                  • VoteLabel  (layer=5, active=False)  RT aMin=(0.00, 0.00) aMax=(1.00, 1.00) piv=(0.50, 0.50) pos=(0.00, 0.00) size=(52.00, 60.00) oMin=(6.00, 2.00) oMax=(-6.00, -2.00)
+                  • VoteLabel  (layer=5, active=True)  RT aMin=(0.00, 0.00) aMax=(1.00, 1.00) piv=(0.50, 0.50) pos=(0.00, 0.00) size=(52.00, 60.00) oMin=(6.00, 2.00) oMax=(-6.00, -2.00)
                     TMP text='2
 ' color=RGBA(1.000, 0.923, 0.000, 1.000) size=20
-                • Choice (Artifacts.Devotion.Off)  (layer=5, active=False)  RT aMin=(0.50, 0.50) aMax=(0.50, 0.50) piv=(0.50, 0.50) pos=(0.00, 0.00) size=(64.00, 64.00) oMin=(-32.00, -32.00) oMax=(32.00, 32.00)
+                • Choice (Artifacts.Devotion.Off)  (layer=5, active=True)  RT aMin=(0.00, 1.00) aMax=(0.00, 1.00) piv=(0.50, 0.50) pos=(254.00, -44.00) size=(64.00, 64.00) oMin=(222.00, -76.00) oMax=(286.00, -12.00)
                   Image color=RGBA(0.145, 0.145, 0.149, 0.839) sprite=texUICleanPanel type=Sliced
-                  • Button  (layer=5, active=False)  RT aMin=(0.00, 0.00) aMax=(1.00, 1.00) piv=(0.50, 0.50) pos=(0.00, 0.00) size=(64.00, 64.00) oMin=(0.00, 0.00) oMax=(0.00, 0.00)
+                  • Button  (layer=5, active=True)  RT aMin=(0.00, 0.00) aMax=(1.00, 1.00) piv=(0.50, 0.50) pos=(0.00, 0.00) size=(64.00, 64.00) oMin=(0.00, 0.00) oMax=(0.00, 0.00)
                     Image color=RGBA(0.306, 0.321, 0.340, 1.000) sprite=texUICleanButton type=Sliced
-                    • BG  (layer=5, active=False)  RT aMin=(0.00, 0.00) aMax=(1.00, 1.00) piv=(0.50, 0.50) pos=(0.00, 0.00) size=(64.00, 64.00) oMin=(0.00, 0.00) oMax=(0.00, 0.00)
+                    • BG  (layer=5, active=True)  RT aMin=(0.00, 0.00) aMax=(1.00, 1.00) piv=(0.50, 0.50) pos=(0.00, 0.00) size=(64.00, 64.00) oMin=(0.00, 0.00) oMax=(0.00, 0.00)
                       Image color=RGBA(0.056, 0.062, 0.066, 0.831) sprite=texUICleanPanel type=Sliced
-                    • Icon  (layer=5, active=False)  RT aMin=(0.00, 0.00) aMax=(1.00, 1.00) piv=(0.50, 0.50) pos=(0.00, 0.00) size=(56.00, 56.00) oMin=(4.00, 4.00) oMax=(-4.00, -4.00)
+                    • Icon  (layer=5, active=True)  RT aMin=(0.00, 0.00) aMax=(1.00, 1.00) piv=(0.50, 0.50) pos=(0.00, 0.00) size=(56.00, 56.00) oMin=(4.00, 4.00) oMax=(-4.00, -4.00)
                       Image color=RGBA(1.000, 1.000, 1.000, 1.000) sprite=texArtifactDevotionDisabled type=Simple
-                    • BaseOutline  (layer=5, active=False)  RT aMin=(0.00, 0.00) aMax=(1.00, 1.00) piv=(0.50, 0.50) pos=(0.00, 0.00) size=(64.00, 64.00) oMin=(0.00, 0.00) oMax=(0.00, 0.00)
+                    • BaseOutline  (layer=5, active=True)  RT aMin=(0.00, 0.00) aMax=(1.00, 1.00) piv=(0.50, 0.50) pos=(0.00, 0.00) size=(64.00, 64.00) oMin=(0.00, 0.00) oMax=(0.00, 0.00)
                       Image color=RGBA(1.000, 1.000, 1.000, 0.314) sprite=texUIOutlineOnly type=Sliced
-                    • HoverOutline  (layer=5, active=False)  RT aMin=(0.00, 0.00) aMax=(1.00, 1.00) piv=(0.50, 0.50) pos=(0.00, 0.00) size=(68.00, 68.00) oMin=(-2.00, -2.00) oMax=(2.00, 2.00)
+                    • HoverOutline  (layer=5, active=True)  RT aMin=(0.00, 0.00) aMax=(1.00, 1.00) piv=(0.50, 0.50) pos=(0.00, 0.00) size=(68.00, 68.00) oMin=(-2.00, -2.00) oMax=(2.00, 2.00)
                       Image color=RGBA(1.000, 1.000, 1.000, 0.000) sprite=texUIHighlightBoxOutlineThickIcon type=Sliced
                   • ButtonSelectionHighlight, Checkbox  (layer=5, active=False)  RT aMin=(0.00, 0.00) aMax=(1.00, 1.00) piv=(0.50, 0.50) pos=(0.00, 0.00) size=(64.00, 64.00) oMin=(0.00, 0.00) oMax=(0.00, 0.00)
                     Canvas sortingLayer=0 order=0 override=False mode=WorldSpace
@@ -2928,7 +2928,7 @@ sadasdasdasdasdfg' color=RGBA(1.000, 1.000, 1.000, 1.000) size=24
                     • Checkbox  (layer=5, active=False)  RT aMin=(0.50, 0.00) aMax=(0.50, 0.00) piv=(0.50, 0.50) pos=(0.00, 0.00) size=(24.00, 24.00) oMin=(-12.00, -12.00) oMax=(12.00, 12.00)
                       Image color=RGBA(0.150, 0.172, 0.179, 1.000) sprite=texUICheckboxes_0 type=Simple
                   • ButtonSelectionHighlight, Locked  (layer=5, active=False)  RT aMin=(0.00, 0.00) aMax=(1.00, 1.00) piv=(0.50, 0.50) pos=(0.00, 0.00) size=(64.00, 64.00) oMin=(0.00, 0.00) oMax=(0.00, 0.00)
-                    Canvas sortingLayer=0 order=0 override=False mode=WorldSpace
+                    Canvas sortingLayer=0 order=4 override=True mode=WorldSpace
                     • ButtonFlashPanel  (layer=5, active=False)  RT aMin=(0.00, 0.00) aMax=(1.00, 1.00) piv=(0.50, 0.50) pos=(0.00, 0.00) size=(64.00, 64.00) oMin=(0.00, 0.00) oMax=(0.00, 0.00)
                     • Highlight  (layer=5, active=False)  RT aMin=(0.00, 0.00) aMax=(1.00, 1.00) piv=(0.50, 0.50) pos=(0.00, 0.00) size=(72.00, 72.00) oMin=(-4.00, -4.00) oMax=(4.00, 4.00)
                       Image color=RGBA(0.709, 0.746, 0.858, 1.000) sprite=texUIOutlineOnly type=Sliced
@@ -2936,20 +2936,20 @@ sadasdasdasdasdfg' color=RGBA(1.000, 1.000, 1.000, 1.000) size=24
                       Image color=RGBA(0.150, 0.172, 0.179, 1.000) sprite=texUICheckboxes_0 type=Simple
                   • SelectionIndicatorPanel  (layer=5, active=False)  RT aMin=(0.00, 0.00) aMax=(1.00, 1.00) piv=(0.50, 0.50) pos=(0.00, 0.00) size=(76.00, 76.00) oMin=(-6.00, -6.00) oMax=(6.00, 6.00)
                     Image color=RGBA(1.000, 1.000, 1.000, 1.000) sprite=texUIHighlightHeader type=Sliced
-                  • VoteLabel  (layer=5, active=False)  RT aMin=(0.00, 0.00) aMax=(1.00, 1.00) piv=(0.50, 0.50) pos=(0.00, 0.00) size=(52.00, 60.00) oMin=(6.00, 2.00) oMax=(-6.00, -2.00)
+                  • VoteLabel  (layer=5, active=True)  RT aMin=(0.00, 0.00) aMax=(1.00, 1.00) piv=(0.50, 0.50) pos=(0.00, 0.00) size=(52.00, 60.00) oMin=(6.00, 2.00) oMax=(-6.00, -2.00)
                     TMP text='2
 ' color=RGBA(1.000, 0.923, 0.000, 1.000) size=20
-                • Choice (Artifacts.EliteOnly.Off)  (layer=5, active=False)  RT aMin=(0.50, 0.50) aMax=(0.50, 0.50) piv=(0.50, 0.50) pos=(0.00, 0.00) size=(64.00, 64.00) oMin=(-32.00, -32.00) oMax=(32.00, 32.00)
+                • Choice (Artifacts.EliteOnly.Off)  (layer=5, active=True)  RT aMin=(0.00, 1.00) aMax=(0.00, 1.00) piv=(0.50, 0.50) pos=(324.00, -44.00) size=(64.00, 64.00) oMin=(292.00, -76.00) oMax=(356.00, -12.00)
                   Image color=RGBA(0.145, 0.145, 0.149, 0.839) sprite=texUICleanPanel type=Sliced
-                  • Button  (layer=5, active=False)  RT aMin=(0.00, 0.00) aMax=(1.00, 1.00) piv=(0.50, 0.50) pos=(0.00, 0.00) size=(64.00, 64.00) oMin=(0.00, 0.00) oMax=(0.00, 0.00)
+                  • Button  (layer=5, active=True)  RT aMin=(0.00, 0.00) aMax=(1.00, 1.00) piv=(0.50, 0.50) pos=(0.00, 0.00) size=(64.00, 64.00) oMin=(0.00, 0.00) oMax=(0.00, 0.00)
                     Image color=RGBA(0.306, 0.321, 0.340, 1.000) sprite=texUICleanButton type=Sliced
-                    • BG  (layer=5, active=False)  RT aMin=(0.00, 0.00) aMax=(1.00, 1.00) piv=(0.50, 0.50) pos=(0.00, 0.00) size=(64.00, 64.00) oMin=(0.00, 0.00) oMax=(0.00, 0.00)
+                    • BG  (layer=5, active=True)  RT aMin=(0.00, 0.00) aMax=(1.00, 1.00) piv=(0.50, 0.50) pos=(0.00, 0.00) size=(64.00, 64.00) oMin=(0.00, 0.00) oMax=(0.00, 0.00)
                       Image color=RGBA(0.056, 0.062, 0.066, 0.831) sprite=texUICleanPanel type=Sliced
-                    • Icon  (layer=5, active=False)  RT aMin=(0.00, 0.00) aMax=(1.00, 1.00) piv=(0.50, 0.50) pos=(0.00, 0.00) size=(56.00, 56.00) oMin=(4.00, 4.00) oMax=(-4.00, -4.00)
+                    • Icon  (layer=5, active=True)  RT aMin=(0.00, 0.00) aMax=(1.00, 1.00) piv=(0.50, 0.50) pos=(0.00, 0.00) size=(56.00, 56.00) oMin=(4.00, 4.00) oMax=(-4.00, -4.00)
                       Image color=RGBA(1.000, 1.000, 1.000, 1.000) sprite=texArtifactEliteOnlyDisabled type=Simple
-                    • BaseOutline  (layer=5, active=False)  RT aMin=(0.00, 0.00) aMax=(1.00, 1.00) piv=(0.50, 0.50) pos=(0.00, 0.00) size=(64.00, 64.00) oMin=(0.00, 0.00) oMax=(0.00, 0.00)
+                    • BaseOutline  (layer=5, active=True)  RT aMin=(0.00, 0.00) aMax=(1.00, 1.00) piv=(0.50, 0.50) pos=(0.00, 0.00) size=(64.00, 64.00) oMin=(0.00, 0.00) oMax=(0.00, 0.00)
                       Image color=RGBA(1.000, 1.000, 1.000, 0.314) sprite=texUIOutlineOnly type=Sliced
-                    • HoverOutline  (layer=5, active=False)  RT aMin=(0.00, 0.00) aMax=(1.00, 1.00) piv=(0.50, 0.50) pos=(0.00, 0.00) size=(68.00, 68.00) oMin=(-2.00, -2.00) oMax=(2.00, 2.00)
+                    • HoverOutline  (layer=5, active=True)  RT aMin=(0.00, 0.00) aMax=(1.00, 1.00) piv=(0.50, 0.50) pos=(0.00, 0.00) size=(68.00, 68.00) oMin=(-2.00, -2.00) oMax=(2.00, 2.00)
                       Image color=RGBA(1.000, 1.000, 1.000, 0.000) sprite=texUIHighlightBoxOutlineThickIcon type=Sliced
                   • ButtonSelectionHighlight, Checkbox  (layer=5, active=False)  RT aMin=(0.00, 0.00) aMax=(1.00, 1.00) piv=(0.50, 0.50) pos=(0.00, 0.00) size=(64.00, 64.00) oMin=(0.00, 0.00) oMax=(0.00, 0.00)
                     Canvas sortingLayer=0 order=0 override=False mode=WorldSpace
@@ -2968,7 +2968,7 @@ sadasdasdasdasdfg' color=RGBA(1.000, 1.000, 1.000, 1.000) size=24
                     • Checkbox  (layer=5, active=False)  RT aMin=(0.50, 0.00) aMax=(0.50, 0.00) piv=(0.50, 0.50) pos=(0.00, 0.00) size=(24.00, 24.00) oMin=(-12.00, -12.00) oMax=(12.00, 12.00)
                       Image color=RGBA(0.150, 0.172, 0.179, 1.000) sprite=texUICheckboxes_0 type=Simple
                   • ButtonSelectionHighlight, Locked  (layer=5, active=False)  RT aMin=(0.00, 0.00) aMax=(1.00, 1.00) piv=(0.50, 0.50) pos=(0.00, 0.00) size=(64.00, 64.00) oMin=(0.00, 0.00) oMax=(0.00, 0.00)
-                    Canvas sortingLayer=0 order=0 override=False mode=WorldSpace
+                    Canvas sortingLayer=0 order=4 override=True mode=WorldSpace
                     • ButtonFlashPanel  (layer=5, active=False)  RT aMin=(0.00, 0.00) aMax=(1.00, 1.00) piv=(0.50, 0.50) pos=(0.00, 0.00) size=(64.00, 64.00) oMin=(0.00, 0.00) oMax=(0.00, 0.00)
                     • Highlight  (layer=5, active=False)  RT aMin=(0.00, 0.00) aMax=(1.00, 1.00) piv=(0.50, 0.50) pos=(0.00, 0.00) size=(72.00, 72.00) oMin=(-4.00, -4.00) oMax=(4.00, 4.00)
                       Image color=RGBA(0.709, 0.746, 0.858, 1.000) sprite=texUIOutlineOnly type=Sliced
@@ -2976,20 +2976,20 @@ sadasdasdasdasdfg' color=RGBA(1.000, 1.000, 1.000, 1.000) size=24
                       Image color=RGBA(0.150, 0.172, 0.179, 1.000) sprite=texUICheckboxes_0 type=Simple
                   • SelectionIndicatorPanel  (layer=5, active=False)  RT aMin=(0.00, 0.00) aMax=(1.00, 1.00) piv=(0.50, 0.50) pos=(0.00, 0.00) size=(76.00, 76.00) oMin=(-6.00, -6.00) oMax=(6.00, 6.00)
                     Image color=RGBA(1.000, 1.000, 1.000, 1.000) sprite=texUIHighlightHeader type=Sliced
-                  • VoteLabel  (layer=5, active=False)  RT aMin=(0.00, 0.00) aMax=(1.00, 1.00) piv=(0.50, 0.50) pos=(0.00, 0.00) size=(52.00, 60.00) oMin=(6.00, 2.00) oMax=(-6.00, -2.00)
+                  • VoteLabel  (layer=5, active=True)  RT aMin=(0.00, 0.00) aMax=(1.00, 1.00) piv=(0.50, 0.50) pos=(0.00, 0.00) size=(52.00, 60.00) oMin=(6.00, 2.00) oMax=(-6.00, -2.00)
                     TMP text='2
 ' color=RGBA(1.000, 0.923, 0.000, 1.000) size=20
-                • Choice (Artifacts.FriendlyFire.Off)  (layer=5, active=False)  RT aMin=(0.50, 0.50) aMax=(0.50, 0.50) piv=(0.50, 0.50) pos=(0.00, 0.00) size=(64.00, 64.00) oMin=(-32.00, -32.00) oMax=(32.00, 32.00)
+                • Choice (Artifacts.FriendlyFire.Off)  (layer=5, active=True)  RT aMin=(0.00, 1.00) aMax=(0.00, 1.00) piv=(0.50, 0.50) pos=(394.00, -44.00) size=(64.00, 64.00) oMin=(362.00, -76.00) oMax=(426.00, -12.00)
                   Image color=RGBA(0.145, 0.145, 0.149, 0.839) sprite=texUICleanPanel type=Sliced
-                  • Button  (layer=5, active=False)  RT aMin=(0.00, 0.00) aMax=(1.00, 1.00) piv=(0.50, 0.50) pos=(0.00, 0.00) size=(64.00, 64.00) oMin=(0.00, 0.00) oMax=(0.00, 0.00)
+                  • Button  (layer=5, active=True)  RT aMin=(0.00, 0.00) aMax=(1.00, 1.00) piv=(0.50, 0.50) pos=(0.00, 0.00) size=(64.00, 64.00) oMin=(0.00, 0.00) oMax=(0.00, 0.00)
                     Image color=RGBA(0.306, 0.321, 0.340, 1.000) sprite=texUICleanButton type=Sliced
-                    • BG  (layer=5, active=False)  RT aMin=(0.00, 0.00) aMax=(1.00, 1.00) piv=(0.50, 0.50) pos=(0.00, 0.00) size=(64.00, 64.00) oMin=(0.00, 0.00) oMax=(0.00, 0.00)
+                    • BG  (layer=5, active=True)  RT aMin=(0.00, 0.00) aMax=(1.00, 1.00) piv=(0.50, 0.50) pos=(0.00, 0.00) size=(64.00, 64.00) oMin=(0.00, 0.00) oMax=(0.00, 0.00)
                       Image color=RGBA(0.056, 0.062, 0.066, 0.831) sprite=texUICleanPanel type=Sliced
-                    • Icon  (layer=5, active=False)  RT aMin=(0.00, 0.00) aMax=(1.00, 1.00) piv=(0.50, 0.50) pos=(0.00, 0.00) size=(56.00, 56.00) oMin=(4.00, 4.00) oMax=(-4.00, -4.00)
+                    • Icon  (layer=5, active=True)  RT aMin=(0.00, 0.00) aMax=(1.00, 1.00) piv=(0.50, 0.50) pos=(0.00, 0.00) size=(56.00, 56.00) oMin=(4.00, 4.00) oMax=(-4.00, -4.00)
                       Image color=RGBA(1.000, 1.000, 1.000, 1.000) sprite=texArtifactFriendlyFireDisabled type=Simple
-                    • BaseOutline  (layer=5, active=False)  RT aMin=(0.00, 0.00) aMax=(1.00, 1.00) piv=(0.50, 0.50) pos=(0.00, 0.00) size=(64.00, 64.00) oMin=(0.00, 0.00) oMax=(0.00, 0.00)
+                    • BaseOutline  (layer=5, active=True)  RT aMin=(0.00, 0.00) aMax=(1.00, 1.00) piv=(0.50, 0.50) pos=(0.00, 0.00) size=(64.00, 64.00) oMin=(0.00, 0.00) oMax=(0.00, 0.00)
                       Image color=RGBA(1.000, 1.000, 1.000, 0.314) sprite=texUIOutlineOnly type=Sliced
-                    • HoverOutline  (layer=5, active=False)  RT aMin=(0.00, 0.00) aMax=(1.00, 1.00) piv=(0.50, 0.50) pos=(0.00, 0.00) size=(68.00, 68.00) oMin=(-2.00, -2.00) oMax=(2.00, 2.00)
+                    • HoverOutline  (layer=5, active=True)  RT aMin=(0.00, 0.00) aMax=(1.00, 1.00) piv=(0.50, 0.50) pos=(0.00, 0.00) size=(68.00, 68.00) oMin=(-2.00, -2.00) oMax=(2.00, 2.00)
                       Image color=RGBA(1.000, 1.000, 1.000, 0.000) sprite=texUIHighlightBoxOutlineThickIcon type=Sliced
                   • ButtonSelectionHighlight, Checkbox  (layer=5, active=False)  RT aMin=(0.00, 0.00) aMax=(1.00, 1.00) piv=(0.50, 0.50) pos=(0.00, 0.00) size=(64.00, 64.00) oMin=(0.00, 0.00) oMax=(0.00, 0.00)
                     Canvas sortingLayer=0 order=0 override=False mode=WorldSpace
@@ -3008,7 +3008,7 @@ sadasdasdasdasdfg' color=RGBA(1.000, 1.000, 1.000, 1.000) size=24
                     • Checkbox  (layer=5, active=False)  RT aMin=(0.50, 0.00) aMax=(0.50, 0.00) piv=(0.50, 0.50) pos=(0.00, 0.00) size=(24.00, 24.00) oMin=(-12.00, -12.00) oMax=(12.00, 12.00)
                       Image color=RGBA(0.150, 0.172, 0.179, 1.000) sprite=texUICheckboxes_0 type=Simple
                   • ButtonSelectionHighlight, Locked  (layer=5, active=False)  RT aMin=(0.00, 0.00) aMax=(1.00, 1.00) piv=(0.50, 0.50) pos=(0.00, 0.00) size=(64.00, 64.00) oMin=(0.00, 0.00) oMax=(0.00, 0.00)
-                    Canvas sortingLayer=0 order=0 override=False mode=WorldSpace
+                    Canvas sortingLayer=0 order=4 override=True mode=WorldSpace
                     • ButtonFlashPanel  (layer=5, active=False)  RT aMin=(0.00, 0.00) aMax=(1.00, 1.00) piv=(0.50, 0.50) pos=(0.00, 0.00) size=(64.00, 64.00) oMin=(0.00, 0.00) oMax=(0.00, 0.00)
                     • Highlight  (layer=5, active=False)  RT aMin=(0.00, 0.00) aMax=(1.00, 1.00) piv=(0.50, 0.50) pos=(0.00, 0.00) size=(72.00, 72.00) oMin=(-4.00, -4.00) oMax=(4.00, 4.00)
                       Image color=RGBA(0.709, 0.746, 0.858, 1.000) sprite=texUIOutlineOnly type=Sliced
@@ -3016,20 +3016,20 @@ sadasdasdasdasdfg' color=RGBA(1.000, 1.000, 1.000, 1.000) size=24
                       Image color=RGBA(0.150, 0.172, 0.179, 1.000) sprite=texUICheckboxes_0 type=Simple
                   • SelectionIndicatorPanel  (layer=5, active=False)  RT aMin=(0.00, 0.00) aMax=(1.00, 1.00) piv=(0.50, 0.50) pos=(0.00, 0.00) size=(76.00, 76.00) oMin=(-6.00, -6.00) oMax=(6.00, 6.00)
                     Image color=RGBA(1.000, 1.000, 1.000, 1.000) sprite=texUIHighlightHeader type=Sliced
-                  • VoteLabel  (layer=5, active=False)  RT aMin=(0.00, 0.00) aMax=(1.00, 1.00) piv=(0.50, 0.50) pos=(0.00, 0.00) size=(52.00, 60.00) oMin=(6.00, 2.00) oMax=(-6.00, -2.00)
+                  • VoteLabel  (layer=5, active=True)  RT aMin=(0.00, 0.00) aMax=(1.00, 1.00) piv=(0.50, 0.50) pos=(0.00, 0.00) size=(52.00, 60.00) oMin=(6.00, 2.00) oMax=(-6.00, -2.00)
                     TMP text='2
 ' color=RGBA(1.000, 0.923, 0.000, 1.000) size=20
-                • Choice (Artifacts.Glass.Off)  (layer=5, active=False)  RT aMin=(0.50, 0.50) aMax=(0.50, 0.50) piv=(0.50, 0.50) pos=(0.00, 0.00) size=(64.00, 64.00) oMin=(-32.00, -32.00) oMax=(32.00, 32.00)
+                • Choice (Artifacts.Glass.Off)  (layer=5, active=True)  RT aMin=(0.00, 1.00) aMax=(0.00, 1.00) piv=(0.50, 0.50) pos=(464.00, -44.00) size=(64.00, 64.00) oMin=(432.00, -76.00) oMax=(496.00, -12.00)
                   Image color=RGBA(0.145, 0.145, 0.149, 0.839) sprite=texUICleanPanel type=Sliced
-                  • Button  (layer=5, active=False)  RT aMin=(0.00, 0.00) aMax=(1.00, 1.00) piv=(0.50, 0.50) pos=(0.00, 0.00) size=(64.00, 64.00) oMin=(0.00, 0.00) oMax=(0.00, 0.00)
+                  • Button  (layer=5, active=True)  RT aMin=(0.00, 0.00) aMax=(1.00, 1.00) piv=(0.50, 0.50) pos=(0.00, 0.00) size=(64.00, 64.00) oMin=(0.00, 0.00) oMax=(0.00, 0.00)
                     Image color=RGBA(0.306, 0.321, 0.340, 1.000) sprite=texUICleanButton type=Sliced
-                    • BG  (layer=5, active=False)  RT aMin=(0.00, 0.00) aMax=(1.00, 1.00) piv=(0.50, 0.50) pos=(0.00, 0.00) size=(64.00, 64.00) oMin=(0.00, 0.00) oMax=(0.00, 0.00)
+                    • BG  (layer=5, active=True)  RT aMin=(0.00, 0.00) aMax=(1.00, 1.00) piv=(0.50, 0.50) pos=(0.00, 0.00) size=(64.00, 64.00) oMin=(0.00, 0.00) oMax=(0.00, 0.00)
                       Image color=RGBA(0.056, 0.062, 0.066, 0.831) sprite=texUICleanPanel type=Sliced
-                    • Icon  (layer=5, active=False)  RT aMin=(0.00, 0.00) aMax=(1.00, 1.00) piv=(0.50, 0.50) pos=(0.00, 0.00) size=(56.00, 56.00) oMin=(4.00, 4.00) oMax=(-4.00, -4.00)
+                    • Icon  (layer=5, active=True)  RT aMin=(0.00, 0.00) aMax=(1.00, 1.00) piv=(0.50, 0.50) pos=(0.00, 0.00) size=(56.00, 56.00) oMin=(4.00, 4.00) oMax=(-4.00, -4.00)
                       Image color=RGBA(1.000, 1.000, 1.000, 1.000) sprite=texArtifactGlassDisabled type=Simple
-                    • BaseOutline  (layer=5, active=False)  RT aMin=(0.00, 0.00) aMax=(1.00, 1.00) piv=(0.50, 0.50) pos=(0.00, 0.00) size=(64.00, 64.00) oMin=(0.00, 0.00) oMax=(0.00, 0.00)
+                    • BaseOutline  (layer=5, active=True)  RT aMin=(0.00, 0.00) aMax=(1.00, 1.00) piv=(0.50, 0.50) pos=(0.00, 0.00) size=(64.00, 64.00) oMin=(0.00, 0.00) oMax=(0.00, 0.00)
                       Image color=RGBA(1.000, 1.000, 1.000, 0.314) sprite=texUIOutlineOnly type=Sliced
-                    • HoverOutline  (layer=5, active=False)  RT aMin=(0.00, 0.00) aMax=(1.00, 1.00) piv=(0.50, 0.50) pos=(0.00, 0.00) size=(68.00, 68.00) oMin=(-2.00, -2.00) oMax=(2.00, 2.00)
+                    • HoverOutline  (layer=5, active=True)  RT aMin=(0.00, 0.00) aMax=(1.00, 1.00) piv=(0.50, 0.50) pos=(0.00, 0.00) size=(68.00, 68.00) oMin=(-2.00, -2.00) oMax=(2.00, 2.00)
                       Image color=RGBA(1.000, 1.000, 1.000, 0.000) sprite=texUIHighlightBoxOutlineThickIcon type=Sliced
                   • ButtonSelectionHighlight, Checkbox  (layer=5, active=False)  RT aMin=(0.00, 0.00) aMax=(1.00, 1.00) piv=(0.50, 0.50) pos=(0.00, 0.00) size=(64.00, 64.00) oMin=(0.00, 0.00) oMax=(0.00, 0.00)
                     Canvas sortingLayer=0 order=0 override=False mode=WorldSpace
@@ -3048,7 +3048,7 @@ sadasdasdasdasdfg' color=RGBA(1.000, 1.000, 1.000, 1.000) size=24
                     • Checkbox  (layer=5, active=False)  RT aMin=(0.50, 0.00) aMax=(0.50, 0.00) piv=(0.50, 0.50) pos=(0.00, 0.00) size=(24.00, 24.00) oMin=(-12.00, -12.00) oMax=(12.00, 12.00)
                       Image color=RGBA(0.150, 0.172, 0.179, 1.000) sprite=texUICheckboxes_0 type=Simple
                   • ButtonSelectionHighlight, Locked  (layer=5, active=False)  RT aMin=(0.00, 0.00) aMax=(1.00, 1.00) piv=(0.50, 0.50) pos=(0.00, 0.00) size=(64.00, 64.00) oMin=(0.00, 0.00) oMax=(0.00, 0.00)
-                    Canvas sortingLayer=0 order=0 override=False mode=WorldSpace
+                    Canvas sortingLayer=0 order=4 override=True mode=WorldSpace
                     • ButtonFlashPanel  (layer=5, active=False)  RT aMin=(0.00, 0.00) aMax=(1.00, 1.00) piv=(0.50, 0.50) pos=(0.00, 0.00) size=(64.00, 64.00) oMin=(0.00, 0.00) oMax=(0.00, 0.00)
                     • Highlight  (layer=5, active=False)  RT aMin=(0.00, 0.00) aMax=(1.00, 1.00) piv=(0.50, 0.50) pos=(0.00, 0.00) size=(72.00, 72.00) oMin=(-4.00, -4.00) oMax=(4.00, 4.00)
                       Image color=RGBA(0.709, 0.746, 0.858, 1.000) sprite=texUIOutlineOnly type=Sliced
@@ -3056,20 +3056,20 @@ sadasdasdasdasdfg' color=RGBA(1.000, 1.000, 1.000, 1.000) size=24
                       Image color=RGBA(0.150, 0.172, 0.179, 1.000) sprite=texUICheckboxes_0 type=Simple
                   • SelectionIndicatorPanel  (layer=5, active=False)  RT aMin=(0.00, 0.00) aMax=(1.00, 1.00) piv=(0.50, 0.50) pos=(0.00, 0.00) size=(76.00, 76.00) oMin=(-6.00, -6.00) oMax=(6.00, 6.00)
                     Image color=RGBA(1.000, 1.000, 1.000, 1.000) sprite=texUIHighlightHeader type=Sliced
-                  • VoteLabel  (layer=5, active=False)  RT aMin=(0.00, 0.00) aMax=(1.00, 1.00) piv=(0.50, 0.50) pos=(0.00, 0.00) size=(52.00, 60.00) oMin=(6.00, 2.00) oMax=(-6.00, -2.00)
+                  • VoteLabel  (layer=5, active=True)  RT aMin=(0.00, 0.00) aMax=(1.00, 1.00) piv=(0.50, 0.50) pos=(0.00, 0.00) size=(52.00, 60.00) oMin=(6.00, 2.00) oMax=(-6.00, -2.00)
                     TMP text='2
 ' color=RGBA(1.000, 0.923, 0.000, 1.000) size=20
-                • Choice (Artifacts.RandomSurvivorOnRespawn.Off)  (layer=5, active=False)  RT aMin=(0.50, 0.50) aMax=(0.50, 0.50) piv=(0.50, 0.50) pos=(0.00, 0.00) size=(64.00, 64.00) oMin=(-32.00, -32.00) oMax=(32.00, 32.00)
+                • Choice (Artifacts.RandomSurvivorOnRespawn.Off)  (layer=5, active=True)  RT aMin=(0.00, 1.00) aMax=(0.00, 1.00) piv=(0.50, 0.50) pos=(534.00, -44.00) size=(64.00, 64.00) oMin=(502.00, -76.00) oMax=(566.00, -12.00)
                   Image color=RGBA(0.145, 0.145, 0.149, 0.839) sprite=texUICleanPanel type=Sliced
-                  • Button  (layer=5, active=False)  RT aMin=(0.00, 0.00) aMax=(1.00, 1.00) piv=(0.50, 0.50) pos=(0.00, 0.00) size=(64.00, 64.00) oMin=(0.00, 0.00) oMax=(0.00, 0.00)
+                  • Button  (layer=5, active=True)  RT aMin=(0.00, 0.00) aMax=(1.00, 1.00) piv=(0.50, 0.50) pos=(0.00, 0.00) size=(64.00, 64.00) oMin=(0.00, 0.00) oMax=(0.00, 0.00)
                     Image color=RGBA(0.306, 0.321, 0.340, 1.000) sprite=texUICleanButton type=Sliced
-                    • BG  (layer=5, active=False)  RT aMin=(0.00, 0.00) aMax=(1.00, 1.00) piv=(0.50, 0.50) pos=(0.00, 0.00) size=(64.00, 64.00) oMin=(0.00, 0.00) oMax=(0.00, 0.00)
+                    • BG  (layer=5, active=True)  RT aMin=(0.00, 0.00) aMax=(1.00, 1.00) piv=(0.50, 0.50) pos=(0.00, 0.00) size=(64.00, 64.00) oMin=(0.00, 0.00) oMax=(0.00, 0.00)
                       Image color=RGBA(0.056, 0.062, 0.066, 0.831) sprite=texUICleanPanel type=Sliced
-                    • Icon  (layer=5, active=False)  RT aMin=(0.00, 0.00) aMax=(1.00, 1.00) piv=(0.50, 0.50) pos=(0.00, 0.00) size=(56.00, 56.00) oMin=(4.00, 4.00) oMax=(-4.00, -4.00)
+                    • Icon  (layer=5, active=True)  RT aMin=(0.00, 0.00) aMax=(1.00, 1.00) piv=(0.50, 0.50) pos=(0.00, 0.00) size=(56.00, 56.00) oMin=(4.00, 4.00) oMax=(-4.00, -4.00)
                       Image color=RGBA(1.000, 1.000, 1.000, 1.000) sprite=texArtifactMetamorphDisabled type=Simple
-                    • BaseOutline  (layer=5, active=False)  RT aMin=(0.00, 0.00) aMax=(1.00, 1.00) piv=(0.50, 0.50) pos=(0.00, 0.00) size=(64.00, 64.00) oMin=(0.00, 0.00) oMax=(0.00, 0.00)
+                    • BaseOutline  (layer=5, active=True)  RT aMin=(0.00, 0.00) aMax=(1.00, 1.00) piv=(0.50, 0.50) pos=(0.00, 0.00) size=(64.00, 64.00) oMin=(0.00, 0.00) oMax=(0.00, 0.00)
                       Image color=RGBA(1.000, 1.000, 1.000, 0.314) sprite=texUIOutlineOnly type=Sliced
-                    • HoverOutline  (layer=5, active=False)  RT aMin=(0.00, 0.00) aMax=(1.00, 1.00) piv=(0.50, 0.50) pos=(0.00, 0.00) size=(68.00, 68.00) oMin=(-2.00, -2.00) oMax=(2.00, 2.00)
+                    • HoverOutline  (layer=5, active=True)  RT aMin=(0.00, 0.00) aMax=(1.00, 1.00) piv=(0.50, 0.50) pos=(0.00, 0.00) size=(68.00, 68.00) oMin=(-2.00, -2.00) oMax=(2.00, 2.00)
                       Image color=RGBA(1.000, 1.000, 1.000, 0.000) sprite=texUIHighlightBoxOutlineThickIcon type=Sliced
                   • ButtonSelectionHighlight, Checkbox  (layer=5, active=False)  RT aMin=(0.00, 0.00) aMax=(1.00, 1.00) piv=(0.50, 0.50) pos=(0.00, 0.00) size=(64.00, 64.00) oMin=(0.00, 0.00) oMax=(0.00, 0.00)
                     Canvas sortingLayer=0 order=0 override=False mode=WorldSpace
@@ -3088,7 +3088,7 @@ sadasdasdasdasdfg' color=RGBA(1.000, 1.000, 1.000, 1.000) size=24
                     • Checkbox  (layer=5, active=False)  RT aMin=(0.50, 0.00) aMax=(0.50, 0.00) piv=(0.50, 0.50) pos=(0.00, 0.00) size=(24.00, 24.00) oMin=(-12.00, -12.00) oMax=(12.00, 12.00)
                       Image color=RGBA(0.150, 0.172, 0.179, 1.000) sprite=texUICheckboxes_0 type=Simple
                   • ButtonSelectionHighlight, Locked  (layer=5, active=False)  RT aMin=(0.00, 0.00) aMax=(1.00, 1.00) piv=(0.50, 0.50) pos=(0.00, 0.00) size=(64.00, 64.00) oMin=(0.00, 0.00) oMax=(0.00, 0.00)
-                    Canvas sortingLayer=0 order=0 override=False mode=WorldSpace
+                    Canvas sortingLayer=0 order=4 override=True mode=WorldSpace
                     • ButtonFlashPanel  (layer=5, active=False)  RT aMin=(0.00, 0.00) aMax=(1.00, 1.00) piv=(0.50, 0.50) pos=(0.00, 0.00) size=(64.00, 64.00) oMin=(0.00, 0.00) oMax=(0.00, 0.00)
                     • Highlight  (layer=5, active=False)  RT aMin=(0.00, 0.00) aMax=(1.00, 1.00) piv=(0.50, 0.50) pos=(0.00, 0.00) size=(72.00, 72.00) oMin=(-4.00, -4.00) oMax=(4.00, 4.00)
                       Image color=RGBA(0.709, 0.746, 0.858, 1.000) sprite=texUIOutlineOnly type=Sliced
@@ -3096,20 +3096,20 @@ sadasdasdasdasdfg' color=RGBA(1.000, 1.000, 1.000, 1.000) size=24
                       Image color=RGBA(0.150, 0.172, 0.179, 1.000) sprite=texUICheckboxes_0 type=Simple
                   • SelectionIndicatorPanel  (layer=5, active=False)  RT aMin=(0.00, 0.00) aMax=(1.00, 1.00) piv=(0.50, 0.50) pos=(0.00, 0.00) size=(76.00, 76.00) oMin=(-6.00, -6.00) oMax=(6.00, 6.00)
                     Image color=RGBA(1.000, 1.000, 1.000, 1.000) sprite=texUIHighlightHeader type=Sliced
-                  • VoteLabel  (layer=5, active=False)  RT aMin=(0.00, 0.00) aMax=(1.00, 1.00) piv=(0.50, 0.50) pos=(0.00, 0.00) size=(52.00, 60.00) oMin=(6.00, 2.00) oMax=(-6.00, -2.00)
+                  • VoteLabel  (layer=5, active=True)  RT aMin=(0.00, 0.00) aMax=(1.00, 1.00) piv=(0.50, 0.50) pos=(0.00, 0.00) size=(52.00, 60.00) oMin=(6.00, 2.00) oMax=(-6.00, -2.00)
                     TMP text='2
 ' color=RGBA(1.000, 0.923, 0.000, 1.000) size=20
-                • Choice (Artifacts.Rebirth.Off)  (layer=5, active=False)  RT aMin=(0.50, 0.50) aMax=(0.50, 0.50) piv=(0.50, 0.50) pos=(0.00, 0.00) size=(64.00, 64.00) oMin=(-32.00, -32.00) oMax=(32.00, 32.00)
+                • Choice (Artifacts.Rebirth.Off)  (layer=5, active=True)  RT aMin=(0.00, 1.00) aMax=(0.00, 1.00) piv=(0.50, 0.50) pos=(604.00, -44.00) size=(64.00, 64.00) oMin=(572.00, -76.00) oMax=(636.00, -12.00)
                   Image color=RGBA(0.145, 0.145, 0.149, 0.839) sprite=texUICleanPanel type=Sliced
-                  • Button  (layer=5, active=False)  RT aMin=(0.00, 0.00) aMax=(1.00, 1.00) piv=(0.50, 0.50) pos=(0.00, 0.00) size=(64.00, 64.00) oMin=(0.00, 0.00) oMax=(0.00, 0.00)
+                  • Button  (layer=5, active=True)  RT aMin=(0.00, 0.00) aMax=(1.00, 1.00) piv=(0.50, 0.50) pos=(0.00, 0.00) size=(64.00, 64.00) oMin=(0.00, 0.00) oMax=(0.00, 0.00)
                     Image color=RGBA(0.306, 0.321, 0.340, 1.000) sprite=texUICleanButton type=Sliced
-                    • BG  (layer=5, active=False)  RT aMin=(0.00, 0.00) aMax=(1.00, 1.00) piv=(0.50, 0.50) pos=(0.00, 0.00) size=(64.00, 64.00) oMin=(0.00, 0.00) oMax=(0.00, 0.00)
+                    • BG  (layer=5, active=True)  RT aMin=(0.00, 0.00) aMax=(1.00, 1.00) piv=(0.50, 0.50) pos=(0.00, 0.00) size=(64.00, 64.00) oMin=(0.00, 0.00) oMax=(0.00, 0.00)
                       Image color=RGBA(0.056, 0.062, 0.066, 0.831) sprite=texUICleanPanel type=Sliced
-                    • Icon  (layer=5, active=False)  RT aMin=(0.00, 0.00) aMax=(1.00, 1.00) piv=(0.50, 0.50) pos=(0.00, 0.00) size=(56.00, 56.00) oMin=(4.00, 4.00) oMax=(-4.00, -4.00)
+                    • Icon  (layer=5, active=True)  RT aMin=(0.00, 0.00) aMax=(1.00, 1.00) piv=(0.50, 0.50) pos=(0.00, 0.00) size=(56.00, 56.00) oMin=(4.00, 4.00) oMax=(-4.00, -4.00)
                       Image color=RGBA(1.000, 1.000, 1.000, 1.000) sprite=texArtifactRebirthDisabled type=Simple
-                    • BaseOutline  (layer=5, active=False)  RT aMin=(0.00, 0.00) aMax=(1.00, 1.00) piv=(0.50, 0.50) pos=(0.00, 0.00) size=(64.00, 64.00) oMin=(0.00, 0.00) oMax=(0.00, 0.00)
+                    • BaseOutline  (layer=5, active=True)  RT aMin=(0.00, 0.00) aMax=(1.00, 1.00) piv=(0.50, 0.50) pos=(0.00, 0.00) size=(64.00, 64.00) oMin=(0.00, 0.00) oMax=(0.00, 0.00)
                       Image color=RGBA(1.000, 1.000, 1.000, 0.314) sprite=texUIOutlineOnly type=Sliced
-                    • HoverOutline  (layer=5, active=False)  RT aMin=(0.00, 0.00) aMax=(1.00, 1.00) piv=(0.50, 0.50) pos=(0.00, 0.00) size=(68.00, 68.00) oMin=(-2.00, -2.00) oMax=(2.00, 2.00)
+                    • HoverOutline  (layer=5, active=True)  RT aMin=(0.00, 0.00) aMax=(1.00, 1.00) piv=(0.50, 0.50) pos=(0.00, 0.00) size=(68.00, 68.00) oMin=(-2.00, -2.00) oMax=(2.00, 2.00)
                       Image color=RGBA(1.000, 1.000, 1.000, 0.000) sprite=texUIHighlightBoxOutlineThickIcon type=Sliced
                   • ButtonSelectionHighlight, Checkbox  (layer=5, active=False)  RT aMin=(0.00, 0.00) aMax=(1.00, 1.00) piv=(0.50, 0.50) pos=(0.00, 0.00) size=(64.00, 64.00) oMin=(0.00, 0.00) oMax=(0.00, 0.00)
                     Canvas sortingLayer=0 order=0 override=False mode=WorldSpace
@@ -3128,7 +3128,7 @@ sadasdasdasdasdfg' color=RGBA(1.000, 1.000, 1.000, 1.000) size=24
                     • Checkbox  (layer=5, active=False)  RT aMin=(0.50, 0.00) aMax=(0.50, 0.00) piv=(0.50, 0.50) pos=(0.00, 0.00) size=(24.00, 24.00) oMin=(-12.00, -12.00) oMax=(12.00, 12.00)
                       Image color=RGBA(0.150, 0.172, 0.179, 1.000) sprite=texUICheckboxes_0 type=Simple
                   • ButtonSelectionHighlight, Locked  (layer=5, active=False)  RT aMin=(0.00, 0.00) aMax=(1.00, 1.00) piv=(0.50, 0.50) pos=(0.00, 0.00) size=(64.00, 64.00) oMin=(0.00, 0.00) oMax=(0.00, 0.00)
-                    Canvas sortingLayer=0 order=0 override=False mode=WorldSpace
+                    Canvas sortingLayer=0 order=4 override=True mode=WorldSpace
                     • ButtonFlashPanel  (layer=5, active=False)  RT aMin=(0.00, 0.00) aMax=(1.00, 1.00) piv=(0.50, 0.50) pos=(0.00, 0.00) size=(64.00, 64.00) oMin=(0.00, 0.00) oMax=(0.00, 0.00)
                     • Highlight  (layer=5, active=False)  RT aMin=(0.00, 0.00) aMax=(1.00, 1.00) piv=(0.50, 0.50) pos=(0.00, 0.00) size=(72.00, 72.00) oMin=(-4.00, -4.00) oMax=(4.00, 4.00)
                       Image color=RGBA(0.709, 0.746, 0.858, 1.000) sprite=texUIOutlineOnly type=Sliced
@@ -3136,20 +3136,20 @@ sadasdasdasdasdfg' color=RGBA(1.000, 1.000, 1.000, 1.000) size=24
                       Image color=RGBA(0.150, 0.172, 0.179, 1.000) sprite=texUICheckboxes_0 type=Simple
                   • SelectionIndicatorPanel  (layer=5, active=False)  RT aMin=(0.00, 0.00) aMax=(1.00, 1.00) piv=(0.50, 0.50) pos=(0.00, 0.00) size=(76.00, 76.00) oMin=(-6.00, -6.00) oMax=(6.00, 6.00)
                     Image color=RGBA(1.000, 1.000, 1.000, 1.000) sprite=texUIHighlightHeader type=Sliced
-                  • VoteLabel  (layer=5, active=False)  RT aMin=(0.00, 0.00) aMax=(1.00, 1.00) piv=(0.50, 0.50) pos=(0.00, 0.00) size=(52.00, 60.00) oMin=(6.00, 2.00) oMax=(-6.00, -2.00)
+                  • VoteLabel  (layer=5, active=True)  RT aMin=(0.00, 0.00) aMax=(1.00, 1.00) piv=(0.50, 0.50) pos=(0.00, 0.00) size=(52.00, 60.00) oMin=(6.00, 2.00) oMax=(-6.00, -2.00)
                     TMP text='2
 ' color=RGBA(1.000, 0.923, 0.000, 1.000) size=20
-                • Choice (Artifacts.Sacrifice.Off)  (layer=5, active=False)  RT aMin=(0.50, 0.50) aMax=(0.50, 0.50) piv=(0.50, 0.50) pos=(0.00, 0.00) size=(64.00, 64.00) oMin=(-32.00, -32.00) oMax=(32.00, 32.00)
+                • Choice (Artifacts.Sacrifice.Off)  (layer=5, active=True)  RT aMin=(0.00, 1.00) aMax=(0.00, 1.00) piv=(0.50, 0.50) pos=(44.00, -114.00) size=(64.00, 64.00) oMin=(12.00, -146.00) oMax=(76.00, -82.00)
                   Image color=RGBA(0.145, 0.145, 0.149, 0.839) sprite=texUICleanPanel type=Sliced
-                  • Button  (layer=5, active=False)  RT aMin=(0.00, 0.00) aMax=(1.00, 1.00) piv=(0.50, 0.50) pos=(0.00, 0.00) size=(64.00, 64.00) oMin=(0.00, 0.00) oMax=(0.00, 0.00)
+                  • Button  (layer=5, active=True)  RT aMin=(0.00, 0.00) aMax=(1.00, 1.00) piv=(0.50, 0.50) pos=(0.00, 0.00) size=(64.00, 64.00) oMin=(0.00, 0.00) oMax=(0.00, 0.00)
                     Image color=RGBA(0.306, 0.321, 0.340, 1.000) sprite=texUICleanButton type=Sliced
-                    • BG  (layer=5, active=False)  RT aMin=(0.00, 0.00) aMax=(1.00, 1.00) piv=(0.50, 0.50) pos=(0.00, 0.00) size=(64.00, 64.00) oMin=(0.00, 0.00) oMax=(0.00, 0.00)
+                    • BG  (layer=5, active=True)  RT aMin=(0.00, 0.00) aMax=(1.00, 1.00) piv=(0.50, 0.50) pos=(0.00, 0.00) size=(64.00, 64.00) oMin=(0.00, 0.00) oMax=(0.00, 0.00)
                       Image color=RGBA(0.056, 0.062, 0.066, 0.831) sprite=texUICleanPanel type=Sliced
-                    • Icon  (layer=5, active=False)  RT aMin=(0.00, 0.00) aMax=(1.00, 1.00) piv=(0.50, 0.50) pos=(0.00, 0.00) size=(56.00, 56.00) oMin=(4.00, 4.00) oMax=(-4.00, -4.00)
+                    • Icon  (layer=5, active=True)  RT aMin=(0.00, 0.00) aMax=(1.00, 1.00) piv=(0.50, 0.50) pos=(0.00, 0.00) size=(56.00, 56.00) oMin=(4.00, 4.00) oMax=(-4.00, -4.00)
                       Image color=RGBA(1.000, 1.000, 1.000, 1.000) sprite=texArtifactSacrificeDisabled type=Simple
-                    • BaseOutline  (layer=5, active=False)  RT aMin=(0.00, 0.00) aMax=(1.00, 1.00) piv=(0.50, 0.50) pos=(0.00, 0.00) size=(64.00, 64.00) oMin=(0.00, 0.00) oMax=(0.00, 0.00)
+                    • BaseOutline  (layer=5, active=True)  RT aMin=(0.00, 0.00) aMax=(1.00, 1.00) piv=(0.50, 0.50) pos=(0.00, 0.00) size=(64.00, 64.00) oMin=(0.00, 0.00) oMax=(0.00, 0.00)
                       Image color=RGBA(1.000, 1.000, 1.000, 0.314) sprite=texUIOutlineOnly type=Sliced
-                    • HoverOutline  (layer=5, active=False)  RT aMin=(0.00, 0.00) aMax=(1.00, 1.00) piv=(0.50, 0.50) pos=(0.00, 0.00) size=(68.00, 68.00) oMin=(-2.00, -2.00) oMax=(2.00, 2.00)
+                    • HoverOutline  (layer=5, active=True)  RT aMin=(0.00, 0.00) aMax=(1.00, 1.00) piv=(0.50, 0.50) pos=(0.00, 0.00) size=(68.00, 68.00) oMin=(-2.00, -2.00) oMax=(2.00, 2.00)
                       Image color=RGBA(1.000, 1.000, 1.000, 0.000) sprite=texUIHighlightBoxOutlineThickIcon type=Sliced
                   • ButtonSelectionHighlight, Checkbox  (layer=5, active=False)  RT aMin=(0.00, 0.00) aMax=(1.00, 1.00) piv=(0.50, 0.50) pos=(0.00, 0.00) size=(64.00, 64.00) oMin=(0.00, 0.00) oMax=(0.00, 0.00)
                     Canvas sortingLayer=0 order=0 override=False mode=WorldSpace
@@ -3168,7 +3168,7 @@ sadasdasdasdasdfg' color=RGBA(1.000, 1.000, 1.000, 1.000) size=24
                     • Checkbox  (layer=5, active=False)  RT aMin=(0.50, 0.00) aMax=(0.50, 0.00) piv=(0.50, 0.50) pos=(0.00, 0.00) size=(24.00, 24.00) oMin=(-12.00, -12.00) oMax=(12.00, 12.00)
                       Image color=RGBA(0.150, 0.172, 0.179, 1.000) sprite=texUICheckboxes_0 type=Simple
                   • ButtonSelectionHighlight, Locked  (layer=5, active=False)  RT aMin=(0.00, 0.00) aMax=(1.00, 1.00) piv=(0.50, 0.50) pos=(0.00, 0.00) size=(64.00, 64.00) oMin=(0.00, 0.00) oMax=(0.00, 0.00)
-                    Canvas sortingLayer=0 order=0 override=False mode=WorldSpace
+                    Canvas sortingLayer=0 order=4 override=True mode=WorldSpace
                     • ButtonFlashPanel  (layer=5, active=False)  RT aMin=(0.00, 0.00) aMax=(1.00, 1.00) piv=(0.50, 0.50) pos=(0.00, 0.00) size=(64.00, 64.00) oMin=(0.00, 0.00) oMax=(0.00, 0.00)
                     • Highlight  (layer=5, active=False)  RT aMin=(0.00, 0.00) aMax=(1.00, 1.00) piv=(0.50, 0.50) pos=(0.00, 0.00) size=(72.00, 72.00) oMin=(-4.00, -4.00) oMax=(4.00, 4.00)
                       Image color=RGBA(0.709, 0.746, 0.858, 1.000) sprite=texUIOutlineOnly type=Sliced
@@ -3176,20 +3176,20 @@ sadasdasdasdasdfg' color=RGBA(1.000, 1.000, 1.000, 1.000) size=24
                       Image color=RGBA(0.150, 0.172, 0.179, 1.000) sprite=texUICheckboxes_0 type=Simple
                   • SelectionIndicatorPanel  (layer=5, active=False)  RT aMin=(0.00, 0.00) aMax=(1.00, 1.00) piv=(0.50, 0.50) pos=(0.00, 0.00) size=(76.00, 76.00) oMin=(-6.00, -6.00) oMax=(6.00, 6.00)
                     Image color=RGBA(1.000, 1.000, 1.000, 1.000) sprite=texUIHighlightHeader type=Sliced
-                  • VoteLabel  (layer=5, active=False)  RT aMin=(0.00, 0.00) aMax=(1.00, 1.00) piv=(0.50, 0.50) pos=(0.00, 0.00) size=(52.00, 60.00) oMin=(6.00, 2.00) oMax=(-6.00, -2.00)
+                  • VoteLabel  (layer=5, active=True)  RT aMin=(0.00, 0.00) aMax=(1.00, 1.00) piv=(0.50, 0.50) pos=(0.00, 0.00) size=(52.00, 60.00) oMin=(6.00, 2.00) oMax=(-6.00, -2.00)
                     TMP text='2
 ' color=RGBA(1.000, 0.923, 0.000, 1.000) size=20
-                • Choice (Artifacts.Swarms.Off)  (layer=5, active=False)  RT aMin=(0.50, 0.50) aMax=(0.50, 0.50) piv=(0.50, 0.50) pos=(0.00, 0.00) size=(64.00, 64.00) oMin=(-32.00, -32.00) oMax=(32.00, 32.00)
+                • Choice (Artifacts.Swarms.Off)  (layer=5, active=True)  RT aMin=(0.00, 1.00) aMax=(0.00, 1.00) piv=(0.50, 0.50) pos=(114.00, -114.00) size=(64.00, 64.00) oMin=(82.00, -146.00) oMax=(146.00, -82.00)
                   Image color=RGBA(0.145, 0.145, 0.149, 0.839) sprite=texUICleanPanel type=Sliced
-                  • Button  (layer=5, active=False)  RT aMin=(0.00, 0.00) aMax=(1.00, 1.00) piv=(0.50, 0.50) pos=(0.00, 0.00) size=(64.00, 64.00) oMin=(0.00, 0.00) oMax=(0.00, 0.00)
+                  • Button  (layer=5, active=True)  RT aMin=(0.00, 0.00) aMax=(1.00, 1.00) piv=(0.50, 0.50) pos=(0.00, 0.00) size=(64.00, 64.00) oMin=(0.00, 0.00) oMax=(0.00, 0.00)
                     Image color=RGBA(0.306, 0.321, 0.340, 1.000) sprite=texUICleanButton type=Sliced
-                    • BG  (layer=5, active=False)  RT aMin=(0.00, 0.00) aMax=(1.00, 1.00) piv=(0.50, 0.50) pos=(0.00, 0.00) size=(64.00, 64.00) oMin=(0.00, 0.00) oMax=(0.00, 0.00)
+                    • BG  (layer=5, active=True)  RT aMin=(0.00, 0.00) aMax=(1.00, 1.00) piv=(0.50, 0.50) pos=(0.00, 0.00) size=(64.00, 64.00) oMin=(0.00, 0.00) oMax=(0.00, 0.00)
                       Image color=RGBA(0.056, 0.062, 0.066, 0.831) sprite=texUICleanPanel type=Sliced
-                    • Icon  (layer=5, active=False)  RT aMin=(0.00, 0.00) aMax=(1.00, 1.00) piv=(0.50, 0.50) pos=(0.00, 0.00) size=(56.00, 56.00) oMin=(4.00, 4.00) oMax=(-4.00, -4.00)
+                    • Icon  (layer=5, active=True)  RT aMin=(0.00, 0.00) aMax=(1.00, 1.00) piv=(0.50, 0.50) pos=(0.00, 0.00) size=(56.00, 56.00) oMin=(4.00, 4.00) oMax=(-4.00, -4.00)
                       Image color=RGBA(1.000, 1.000, 1.000, 1.000) sprite=texArtifactSwarmsDisabled type=Simple
-                    • BaseOutline  (layer=5, active=False)  RT aMin=(0.00, 0.00) aMax=(1.00, 1.00) piv=(0.50, 0.50) pos=(0.00, 0.00) size=(64.00, 64.00) oMin=(0.00, 0.00) oMax=(0.00, 0.00)
+                    • BaseOutline  (layer=5, active=True)  RT aMin=(0.00, 0.00) aMax=(1.00, 1.00) piv=(0.50, 0.50) pos=(0.00, 0.00) size=(64.00, 64.00) oMin=(0.00, 0.00) oMax=(0.00, 0.00)
                       Image color=RGBA(1.000, 1.000, 1.000, 0.314) sprite=texUIOutlineOnly type=Sliced
-                    • HoverOutline  (layer=5, active=False)  RT aMin=(0.00, 0.00) aMax=(1.00, 1.00) piv=(0.50, 0.50) pos=(0.00, 0.00) size=(68.00, 68.00) oMin=(-2.00, -2.00) oMax=(2.00, 2.00)
+                    • HoverOutline  (layer=5, active=True)  RT aMin=(0.00, 0.00) aMax=(1.00, 1.00) piv=(0.50, 0.50) pos=(0.00, 0.00) size=(68.00, 68.00) oMin=(-2.00, -2.00) oMax=(2.00, 2.00)
                       Image color=RGBA(1.000, 1.000, 1.000, 0.000) sprite=texUIHighlightBoxOutlineThickIcon type=Sliced
                   • ButtonSelectionHighlight, Checkbox  (layer=5, active=False)  RT aMin=(0.00, 0.00) aMax=(1.00, 1.00) piv=(0.50, 0.50) pos=(0.00, 0.00) size=(64.00, 64.00) oMin=(0.00, 0.00) oMax=(0.00, 0.00)
                     Canvas sortingLayer=0 order=0 override=False mode=WorldSpace
@@ -3208,7 +3208,7 @@ sadasdasdasdasdfg' color=RGBA(1.000, 1.000, 1.000, 1.000) size=24
                     • Checkbox  (layer=5, active=False)  RT aMin=(0.50, 0.00) aMax=(0.50, 0.00) piv=(0.50, 0.50) pos=(0.00, 0.00) size=(24.00, 24.00) oMin=(-12.00, -12.00) oMax=(12.00, 12.00)
                       Image color=RGBA(0.150, 0.172, 0.179, 1.000) sprite=texUICheckboxes_0 type=Simple
                   • ButtonSelectionHighlight, Locked  (layer=5, active=False)  RT aMin=(0.00, 0.00) aMax=(1.00, 1.00) piv=(0.50, 0.50) pos=(0.00, 0.00) size=(64.00, 64.00) oMin=(0.00, 0.00) oMax=(0.00, 0.00)
-                    Canvas sortingLayer=0 order=0 override=False mode=WorldSpace
+                    Canvas sortingLayer=0 order=4 override=True mode=WorldSpace
                     • ButtonFlashPanel  (layer=5, active=False)  RT aMin=(0.00, 0.00) aMax=(1.00, 1.00) piv=(0.50, 0.50) pos=(0.00, 0.00) size=(64.00, 64.00) oMin=(0.00, 0.00) oMax=(0.00, 0.00)
                     • Highlight  (layer=5, active=False)  RT aMin=(0.00, 0.00) aMax=(1.00, 1.00) piv=(0.50, 0.50) pos=(0.00, 0.00) size=(72.00, 72.00) oMin=(-4.00, -4.00) oMax=(4.00, 4.00)
                       Image color=RGBA(0.709, 0.746, 0.858, 1.000) sprite=texUIOutlineOnly type=Sliced
@@ -3216,29 +3216,33 @@ sadasdasdasdasdfg' color=RGBA(1.000, 1.000, 1.000, 1.000) size=24
                       Image color=RGBA(0.150, 0.172, 0.179, 1.000) sprite=texUICheckboxes_0 type=Simple
                   • SelectionIndicatorPanel  (layer=5, active=False)  RT aMin=(0.00, 0.00) aMax=(1.00, 1.00) piv=(0.50, 0.50) pos=(0.00, 0.00) size=(76.00, 76.00) oMin=(-6.00, -6.00) oMax=(6.00, 6.00)
                     Image color=RGBA(1.000, 1.000, 1.000, 1.000) sprite=texUIHighlightHeader type=Sliced
-                  • VoteLabel  (layer=5, active=False)  RT aMin=(0.00, 0.00) aMax=(1.00, 1.00) piv=(0.50, 0.50) pos=(0.00, 0.00) size=(52.00, 60.00) oMin=(6.00, 2.00) oMax=(-6.00, -2.00)
+                  • VoteLabel  (layer=5, active=True)  RT aMin=(0.00, 0.00) aMax=(1.00, 1.00) piv=(0.50, 0.50) pos=(0.00, 0.00) size=(52.00, 60.00) oMin=(6.00, 2.00) oMax=(-6.00, -2.00)
                     TMP text='2
 ' color=RGBA(1.000, 0.923, 0.000, 1.000) size=20
-              • AdditionalInfoContainer  (layer=5, active=False)  RT aMin=(0.00, 1.00) aMax=(0.00, 1.00) piv=(0.50, 1.00) pos=(290.00, -463.45) size=(548.00, 100.00) oMin=(16.00, -563.45) oMax=(564.00, -463.45)
+              • AdditionalInfoContainer  (layer=5, active=True)  RT aMin=(0.00, 1.00) aMax=(0.00, 1.00) piv=(0.50, 1.00) pos=(340.00, -577.46) size=(648.00, 100.00) oMin=(16.00, -677.46) oMax=(664.00, -577.46)
                 Image color=RGBA(1.000, 1.000, 1.000, 1.000) sprite=null type=Simple
-              • RandomButtonContainer  (layer=5, active=False)  RT aMin=(0.00, 0.00) aMax=(0.00, 0.00) piv=(0.50, 0.50) pos=(0.00, 0.00) size=(0.00, 0.00) oMin=(0.00, 0.00) oMax=(0.00, 0.00)
-                • RandomButton  (layer=5, active=False)  RT aMin=(1.00, 0.00) aMax=(1.00, 1.00) piv=(1.00, 0.00) pos=(0.00, 0.00) size=(0.00, 0.00) oMin=(0.00, 0.00) oMax=(0.00, 0.00)
+                • artifactExtraTooltipInfo(Clone)  (layer=5, active=False)  RT aMin=(0.00, 0.00) aMax=(0.00, 0.00) piv=(0.00, 1.00) pos=(0.00, 0.00) size=(400.00, 100.00) oMin=(0.00, -100.00) oMax=(400.00, 0.00)
+                  Image color=RGBA(0.000, 0.000, 0.000, 1.000) sprite=null type=Simple
+                  • InspectPanel  (layer=5, active=False)  RT aMin=(0.00, 0.00) aMax=(0.00, 0.00) piv=(0.50, 0.50) pos=(0.00, 0.00) size=(0.00, 0.00) oMin=(0.00, 0.00) oMax=(0.00, 0.00)
+                    • InspectPanelArea  (layer=5, active=False)  RT aMin=(0.00, 0.00) aMax=(0.00, 0.00) piv=(0.50, 0.50) pos=(0.00, 0.00) size=(0.00, 0.00) oMin=(0.00, 0.00) oMax=(0.00, 0.00)
+              • RandomButtonContainer  (layer=5, active=True)  RT aMin=(0.00, 1.00) aMax=(0.00, 1.00) piv=(0.50, 0.50) pos=(340.00, -727.46) size=(648.00, 48.00) oMin=(16.00, -751.46) oMax=(664.00, -703.46)
+                • RandomButton  (layer=5, active=True)  RT aMin=(1.00, 0.00) aMax=(1.00, 1.00) piv=(1.00, 0.00) pos=(0.00, 0.00) size=(48.00, 48.00) oMin=(-48.00, 0.00) oMax=(0.00, 0.00)
                   Image color=RGBA(0.145, 0.145, 0.149, 1.000) sprite=texUICleanButton type=Sliced
-                  • ButtonImage  (layer=5, active=False)  RT aMin=(0.00, 0.00) aMax=(1.00, 1.00) piv=(0.50, 0.50) pos=(0.00, 0.00) size=(-6.00, -6.00) oMin=(3.00, 3.00) oMax=(-3.00, -3.00)
+                  • ButtonImage  (layer=5, active=True)  RT aMin=(0.00, 0.00) aMax=(1.00, 1.00) piv=(0.50, 0.50) pos=(0.00, 0.00) size=(42.00, 42.00) oMin=(3.00, 3.00) oMax=(-3.00, -3.00)
                     Image color=RGBA(1.000, 0.524, 0.641, 1.000) sprite=texRandomizeIcon type=Simple
-                  • BaseOutline  (layer=5, active=False)  RT aMin=(0.00, 0.00) aMax=(1.00, 1.00) piv=(0.50, 0.50) pos=(0.00, 0.00) size=(0.00, 0.00) oMin=(0.00, 0.00) oMax=(0.00, 0.00)
+                  • BaseOutline  (layer=5, active=True)  RT aMin=(0.00, 0.00) aMax=(1.00, 1.00) piv=(0.50, 0.50) pos=(0.00, 0.00) size=(48.00, 48.00) oMin=(0.00, 0.00) oMax=(0.00, 0.00)
                     Image color=RGBA(1.000, 1.000, 1.000, 0.286) sprite=texUIOutlineOnly type=Sliced
-                  • HoverOutline  (layer=5, active=False)  RT aMin=(0.00, 0.00) aMax=(1.00, 1.00) piv=(0.50, 0.50) pos=(4.00, -4.00) size=(16.00, 16.00) oMin=(-4.00, -12.00) oMax=(12.00, 4.00)
-                    Canvas sortingLayer=0 order=1 override=False mode=WorldSpace
+                  • HoverOutline  (layer=5, active=True)  RT aMin=(0.00, 0.00) aMax=(1.00, 1.00) piv=(0.50, 0.50) pos=(4.00, -4.00) size=(64.00, 64.00) oMin=(-4.00, -12.00) oMax=(12.00, 4.00)
+                    Canvas sortingLayer=0 order=4 override=True mode=ScreenSpaceCamera
                     Image color=RGBA(1.000, 1.000, 1.000, 0.000) sprite=texUIHighlightBoxOutlineThick type=Sliced
-              • CancelButton  (layer=5, active=False)  RT aMin=(1.00, 1.00) aMax=(1.00, 1.00) piv=(1.00, 1.00) pos=(-6.00, -6.00) size=(32.00, 32.00) oMin=(-38.00, -38.00) oMax=(-6.00, -6.00)
+              • CancelButton  (layer=5, active=True)  RT aMin=(1.00, 1.00) aMax=(1.00, 1.00) piv=(1.00, 1.00) pos=(-6.00, -6.00) size=(32.00, 32.00) oMin=(-38.00, -38.00) oMax=(-6.00, -6.00)
                 Image color=RGBA(1.000, 1.000, 1.000, 1.000) sprite=texUICleanButton type=Sliced
-                • ButtonImage  (layer=5, active=False)  RT aMin=(0.00, 0.00) aMax=(1.00, 1.00) piv=(0.50, 0.50) pos=(0.00, 0.00) size=(20.00, 20.00) oMin=(6.00, 6.00) oMax=(-6.00, -6.00)
+                • ButtonImage  (layer=5, active=True)  RT aMin=(0.00, 0.00) aMax=(1.00, 1.00) piv=(0.50, 0.50) pos=(0.00, 0.00) size=(20.00, 20.00) oMin=(6.00, 6.00) oMax=(-6.00, -6.00)
                   Image color=RGBA(1.000, 1.000, 1.000, 1.000) sprite=texChevronDead type=Simple
-                • BaseOutline  (layer=5, active=False)  RT aMin=(0.00, 0.00) aMax=(1.00, 1.00) piv=(0.50, 0.50) pos=(0.00, 0.00) size=(32.00, 32.00) oMin=(0.00, 0.00) oMax=(0.00, 0.00)
+                • BaseOutline  (layer=5, active=True)  RT aMin=(0.00, 0.00) aMax=(1.00, 1.00) piv=(0.50, 0.50) pos=(0.00, 0.00) size=(32.00, 32.00) oMin=(0.00, 0.00) oMax=(0.00, 0.00)
                   Image color=RGBA(1.000, 1.000, 1.000, 0.286) sprite=texUIOutlineOnly type=Sliced
-                • HoverOutline  (layer=5, active=False)  RT aMin=(0.00, 0.00) aMax=(1.00, 1.00) piv=(0.50, 0.50) pos=(4.00, -4.00) size=(48.00, 48.00) oMin=(-4.00, -12.00) oMax=(12.00, 4.00)
-                  Canvas sortingLayer=0 order=1 override=False mode=WorldSpace
+                • HoverOutline  (layer=5, active=True)  RT aMin=(0.00, 0.00) aMax=(1.00, 1.00) piv=(0.50, 0.50) pos=(4.00, -4.00) size=(48.00, 48.00) oMin=(-4.00, -12.00) oMax=(12.00, 4.00)
+                  Canvas sortingLayer=0 order=4 override=True mode=ScreenSpaceCamera
                   Image color=RGBA(1.000, 1.000, 1.000, 0.000) sprite=texUIHighlightBoxOutlineThick type=Sliced
             • Arrow  (layer=5, active=False)  RT aMin=(1.00, 1.00) aMax=(1.00, 1.00) piv=(0.00, 1.00) pos=(4.80, -2.10) size=(32.00, 64.00) oMin=(4.80, -66.10) oMax=(36.80, -2.10)
               Image color=RGBA(0.136, 0.138, 0.189, 1.000) sprite=texOptionsArrowRight type=Simple
@@ -11026,152 +11030,411 @@ sadasdasdasdasdfg' color=RGBA(1.000, 1.000, 1.000, 1.000) size=24
           • Description  (layer=5, active=False)  RT aMin=(0.00, 0.00) aMax=(0.00, 0.00) piv=(0.50, 0.50) pos=(0.00, 0.00) size=(0.00, 0.00) oMin=(0.00, 0.00) oMax=(0.00, 0.00)
             TMP text='Toggle Lobby' color=RGBA(1.000, 1.000, 1.000, 1.000) size=24
             • TMP SubMeshUI [TextMeshPro/Sprite]  (layer=5, active=False)  RT aMin=(0.00, 0.00) aMax=(1.00, 1.00) piv=(0.50, 0.50) pos=(0.00, 0.00) size=(0.00, 0.00) oMin=(0.00, 0.00) oMax=(0.00, 0.00)
-    • OutlineAlignTester  (layer=0, active=False)  RT aMin=(0.00, 0.00) aMax=(1.00, 1.00) piv=(0.50, 0.50) pos=(0.00, 0.00) size=(1696.00, 940.00) oMin=(16.00, 16.00) oMax=(-16.00, -16.00)
-      Image color=RGBA(0.190, 0.230, 0.300, 1.000) sprite=null type=Simple
-      • Grid  (layer=0, active=False)  RT aMin=(0.00, 0.00) aMax=(1.00, 1.00) piv=(0.50, 0.50) pos=(0.00, 0.00) size=(1664.00, 908.00) oMin=(16.00, 16.00) oMax=(-16.00, -16.00)
-        • Cell_0  (layer=0, active=False)  RT aMin=(0.00, 1.00) aMax=(0.00, 1.00) piv=(0.50, 0.50) pos=(46.00, -46.00) size=(72.00, 72.00) oMin=(10.00, -82.00) oMax=(82.00, -10.00)
-          Image color=RGBA(0.350, 0.400, 0.450, 1.000) sprite=null type=Simple
-        • Cell_1  (layer=0, active=False)  RT aMin=(0.00, 1.00) aMax=(0.00, 1.00) piv=(0.50, 0.50) pos=(128.00, -46.00) size=(72.00, 72.00) oMin=(92.00, -82.00) oMax=(164.00, -10.00)
-          Image color=RGBA(0.350, 0.400, 0.450, 1.000) sprite=null type=Simple
-        • Cell_2  (layer=0, active=False)  RT aMin=(0.00, 1.00) aMax=(0.00, 1.00) piv=(0.50, 0.50) pos=(210.00, -46.00) size=(72.00, 72.00) oMin=(174.00, -82.00) oMax=(246.00, -10.00)
-          Image color=RGBA(0.350, 0.400, 0.450, 1.000) sprite=null type=Simple
-        • Cell_3  (layer=0, active=False)  RT aMin=(0.00, 1.00) aMax=(0.00, 1.00) piv=(0.50, 0.50) pos=(292.00, -46.00) size=(72.00, 72.00) oMin=(256.00, -82.00) oMax=(328.00, -10.00)
-          Image color=RGBA(0.350, 0.400, 0.450, 1.000) sprite=null type=Simple
-        • Cell_4  (layer=0, active=False)  RT aMin=(0.00, 1.00) aMax=(0.00, 1.00) piv=(0.50, 0.50) pos=(374.00, -46.00) size=(72.00, 72.00) oMin=(338.00, -82.00) oMax=(410.00, -10.00)
-          Image color=RGBA(0.350, 0.400, 0.450, 1.000) sprite=null type=Simple
-        • Cell_5  (layer=0, active=False)  RT aMin=(0.00, 1.00) aMax=(0.00, 1.00) piv=(0.50, 0.50) pos=(456.00, -46.00) size=(72.00, 72.00) oMin=(420.00, -82.00) oMax=(492.00, -10.00)
-          Image color=RGBA(0.350, 0.400, 0.450, 1.000) sprite=null type=Simple
-        • Cell_6  (layer=0, active=False)  RT aMin=(0.00, 1.00) aMax=(0.00, 1.00) piv=(0.50, 0.50) pos=(538.00, -46.00) size=(72.00, 72.00) oMin=(502.00, -82.00) oMax=(574.00, -10.00)
-          Image color=RGBA(0.350, 0.400, 0.450, 1.000) sprite=null type=Simple
-        • Cell_7  (layer=0, active=False)  RT aMin=(0.00, 1.00) aMax=(0.00, 1.00) piv=(0.50, 0.50) pos=(620.00, -46.00) size=(72.00, 72.00) oMin=(584.00, -82.00) oMax=(656.00, -10.00)
-          Image color=RGBA(0.350, 0.400, 0.450, 1.000) sprite=null type=Simple
-        • Cell_8  (layer=0, active=False)  RT aMin=(0.00, 1.00) aMax=(0.00, 1.00) piv=(0.50, 0.50) pos=(702.00, -46.00) size=(72.00, 72.00) oMin=(666.00, -82.00) oMax=(738.00, -10.00)
-          Image color=RGBA(0.350, 0.400, 0.450, 1.000) sprite=null type=Simple
-        • Cell_9  (layer=0, active=False)  RT aMin=(0.00, 1.00) aMax=(0.00, 1.00) piv=(0.50, 0.50) pos=(784.00, -46.00) size=(72.00, 72.00) oMin=(748.00, -82.00) oMax=(820.00, -10.00)
-          Image color=RGBA(0.350, 0.400, 0.450, 1.000) sprite=null type=Simple
-        • Cell_10  (layer=0, active=False)  RT aMin=(0.00, 1.00) aMax=(0.00, 1.00) piv=(0.50, 0.50) pos=(866.00, -46.00) size=(72.00, 72.00) oMin=(830.00, -82.00) oMax=(902.00, -10.00)
-          Image color=RGBA(0.350, 0.400, 0.450, 1.000) sprite=null type=Simple
-          • HoverOutline  (layer=0, active=False)  RT aMin=(0.00, 0.00) aMax=(1.00, 1.00) piv=(0.50, 0.50) pos=(4.50, -3.00) size=(87.00, 90.00) oMin=(-3.00, -12.00) oMax=(12.00, 6.00)
-            Image color=RGBA(1.000, 1.000, 1.000, 1.000) sprite=texUIHighlightBoxOutlineThick type=Sliced
-        • Cell_11  (layer=0, active=False)  RT aMin=(0.00, 1.00) aMax=(0.00, 1.00) piv=(0.50, 0.50) pos=(948.00, -46.00) size=(72.00, 72.00) oMin=(912.00, -82.00) oMax=(984.00, -10.00)
-          Image color=RGBA(0.350, 0.400, 0.450, 1.000) sprite=null type=Simple
-        • Cell_12  (layer=0, active=False)  RT aMin=(0.00, 1.00) aMax=(0.00, 1.00) piv=(0.50, 0.50) pos=(1030.00, -46.00) size=(72.00, 72.00) oMin=(994.00, -82.00) oMax=(1066.00, -10.00)
-          Image color=RGBA(0.350, 0.400, 0.450, 1.000) sprite=null type=Simple
-        • Cell_13  (layer=0, active=False)  RT aMin=(0.00, 1.00) aMax=(0.00, 1.00) piv=(0.50, 0.50) pos=(1112.00, -46.00) size=(72.00, 72.00) oMin=(1076.00, -82.00) oMax=(1148.00, -10.00)
-          Image color=RGBA(0.350, 0.400, 0.450, 1.000) sprite=null type=Simple
-        • Cell_14  (layer=0, active=False)  RT aMin=(0.00, 1.00) aMax=(0.00, 1.00) piv=(0.50, 0.50) pos=(1194.00, -46.00) size=(72.00, 72.00) oMin=(1158.00, -82.00) oMax=(1230.00, -10.00)
-          Image color=RGBA(0.350, 0.400, 0.450, 1.000) sprite=null type=Simple
-        • Cell_15  (layer=0, active=False)  RT aMin=(0.00, 1.00) aMax=(0.00, 1.00) piv=(0.50, 0.50) pos=(1276.00, -46.00) size=(72.00, 72.00) oMin=(1240.00, -82.00) oMax=(1312.00, -10.00)
-          Image color=RGBA(0.350, 0.400, 0.450, 1.000) sprite=null type=Simple
-        • Cell_16  (layer=0, active=False)  RT aMin=(0.00, 1.00) aMax=(0.00, 1.00) piv=(0.50, 0.50) pos=(1358.00, -46.00) size=(72.00, 72.00) oMin=(1322.00, -82.00) oMax=(1394.00, -10.00)
-          Image color=RGBA(0.350, 0.400, 0.450, 1.000) sprite=null type=Simple
-        • Cell_17  (layer=0, active=False)  RT aMin=(0.00, 1.00) aMax=(0.00, 1.00) piv=(0.50, 0.50) pos=(1440.00, -46.00) size=(72.00, 72.00) oMin=(1404.00, -82.00) oMax=(1476.00, -10.00)
-          Image color=RGBA(0.350, 0.400, 0.450, 1.000) sprite=null type=Simple
-        • Cell_18  (layer=0, active=False)  RT aMin=(0.00, 1.00) aMax=(0.00, 1.00) piv=(0.50, 0.50) pos=(1522.00, -46.00) size=(72.00, 72.00) oMin=(1486.00, -82.00) oMax=(1558.00, -10.00)
-          Image color=RGBA(0.350, 0.400, 0.450, 1.000) sprite=null type=Simple
-        • Cell_19  (layer=0, active=False)  RT aMin=(0.00, 1.00) aMax=(0.00, 1.00) piv=(0.50, 0.50) pos=(1604.00, -46.00) size=(72.00, 72.00) oMin=(1568.00, -82.00) oMax=(1640.00, -10.00)
-          Image color=RGBA(0.350, 0.400, 0.450, 1.000) sprite=null type=Simple
-        • Cell_20  (layer=0, active=False)  RT aMin=(0.00, 1.00) aMax=(0.00, 1.00) piv=(0.50, 0.50) pos=(46.00, -128.00) size=(72.00, 72.00) oMin=(10.00, -164.00) oMax=(82.00, -92.00)
-          Image color=RGBA(0.350, 0.400, 0.450, 1.000) sprite=null type=Simple
-        • Cell_21  (layer=0, active=False)  RT aMin=(0.00, 1.00) aMax=(0.00, 1.00) piv=(0.50, 0.50) pos=(128.00, -128.00) size=(72.00, 72.00) oMin=(92.00, -164.00) oMax=(164.00, -92.00)
-          Image color=RGBA(0.350, 0.400, 0.450, 1.000) sprite=null type=Simple
-        • Cell_22  (layer=0, active=False)  RT aMin=(0.00, 1.00) aMax=(0.00, 1.00) piv=(0.50, 0.50) pos=(210.00, -128.00) size=(72.00, 72.00) oMin=(174.00, -164.00) oMax=(246.00, -92.00)
-          Image color=RGBA(0.350, 0.400, 0.450, 1.000) sprite=null type=Simple
-        • Cell_23  (layer=0, active=False)  RT aMin=(0.00, 1.00) aMax=(0.00, 1.00) piv=(0.50, 0.50) pos=(292.00, -128.00) size=(72.00, 72.00) oMin=(256.00, -164.00) oMax=(328.00, -92.00)
-          Image color=RGBA(0.350, 0.400, 0.450, 1.000) sprite=null type=Simple
-        • Cell_24  (layer=0, active=False)  RT aMin=(0.00, 1.00) aMax=(0.00, 1.00) piv=(0.50, 0.50) pos=(374.00, -128.00) size=(72.00, 72.00) oMin=(338.00, -164.00) oMax=(410.00, -92.00)
-          Image color=RGBA(0.350, 0.400, 0.450, 1.000) sprite=null type=Simple
-        • Cell_25  (layer=0, active=False)  RT aMin=(0.00, 1.00) aMax=(0.00, 1.00) piv=(0.50, 0.50) pos=(456.00, -128.00) size=(72.00, 72.00) oMin=(420.00, -164.00) oMax=(492.00, -92.00)
-          Image color=RGBA(0.350, 0.400, 0.450, 1.000) sprite=null type=Simple
-        • Cell_26  (layer=0, active=False)  RT aMin=(0.00, 1.00) aMax=(0.00, 1.00) piv=(0.50, 0.50) pos=(538.00, -128.00) size=(72.00, 72.00) oMin=(502.00, -164.00) oMax=(574.00, -92.00)
-          Image color=RGBA(0.350, 0.400, 0.450, 1.000) sprite=null type=Simple
-        • Cell_27  (layer=0, active=False)  RT aMin=(0.00, 1.00) aMax=(0.00, 1.00) piv=(0.50, 0.50) pos=(620.00, -128.00) size=(72.00, 72.00) oMin=(584.00, -164.00) oMax=(656.00, -92.00)
-          Image color=RGBA(0.350, 0.400, 0.450, 1.000) sprite=null type=Simple
-        • Cell_28  (layer=0, active=False)  RT aMin=(0.00, 1.00) aMax=(0.00, 1.00) piv=(0.50, 0.50) pos=(702.00, -128.00) size=(72.00, 72.00) oMin=(666.00, -164.00) oMax=(738.00, -92.00)
-          Image color=RGBA(0.350, 0.400, 0.450, 1.000) sprite=null type=Simple
-        • Cell_29  (layer=0, active=False)  RT aMin=(0.00, 1.00) aMax=(0.00, 1.00) piv=(0.50, 0.50) pos=(784.00, -128.00) size=(72.00, 72.00) oMin=(748.00, -164.00) oMax=(820.00, -92.00)
-          Image color=RGBA(0.350, 0.400, 0.450, 1.000) sprite=null type=Simple
-        • Cell_30  (layer=0, active=False)  RT aMin=(0.00, 1.00) aMax=(0.00, 1.00) piv=(0.50, 0.50) pos=(866.00, -128.00) size=(72.00, 72.00) oMin=(830.00, -164.00) oMax=(902.00, -92.00)
-          Image color=RGBA(0.350, 0.400, 0.450, 1.000) sprite=null type=Simple
-        • Cell_31  (layer=0, active=False)  RT aMin=(0.00, 1.00) aMax=(0.00, 1.00) piv=(0.50, 0.50) pos=(948.00, -128.00) size=(72.00, 72.00) oMin=(912.00, -164.00) oMax=(984.00, -92.00)
-          Image color=RGBA(0.350, 0.400, 0.450, 1.000) sprite=null type=Simple
-      • ControlsBox  (layer=0, active=False)  RT aMin=(0.00, 1.00) aMax=(0.00, 1.00) piv=(0.00, 1.00) pos=(16.00, -16.00) size=(260.00, 0.00) oMin=(16.00, -16.00) oMax=(276.00, -16.00)
-        Image color=RGBA(0.120, 0.150, 0.200, 0.950) sprite=null type=Simple
-        • anchX  (layer=0, active=False)  RT aMin=(0.00, 1.00) aMax=(0.00, 1.00) piv=(0.50, 0.50) pos=(130.00, -22.00) size=(240.00, 24.00) oMin=(10.00, -34.00) oMax=(250.00, -10.00)
-          • Text  (layer=0, active=False)  RT aMin=(0.00, 1.00) aMax=(0.00, 1.00) piv=(0.50, 0.50) pos=(30.63, -12.00) size=(61.25, 16.00) oMin=(0.00, -20.00) oMax=(61.25, -4.00)
-          • SliderWrap  (layer=0, active=False)  RT aMin=(0.00, 1.00) aMax=(0.00, 1.00) piv=(0.50, 0.50) pos=(134.88, -12.00) size=(131.25, 0.00) oMin=(69.25, -12.00) oMax=(200.50, -12.00)
-            • Slider  (layer=0, active=False)  RT aMin=(0.50, 0.50) aMax=(0.50, 0.50) piv=(0.50, 0.50) pos=(0.00, 0.00) size=(150.00, 22.00) oMin=(-75.00, -11.00) oMax=(75.00, 11.00)
-              • Background  (layer=0, active=False)  RT aMin=(0.00, 0.50) aMax=(1.00, 0.50) piv=(0.50, 0.50) pos=(0.00, 0.00) size=(150.00, 8.00) oMin=(0.00, -4.00) oMax=(0.00, 4.00)
-                Image color=RGBA(1.000, 1.000, 1.000, 0.150) sprite=null type=Simple
-              • Fill Area  (layer=0, active=False)  RT aMin=(0.00, 0.50) aMax=(1.00, 0.50) piv=(0.50, 0.50) pos=(0.00, 0.00) size=(138.00, 8.00) oMin=(6.00, -4.00) oMax=(-6.00, 4.00)
-                • Fill  (layer=0, active=False)  RT aMin=(0.00, 0.00) aMax=(0.65, 1.00) piv=(0.00, 0.50) pos=(0.00, 0.00) size=(89.70, 8.00) oMin=(0.00, 0.00) oMax=(0.00, 0.00)
-                  Image color=RGBA(1.000, 1.000, 1.000, 0.600) sprite=null type=Simple
-              • Handle Slide Area  (layer=0, active=False)  RT aMin=(0.00, 0.50) aMax=(1.00, 0.50) piv=(0.50, 0.50) pos=(0.00, 0.00) size=(138.00, 20.00) oMin=(6.00, -10.00) oMax=(-6.00, 10.00)
-                • Handle  (layer=0, active=False)  RT aMin=(0.65, 0.00) aMax=(0.65, 1.00) piv=(0.50, 0.50) pos=(0.00, 0.00) size=(14.00, 34.00) oMin=(-7.00, -7.00) oMax=(7.00, 7.00)
-                  Image color=RGBA(1.000, 1.000, 1.000, 1.000) sprite=null type=Simple
-          • Text  (layer=0, active=False)  RT aMin=(0.00, 1.00) aMax=(0.00, 1.00) piv=(0.50, 0.50) pos=(224.25, -12.00) size=(31.50, 16.00) oMin=(208.50, -20.00) oMax=(240.00, -4.00)
-        • anchY  (layer=0, active=False)  RT aMin=(0.00, 1.00) aMax=(0.00, 1.00) piv=(0.50, 0.50) pos=(130.00, -52.00) size=(240.00, 24.00) oMin=(10.00, -64.00) oMax=(250.00, -40.00)
-          • Text  (layer=0, active=False)  RT aMin=(0.00, 1.00) aMax=(0.00, 1.00) piv=(0.50, 0.50) pos=(30.63, -12.00) size=(61.25, 16.00) oMin=(0.00, -20.00) oMax=(61.25, -4.00)
-          • SliderWrap  (layer=0, active=False)  RT aMin=(0.00, 1.00) aMax=(0.00, 1.00) piv=(0.50, 0.50) pos=(134.88, -12.00) size=(131.25, 0.00) oMin=(69.25, -12.00) oMax=(200.50, -12.00)
-            • Slider  (layer=0, active=False)  RT aMin=(0.50, 0.50) aMax=(0.50, 0.50) piv=(0.50, 0.50) pos=(0.00, 0.00) size=(150.00, 22.00) oMin=(-75.00, -11.00) oMax=(75.00, 11.00)
-              • Background  (layer=0, active=False)  RT aMin=(0.00, 0.50) aMax=(1.00, 0.50) piv=(0.50, 0.50) pos=(0.00, 0.00) size=(150.00, 8.00) oMin=(0.00, -4.00) oMax=(0.00, 4.00)
-                Image color=RGBA(1.000, 1.000, 1.000, 0.150) sprite=null type=Simple
-              • Fill Area  (layer=0, active=False)  RT aMin=(0.00, 0.50) aMax=(1.00, 0.50) piv=(0.50, 0.50) pos=(0.00, 0.00) size=(138.00, 8.00) oMin=(6.00, -4.00) oMax=(-6.00, 4.00)
-                • Fill  (layer=0, active=False)  RT aMin=(0.00, 0.00) aMax=(0.35, 1.00) piv=(0.00, 0.50) pos=(0.00, 0.00) size=(48.30, 8.00) oMin=(0.00, 0.00) oMax=(0.00, 0.00)
-                  Image color=RGBA(1.000, 1.000, 1.000, 0.600) sprite=null type=Simple
-              • Handle Slide Area  (layer=0, active=False)  RT aMin=(0.00, 0.50) aMax=(1.00, 0.50) piv=(0.50, 0.50) pos=(0.00, 0.00) size=(138.00, 20.00) oMin=(6.00, -10.00) oMax=(-6.00, 10.00)
-                • Handle  (layer=0, active=False)  RT aMin=(0.35, 0.00) aMax=(0.35, 1.00) piv=(0.50, 0.50) pos=(0.00, 0.00) size=(14.00, 34.00) oMin=(-7.00, -7.00) oMax=(7.00, 7.00)
-                  Image color=RGBA(1.000, 1.000, 1.000, 1.000) sprite=null type=Simple
-          • Text  (layer=0, active=False)  RT aMin=(0.00, 1.00) aMax=(0.00, 1.00) piv=(0.50, 0.50) pos=(224.25, -12.00) size=(31.50, 16.00) oMin=(208.50, -20.00) oMax=(240.00, -4.00)
-        • minX  (layer=0, active=False)  RT aMin=(0.00, 1.00) aMax=(0.00, 1.00) piv=(0.50, 0.50) pos=(130.00, -82.00) size=(240.00, 24.00) oMin=(10.00, -94.00) oMax=(250.00, -70.00)
-          • Text  (layer=0, active=False)  RT aMin=(0.00, 1.00) aMax=(0.00, 1.00) piv=(0.50, 0.50) pos=(30.63, -12.00) size=(61.25, 16.00) oMin=(0.00, -20.00) oMax=(61.25, -4.00)
-          • SliderWrap  (layer=0, active=False)  RT aMin=(0.00, 1.00) aMax=(0.00, 1.00) piv=(0.50, 0.50) pos=(134.88, -12.00) size=(131.25, 0.00) oMin=(69.25, -12.00) oMax=(200.50, -12.00)
-            • Slider  (layer=0, active=False)  RT aMin=(0.50, 0.50) aMax=(0.50, 0.50) piv=(0.50, 0.50) pos=(0.00, 0.00) size=(150.00, 22.00) oMin=(-75.00, -11.00) oMax=(75.00, 11.00)
-              • Background  (layer=0, active=False)  RT aMin=(0.00, 0.50) aMax=(1.00, 0.50) piv=(0.50, 0.50) pos=(0.00, 0.00) size=(150.00, 8.00) oMin=(0.00, -4.00) oMax=(0.00, 4.00)
-                Image color=RGBA(1.000, 1.000, 1.000, 0.150) sprite=null type=Simple
-              • Fill Area  (layer=0, active=False)  RT aMin=(0.00, 0.50) aMax=(1.00, 0.50) piv=(0.50, 0.50) pos=(0.00, 0.00) size=(138.00, 8.00) oMin=(6.00, -4.00) oMax=(-6.00, 4.00)
-                • Fill  (layer=0, active=False)  RT aMin=(0.00, 0.00) aMax=(0.35, 1.00) piv=(0.00, 0.50) pos=(0.00, 0.00) size=(48.30, 8.00) oMin=(0.00, 0.00) oMax=(0.00, 0.00)
-                  Image color=RGBA(1.000, 1.000, 1.000, 0.600) sprite=null type=Simple
-              • Handle Slide Area  (layer=0, active=False)  RT aMin=(0.00, 0.50) aMax=(1.00, 0.50) piv=(0.50, 0.50) pos=(0.00, 0.00) size=(138.00, 20.00) oMin=(6.00, -10.00) oMax=(-6.00, 10.00)
-                • Handle  (layer=0, active=False)  RT aMin=(0.35, 0.00) aMax=(0.35, 1.00) piv=(0.50, 0.50) pos=(0.00, 0.00) size=(14.00, 34.00) oMin=(-7.00, -7.00) oMax=(7.00, 7.00)
-                  Image color=RGBA(1.000, 1.000, 1.000, 1.000) sprite=null type=Simple
-          • Text  (layer=0, active=False)  RT aMin=(0.00, 1.00) aMax=(0.00, 1.00) piv=(0.50, 0.50) pos=(224.25, -12.00) size=(31.50, 16.00) oMin=(208.50, -20.00) oMax=(240.00, -4.00)
-        • minY  (layer=0, active=False)  RT aMin=(0.00, 1.00) aMax=(0.00, 1.00) piv=(0.50, 0.50) pos=(130.00, -112.00) size=(240.00, 24.00) oMin=(10.00, -124.00) oMax=(250.00, -100.00)
-          • Text  (layer=0, active=False)  RT aMin=(0.00, 1.00) aMax=(0.00, 1.00) piv=(0.50, 0.50) pos=(30.63, -12.00) size=(61.25, 16.00) oMin=(0.00, -20.00) oMax=(61.25, -4.00)
-          • SliderWrap  (layer=0, active=False)  RT aMin=(0.00, 1.00) aMax=(0.00, 1.00) piv=(0.50, 0.50) pos=(134.88, -12.00) size=(131.25, 0.00) oMin=(69.25, -12.00) oMax=(200.50, -12.00)
-            • Slider  (layer=0, active=False)  RT aMin=(0.50, 0.50) aMax=(0.50, 0.50) piv=(0.50, 0.50) pos=(0.00, 0.00) size=(150.00, 22.00) oMin=(-75.00, -11.00) oMax=(75.00, 11.00)
-              • Background  (layer=0, active=False)  RT aMin=(0.00, 0.50) aMax=(1.00, 0.50) piv=(0.50, 0.50) pos=(0.00, 0.00) size=(150.00, 8.00) oMin=(0.00, -4.00) oMax=(0.00, 4.00)
-                Image color=RGBA(1.000, 1.000, 1.000, 0.150) sprite=null type=Simple
-              • Fill Area  (layer=0, active=False)  RT aMin=(0.00, 0.50) aMax=(1.00, 0.50) piv=(0.50, 0.50) pos=(0.00, 0.00) size=(138.00, 8.00) oMin=(6.00, -4.00) oMax=(-6.00, 4.00)
-                • Fill  (layer=0, active=False)  RT aMin=(0.00, 0.00) aMax=(0.20, 1.00) piv=(0.00, 0.50) pos=(0.00, 0.00) size=(27.60, 8.00) oMin=(0.00, 0.00) oMax=(0.00, 0.00)
-                  Image color=RGBA(1.000, 1.000, 1.000, 0.600) sprite=null type=Simple
-              • Handle Slide Area  (layer=0, active=False)  RT aMin=(0.00, 0.50) aMax=(1.00, 0.50) piv=(0.50, 0.50) pos=(0.00, 0.00) size=(138.00, 20.00) oMin=(6.00, -10.00) oMax=(-6.00, 10.00)
-                • Handle  (layer=0, active=False)  RT aMin=(0.20, 0.00) aMax=(0.20, 1.00) piv=(0.50, 0.50) pos=(0.00, 0.00) size=(14.00, 34.00) oMin=(-7.00, -7.00) oMax=(7.00, 7.00)
-                  Image color=RGBA(1.000, 1.000, 1.000, 1.000) sprite=null type=Simple
-          • Text  (layer=0, active=False)  RT aMin=(0.00, 1.00) aMax=(0.00, 1.00) piv=(0.50, 0.50) pos=(224.25, -12.00) size=(31.50, 16.00) oMin=(208.50, -20.00) oMax=(240.00, -4.00)
-        • maxX  (layer=0, active=False)  RT aMin=(0.00, 1.00) aMax=(0.00, 1.00) piv=(0.50, 0.50) pos=(130.00, -142.00) size=(240.00, 24.00) oMin=(10.00, -154.00) oMax=(250.00, -130.00)
-          • Text  (layer=0, active=False)  RT aMin=(0.00, 1.00) aMax=(0.00, 1.00) piv=(0.50, 0.50) pos=(30.63, -12.00) size=(61.25, 16.00) oMin=(0.00, -20.00) oMax=(61.25, -4.00)
-          • SliderWrap  (layer=0, active=False)  RT aMin=(0.00, 1.00) aMax=(0.00, 1.00) piv=(0.50, 0.50) pos=(134.88, -12.00) size=(131.25, 0.00) oMin=(69.25, -12.00) oMax=(200.50, -12.00)
-            • Slider  (layer=0, active=False)  RT aMin=(0.50, 0.50) aMax=(0.50, 0.50) piv=(0.50, 0.50) pos=(0.00, 0.00) size=(150.00, 22.00) oMin=(-75.00, -11.00) oMax=(75.00, 11.00)
-              • Background  (layer=0, active=False)  RT aMin=(0.00, 0.50) aMax=(1.00, 0.50) piv=(0.50, 0.50) pos=(0.00, 0.00) size=(150.00, 8.00) oMin=(0.00, -4.00) oMax=(0.00, 4.00)
-                Image color=RGBA(1.000, 1.000, 1.000, 0.150) sprite=null type=Simple
-              • Fill Area  (layer=0, active=False)  RT aMin=(0.00, 0.50) aMax=(1.00, 0.50) piv=(0.50, 0.50) pos=(0.00, 0.00) size=(138.00, 8.00) oMin=(6.00, -4.00) oMax=(-6.00, 4.00)
-                • Fill  (layer=0, active=False)  RT aMin=(0.00, 0.00) aMax=(0.80, 1.00) piv=(0.00, 0.50) pos=(0.00, 0.00) size=(110.40, 8.00) oMin=(0.00, 0.00) oMax=(0.00, 0.00)
-                  Image color=RGBA(1.000, 1.000, 1.000, 0.600) sprite=null type=Simple
-              • Handle Slide Area  (layer=0, active=False)  RT aMin=(0.00, 0.50) aMax=(1.00, 0.50) piv=(0.50, 0.50) pos=(0.00, 0.00) size=(138.00, 20.00) oMin=(6.00, -10.00) oMax=(-6.00, 10.00)
-                • Handle  (layer=0, active=False)  RT aMin=(0.80, 0.00) aMax=(0.80, 1.00) piv=(0.50, 0.50) pos=(0.00, 0.00) size=(14.00, 34.00) oMin=(-7.00, -7.00) oMax=(7.00, 7.00)
-                  Image color=RGBA(1.000, 1.000, 1.000, 1.000) sprite=null type=Simple
-          • Text  (layer=0, active=False)  RT aMin=(0.00, 1.00) aMax=(0.00, 1.00) piv=(0.50, 0.50) pos=(224.25, -12.00) size=(31.50, 16.00) oMin=(208.50, -20.00) oMax=(240.00, -4.00)
-        • maxY  (layer=0, active=False)  RT aMin=(0.00, 1.00) aMax=(0.00, 1.00) piv=(0.50, 0.50) pos=(130.00, -172.00) size=(240.00, 24.00) oMin=(10.00, -184.00) oMax=(250.00, -160.00)
-          • Text  (layer=0, active=False)  RT aMin=(0.00, 1.00) aMax=(0.00, 1.00) piv=(0.50, 0.50) pos=(30.63, -12.00) size=(61.25, 16.00) oMin=(0.00, -20.00) oMax=(61.25, -4.00)
-          • SliderWrap  (layer=0, active=False)  RT aMin=(0.00, 1.00) aMax=(0.00, 1.00) piv=(0.50, 0.50) pos=(134.88, -12.00) size=(131.25, 0.00) oMin=(69.25, -12.00) oMax=(200.50, -12.00)
-            • Slider  (layer=0, active=False)  RT aMin=(0.50, 0.50) aMax=(0.50, 0.50) piv=(0.50, 0.50) pos=(0.00, 0.00) size=(150.00, 22.00) oMin=(-75.00, -11.00) oMax=(75.00, 11.00)
-              • Background  (layer=0, active=False)  RT aMin=(0.00, 0.50) aMax=(1.00, 0.50) piv=(0.50, 0.50) pos=(0.00, 0.00) size=(150.00, 8.00) oMin=(0.00, -4.00) oMax=(0.00, 4.00)
-                Image color=RGBA(1.000, 1.000, 1.000, 0.150) sprite=null type=Simple
-              • Fill Area  (layer=0, active=False)  RT aMin=(0.00, 0.50) aMax=(1.00, 0.50) piv=(0.50, 0.50) pos=(0.00, 0.00) size=(138.00, 8.00) oMin=(6.00, -4.00) oMax=(-6.00, 4.00)
-                • Fill  (layer=0, active=False)  RT aMin=(0.00, 0.00) aMax=(0.65, 1.00) piv=(0.00, 0.50) pos=(0.00, 0.00) size=(89.70, 8.00) oMin=(0.00, 0.00) oMax=(0.00, 0.00)
-                  Image color=RGBA(1.000, 1.000, 1.000, 0.600) sprite=null type=Simple
-              • Handle Slide Area  (layer=0, active=False)  RT aMin=(0.00, 0.50) aMax=(1.00, 0.50) piv=(0.50, 0.50) pos=(0.00, 0.00) size=(138.00, 20.00) oMin=(6.00, -10.00) oMax=(-6.00, 10.00)
-                • Handle  (layer=0, active=False)  RT aMin=(0.65, 0.00) aMax=(0.65, 1.00) piv=(0.50, 0.50) pos=(0.00, 0.00) size=(14.00, 34.00) oMin=(-7.00, -7.00) oMax=(7.00, 7.00)
-                  Image color=RGBA(1.000, 1.000, 1.000, 1.000) sprite=null type=Simple
-          • Text  (layer=0, active=False)  RT aMin=(0.00, 1.00) aMax=(0.00, 1.00) piv=(0.50, 0.50) pos=(224.25, -12.00) size=(31.50, 16.00) oMin=(208.50, -20.00) oMax=(240.00, -4.00)
+    • DraftManagerRoot  (layer=5, active=True)  RT aMin=(0.00, 0.00) aMax=(1.00, 1.00) piv=(0.50, 0.50) pos=(0.00, 0.00) size=(1728.00, 972.00) oMin=(0.00, 0.00) oMax=(0.00, 0.00)
+      • DraftManagerDialog_GlassPanel  (layer=0, active=True)  RT aMin=(0.50, 0.50) aMax=(0.50, 0.50) piv=(0.50, 0.50) pos=(145.80, 54.00) size=(720.00, 720.00) oMin=(-214.20, -306.00) oMax=(505.80, 414.00)
+        • PrimaryPanel  (layer=0, active=True)  RT aMin=(0.00, 0.00) aMax=(1.00, 1.00) piv=(0.50, 0.50) pos=(0.00, 0.00) size=(720.00, 720.00) oMin=(0.00, 0.00) oMax=(0.00, 0.00)
+          Image color=RGBA(0.094, 0.078, 0.098, 0.600) sprite=null type=Simple
+          • Contents  (layer=0, active=True)  RT aMin=(0.00, 0.00) aMax=(1.00, 1.00) piv=(0.50, 0.50) pos=(0.00, 0.00) size=(695.64, 695.64) oMin=(12.18, 12.18) oMax=(-12.18, -12.18)
+            • DraftManagerDialog  (layer=0, active=True)  RT aMin=(0.00, 0.00) aMax=(1.00, 1.00) piv=(0.50, 0.50) pos=(0.00, 0.00) size=(695.64, 695.64) oMin=(0.00, 0.00) oMax=(0.00, 0.00)
+              • BG  (layer=0, active=True)  RT aMin=(0.00, 1.00) aMax=(0.00, 1.00) piv=(0.50, 0.50) pos=(347.82, 0.00) size=(695.64, 0.00) oMin=(0.00, 0.00) oMax=(695.64, 0.00)
+                Image color=RGBA(0.500, 0.000, 0.000, 1.000) sprite=null type=Simple
+              • Header  (layer=0, active=True)  RT aMin=(0.00, 1.00) aMax=(0.00, 1.00) piv=(0.50, 0.50) pos=(347.82, -39.99) size=(695.64, 63.98) oMin=(0.00, -71.98) oMax=(695.64, -8.00)
+                • DebugImg  (layer=0, active=True)  RT aMin=(0.00, 1.00) aMax=(0.00, 1.00) piv=(0.50, 0.50) pos=(347.82, -8.00) size=(679.64, 0.00) oMin=(8.00, -8.00) oMax=(687.64, -8.00)
+                  Image color=RGBA(1.000, 0.000, 1.000, 1.000) sprite=null type=Simple
+                • Title  (layer=0, active=True)  RT aMin=(0.00, 1.00) aMax=(0.00, 1.00) piv=(0.50, 0.50) pos=(347.82, -19.09) size=(679.64, 14.17) oMin=(8.00, -26.17) oMax=(687.64, -12.00)
+                  TMP text='TITLEPLACE' color=RGBA(1.000, 1.000, 1.000, 1.000) size=26
+                • Description  (layer=0, active=True)  RT aMin=(0.00, 1.00) aMax=(0.00, 1.00) piv=(0.50, 0.50) pos=(347.82, -35.08) size=(679.64, 9.81) oMin=(8.00, -39.98) oMax=(687.64, -30.17)
+                  TMP text='DESCRIPTION' color=RGBA(0.820, 0.820, 0.820, 1.000) size=18
+                • Divider  (layer=0, active=True)  RT aMin=(0.00, 1.00) aMax=(0.00, 1.00) piv=(0.50, 0.50) pos=(347.82, -49.98) size=(679.64, 12.00) oMin=(8.00, -55.98) oMax=(687.64, -43.98)
+                  Image color=RGBA(1.000, 1.000, 1.000, 1.000) sprite=texUIHeaderSingle type=Sliced
+              • TabsBar  (layer=0, active=True)  RT aMin=(0.00, 1.00) aMax=(0.00, 1.00) piv=(0.50, 0.50) pos=(347.82, -111.98) size=(695.64, 64.00) oMin=(0.00, -143.98) oMax=(695.64, -79.98)
+                • TabsBarBG  (layer=0, active=True)  RT aMin=(0.00, 1.00) aMax=(0.00, 1.00) piv=(0.50, 0.50) pos=(17.82, -32.00) size=(0.00, 0.00) oMin=(17.82, -32.00) oMax=(17.82, -32.00)
+                  Image color=RGBA(0.000, 0.000, 1.000, 1.000) sprite=null type=Simple
+                • Tab_Common  (layer=0, active=True)  RT aMin=(0.00, 1.00) aMax=(0.00, 1.00) piv=(0.50, 0.50) pos=(85.82, -32.00) size=(128.00, 48.00) oMin=(21.82, -56.00) oMax=(149.82, -8.00)
+                  Image color=RGBA(0.600, 0.600, 0.600, 1.000) sprite=texUICleanButton type=Sliced
+                  • BaseOutline  (layer=0, active=True)  RT aMin=(0.00, 0.00) aMax=(1.00, 1.00) piv=(0.50, 0.50) pos=(0.00, 0.00) size=(128.00, 48.00) oMin=(0.00, 0.00) oMax=(0.00, 0.00)
+                    Image color=RGBA(1.000, 1.000, 1.000, 0.286) sprite=texUIOutlineOnly type=Sliced
+                  • SelectBorder  (layer=0, active=True)  RT aMin=(0.00, 0.00) aMax=(1.00, 1.00) piv=(0.50, 0.50) pos=(0.00, 0.00) size=(128.00, 48.00) oMin=(0.00, 0.00) oMax=(0.00, 0.00)
+                    Image color=RGBA(1.000, 1.000, 1.000, 1.000) sprite=texUIHighlightBoxOutline type=Sliced
+                  • HiglightBorder  (layer=0, active=True)  RT aMin=(0.00, 0.00) aMax=(1.00, 1.00) piv=(0.50, 0.50) pos=(4.00, -4.00) size=(144.00, 64.00) oMin=(-4.00, -12.00) oMax=(12.00, 4.00)
+                    Image color=RGBA(1.000, 1.000, 1.000, 1.000) sprite=texUIHighlightBoxOutlineThick type=Sliced
+                  • SelectedHeaderAccent  (layer=0, active=True)  RT aMin=(0.00, 0.00) aMax=(1.00, 1.00) piv=(0.50, 0.50) pos=(0.00, 0.00) size=(140.00, 60.00) oMin=(-6.00, -6.00) oMax=(6.00, 6.00)
+                    Image color=RGBA(1.000, 1.000, 1.000, 1.000) sprite=texUIHighlightHeader type=Sliced
+                  • Label  (layer=0, active=True)  RT aMin=(0.50, 0.50) aMax=(0.50, 0.50) piv=(0.50, 0.50) pos=(0.00, 0.00) size=(200.00, 50.00) oMin=(-100.00, -25.00) oMax=(100.00, 25.00)
+                    TMP text='Common' color=RGBA(1.000, 1.000, 1.000, 1.000) size=22
+                • Tab_Uncommon  (layer=0, active=True)  RT aMin=(0.00, 1.00) aMax=(0.00, 1.00) piv=(0.50, 0.50) pos=(217.82, -32.00) size=(128.00, 48.00) oMin=(153.82, -56.00) oMax=(281.82, -8.00)
+                  Image color=RGBA(0.360, 0.720, 0.380, 1.000) sprite=texUICleanButton type=Sliced
+                  • BaseOutline  (layer=0, active=True)  RT aMin=(0.00, 0.00) aMax=(1.00, 1.00) piv=(0.50, 0.50) pos=(0.00, 0.00) size=(128.00, 48.00) oMin=(0.00, 0.00) oMax=(0.00, 0.00)
+                    Image color=RGBA(1.000, 1.000, 1.000, 0.286) sprite=texUIOutlineOnly type=Sliced
+                  • SelectBorder  (layer=0, active=True)  RT aMin=(0.00, 0.00) aMax=(1.00, 1.00) piv=(0.50, 0.50) pos=(0.00, 0.00) size=(128.00, 48.00) oMin=(0.00, 0.00) oMax=(0.00, 0.00)
+                    Image color=RGBA(1.000, 1.000, 1.000, 1.000) sprite=texUIHighlightBoxOutline type=Sliced
+                  • HiglightBorder  (layer=0, active=True)  RT aMin=(0.00, 0.00) aMax=(1.00, 1.00) piv=(0.50, 0.50) pos=(4.00, -4.00) size=(144.00, 64.00) oMin=(-4.00, -12.00) oMax=(12.00, 4.00)
+                    Image color=RGBA(1.000, 1.000, 1.000, 1.000) sprite=texUIHighlightBoxOutlineThick type=Sliced
+                  • SelectedHeaderAccent  (layer=0, active=True)  RT aMin=(0.00, 0.00) aMax=(1.00, 1.00) piv=(0.50, 0.50) pos=(0.00, 0.00) size=(140.00, 60.00) oMin=(-6.00, -6.00) oMax=(6.00, 6.00)
+                    Image color=RGBA(1.000, 1.000, 1.000, 1.000) sprite=texUIHighlightHeader type=Sliced
+                  • Label  (layer=0, active=True)  RT aMin=(0.50, 0.50) aMax=(0.50, 0.50) piv=(0.50, 0.50) pos=(0.00, 0.00) size=(200.00, 50.00) oMin=(-100.00, -25.00) oMax=(100.00, 25.00)
+                    TMP text='Uncommon' color=RGBA(1.000, 1.000, 1.000, 1.000) size=22
+                • Tab_Legendary  (layer=0, active=True)  RT aMin=(0.00, 1.00) aMax=(0.00, 1.00) piv=(0.50, 0.50) pos=(349.82, -32.00) size=(128.00, 48.00) oMin=(285.82, -56.00) oMax=(413.82, -8.00)
+                  Image color=RGBA(0.770, 0.230, 0.240, 1.000) sprite=texUICleanButton type=Sliced
+                  • BaseOutline  (layer=0, active=True)  RT aMin=(0.00, 0.00) aMax=(1.00, 1.00) piv=(0.50, 0.50) pos=(0.00, 0.00) size=(128.00, 48.00) oMin=(0.00, 0.00) oMax=(0.00, 0.00)
+                    Image color=RGBA(1.000, 1.000, 1.000, 0.286) sprite=texUIOutlineOnly type=Sliced
+                  • SelectBorder  (layer=0, active=True)  RT aMin=(0.00, 0.00) aMax=(1.00, 1.00) piv=(0.50, 0.50) pos=(0.00, 0.00) size=(128.00, 48.00) oMin=(0.00, 0.00) oMax=(0.00, 0.00)
+                    Image color=RGBA(1.000, 1.000, 1.000, 1.000) sprite=texUIHighlightBoxOutline type=Sliced
+                  • HiglightBorder  (layer=0, active=True)  RT aMin=(0.00, 0.00) aMax=(1.00, 1.00) piv=(0.50, 0.50) pos=(4.00, -4.00) size=(144.00, 64.00) oMin=(-4.00, -12.00) oMax=(12.00, 4.00)
+                    Image color=RGBA(1.000, 1.000, 1.000, 1.000) sprite=texUIHighlightBoxOutlineThick type=Sliced
+                  • SelectedHeaderAccent  (layer=0, active=True)  RT aMin=(0.00, 0.00) aMax=(1.00, 1.00) piv=(0.50, 0.50) pos=(0.00, 0.00) size=(140.00, 60.00) oMin=(-6.00, -6.00) oMax=(6.00, 6.00)
+                    Image color=RGBA(1.000, 1.000, 1.000, 1.000) sprite=texUIHighlightHeader type=Sliced
+                  • Label  (layer=0, active=True)  RT aMin=(0.50, 0.50) aMax=(0.50, 0.50) piv=(0.50, 0.50) pos=(0.00, 0.00) size=(200.00, 50.00) oMin=(-100.00, -25.00) oMax=(100.00, 25.00)
+                    TMP text='Legendary' color=RGBA(1.000, 1.000, 1.000, 1.000) size=22
+                • Tab_Boss  (layer=0, active=True)  RT aMin=(0.00, 1.00) aMax=(0.00, 1.00) piv=(0.50, 0.50) pos=(481.82, -32.00) size=(128.00, 48.00) oMin=(417.82, -56.00) oMax=(545.82, -8.00)
+                  Image color=RGBA(0.890, 0.800, 0.310, 1.000) sprite=texUICleanButton type=Sliced
+                  • BaseOutline  (layer=0, active=True)  RT aMin=(0.00, 0.00) aMax=(1.00, 1.00) piv=(0.50, 0.50) pos=(0.00, 0.00) size=(128.00, 48.00) oMin=(0.00, 0.00) oMax=(0.00, 0.00)
+                    Image color=RGBA(1.000, 1.000, 1.000, 0.286) sprite=texUIOutlineOnly type=Sliced
+                  • SelectBorder  (layer=0, active=True)  RT aMin=(0.00, 0.00) aMax=(1.00, 1.00) piv=(0.50, 0.50) pos=(0.00, 0.00) size=(128.00, 48.00) oMin=(0.00, 0.00) oMax=(0.00, 0.00)
+                    Image color=RGBA(1.000, 1.000, 1.000, 1.000) sprite=texUIHighlightBoxOutline type=Sliced
+                  • HiglightBorder  (layer=0, active=True)  RT aMin=(0.00, 0.00) aMax=(1.00, 1.00) piv=(0.50, 0.50) pos=(4.00, -4.00) size=(144.00, 64.00) oMin=(-4.00, -12.00) oMax=(12.00, 4.00)
+                    Image color=RGBA(1.000, 1.000, 1.000, 1.000) sprite=texUIHighlightBoxOutlineThick type=Sliced
+                  • SelectedHeaderAccent  (layer=0, active=True)  RT aMin=(0.00, 0.00) aMax=(1.00, 1.00) piv=(0.50, 0.50) pos=(0.00, 0.00) size=(140.00, 60.00) oMin=(-6.00, -6.00) oMax=(6.00, 6.00)
+                    Image color=RGBA(1.000, 1.000, 1.000, 1.000) sprite=texUIHighlightHeader type=Sliced
+                  • Label  (layer=0, active=True)  RT aMin=(0.50, 0.50) aMax=(0.50, 0.50) piv=(0.50, 0.50) pos=(0.00, 0.00) size=(200.00, 50.00) oMin=(-100.00, -25.00) oMax=(100.00, 25.00)
+                    TMP text='Boss' color=RGBA(1.000, 1.000, 1.000, 1.000) size=22
+                • Tab_Void  (layer=0, active=True)  RT aMin=(0.00, 1.00) aMax=(0.00, 1.00) piv=(0.50, 0.50) pos=(613.82, -32.00) size=(128.00, 48.00) oMin=(549.82, -56.00) oMax=(677.82, -8.00)
+                  Image color=RGBA(0.730, 0.400, 0.700, 1.000) sprite=texUICleanButton type=Sliced
+                  • BaseOutline  (layer=0, active=True)  RT aMin=(0.00, 0.00) aMax=(1.00, 1.00) piv=(0.50, 0.50) pos=(0.00, 0.00) size=(128.00, 48.00) oMin=(0.00, 0.00) oMax=(0.00, 0.00)
+                    Image color=RGBA(1.000, 1.000, 1.000, 0.286) sprite=texUIOutlineOnly type=Sliced
+                  • SelectBorder  (layer=0, active=True)  RT aMin=(0.00, 0.00) aMax=(1.00, 1.00) piv=(0.50, 0.50) pos=(0.00, 0.00) size=(128.00, 48.00) oMin=(0.00, 0.00) oMax=(0.00, 0.00)
+                    Image color=RGBA(1.000, 1.000, 1.000, 1.000) sprite=texUIHighlightBoxOutline type=Sliced
+                  • HiglightBorder  (layer=0, active=True)  RT aMin=(0.00, 0.00) aMax=(1.00, 1.00) piv=(0.50, 0.50) pos=(4.00, -4.00) size=(144.00, 64.00) oMin=(-4.00, -12.00) oMax=(12.00, 4.00)
+                    Image color=RGBA(1.000, 1.000, 1.000, 1.000) sprite=texUIHighlightBoxOutlineThick type=Sliced
+                  • SelectedHeaderAccent  (layer=0, active=True)  RT aMin=(0.00, 0.00) aMax=(1.00, 1.00) piv=(0.50, 0.50) pos=(0.00, 0.00) size=(140.00, 60.00) oMin=(-6.00, -6.00) oMax=(6.00, 6.00)
+                    Image color=RGBA(1.000, 1.000, 1.000, 1.000) sprite=texUIHighlightHeader type=Sliced
+                  • Label  (layer=0, active=True)  RT aMin=(0.50, 0.50) aMax=(0.50, 0.50) piv=(0.50, 0.50) pos=(0.00, 0.00) size=(200.00, 50.00) oMin=(-100.00, -25.00) oMax=(100.00, 25.00)
+                    TMP text='Void' color=RGBA(1.000, 1.000, 1.000, 1.000) size=22
+              • ContentArea  (layer=0, active=True)  RT aMin=(0.00, 1.00) aMax=(0.00, 1.00) piv=(0.50, 0.50) pos=(347.82, -387.82) size=(695.64, 471.67) oMin=(0.00, -623.65) oMax=(695.64, -151.98)
+                • ContentAreaBG  (layer=0, active=True)  RT aMin=(0.00, 0.00) aMax=(1.00, 1.00) piv=(0.50, 0.50) pos=(0.00, 0.00) size=(695.64, 471.67) oMin=(0.00, 0.00) oMax=(0.00, 0.00)
+                  Image color=RGBA(1.000, 0.922, 0.016, 1.000) sprite=null type=Simple
+                • draftTier_Tab  (layer=0, active=True)  RT aMin=(0.00, 0.00) aMax=(1.00, 1.00) piv=(0.50, 0.50) pos=(0.00, 0.00) size=(695.64, 471.67) oMin=(0.00, 0.00) oMax=(0.00, 0.00)
+                  • draftTier_Tab_Controls  (layer=0, active=True)  RT aMin=(0.00, 1.00) aMax=(0.00, 1.00) piv=(0.50, 0.50) pos=(347.82, -31.24) size=(695.64, 62.48) oMin=(0.00, -62.48) oMax=(695.64, 0.00)
+                    Image color=RGBA(0.200, 0.388, 0.259, 1.000) sprite=null type=Simple
+                    • draftTier_Tab_Controls_Mode  (layer=0, active=True)  RT aMin=(0.00, 1.00) aMax=(0.00, 1.00) piv=(0.50, 0.50) pos=(155.94, -31.24) size=(295.88, 46.48) oMin=(8.00, -54.48) oMax=(303.88, -8.00)
+                      Image color=RGBA(0.196, 0.553, 0.659, 1.000) sprite=null type=Simple
+                    • draftTier_Tab_Controls_Spacer  (layer=0, active=True)  RT aMin=(0.00, 1.00) aMax=(0.00, 1.00) piv=(0.50, 0.50) pos=(350.76, -31.24) size=(85.76, 0.00) oMin=(307.88, -31.24) oMax=(393.64, -31.24)
+                    • draftTier_Tab_Controls_RestrictionGroup  (layer=0, active=True)  RT aMin=(0.00, 1.00) aMax=(0.00, 1.00) piv=(0.50, 0.50) pos=(542.64, -31.24) size=(290.00, 46.09) oMin=(397.64, -54.28) oMax=(687.64, -8.19)
+                  • draftTier_Tab_Grid  (layer=0, active=True)  RT aMin=(0.00, 1.00) aMax=(0.00, 1.00) piv=(0.50, 0.50) pos=(347.82, -271.07) size=(695.64, 401.19) oMin=(0.00, -471.67) oMax=(695.64, -70.48)
+                    Image color=RGBA(0.192, 0.235, 0.302, 1.000) sprite=null type=Simple
+                    • ItemSquare  (layer=0, active=True)  RT aMin=(0.00, 1.00) aMax=(0.00, 1.00) piv=(0.50, 0.50) pos=(46.00, -46.00) size=(72.00, 72.00) oMin=(10.00, -82.00) oMax=(82.00, -10.00)
+                      Image color=RGBA(1.000, 1.000, 1.000, 1.000) sprite=texTier1BGIcon type=Simple
+                    • ItemSquare  (layer=0, active=True)  RT aMin=(0.00, 1.00) aMax=(0.00, 1.00) piv=(0.50, 0.50) pos=(128.00, -46.00) size=(72.00, 72.00) oMin=(92.00, -82.00) oMax=(164.00, -10.00)
+                      Image color=RGBA(1.000, 1.000, 1.000, 1.000) sprite=texTier1BGIcon type=Simple
+                    • ItemSquare  (layer=0, active=True)  RT aMin=(0.00, 1.00) aMax=(0.00, 1.00) piv=(0.50, 0.50) pos=(210.00, -46.00) size=(72.00, 72.00) oMin=(174.00, -82.00) oMax=(246.00, -10.00)
+                      Image color=RGBA(1.000, 1.000, 1.000, 1.000) sprite=texTier1BGIcon type=Simple
+                    • ItemSquare  (layer=0, active=True)  RT aMin=(0.00, 1.00) aMax=(0.00, 1.00) piv=(0.50, 0.50) pos=(292.00, -46.00) size=(72.00, 72.00) oMin=(256.00, -82.00) oMax=(328.00, -10.00)
+                      Image color=RGBA(1.000, 1.000, 1.000, 1.000) sprite=texTier1BGIcon type=Simple
+                    • ItemSquare  (layer=0, active=True)  RT aMin=(0.00, 1.00) aMax=(0.00, 1.00) piv=(0.50, 0.50) pos=(374.00, -46.00) size=(72.00, 72.00) oMin=(338.00, -82.00) oMax=(410.00, -10.00)
+                      Image color=RGBA(1.000, 1.000, 1.000, 1.000) sprite=texTier1BGIcon type=Simple
+                    • ItemSquare  (layer=0, active=True)  RT aMin=(0.00, 1.00) aMax=(0.00, 1.00) piv=(0.50, 0.50) pos=(456.00, -46.00) size=(72.00, 72.00) oMin=(420.00, -82.00) oMax=(492.00, -10.00)
+                      Image color=RGBA(1.000, 1.000, 1.000, 1.000) sprite=texTier1BGIcon type=Simple
+                    • ItemSquare  (layer=0, active=True)  RT aMin=(0.00, 1.00) aMax=(0.00, 1.00) piv=(0.50, 0.50) pos=(538.00, -46.00) size=(72.00, 72.00) oMin=(502.00, -82.00) oMax=(574.00, -10.00)
+                      Image color=RGBA(1.000, 1.000, 1.000, 1.000) sprite=texTier1BGIcon type=Simple
+                    • ItemSquare  (layer=0, active=True)  RT aMin=(0.00, 1.00) aMax=(0.00, 1.00) piv=(0.50, 0.50) pos=(620.00, -46.00) size=(72.00, 72.00) oMin=(584.00, -82.00) oMax=(656.00, -10.00)
+                      Image color=RGBA(1.000, 1.000, 1.000, 1.000) sprite=texTier1BGIcon type=Simple
+                    • ItemSquare  (layer=0, active=True)  RT aMin=(0.00, 1.00) aMax=(0.00, 1.00) piv=(0.50, 0.50) pos=(46.00, -128.00) size=(72.00, 72.00) oMin=(10.00, -164.00) oMax=(82.00, -92.00)
+                      Image color=RGBA(1.000, 1.000, 1.000, 1.000) sprite=texTier1BGIcon type=Simple
+                    • ItemSquare  (layer=0, active=True)  RT aMin=(0.00, 1.00) aMax=(0.00, 1.00) piv=(0.50, 0.50) pos=(128.00, -128.00) size=(72.00, 72.00) oMin=(92.00, -164.00) oMax=(164.00, -92.00)
+                      Image color=RGBA(1.000, 1.000, 1.000, 1.000) sprite=texTier1BGIcon type=Simple
+                    • ItemSquare  (layer=0, active=True)  RT aMin=(0.00, 1.00) aMax=(0.00, 1.00) piv=(0.50, 0.50) pos=(210.00, -128.00) size=(72.00, 72.00) oMin=(174.00, -164.00) oMax=(246.00, -92.00)
+                      Image color=RGBA(1.000, 1.000, 1.000, 1.000) sprite=texTier1BGIcon type=Simple
+                    • ItemSquare  (layer=0, active=True)  RT aMin=(0.00, 1.00) aMax=(0.00, 1.00) piv=(0.50, 0.50) pos=(292.00, -128.00) size=(72.00, 72.00) oMin=(256.00, -164.00) oMax=(328.00, -92.00)
+                      Image color=RGBA(1.000, 1.000, 1.000, 1.000) sprite=texTier1BGIcon type=Simple
+                    • ItemSquare  (layer=0, active=True)  RT aMin=(0.00, 1.00) aMax=(0.00, 1.00) piv=(0.50, 0.50) pos=(374.00, -128.00) size=(72.00, 72.00) oMin=(338.00, -164.00) oMax=(410.00, -92.00)
+                      Image color=RGBA(1.000, 1.000, 1.000, 1.000) sprite=texTier1BGIcon type=Simple
+                    • ItemSquare  (layer=0, active=True)  RT aMin=(0.00, 1.00) aMax=(0.00, 1.00) piv=(0.50, 0.50) pos=(456.00, -128.00) size=(72.00, 72.00) oMin=(420.00, -164.00) oMax=(492.00, -92.00)
+                      Image color=RGBA(1.000, 1.000, 1.000, 1.000) sprite=texTier1BGIcon type=Simple
+                    • ItemSquare  (layer=0, active=True)  RT aMin=(0.00, 1.00) aMax=(0.00, 1.00) piv=(0.50, 0.50) pos=(538.00, -128.00) size=(72.00, 72.00) oMin=(502.00, -164.00) oMax=(574.00, -92.00)
+                      Image color=RGBA(1.000, 1.000, 1.000, 1.000) sprite=texTier1BGIcon type=Simple
+                    • ItemSquare  (layer=0, active=True)  RT aMin=(0.00, 1.00) aMax=(0.00, 1.00) piv=(0.50, 0.50) pos=(620.00, -128.00) size=(72.00, 72.00) oMin=(584.00, -164.00) oMax=(656.00, -92.00)
+                      Image color=RGBA(1.000, 1.000, 1.000, 1.000) sprite=texTier1BGIcon type=Simple
+                    • ItemSquare  (layer=0, active=True)  RT aMin=(0.00, 1.00) aMax=(0.00, 1.00) piv=(0.50, 0.50) pos=(46.00, -210.00) size=(72.00, 72.00) oMin=(10.00, -246.00) oMax=(82.00, -174.00)
+                      Image color=RGBA(1.000, 1.000, 1.000, 1.000) sprite=texTier1BGIcon type=Simple
+                    • ItemSquare  (layer=0, active=True)  RT aMin=(0.00, 1.00) aMax=(0.00, 1.00) piv=(0.50, 0.50) pos=(128.00, -210.00) size=(72.00, 72.00) oMin=(92.00, -246.00) oMax=(164.00, -174.00)
+                      Image color=RGBA(1.000, 1.000, 1.000, 1.000) sprite=texTier1BGIcon type=Simple
+                    • ItemSquare  (layer=0, active=True)  RT aMin=(0.00, 1.00) aMax=(0.00, 1.00) piv=(0.50, 0.50) pos=(210.00, -210.00) size=(72.00, 72.00) oMin=(174.00, -246.00) oMax=(246.00, -174.00)
+                      Image color=RGBA(1.000, 1.000, 1.000, 1.000) sprite=texTier1BGIcon type=Simple
+                    • ItemSquare  (layer=0, active=True)  RT aMin=(0.00, 1.00) aMax=(0.00, 1.00) piv=(0.50, 0.50) pos=(292.00, -210.00) size=(72.00, 72.00) oMin=(256.00, -246.00) oMax=(328.00, -174.00)
+                      Image color=RGBA(1.000, 1.000, 1.000, 1.000) sprite=texTier1BGIcon type=Simple
+                    • ItemSquare  (layer=0, active=True)  RT aMin=(0.00, 1.00) aMax=(0.00, 1.00) piv=(0.50, 0.50) pos=(374.00, -210.00) size=(72.00, 72.00) oMin=(338.00, -246.00) oMax=(410.00, -174.00)
+                      Image color=RGBA(1.000, 1.000, 1.000, 1.000) sprite=texTier1BGIcon type=Simple
+                    • ItemSquare  (layer=0, active=True)  RT aMin=(0.00, 1.00) aMax=(0.00, 1.00) piv=(0.50, 0.50) pos=(456.00, -210.00) size=(72.00, 72.00) oMin=(420.00, -246.00) oMax=(492.00, -174.00)
+                      Image color=RGBA(1.000, 1.000, 1.000, 1.000) sprite=texTier1BGIcon type=Simple
+                    • ItemSquare  (layer=0, active=True)  RT aMin=(0.00, 1.00) aMax=(0.00, 1.00) piv=(0.50, 0.50) pos=(538.00, -210.00) size=(72.00, 72.00) oMin=(502.00, -246.00) oMax=(574.00, -174.00)
+                      Image color=RGBA(1.000, 1.000, 1.000, 1.000) sprite=texTier1BGIcon type=Simple
+                    • ItemSquare  (layer=0, active=True)  RT aMin=(0.00, 1.00) aMax=(0.00, 1.00) piv=(0.50, 0.50) pos=(620.00, -210.00) size=(72.00, 72.00) oMin=(584.00, -246.00) oMax=(656.00, -174.00)
+                      Image color=RGBA(1.000, 1.000, 1.000, 1.000) sprite=texTier1BGIcon type=Simple
+                    • ItemSquare  (layer=0, active=True)  RT aMin=(0.00, 1.00) aMax=(0.00, 1.00) piv=(0.50, 0.50) pos=(46.00, -292.00) size=(72.00, 72.00) oMin=(10.00, -328.00) oMax=(82.00, -256.00)
+                      Image color=RGBA(1.000, 1.000, 1.000, 1.000) sprite=texTier1BGIcon type=Simple
+                    • ItemSquare  (layer=0, active=True)  RT aMin=(0.00, 1.00) aMax=(0.00, 1.00) piv=(0.50, 0.50) pos=(128.00, -292.00) size=(72.00, 72.00) oMin=(92.00, -328.00) oMax=(164.00, -256.00)
+                      Image color=RGBA(1.000, 1.000, 1.000, 1.000) sprite=texTier1BGIcon type=Simple
+                    • ItemSquare  (layer=0, active=True)  RT aMin=(0.00, 1.00) aMax=(0.00, 1.00) piv=(0.50, 0.50) pos=(210.00, -292.00) size=(72.00, 72.00) oMin=(174.00, -328.00) oMax=(246.00, -256.00)
+                      Image color=RGBA(1.000, 1.000, 1.000, 1.000) sprite=texTier1BGIcon type=Simple
+                    • ItemSquare  (layer=0, active=True)  RT aMin=(0.00, 1.00) aMax=(0.00, 1.00) piv=(0.50, 0.50) pos=(292.00, -292.00) size=(72.00, 72.00) oMin=(256.00, -328.00) oMax=(328.00, -256.00)
+                      Image color=RGBA(1.000, 1.000, 1.000, 1.000) sprite=texTier1BGIcon type=Simple
+                    • ItemSquare  (layer=0, active=True)  RT aMin=(0.00, 1.00) aMax=(0.00, 1.00) piv=(0.50, 0.50) pos=(374.00, -292.00) size=(72.00, 72.00) oMin=(338.00, -328.00) oMax=(410.00, -256.00)
+                      Image color=RGBA(1.000, 1.000, 1.000, 1.000) sprite=texTier1BGIcon type=Simple
+                    • ItemSquare  (layer=0, active=True)  RT aMin=(0.00, 1.00) aMax=(0.00, 1.00) piv=(0.50, 0.50) pos=(456.00, -292.00) size=(72.00, 72.00) oMin=(420.00, -328.00) oMax=(492.00, -256.00)
+                      Image color=RGBA(1.000, 1.000, 1.000, 1.000) sprite=texTier1BGIcon type=Simple
+                    • ItemSquare  (layer=0, active=True)  RT aMin=(0.00, 1.00) aMax=(0.00, 1.00) piv=(0.50, 0.50) pos=(538.00, -292.00) size=(72.00, 72.00) oMin=(502.00, -328.00) oMax=(574.00, -256.00)
+                      Image color=RGBA(1.000, 1.000, 1.000, 1.000) sprite=texTier1BGIcon type=Simple
+                    • ItemSquare  (layer=0, active=True)  RT aMin=(0.00, 1.00) aMax=(0.00, 1.00) piv=(0.50, 0.50) pos=(620.00, -292.00) size=(72.00, 72.00) oMin=(584.00, -328.00) oMax=(656.00, -256.00)
+                      Image color=RGBA(1.000, 1.000, 1.000, 1.000) sprite=texTier1BGIcon type=Simple
+                • draftTier_Tab  (layer=0, active=False)  RT aMin=(0.00, 0.00) aMax=(1.00, 1.00) piv=(0.50, 0.50) pos=(0.00, 0.00) size=(695.64, 471.67) oMin=(0.00, 0.00) oMax=(0.00, 0.00)
+                  • draftTier_Tab_Controls  (layer=0, active=False)  RT aMin=(0.50, 0.50) aMax=(0.50, 0.50) piv=(0.50, 0.50) pos=(0.00, 0.00) size=(100.00, 100.00) oMin=(-50.00, -50.00) oMax=(50.00, 50.00)
+                    Image color=RGBA(0.200, 0.388, 0.259, 1.000) sprite=null type=Simple
+                    • draftTier_Tab_Controls_Mode  (layer=0, active=False)  RT aMin=(0.50, 0.50) aMax=(0.50, 0.50) piv=(0.50, 0.50) pos=(0.00, 0.00) size=(100.00, 100.00) oMin=(-50.00, -50.00) oMax=(50.00, 50.00)
+                      Image color=RGBA(0.196, 0.553, 0.659, 1.000) sprite=null type=Simple
+                    • draftTier_Tab_Controls_Spacer  (layer=0, active=False)  RT aMin=(0.50, 0.50) aMax=(0.50, 0.50) piv=(0.50, 0.50) pos=(0.00, 0.00) size=(100.00, 100.00) oMin=(-50.00, -50.00) oMax=(50.00, 50.00)
+                    • draftTier_Tab_Controls_RestrictionGroup  (layer=0, active=False)  RT aMin=(0.50, 0.50) aMax=(0.50, 0.50) piv=(0.50, 0.50) pos=(0.00, 0.00) size=(100.00, 100.00) oMin=(-50.00, -50.00) oMax=(50.00, 50.00)
+                  • draftTier_Tab_Grid  (layer=0, active=False)  RT aMin=(0.00, 0.00) aMax=(1.00, 1.00) piv=(0.50, 0.50) pos=(0.00, 0.00) size=(663.64, 439.67) oMin=(16.00, 16.00) oMax=(-16.00, -16.00)
+                    Image color=RGBA(0.192, 0.235, 0.302, 1.000) sprite=null type=Simple
+                    • ItemSquare  (layer=0, active=False)  RT aMin=(0.50, 0.50) aMax=(0.50, 0.50) piv=(0.50, 0.50) pos=(0.00, 0.00) size=(-4.00, -4.00) oMin=(2.00, 2.00) oMax=(-2.00, -2.00)
+                      Image color=RGBA(1.000, 1.000, 1.000, 1.000) sprite=texTier2BGIcon type=Simple
+                    • ItemSquare  (layer=0, active=False)  RT aMin=(0.50, 0.50) aMax=(0.50, 0.50) piv=(0.50, 0.50) pos=(0.00, 0.00) size=(-4.00, -4.00) oMin=(2.00, 2.00) oMax=(-2.00, -2.00)
+                      Image color=RGBA(1.000, 1.000, 1.000, 1.000) sprite=texTier2BGIcon type=Simple
+                    • ItemSquare  (layer=0, active=False)  RT aMin=(0.50, 0.50) aMax=(0.50, 0.50) piv=(0.50, 0.50) pos=(0.00, 0.00) size=(-4.00, -4.00) oMin=(2.00, 2.00) oMax=(-2.00, -2.00)
+                      Image color=RGBA(1.000, 1.000, 1.000, 1.000) sprite=texTier2BGIcon type=Simple
+                    • ItemSquare  (layer=0, active=False)  RT aMin=(0.50, 0.50) aMax=(0.50, 0.50) piv=(0.50, 0.50) pos=(0.00, 0.00) size=(-4.00, -4.00) oMin=(2.00, 2.00) oMax=(-2.00, -2.00)
+                      Image color=RGBA(1.000, 1.000, 1.000, 1.000) sprite=texTier2BGIcon type=Simple
+                    • ItemSquare  (layer=0, active=False)  RT aMin=(0.50, 0.50) aMax=(0.50, 0.50) piv=(0.50, 0.50) pos=(0.00, 0.00) size=(-4.00, -4.00) oMin=(2.00, 2.00) oMax=(-2.00, -2.00)
+                      Image color=RGBA(1.000, 1.000, 1.000, 1.000) sprite=texTier2BGIcon type=Simple
+                    • ItemSquare  (layer=0, active=False)  RT aMin=(0.50, 0.50) aMax=(0.50, 0.50) piv=(0.50, 0.50) pos=(0.00, 0.00) size=(-4.00, -4.00) oMin=(2.00, 2.00) oMax=(-2.00, -2.00)
+                      Image color=RGBA(1.000, 1.000, 1.000, 1.000) sprite=texTier2BGIcon type=Simple
+                    • ItemSquare  (layer=0, active=False)  RT aMin=(0.50, 0.50) aMax=(0.50, 0.50) piv=(0.50, 0.50) pos=(0.00, 0.00) size=(-4.00, -4.00) oMin=(2.00, 2.00) oMax=(-2.00, -2.00)
+                      Image color=RGBA(1.000, 1.000, 1.000, 1.000) sprite=texTier2BGIcon type=Simple
+                    • ItemSquare  (layer=0, active=False)  RT aMin=(0.50, 0.50) aMax=(0.50, 0.50) piv=(0.50, 0.50) pos=(0.00, 0.00) size=(-4.00, -4.00) oMin=(2.00, 2.00) oMax=(-2.00, -2.00)
+                      Image color=RGBA(1.000, 1.000, 1.000, 1.000) sprite=texTier2BGIcon type=Simple
+                    • ItemSquare  (layer=0, active=False)  RT aMin=(0.50, 0.50) aMax=(0.50, 0.50) piv=(0.50, 0.50) pos=(0.00, 0.00) size=(-4.00, -4.00) oMin=(2.00, 2.00) oMax=(-2.00, -2.00)
+                      Image color=RGBA(1.000, 1.000, 1.000, 1.000) sprite=texTier2BGIcon type=Simple
+                    • ItemSquare  (layer=0, active=False)  RT aMin=(0.50, 0.50) aMax=(0.50, 0.50) piv=(0.50, 0.50) pos=(0.00, 0.00) size=(-4.00, -4.00) oMin=(2.00, 2.00) oMax=(-2.00, -2.00)
+                      Image color=RGBA(1.000, 1.000, 1.000, 1.000) sprite=texTier2BGIcon type=Simple
+                    • ItemSquare  (layer=0, active=False)  RT aMin=(0.50, 0.50) aMax=(0.50, 0.50) piv=(0.50, 0.50) pos=(0.00, 0.00) size=(-4.00, -4.00) oMin=(2.00, 2.00) oMax=(-2.00, -2.00)
+                      Image color=RGBA(1.000, 1.000, 1.000, 1.000) sprite=texTier2BGIcon type=Simple
+                    • ItemSquare  (layer=0, active=False)  RT aMin=(0.50, 0.50) aMax=(0.50, 0.50) piv=(0.50, 0.50) pos=(0.00, 0.00) size=(-4.00, -4.00) oMin=(2.00, 2.00) oMax=(-2.00, -2.00)
+                      Image color=RGBA(1.000, 1.000, 1.000, 1.000) sprite=texTier2BGIcon type=Simple
+                    • ItemSquare  (layer=0, active=False)  RT aMin=(0.50, 0.50) aMax=(0.50, 0.50) piv=(0.50, 0.50) pos=(0.00, 0.00) size=(-4.00, -4.00) oMin=(2.00, 2.00) oMax=(-2.00, -2.00)
+                      Image color=RGBA(1.000, 1.000, 1.000, 1.000) sprite=texTier2BGIcon type=Simple
+                    • ItemSquare  (layer=0, active=False)  RT aMin=(0.50, 0.50) aMax=(0.50, 0.50) piv=(0.50, 0.50) pos=(0.00, 0.00) size=(-4.00, -4.00) oMin=(2.00, 2.00) oMax=(-2.00, -2.00)
+                      Image color=RGBA(1.000, 1.000, 1.000, 1.000) sprite=texTier2BGIcon type=Simple
+                    • ItemSquare  (layer=0, active=False)  RT aMin=(0.50, 0.50) aMax=(0.50, 0.50) piv=(0.50, 0.50) pos=(0.00, 0.00) size=(-4.00, -4.00) oMin=(2.00, 2.00) oMax=(-2.00, -2.00)
+                      Image color=RGBA(1.000, 1.000, 1.000, 1.000) sprite=texTier2BGIcon type=Simple
+                    • ItemSquare  (layer=0, active=False)  RT aMin=(0.50, 0.50) aMax=(0.50, 0.50) piv=(0.50, 0.50) pos=(0.00, 0.00) size=(-4.00, -4.00) oMin=(2.00, 2.00) oMax=(-2.00, -2.00)
+                      Image color=RGBA(1.000, 1.000, 1.000, 1.000) sprite=texTier2BGIcon type=Simple
+                    • ItemSquare  (layer=0, active=False)  RT aMin=(0.50, 0.50) aMax=(0.50, 0.50) piv=(0.50, 0.50) pos=(0.00, 0.00) size=(-4.00, -4.00) oMin=(2.00, 2.00) oMax=(-2.00, -2.00)
+                      Image color=RGBA(1.000, 1.000, 1.000, 1.000) sprite=texTier2BGIcon type=Simple
+                    • ItemSquare  (layer=0, active=False)  RT aMin=(0.50, 0.50) aMax=(0.50, 0.50) piv=(0.50, 0.50) pos=(0.00, 0.00) size=(-4.00, -4.00) oMin=(2.00, 2.00) oMax=(-2.00, -2.00)
+                      Image color=RGBA(1.000, 1.000, 1.000, 1.000) sprite=texTier2BGIcon type=Simple
+                    • ItemSquare  (layer=0, active=False)  RT aMin=(0.50, 0.50) aMax=(0.50, 0.50) piv=(0.50, 0.50) pos=(0.00, 0.00) size=(-4.00, -4.00) oMin=(2.00, 2.00) oMax=(-2.00, -2.00)
+                      Image color=RGBA(1.000, 1.000, 1.000, 1.000) sprite=texTier2BGIcon type=Simple
+                    • ItemSquare  (layer=0, active=False)  RT aMin=(0.50, 0.50) aMax=(0.50, 0.50) piv=(0.50, 0.50) pos=(0.00, 0.00) size=(-4.00, -4.00) oMin=(2.00, 2.00) oMax=(-2.00, -2.00)
+                      Image color=RGBA(1.000, 1.000, 1.000, 1.000) sprite=texTier2BGIcon type=Simple
+                    • ItemSquare  (layer=0, active=False)  RT aMin=(0.50, 0.50) aMax=(0.50, 0.50) piv=(0.50, 0.50) pos=(0.00, 0.00) size=(-4.00, -4.00) oMin=(2.00, 2.00) oMax=(-2.00, -2.00)
+                      Image color=RGBA(1.000, 1.000, 1.000, 1.000) sprite=texTier2BGIcon type=Simple
+                    • ItemSquare  (layer=0, active=False)  RT aMin=(0.50, 0.50) aMax=(0.50, 0.50) piv=(0.50, 0.50) pos=(0.00, 0.00) size=(-4.00, -4.00) oMin=(2.00, 2.00) oMax=(-2.00, -2.00)
+                      Image color=RGBA(1.000, 1.000, 1.000, 1.000) sprite=texTier2BGIcon type=Simple
+                    • ItemSquare  (layer=0, active=False)  RT aMin=(0.50, 0.50) aMax=(0.50, 0.50) piv=(0.50, 0.50) pos=(0.00, 0.00) size=(-4.00, -4.00) oMin=(2.00, 2.00) oMax=(-2.00, -2.00)
+                      Image color=RGBA(1.000, 1.000, 1.000, 1.000) sprite=texTier2BGIcon type=Simple
+                    • ItemSquare  (layer=0, active=False)  RT aMin=(0.50, 0.50) aMax=(0.50, 0.50) piv=(0.50, 0.50) pos=(0.00, 0.00) size=(-4.00, -4.00) oMin=(2.00, 2.00) oMax=(-2.00, -2.00)
+                      Image color=RGBA(1.000, 1.000, 1.000, 1.000) sprite=texTier2BGIcon type=Simple
+                    • ItemSquare  (layer=0, active=False)  RT aMin=(0.50, 0.50) aMax=(0.50, 0.50) piv=(0.50, 0.50) pos=(0.00, 0.00) size=(-4.00, -4.00) oMin=(2.00, 2.00) oMax=(-2.00, -2.00)
+                      Image color=RGBA(1.000, 1.000, 1.000, 1.000) sprite=texTier2BGIcon type=Simple
+                    • ItemSquare  (layer=0, active=False)  RT aMin=(0.50, 0.50) aMax=(0.50, 0.50) piv=(0.50, 0.50) pos=(0.00, 0.00) size=(-4.00, -4.00) oMin=(2.00, 2.00) oMax=(-2.00, -2.00)
+                      Image color=RGBA(1.000, 1.000, 1.000, 1.000) sprite=texTier2BGIcon type=Simple
+                    • ItemSquare  (layer=0, active=False)  RT aMin=(0.50, 0.50) aMax=(0.50, 0.50) piv=(0.50, 0.50) pos=(0.00, 0.00) size=(-4.00, -4.00) oMin=(2.00, 2.00) oMax=(-2.00, -2.00)
+                      Image color=RGBA(1.000, 1.000, 1.000, 1.000) sprite=texTier2BGIcon type=Simple
+                    • ItemSquare  (layer=0, active=False)  RT aMin=(0.50, 0.50) aMax=(0.50, 0.50) piv=(0.50, 0.50) pos=(0.00, 0.00) size=(-4.00, -4.00) oMin=(2.00, 2.00) oMax=(-2.00, -2.00)
+                      Image color=RGBA(1.000, 1.000, 1.000, 1.000) sprite=texTier2BGIcon type=Simple
+                    • ItemSquare  (layer=0, active=False)  RT aMin=(0.50, 0.50) aMax=(0.50, 0.50) piv=(0.50, 0.50) pos=(0.00, 0.00) size=(-4.00, -4.00) oMin=(2.00, 2.00) oMax=(-2.00, -2.00)
+                      Image color=RGBA(1.000, 1.000, 1.000, 1.000) sprite=texTier2BGIcon type=Simple
+                    • ItemSquare  (layer=0, active=False)  RT aMin=(0.50, 0.50) aMax=(0.50, 0.50) piv=(0.50, 0.50) pos=(0.00, 0.00) size=(-4.00, -4.00) oMin=(2.00, 2.00) oMax=(-2.00, -2.00)
+                      Image color=RGBA(1.000, 1.000, 1.000, 1.000) sprite=texTier2BGIcon type=Simple
+                    • ItemSquare  (layer=0, active=False)  RT aMin=(0.50, 0.50) aMax=(0.50, 0.50) piv=(0.50, 0.50) pos=(0.00, 0.00) size=(-4.00, -4.00) oMin=(2.00, 2.00) oMax=(-2.00, -2.00)
+                      Image color=RGBA(1.000, 1.000, 1.000, 1.000) sprite=texTier2BGIcon type=Simple
+                    • ItemSquare  (layer=0, active=False)  RT aMin=(0.50, 0.50) aMax=(0.50, 0.50) piv=(0.50, 0.50) pos=(0.00, 0.00) size=(-4.00, -4.00) oMin=(2.00, 2.00) oMax=(-2.00, -2.00)
+                      Image color=RGBA(1.000, 1.000, 1.000, 1.000) sprite=texTier2BGIcon type=Simple
+                    • ItemSquare  (layer=0, active=False)  RT aMin=(0.50, 0.50) aMax=(0.50, 0.50) piv=(0.50, 0.50) pos=(0.00, 0.00) size=(-4.00, -4.00) oMin=(2.00, 2.00) oMax=(-2.00, -2.00)
+                      Image color=RGBA(1.000, 1.000, 1.000, 1.000) sprite=texTier2BGIcon type=Simple
+                    • ItemSquare  (layer=0, active=False)  RT aMin=(0.50, 0.50) aMax=(0.50, 0.50) piv=(0.50, 0.50) pos=(0.00, 0.00) size=(-4.00, -4.00) oMin=(2.00, 2.00) oMax=(-2.00, -2.00)
+                      Image color=RGBA(1.000, 1.000, 1.000, 1.000) sprite=texTier2BGIcon type=Simple
+                    • ItemSquare  (layer=0, active=False)  RT aMin=(0.50, 0.50) aMax=(0.50, 0.50) piv=(0.50, 0.50) pos=(0.00, 0.00) size=(-4.00, -4.00) oMin=(2.00, 2.00) oMax=(-2.00, -2.00)
+                      Image color=RGBA(1.000, 1.000, 1.000, 1.000) sprite=texTier2BGIcon type=Simple
+                    • ItemSquare  (layer=0, active=False)  RT aMin=(0.50, 0.50) aMax=(0.50, 0.50) piv=(0.50, 0.50) pos=(0.00, 0.00) size=(-4.00, -4.00) oMin=(2.00, 2.00) oMax=(-2.00, -2.00)
+                      Image color=RGBA(1.000, 1.000, 1.000, 1.000) sprite=texTier2BGIcon type=Simple
+                    • ItemSquare  (layer=0, active=False)  RT aMin=(0.50, 0.50) aMax=(0.50, 0.50) piv=(0.50, 0.50) pos=(0.00, 0.00) size=(-4.00, -4.00) oMin=(2.00, 2.00) oMax=(-2.00, -2.00)
+                      Image color=RGBA(1.000, 1.000, 1.000, 1.000) sprite=texTier2BGIcon type=Simple
+                • draftTier_Tab  (layer=0, active=False)  RT aMin=(0.00, 0.00) aMax=(1.00, 1.00) piv=(0.50, 0.50) pos=(0.00, 0.00) size=(695.64, 471.67) oMin=(0.00, 0.00) oMax=(0.00, 0.00)
+                  • draftTier_Tab_Controls  (layer=0, active=False)  RT aMin=(0.50, 0.50) aMax=(0.50, 0.50) piv=(0.50, 0.50) pos=(0.00, 0.00) size=(100.00, 100.00) oMin=(-50.00, -50.00) oMax=(50.00, 50.00)
+                    Image color=RGBA(0.200, 0.388, 0.259, 1.000) sprite=null type=Simple
+                    • draftTier_Tab_Controls_Mode  (layer=0, active=False)  RT aMin=(0.50, 0.50) aMax=(0.50, 0.50) piv=(0.50, 0.50) pos=(0.00, 0.00) size=(100.00, 100.00) oMin=(-50.00, -50.00) oMax=(50.00, 50.00)
+                      Image color=RGBA(0.196, 0.553, 0.659, 1.000) sprite=null type=Simple
+                    • draftTier_Tab_Controls_Spacer  (layer=0, active=False)  RT aMin=(0.50, 0.50) aMax=(0.50, 0.50) piv=(0.50, 0.50) pos=(0.00, 0.00) size=(100.00, 100.00) oMin=(-50.00, -50.00) oMax=(50.00, 50.00)
+                    • draftTier_Tab_Controls_RestrictionGroup  (layer=0, active=False)  RT aMin=(0.50, 0.50) aMax=(0.50, 0.50) piv=(0.50, 0.50) pos=(0.00, 0.00) size=(100.00, 100.00) oMin=(-50.00, -50.00) oMax=(50.00, 50.00)
+                  • draftTier_Tab_Grid  (layer=0, active=False)  RT aMin=(0.00, 0.00) aMax=(1.00, 1.00) piv=(0.50, 0.50) pos=(0.00, 0.00) size=(663.64, 439.67) oMin=(16.00, 16.00) oMax=(-16.00, -16.00)
+                    Image color=RGBA(0.192, 0.235, 0.302, 1.000) sprite=null type=Simple
+                    • ItemSquare  (layer=0, active=False)  RT aMin=(0.50, 0.50) aMax=(0.50, 0.50) piv=(0.50, 0.50) pos=(0.00, 0.00) size=(-4.00, -4.00) oMin=(2.00, 2.00) oMax=(-2.00, -2.00)
+                      Image color=RGBA(1.000, 1.000, 1.000, 1.000) sprite=texTier3BGIcon type=Simple
+                    • ItemSquare  (layer=0, active=False)  RT aMin=(0.50, 0.50) aMax=(0.50, 0.50) piv=(0.50, 0.50) pos=(0.00, 0.00) size=(-4.00, -4.00) oMin=(2.00, 2.00) oMax=(-2.00, -2.00)
+                      Image color=RGBA(1.000, 1.000, 1.000, 1.000) sprite=texTier3BGIcon type=Simple
+                    • ItemSquare  (layer=0, active=False)  RT aMin=(0.50, 0.50) aMax=(0.50, 0.50) piv=(0.50, 0.50) pos=(0.00, 0.00) size=(-4.00, -4.00) oMin=(2.00, 2.00) oMax=(-2.00, -2.00)
+                      Image color=RGBA(1.000, 1.000, 1.000, 1.000) sprite=texTier3BGIcon type=Simple
+                    • ItemSquare  (layer=0, active=False)  RT aMin=(0.50, 0.50) aMax=(0.50, 0.50) piv=(0.50, 0.50) pos=(0.00, 0.00) size=(-4.00, -4.00) oMin=(2.00, 2.00) oMax=(-2.00, -2.00)
+                      Image color=RGBA(1.000, 1.000, 1.000, 1.000) sprite=texTier3BGIcon type=Simple
+                    • ItemSquare  (layer=0, active=False)  RT aMin=(0.50, 0.50) aMax=(0.50, 0.50) piv=(0.50, 0.50) pos=(0.00, 0.00) size=(-4.00, -4.00) oMin=(2.00, 2.00) oMax=(-2.00, -2.00)
+                      Image color=RGBA(1.000, 1.000, 1.000, 1.000) sprite=texTier3BGIcon type=Simple
+                    • ItemSquare  (layer=0, active=False)  RT aMin=(0.50, 0.50) aMax=(0.50, 0.50) piv=(0.50, 0.50) pos=(0.00, 0.00) size=(-4.00, -4.00) oMin=(2.00, 2.00) oMax=(-2.00, -2.00)
+                      Image color=RGBA(1.000, 1.000, 1.000, 1.000) sprite=texTier3BGIcon type=Simple
+                    • ItemSquare  (layer=0, active=False)  RT aMin=(0.50, 0.50) aMax=(0.50, 0.50) piv=(0.50, 0.50) pos=(0.00, 0.00) size=(-4.00, -4.00) oMin=(2.00, 2.00) oMax=(-2.00, -2.00)
+                      Image color=RGBA(1.000, 1.000, 1.000, 1.000) sprite=texTier3BGIcon type=Simple
+                    • ItemSquare  (layer=0, active=False)  RT aMin=(0.50, 0.50) aMax=(0.50, 0.50) piv=(0.50, 0.50) pos=(0.00, 0.00) size=(-4.00, -4.00) oMin=(2.00, 2.00) oMax=(-2.00, -2.00)
+                      Image color=RGBA(1.000, 1.000, 1.000, 1.000) sprite=texTier3BGIcon type=Simple
+                    • ItemSquare  (layer=0, active=False)  RT aMin=(0.50, 0.50) aMax=(0.50, 0.50) piv=(0.50, 0.50) pos=(0.00, 0.00) size=(-4.00, -4.00) oMin=(2.00, 2.00) oMax=(-2.00, -2.00)
+                      Image color=RGBA(1.000, 1.000, 1.000, 1.000) sprite=texTier3BGIcon type=Simple
+                    • ItemSquare  (layer=0, active=False)  RT aMin=(0.50, 0.50) aMax=(0.50, 0.50) piv=(0.50, 0.50) pos=(0.00, 0.00) size=(-4.00, -4.00) oMin=(2.00, 2.00) oMax=(-2.00, -2.00)
+                      Image color=RGBA(1.000, 1.000, 1.000, 1.000) sprite=texTier3BGIcon type=Simple
+                    • ItemSquare  (layer=0, active=False)  RT aMin=(0.50, 0.50) aMax=(0.50, 0.50) piv=(0.50, 0.50) pos=(0.00, 0.00) size=(-4.00, -4.00) oMin=(2.00, 2.00) oMax=(-2.00, -2.00)
+                      Image color=RGBA(1.000, 1.000, 1.000, 1.000) sprite=texTier3BGIcon type=Simple
+                    • ItemSquare  (layer=0, active=False)  RT aMin=(0.50, 0.50) aMax=(0.50, 0.50) piv=(0.50, 0.50) pos=(0.00, 0.00) size=(-4.00, -4.00) oMin=(2.00, 2.00) oMax=(-2.00, -2.00)
+                      Image color=RGBA(1.000, 1.000, 1.000, 1.000) sprite=texTier3BGIcon type=Simple
+                    • ItemSquare  (layer=0, active=False)  RT aMin=(0.50, 0.50) aMax=(0.50, 0.50) piv=(0.50, 0.50) pos=(0.00, 0.00) size=(-4.00, -4.00) oMin=(2.00, 2.00) oMax=(-2.00, -2.00)
+                      Image color=RGBA(1.000, 1.000, 1.000, 1.000) sprite=texTier3BGIcon type=Simple
+                    • ItemSquare  (layer=0, active=False)  RT aMin=(0.50, 0.50) aMax=(0.50, 0.50) piv=(0.50, 0.50) pos=(0.00, 0.00) size=(-4.00, -4.00) oMin=(2.00, 2.00) oMax=(-2.00, -2.00)
+                      Image color=RGBA(1.000, 1.000, 1.000, 1.000) sprite=texTier3BGIcon type=Simple
+                    • ItemSquare  (layer=0, active=False)  RT aMin=(0.50, 0.50) aMax=(0.50, 0.50) piv=(0.50, 0.50) pos=(0.00, 0.00) size=(-4.00, -4.00) oMin=(2.00, 2.00) oMax=(-2.00, -2.00)
+                      Image color=RGBA(1.000, 1.000, 1.000, 1.000) sprite=texTier3BGIcon type=Simple
+                    • ItemSquare  (layer=0, active=False)  RT aMin=(0.50, 0.50) aMax=(0.50, 0.50) piv=(0.50, 0.50) pos=(0.00, 0.00) size=(-4.00, -4.00) oMin=(2.00, 2.00) oMax=(-2.00, -2.00)
+                      Image color=RGBA(1.000, 1.000, 1.000, 1.000) sprite=texTier3BGIcon type=Simple
+                    • ItemSquare  (layer=0, active=False)  RT aMin=(0.50, 0.50) aMax=(0.50, 0.50) piv=(0.50, 0.50) pos=(0.00, 0.00) size=(-4.00, -4.00) oMin=(2.00, 2.00) oMax=(-2.00, -2.00)
+                      Image color=RGBA(1.000, 1.000, 1.000, 1.000) sprite=texTier3BGIcon type=Simple
+                    • ItemSquare  (layer=0, active=False)  RT aMin=(0.50, 0.50) aMax=(0.50, 0.50) piv=(0.50, 0.50) pos=(0.00, 0.00) size=(-4.00, -4.00) oMin=(2.00, 2.00) oMax=(-2.00, -2.00)
+                      Image color=RGBA(1.000, 1.000, 1.000, 1.000) sprite=texTier3BGIcon type=Simple
+                    • ItemSquare  (layer=0, active=False)  RT aMin=(0.50, 0.50) aMax=(0.50, 0.50) piv=(0.50, 0.50) pos=(0.00, 0.00) size=(-4.00, -4.00) oMin=(2.00, 2.00) oMax=(-2.00, -2.00)
+                      Image color=RGBA(1.000, 1.000, 1.000, 1.000) sprite=texTier3BGIcon type=Simple
+                    • ItemSquare  (layer=0, active=False)  RT aMin=(0.50, 0.50) aMax=(0.50, 0.50) piv=(0.50, 0.50) pos=(0.00, 0.00) size=(-4.00, -4.00) oMin=(2.00, 2.00) oMax=(-2.00, -2.00)
+                      Image color=RGBA(1.000, 1.000, 1.000, 1.000) sprite=texTier3BGIcon type=Simple
+                    • ItemSquare  (layer=0, active=False)  RT aMin=(0.50, 0.50) aMax=(0.50, 0.50) piv=(0.50, 0.50) pos=(0.00, 0.00) size=(-4.00, -4.00) oMin=(2.00, 2.00) oMax=(-2.00, -2.00)
+                      Image color=RGBA(1.000, 1.000, 1.000, 1.000) sprite=texTier3BGIcon type=Simple
+                    • ItemSquare  (layer=0, active=False)  RT aMin=(0.50, 0.50) aMax=(0.50, 0.50) piv=(0.50, 0.50) pos=(0.00, 0.00) size=(-4.00, -4.00) oMin=(2.00, 2.00) oMax=(-2.00, -2.00)
+                      Image color=RGBA(1.000, 1.000, 1.000, 1.000) sprite=texTier3BGIcon type=Simple
+                    • ItemSquare  (layer=0, active=False)  RT aMin=(0.50, 0.50) aMax=(0.50, 0.50) piv=(0.50, 0.50) pos=(0.00, 0.00) size=(-4.00, -4.00) oMin=(2.00, 2.00) oMax=(-2.00, -2.00)
+                      Image color=RGBA(1.000, 1.000, 1.000, 1.000) sprite=texTier3BGIcon type=Simple
+                    • ItemSquare  (layer=0, active=False)  RT aMin=(0.50, 0.50) aMax=(0.50, 0.50) piv=(0.50, 0.50) pos=(0.00, 0.00) size=(-4.00, -4.00) oMin=(2.00, 2.00) oMax=(-2.00, -2.00)
+                      Image color=RGBA(1.000, 1.000, 1.000, 1.000) sprite=texTier3BGIcon type=Simple
+                    • ItemSquare  (layer=0, active=False)  RT aMin=(0.50, 0.50) aMax=(0.50, 0.50) piv=(0.50, 0.50) pos=(0.00, 0.00) size=(-4.00, -4.00) oMin=(2.00, 2.00) oMax=(-2.00, -2.00)
+                      Image color=RGBA(1.000, 1.000, 1.000, 1.000) sprite=texTier3BGIcon type=Simple
+                    • ItemSquare  (layer=0, active=False)  RT aMin=(0.50, 0.50) aMax=(0.50, 0.50) piv=(0.50, 0.50) pos=(0.00, 0.00) size=(-4.00, -4.00) oMin=(2.00, 2.00) oMax=(-2.00, -2.00)
+                      Image color=RGBA(1.000, 1.000, 1.000, 1.000) sprite=texTier3BGIcon type=Simple
+                    • ItemSquare  (layer=0, active=False)  RT aMin=(0.50, 0.50) aMax=(0.50, 0.50) piv=(0.50, 0.50) pos=(0.00, 0.00) size=(-4.00, -4.00) oMin=(2.00, 2.00) oMax=(-2.00, -2.00)
+                      Image color=RGBA(1.000, 1.000, 1.000, 1.000) sprite=texTier3BGIcon type=Simple
+                    • ItemSquare  (layer=0, active=False)  RT aMin=(0.50, 0.50) aMax=(0.50, 0.50) piv=(0.50, 0.50) pos=(0.00, 0.00) size=(-4.00, -4.00) oMin=(2.00, 2.00) oMax=(-2.00, -2.00)
+                      Image color=RGBA(1.000, 1.000, 1.000, 1.000) sprite=texTier3BGIcon type=Simple
+                    • ItemSquare  (layer=0, active=False)  RT aMin=(0.50, 0.50) aMax=(0.50, 0.50) piv=(0.50, 0.50) pos=(0.00, 0.00) size=(-4.00, -4.00) oMin=(2.00, 2.00) oMax=(-2.00, -2.00)
+                      Image color=RGBA(1.000, 1.000, 1.000, 1.000) sprite=texTier3BGIcon type=Simple
+                    • ItemSquare  (layer=0, active=False)  RT aMin=(0.50, 0.50) aMax=(0.50, 0.50) piv=(0.50, 0.50) pos=(0.00, 0.00) size=(-4.00, -4.00) oMin=(2.00, 2.00) oMax=(-2.00, -2.00)
+                      Image color=RGBA(1.000, 1.000, 1.000, 1.000) sprite=texTier3BGIcon type=Simple
+                    • ItemSquare  (layer=0, active=False)  RT aMin=(0.50, 0.50) aMax=(0.50, 0.50) piv=(0.50, 0.50) pos=(0.00, 0.00) size=(-4.00, -4.00) oMin=(2.00, 2.00) oMax=(-2.00, -2.00)
+                      Image color=RGBA(1.000, 1.000, 1.000, 1.000) sprite=texTier3BGIcon type=Simple
+                • draftTier_Tab  (layer=0, active=False)  RT aMin=(0.00, 0.00) aMax=(1.00, 1.00) piv=(0.50, 0.50) pos=(0.00, 0.00) size=(695.64, 471.67) oMin=(0.00, 0.00) oMax=(0.00, 0.00)
+                  • draftTier_Tab_Controls  (layer=0, active=False)  RT aMin=(0.50, 0.50) aMax=(0.50, 0.50) piv=(0.50, 0.50) pos=(0.00, 0.00) size=(100.00, 100.00) oMin=(-50.00, -50.00) oMax=(50.00, 50.00)
+                    Image color=RGBA(0.200, 0.388, 0.259, 1.000) sprite=null type=Simple
+                    • draftTier_Tab_Controls_Mode  (layer=0, active=False)  RT aMin=(0.50, 0.50) aMax=(0.50, 0.50) piv=(0.50, 0.50) pos=(0.00, 0.00) size=(100.00, 100.00) oMin=(-50.00, -50.00) oMax=(50.00, 50.00)
+                      Image color=RGBA(0.196, 0.553, 0.659, 1.000) sprite=null type=Simple
+                    • draftTier_Tab_Controls_Spacer  (layer=0, active=False)  RT aMin=(0.50, 0.50) aMax=(0.50, 0.50) piv=(0.50, 0.50) pos=(0.00, 0.00) size=(100.00, 100.00) oMin=(-50.00, -50.00) oMax=(50.00, 50.00)
+                    • draftTier_Tab_Controls_RestrictionGroup  (layer=0, active=False)  RT aMin=(0.50, 0.50) aMax=(0.50, 0.50) piv=(0.50, 0.50) pos=(0.00, 0.00) size=(100.00, 100.00) oMin=(-50.00, -50.00) oMax=(50.00, 50.00)
+                  • draftTier_Tab_Grid  (layer=0, active=False)  RT aMin=(0.00, 0.00) aMax=(1.00, 1.00) piv=(0.50, 0.50) pos=(0.00, 0.00) size=(663.64, 439.67) oMin=(16.00, 16.00) oMax=(-16.00, -16.00)
+                    Image color=RGBA(0.192, 0.235, 0.302, 1.000) sprite=null type=Simple
+                    • ItemSquare  (layer=0, active=False)  RT aMin=(0.50, 0.50) aMax=(0.50, 0.50) piv=(0.50, 0.50) pos=(0.00, 0.00) size=(-4.00, -4.00) oMin=(2.00, 2.00) oMax=(-2.00, -2.00)
+                      Image color=RGBA(1.000, 1.000, 1.000, 1.000) sprite=texBossBGIcon type=Simple
+                    • ItemSquare  (layer=0, active=False)  RT aMin=(0.50, 0.50) aMax=(0.50, 0.50) piv=(0.50, 0.50) pos=(0.00, 0.00) size=(-4.00, -4.00) oMin=(2.00, 2.00) oMax=(-2.00, -2.00)
+                      Image color=RGBA(1.000, 1.000, 1.000, 1.000) sprite=texBossBGIcon type=Simple
+                    • ItemSquare  (layer=0, active=False)  RT aMin=(0.50, 0.50) aMax=(0.50, 0.50) piv=(0.50, 0.50) pos=(0.00, 0.00) size=(-4.00, -4.00) oMin=(2.00, 2.00) oMax=(-2.00, -2.00)
+                      Image color=RGBA(1.000, 1.000, 1.000, 1.000) sprite=texBossBGIcon type=Simple
+                    • ItemSquare  (layer=0, active=False)  RT aMin=(0.50, 0.50) aMax=(0.50, 0.50) piv=(0.50, 0.50) pos=(0.00, 0.00) size=(-4.00, -4.00) oMin=(2.00, 2.00) oMax=(-2.00, -2.00)
+                      Image color=RGBA(1.000, 1.000, 1.000, 1.000) sprite=texBossBGIcon type=Simple
+                    • ItemSquare  (layer=0, active=False)  RT aMin=(0.50, 0.50) aMax=(0.50, 0.50) piv=(0.50, 0.50) pos=(0.00, 0.00) size=(-4.00, -4.00) oMin=(2.00, 2.00) oMax=(-2.00, -2.00)
+                      Image color=RGBA(1.000, 1.000, 1.000, 1.000) sprite=texBossBGIcon type=Simple
+                    • ItemSquare  (layer=0, active=False)  RT aMin=(0.50, 0.50) aMax=(0.50, 0.50) piv=(0.50, 0.50) pos=(0.00, 0.00) size=(-4.00, -4.00) oMin=(2.00, 2.00) oMax=(-2.00, -2.00)
+                      Image color=RGBA(1.000, 1.000, 1.000, 1.000) sprite=texBossBGIcon type=Simple
+                    • ItemSquare  (layer=0, active=False)  RT aMin=(0.50, 0.50) aMax=(0.50, 0.50) piv=(0.50, 0.50) pos=(0.00, 0.00) size=(-4.00, -4.00) oMin=(2.00, 2.00) oMax=(-2.00, -2.00)
+                      Image color=RGBA(1.000, 1.000, 1.000, 1.000) sprite=texBossBGIcon type=Simple
+                    • ItemSquare  (layer=0, active=False)  RT aMin=(0.50, 0.50) aMax=(0.50, 0.50) piv=(0.50, 0.50) pos=(0.00, 0.00) size=(-4.00, -4.00) oMin=(2.00, 2.00) oMax=(-2.00, -2.00)
+                      Image color=RGBA(1.000, 1.000, 1.000, 1.000) sprite=texBossBGIcon type=Simple
+                    • ItemSquare  (layer=0, active=False)  RT aMin=(0.50, 0.50) aMax=(0.50, 0.50) piv=(0.50, 0.50) pos=(0.00, 0.00) size=(-4.00, -4.00) oMin=(2.00, 2.00) oMax=(-2.00, -2.00)
+                      Image color=RGBA(1.000, 1.000, 1.000, 1.000) sprite=texBossBGIcon type=Simple
+                    • ItemSquare  (layer=0, active=False)  RT aMin=(0.50, 0.50) aMax=(0.50, 0.50) piv=(0.50, 0.50) pos=(0.00, 0.00) size=(-4.00, -4.00) oMin=(2.00, 2.00) oMax=(-2.00, -2.00)
+                      Image color=RGBA(1.000, 1.000, 1.000, 1.000) sprite=texBossBGIcon type=Simple
+                    • ItemSquare  (layer=0, active=False)  RT aMin=(0.50, 0.50) aMax=(0.50, 0.50) piv=(0.50, 0.50) pos=(0.00, 0.00) size=(-4.00, -4.00) oMin=(2.00, 2.00) oMax=(-2.00, -2.00)
+                      Image color=RGBA(1.000, 1.000, 1.000, 1.000) sprite=texBossBGIcon type=Simple
+                • draftTier_Tab  (layer=0, active=False)  RT aMin=(0.00, 0.00) aMax=(1.00, 1.00) piv=(0.50, 0.50) pos=(0.00, 0.00) size=(695.64, 471.67) oMin=(0.00, 0.00) oMax=(0.00, 0.00)
+                  • draftTier_Tab_Controls  (layer=0, active=False)  RT aMin=(0.50, 0.50) aMax=(0.50, 0.50) piv=(0.50, 0.50) pos=(0.00, 0.00) size=(100.00, 100.00) oMin=(-50.00, -50.00) oMax=(50.00, 50.00)
+                    Image color=RGBA(0.200, 0.388, 0.259, 1.000) sprite=null type=Simple
+                    • draftTier_Tab_Controls_Mode  (layer=0, active=False)  RT aMin=(0.50, 0.50) aMax=(0.50, 0.50) piv=(0.50, 0.50) pos=(0.00, 0.00) size=(100.00, 100.00) oMin=(-50.00, -50.00) oMax=(50.00, 50.00)
+                      Image color=RGBA(0.196, 0.553, 0.659, 1.000) sprite=null type=Simple
+                    • draftTier_Tab_Controls_Spacer  (layer=0, active=False)  RT aMin=(0.50, 0.50) aMax=(0.50, 0.50) piv=(0.50, 0.50) pos=(0.00, 0.00) size=(100.00, 100.00) oMin=(-50.00, -50.00) oMax=(50.00, 50.00)
+                    • draftTier_Tab_Controls_RestrictionGroup  (layer=0, active=False)  RT aMin=(0.50, 0.50) aMax=(0.50, 0.50) piv=(0.50, 0.50) pos=(0.00, 0.00) size=(100.00, 100.00) oMin=(-50.00, -50.00) oMax=(50.00, 50.00)
+                  • draftTier_Tab_Grid  (layer=0, active=False)  RT aMin=(0.00, 0.00) aMax=(1.00, 1.00) piv=(0.50, 0.50) pos=(0.00, 0.00) size=(663.64, 439.67) oMin=(16.00, 16.00) oMax=(-16.00, -16.00)
+                    Image color=RGBA(0.192, 0.235, 0.302, 1.000) sprite=null type=Simple
+                    • ItemSquare  (layer=0, active=False)  RT aMin=(0.50, 0.50) aMax=(0.50, 0.50) piv=(0.50, 0.50) pos=(0.00, 0.00) size=(-4.00, -4.00) oMin=(2.00, 2.00) oMax=(-2.00, -2.00)
+                      Image color=RGBA(1.000, 1.000, 1.000, 1.000) sprite=texVoidBGIcon type=Simple
+                    • ItemSquare  (layer=0, active=False)  RT aMin=(0.50, 0.50) aMax=(0.50, 0.50) piv=(0.50, 0.50) pos=(0.00, 0.00) size=(-4.00, -4.00) oMin=(2.00, 2.00) oMax=(-2.00, -2.00)
+                      Image color=RGBA(1.000, 1.000, 1.000, 1.000) sprite=texVoidBGIcon type=Simple
+                    • ItemSquare  (layer=0, active=False)  RT aMin=(0.50, 0.50) aMax=(0.50, 0.50) piv=(0.50, 0.50) pos=(0.00, 0.00) size=(-4.00, -4.00) oMin=(2.00, 2.00) oMax=(-2.00, -2.00)
+                      Image color=RGBA(1.000, 1.000, 1.000, 1.000) sprite=texVoidBGIcon type=Simple
+                    • ItemSquare  (layer=0, active=False)  RT aMin=(0.50, 0.50) aMax=(0.50, 0.50) piv=(0.50, 0.50) pos=(0.00, 0.00) size=(-4.00, -4.00) oMin=(2.00, 2.00) oMax=(-2.00, -2.00)
+                      Image color=RGBA(1.000, 1.000, 1.000, 1.000) sprite=texVoidBGIcon type=Simple
+                    • ItemSquare  (layer=0, active=False)  RT aMin=(0.50, 0.50) aMax=(0.50, 0.50) piv=(0.50, 0.50) pos=(0.00, 0.00) size=(-4.00, -4.00) oMin=(2.00, 2.00) oMax=(-2.00, -2.00)
+                      Image color=RGBA(1.000, 1.000, 1.000, 1.000) sprite=texVoidBGIcon type=Simple
+                    • ItemSquare  (layer=0, active=False)  RT aMin=(0.50, 0.50) aMax=(0.50, 0.50) piv=(0.50, 0.50) pos=(0.00, 0.00) size=(-4.00, -4.00) oMin=(2.00, 2.00) oMax=(-2.00, -2.00)
+                      Image color=RGBA(1.000, 1.000, 1.000, 1.000) sprite=texVoidBGIcon type=Simple
+                    • ItemSquare  (layer=0, active=False)  RT aMin=(0.50, 0.50) aMax=(0.50, 0.50) piv=(0.50, 0.50) pos=(0.00, 0.00) size=(-4.00, -4.00) oMin=(2.00, 2.00) oMax=(-2.00, -2.00)
+                      Image color=RGBA(1.000, 1.000, 1.000, 1.000) sprite=texVoidBGIcon type=Simple
+                    • ItemSquare  (layer=0, active=False)  RT aMin=(0.50, 0.50) aMax=(0.50, 0.50) piv=(0.50, 0.50) pos=(0.00, 0.00) size=(-4.00, -4.00) oMin=(2.00, 2.00) oMax=(-2.00, -2.00)
+                      Image color=RGBA(1.000, 1.000, 1.000, 1.000) sprite=texVoidBGIcon type=Simple
+                    • ItemSquare  (layer=0, active=False)  RT aMin=(0.50, 0.50) aMax=(0.50, 0.50) piv=(0.50, 0.50) pos=(0.00, 0.00) size=(-4.00, -4.00) oMin=(2.00, 2.00) oMax=(-2.00, -2.00)
+                      Image color=RGBA(1.000, 1.000, 1.000, 1.000) sprite=texVoidBGIcon type=Simple
+                    • ItemSquare  (layer=0, active=False)  RT aMin=(0.50, 0.50) aMax=(0.50, 0.50) piv=(0.50, 0.50) pos=(0.00, 0.00) size=(-4.00, -4.00) oMin=(2.00, 2.00) oMax=(-2.00, -2.00)
+                      Image color=RGBA(1.000, 1.000, 1.000, 1.000) sprite=texVoidBGIcon type=Simple
+                    • ItemSquare  (layer=0, active=False)  RT aMin=(0.50, 0.50) aMax=(0.50, 0.50) piv=(0.50, 0.50) pos=(0.00, 0.00) size=(-4.00, -4.00) oMin=(2.00, 2.00) oMax=(-2.00, -2.00)
+                      Image color=RGBA(1.000, 1.000, 1.000, 1.000) sprite=texVoidBGIcon type=Simple
+                    • ItemSquare  (layer=0, active=False)  RT aMin=(0.50, 0.50) aMax=(0.50, 0.50) piv=(0.50, 0.50) pos=(0.00, 0.00) size=(-4.00, -4.00) oMin=(2.00, 2.00) oMax=(-2.00, -2.00)
+                      Image color=RGBA(1.000, 1.000, 1.000, 1.000) sprite=texVoidBGIcon type=Simple
+              • BottomBar  (layer=0, active=True)  RT aMin=(0.00, 1.00) aMax=(0.00, 1.00) piv=(0.50, 0.50) pos=(347.82, -663.65) size=(695.64, 63.99) oMin=(0.00, -695.64) oMax=(695.64, -631.65)
+                • BottomBarBG  (layer=0, active=True)  RT aMin=(0.00, 1.00) aMax=(0.00, 1.00) piv=(0.50, 0.50) pos=(347.82, 0.00) size=(695.64, 0.00) oMin=(0.00, 0.00) oMax=(695.64, 0.00)
+                  Image color=RGBA(0.000, 1.000, 0.000, 1.000) sprite=null type=Simple
+                • DraftSummaryBar  (layer=0, active=True)  RT aMin=(0.00, 1.00) aMax=(0.00, 1.00) piv=(0.50, 0.50) pos=(347.82, -35.99) size=(695.64, 55.99) oMin=(0.00, -63.99) oMax=(695.64, -8.00)
+                  • Label  (layer=0, active=True)  RT aMin=(0.00, 1.00) aMax=(0.00, 1.00) piv=(0.50, 0.50) pos=(63.37, -27.99) size=(126.74, 55.99) oMin=(0.00, -55.99) oMax=(126.74, 0.00)
+                    TMP text='Common: 0 / 7' color=RGBA(1.000, 1.000, 1.000, 1.000) size=18
+                  • Label  (layer=0, active=True)  RT aMin=(0.00, 1.00) aMax=(0.00, 1.00) piv=(0.50, 0.50) pos=(199.72, -27.99) size=(145.96, 55.99) oMin=(126.74, -55.99) oMax=(272.70, 0.00)
+                    TMP text='Uncommon: 0 / 5' color=RGBA(1.000, 1.000, 1.000, 1.000) size=18
+                  • Label  (layer=0, active=True)  RT aMin=(0.00, 1.00) aMax=(0.00, 1.00) piv=(0.50, 0.50) pos=(344.16, -27.99) size=(142.91, 55.99) oMin=(272.70, -55.99) oMax=(415.61, 0.00)
+                    TMP text='Legendary: 0 / 3' color=RGBA(1.000, 1.000, 1.000, 1.000) size=18
+                  • Label  (layer=0, active=True)  RT aMin=(0.00, 1.00) aMax=(0.00, 1.00) piv=(0.50, 0.50) pos=(464.18, -27.99) size=(97.13, 55.99) oMin=(415.61, -55.99) oMax=(512.75, 0.00)
+                    TMP text='Boss: 0 / 1' color=RGBA(1.000, 1.000, 1.000, 1.000) size=18
+                  • Label  (layer=0, active=True)  RT aMin=(0.00, 1.00) aMax=(0.00, 1.00) piv=(0.50, 0.50) pos=(558.87, -27.99) size=(92.25, 55.99) oMin=(512.75, -55.99) oMax=(605.00, 0.00)
+                    TMP text='Void: 0 / 1' color=RGBA(1.000, 1.000, 1.000, 1.000) size=18
+                  • SummarySpacer  (layer=0, active=True)  RT aMin=(0.00, 1.00) aMax=(0.00, 1.00) piv=(0.50, 0.50) pos=(617.66, -27.99) size=(25.32, 55.99) oMin=(605.00, -55.99) oMax=(630.32, 0.00)
+                  • Summary_Dice  (layer=0, active=True)  RT aMin=(0.00, 1.00) aMax=(0.00, 1.00) piv=(0.50, 0.50) pos=(662.98, -27.99) size=(65.32, 55.99) oMin=(630.32, -55.99) oMax=(695.64, 0.00)
+                    Image color=RGBA(1.000, 1.000, 1.000, 1.000) sprite=texRandomizeIcon type=Simple
+        • BorderImage  (layer=0, active=True)  RT aMin=(0.00, 0.00) aMax=(1.00, 1.00) piv=(0.50, 0.50) pos=(0.00, 0.00) size=(720.00, 720.00) oMin=(0.00, 0.00) oMax=(0.00, 0.00)
+          Image color=RGBA(0.363, 0.376, 0.472, 1.000) sprite=texUIHighlightHeader type=Sliced
+      • TooltipTest  (layer=5, active=True)  RT aMin=(0.00, 0.00) aMax=(1.00, 1.00) piv=(0.50, 0.50) pos=(0.00, 0.00) size=(1728.00, 972.00) oMin=(0.00, 0.00) oMax=(0.00, 0.00)
+        • Tooltip(Clone)  (layer=0, active=False)  RT aMin=(0.00, 1.00) aMax=(0.00, 1.00) piv=(1.00, 0.50) pos=(1165.98, -471.00) size=(0.00, 0.00) oMin=(1165.98, -471.00) oMax=(1165.98, -471.00)
+          • TooltipOffset  (layer=0, active=False)  RT aMin=(0.50, 0.50) aMax=(0.50, 0.50) piv=(0.50, 0.50) pos=(0.00, 0.00) size=(100.00, 100.00) oMin=(-50.00, -50.00) oMax=(50.00, 50.00)
+            • Panel  (layer=0, active=False)  RT aMin=(1.00, 0.00) aMax=(1.00, 0.00) piv=(1.00, 0.00) pos=(0.00, 0.00) size=(400.00, 110.54) oMin=(-400.00, 0.00) oMax=(0.00, 110.54)
+              • Background  (layer=0, active=False)  RT aMin=(0.00, 0.00) aMax=(1.00, 1.00) piv=(0.50, 0.50) pos=(0.00, 0.00) size=(400.00, 110.54) oMin=(0.00, 0.00) oMax=(0.00, 0.00)
+                Image color=RGBA(0.145, 0.153, 0.165, 0.760) sprite=null type=Simple
+              • TitleRect  (layer=0, active=False)  RT aMin=(0.00, 1.00) aMax=(0.00, 1.00) piv=(0.50, 0.50) pos=(200.00, -24.00) size=(400.00, 48.00) oMin=(0.00, -48.00) oMax=(400.00, 0.00)
+                Image color=RGBA(0.388, 0.388, 0.388, 1.000) sprite=null type=Simple
+                • TitleLabel  (layer=0, active=False)  RT aMin=(0.00, 1.00) aMax=(0.00, 1.00) piv=(0.50, 0.50) pos=(200.00, -24.00) size=(376.00, 24.00) oMin=(12.00, -36.00) oMax=(388.00, -12.00)
+                  TMP text='Power Elixir' color=RGBA(1.000, 1.000, 1.000, 1.000) size=24
+              • BodyRect  (layer=0, active=False)  RT aMin=(0.00, 1.00) aMax=(0.00, 1.00) piv=(0.50, 0.50) pos=(200.00, -79.27) size=(400.00, 62.54) oMin=(0.00, -110.54) oMax=(400.00, -48.00)
+                • BodyLabel  (layer=0, active=False)  RT aMin=(0.00, 1.00) aMax=(0.00, 1.00) piv=(0.50, 0.50) pos=(200.00, -31.27) size=(376.00, 38.54) oMin=(12.00, -50.54) oMax=(388.00, -12.00)
+                  TMP text='Taking damage to below <style=cIsHealth>25% health</style> <style=cIsUtility>consumes</style> this item, <style=cIsHealing>healing</style> you for <style=cIsHealing>75%</style> of <style=cIsHealing>maximum health</style>.' color=RGBA(1.000, 1.000, 1.000, 1.000) size=18
+              • Outline  (layer=0, active=False)  RT aMin=(0.00, 0.00) aMax=(1.00, 1.00) piv=(0.50, 0.50) pos=(0.00, 0.00) size=(404.00, 114.54) oMin=(-2.00, -2.00) oMax=(2.00, 2.00)
+                Image color=RGBA(0.380, 0.475, 0.541, 1.000) sprite=texUIOutlineOnly type=Sliced

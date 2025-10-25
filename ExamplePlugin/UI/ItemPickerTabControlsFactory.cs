@@ -1,180 +1,152 @@
 ﻿
+using ExamplePlugin.Loadout.Draft;
 using ExamplePlugin.UI.Drafting;
+using ExamplePlugin.UI.Drafting.TierTab;
 using TMPro;
 using UnityEngine;
 using UnityEngine.AddressableAssets;
 using UnityEngine.UI;
+using static UnityEngine.UIElements.StylePropertyAnimationSystem;
 
 namespace ExamplePlugin.UI
 {
     public static class ItemPickerTabControlsFactory
     {
 
+        #region DebugOptions
+        private static bool SHOW_DEBUG_COLORS = false;
+        #endregion
+
         /// <summary>
         /// Creates the hierarchy for our tab controls:
         /// 
         /// ItemPickerTabControls
-        ///   ModeGroup
         ///   RestrictionGroup
+        ///   SelectionGroup
+        ///   Spacer
         ///   ButtonGroup
         ///   
         /// </summary>
         /// <returns></returns>
-        public static DraftTabControls CreateTabControls(string componentName, RectTransform parentRectTransform)
+        public static DraftTabControls CreateTabControls(string componentName, RectTransform parentRectTransform, DraftItemTier itemTier)
         {
-            var controlsGO = new GameObject(componentName, typeof(RectTransform), typeof(DraftTabControls), typeof(Image));
+            var controlsGO = new GameObject(componentName, typeof(RectTransform), typeof(DraftTabControls));
             var controlsBarRT = controlsGO.GetComponent<RectTransform>();
-            controlsBarRT.SetParent(parentRectTransform);
+            controlsBarRT.SetParent(parentRectTransform, worldPositionStays: false);
+            controlsBarRT.anchorMin = new Vector2(0f, 1f);
+            controlsBarRT.anchorMax = new Vector2(1f, 1f);
+            controlsBarRT.pivot = new Vector2(0.5f, 1f);
+            controlsBarRT.offsetMin = new Vector2(0f, -32f);
+            controlsBarRT.offsetMax = new Vector2(0f, 0f);
 
-            // Green ish
-            var controlsOutlineColor = ColorPalette.FromRGB(51, 99, 66, 1f);
-            var img = controlsGO.GetComponent<Image>();
-            img.color = controlsOutlineColor;
-            img.raycastTarget = true;        // optional click blocker
+            if (SHOW_DEBUG_COLORS)
+            {
+                var debugImg = controlsGO.AddComponent<Image>();
+                debugImg.raycastTarget = false;
+                // Green ish
+                var controlsOutlineColor = ColorPalette.FromRGB(51, 99, 66, 1f);
+                debugImg.color = controlsOutlineColor;
+            }
 
             var controlsHG = controlsGO.AddComponent<HorizontalLayoutGroup>();
-            controlsHG.spacing = 4;
+            controlsHG.spacing = 12;
             controlsHG.childControlHeight = true;
-            controlsHG.childControlWidth = true;
             controlsHG.childForceExpandHeight = false;
+            // let the spacer take the rest
+            controlsHG.childControlWidth = true;
+            // no stretching
             controlsHG.childForceExpandWidth = false;
-            controlsHG.childAlignment = TextAnchor.MiddleCenter;
-            controlsHG.padding = new RectOffset(8, 8, 8, 8);
+            controlsHG.childAlignment = TextAnchor.MiddleLeft;
+            // push more left right
+            controlsHG.padding = new RectOffset(12, 12, 8, 8);
 
             var tabControls = controlsGO.GetComponent<DraftTabControls>();
 
-
-            var modeGroup = CreateModeGroup(componentName + "_Mode", controlsBarRT, tabControls);
-            var spacer = CreateSpacer(componentName + "_Spacer", controlsBarRT);
             var restrictionsGroup = CreateRestrictionGroup(componentName + "_RestrictionGroup", controlsBarRT, tabControls);
-
-
-
+            var selectionGroup = CreateSelectionGroup(componentName + "_SelectionGroup", controlsBarRT, tabControls);
+            var spacer2 = CreateSpacer(componentName + "_Spacer", controlsBarRT);
+            var miscOptsionGroup = CreateGridOptionsGroup(componentName + "_Options", controlsBarRT, tabControls, itemTier);
 
             return tabControls;
         }
 
-
-        /// <summary>
-        /// Creates the UI components for toggling between restricted mode or none
-        /// [ Label Toggle ]
-        ///
-        private static GameObject CreateModeGroup(string groupName, RectTransform modeGroupParent, DraftTabControls pickerTabControls)
+        static RectTransform MakeRowGroup(string name, RectTransform parent)
         {
-            var modeGroup = new GameObject(groupName, typeof(RectTransform), typeof(HorizontalLayoutGroup), typeof(LayoutElement));
-            ParentToRectTransform(modeGroup, modeGroupParent);
+            var go = new GameObject(name, typeof(RectTransform), typeof(HorizontalLayoutGroup), typeof(ContentSizeFitter), typeof(LayoutElement));
+            var rt = (RectTransform)go.transform;
+            rt.SetParent(parent, false);
 
-            // parent for our components
-            var modeGroupRT = modeGroup.GetComponent<RectTransform>();
+            var hg = go.GetComponent<HorizontalLayoutGroup>();
+            hg.spacing = 8;
+            hg.childAlignment = TextAnchor.MiddleLeft;
+            hg.childControlWidth = true;
+            hg.childControlHeight = true;
+            hg.childForceExpandWidth = false;
+            hg.childForceExpandHeight = false;
 
-            // blue ish
-            var groupColor = new Color(50 / 255f, 141 / 255f, 168 / 255f, 1f);
-            var debugBackground = modeGroup.AddComponent<Image>();
-            debugBackground.color = groupColor;
-            debugBackground.raycastTarget = true;        // optional click blocker
+            // 🔑 make the group take the width of its children
+            var fit = go.GetComponent<ContentSizeFitter>();
+            fit.horizontalFit = ContentSizeFitter.FitMode.PreferredSize;
+            fit.verticalFit = ContentSizeFitter.FitMode.MinSize;
 
-            // set its layout element
-            var modeLE = modeGroup.GetComponent<LayoutElement>();
-            modeLE.minHeight = 24;
-            modeLE.preferredHeight = 48;
-            modeLE.flexibleWidth = 0;
+            // keep rows aligned with buttons
+            var rowLayout = go.GetComponent<LayoutElement>();
+            // do not compete with spacer
+            rowLayout.flexibleWidth = 0;
+            rowLayout.minHeight = 28f;
 
-            var hlg = modeGroup.GetComponent<HorizontalLayoutGroup>();
-            hlg.childAlignment = TextAnchor.MiddleCenter;
-            hlg.spacing = 6;
-            hlg.padding = new RectOffset(4, 4, 4, 4);
-            hlg.childControlWidth = true;
-            hlg.childControlHeight = true;
-            hlg.childForceExpandWidth = false;
-            hlg.childForceExpandHeight = false;
-
-            var restrictLabel = new GameObject(groupName + "_ModeLabel", typeof(RectTransform), typeof(TextMeshProUGUI));
-            ParentToRectTransform(restrictLabel, modeGroupRT);
-
-            var restrictLabelRT = restrictLabel.GetComponent<RectTransform>();
-            restrictLabelRT.anchorMin = new Vector2(0, 0);
-            restrictLabelRT.anchorMax = new Vector2(1, 0);
-            restrictLabelRT.sizeDelta = new Vector2(0, 22);
-
-            var restrictText = restrictLabel.GetComponent<TextMeshProUGUI>();
-            restrictText.text = "Restricted Mode?: ";
-            restrictText.alignment = TextAlignmentOptions.Left;
-
-            var toggleGOName = groupName + "_ModeToggle";
-
-            var restrictToggleGO = new GameObject(toggleGOName, typeof(RectTransform), typeof(Toggle), typeof(LayoutElement));
-            ParentToRectTransform(restrictToggleGO, modeGroupRT);
-
-            var toggleDimensions = new Vector2(24, 24);
-            var restrictToggle = restrictToggleGO.GetComponent<Toggle>();
-            var toggleLE = restrictToggleGO.GetComponent<LayoutElement>();
-            toggleLE.minWidth = toggleLE.preferredWidth = toggleDimensions.x;   // tweak size here
-            toggleLE.minHeight = toggleLE.preferredHeight = toggleDimensions.y;
-            toggleLE.flexibleWidth = toggleLE.flexibleHeight = 0;
-
-            var restrictToggleRT = restrictToggleGO.GetComponent<RectTransform>();
-            restrictToggleRT.sizeDelta = toggleDimensions;
-
-            // Setup toggle graphic with background
-            var toggleBG = new GameObject(toggleGOName + "_Background", typeof(RectTransform), typeof(Image));
-            ParentToRectTransform(toggleBG, restrictToggleRT);
-
-            // fill full
-            var toggleBGRt = (RectTransform)toggleBG.transform;
-            toggleBGRt.anchorMin = Vector2.zero;
-            toggleBGRt.anchorMax = Vector2.one;
-            toggleBGRt.offsetMin = Vector2.zero;
-            toggleBGRt.offsetMax = Vector2.zero;
-
-            var toggleBGImage = toggleBG.GetComponent<Image>();
-            toggleBGImage.color = ColorPalette.DarkGray; // dark gray box
-            toggleBGImage.raycastTarget = true;
-
-            var checkGO = new GameObject(toggleGOName + "_Checkmark", typeof(RectTransform), typeof(Image));
-            ParentToRectTransform(checkGO, restrictToggleRT);
-            //checkGO.transform.SetAsLastSibling();
-
-            var checkRT = (RectTransform)checkGO.transform;
-            checkRT.anchorMin = new Vector2(0.5f, 0.5f);
-            checkRT.anchorMax = new Vector2(0.5f, 0.5f);
-            checkRT.sizeDelta = new Vector2(toggleDimensions.x - 4, toggleDimensions.y - 4);          // smaller than bg
-            checkRT.anchoredPosition = Vector2.zero;
-
-            // this worked
-            var checkImg = checkGO.GetComponent<Image>();
-            checkImg.color = new Color(0.92f, 0.92f, 0.92f, 1f); // light mark
-            checkImg.raycastTarget = false;
-
-            // Wire the toggle graphics
-            restrictToggle.targetGraphic = toggleBGImage;              // background will highlight/press, etc.
-            restrictToggle.graphic = checkImg;                 // this is shown/hidden by Toggle.isOn
-            restrictToggle.isOn = false;
-
-            // set the required refs
-            pickerTabControls.BindModeToggle(restrictToggle);
-
-            return modeGroup;
+            return rt;
         }
 
 
         private static GameObject CreateRestrictionGroup(string groupName, RectTransform controlsBarRT, DraftTabControls pickerTabControls)
         {
-            var restrictionsGroup = new GameObject(groupName, typeof(RectTransform), typeof(HorizontalLayoutGroup), typeof(LayoutElement));
-            ParentToRectTransform(restrictionsGroup, controlsBarRT);
-
-            var horizontalSettings = restrictionsGroup.GetComponent<HorizontalLayoutGroup>();
-            horizontalSettings.spacing = 6;
-            horizontalSettings.childControlWidth = true;
-            horizontalSettings.childControlHeight = true;
-            horizontalSettings.childForceExpandHeight = false;
-            horizontalSettings.childForceExpandWidth = false;
+            var restrictionsGroupRT = MakeRowGroup(groupName, controlsBarRT);
+            var restrictionsGroup = restrictionsGroupRT.gameObject;
 
             // add our components
-            var controlsGroupRT = restrictionsGroup.GetComponent<RectTransform>();
-            var itemCountControls = CreateItemCountControls(groupName + "_Counts", controlsGroupRT, pickerTabControls);
-            var miscOptsionGroup = CreateGridOptionsGroup(groupName + "_Options", controlsGroupRT, pickerTabControls);
+            var controlsGroupRT = restrictionsGroupRT.GetComponent<RectTransform>();
+            var limitLabel = CreateLabel(groupName + "_LimitLabel", restrictionsGroupRT, "Limit: ", 24);
+            var itemCountControls = CreateItemCountControls(groupName + "_Counts", restrictionsGroupRT, pickerTabControls);
 
             return restrictionsGroup;
+        }
+
+        private static GameObject CreateSelectionGroup(string groupName, RectTransform controlsBarRT, DraftTabControls pickerTabControls)
+        {
+            var selectionGroupRT = MakeRowGroup(groupName, controlsBarRT);
+            var selectionGroup = selectionGroupRT.gameObject;
+
+            var limitLabel = CreateLabel(groupName + "_SelectLabel", selectionGroupRT, "Selected: 0/0", 24);
+            var limitLabelText = limitLabel.GetComponent<TextMeshProUGUI>();
+
+            pickerTabControls.BindItemSelectionElements(limitLabelText);
+
+            return selectionGroup;
+        }
+
+        private static GameObject CreateLabel(string objectName, RectTransform parentRT, string labelText, int fontSize = 22)
+        {
+            var labeLGO = new GameObject(objectName, typeof(RectTransform), typeof(TextMeshProUGUI), typeof(LayoutElement));
+            FactoryUtils.ParentToRectTransform(labeLGO, parentRT);
+
+            var labelRT = labeLGO.GetComponent<RectTransform>();
+            labelRT.anchorMin = new Vector2(0, 0);
+            labelRT.anchorMax = new Vector2(1, 0);
+            labelRT.sizeDelta = new Vector2(0, 22);
+
+            var tmpText = labeLGO.GetComponent<TextMeshProUGUI>();
+            tmpText.text = labelText;
+            tmpText.alignment = TextAlignmentOptions.MidlineLeft;
+            tmpText.enableAutoSizing = false;
+            tmpText.fontSize = fontSize;
+            tmpText.enableWordWrapping = false;
+            tmpText.overflowMode = TextOverflowModes.Overflow;
+
+            var layoutElement = labeLGO.GetComponent<LayoutElement>();
+            layoutElement.minHeight = 28;
+
+            return labeLGO;
         }
 
         /// <summary>
@@ -185,17 +157,18 @@ namespace ExamplePlugin.UI
         {
             // parent object for everything
             var countsGroupGO = new GameObject(groupName, typeof(RectTransform), typeof(HorizontalLayoutGroup), typeof(LayoutElement));
-            ParentToRectTransform(countsGroupGO, controlGroupRT);
-
+            FactoryUtils.ParentToRectTransform(countsGroupGO, controlGroupRT);
 
             var restrictionsRT = countsGroupGO.GetComponent<RectTransform>();
 
-            // orange ish ish
-            var groupColor = ColorPalette.FromRGB(209, 63, 63);
-            var debugBackground = countsGroupGO.AddComponent<Image>();
-            debugBackground.color = groupColor;
-            debugBackground.raycastTarget = true;        // optional click blocker
-
+            if (SHOW_DEBUG_COLORS)
+            {
+                // orange ish ish
+                var groupColor = ColorPalette.FromRGB(209, 63, 63);
+                var debugBackground = countsGroupGO.AddComponent<Image>();
+                debugBackground.color = groupColor;
+                debugBackground.raycastTarget = true;
+            }
 
             var hlg = countsGroupGO.GetComponent<HorizontalLayoutGroup>();
             hlg.childAlignment = TextAnchor.MiddleCenter;
@@ -206,34 +179,36 @@ namespace ExamplePlugin.UI
             hlg.childForceExpandWidth = false;
             hlg.childForceExpandHeight = false;
 
+            // keep sizing stable
             var groupLE = countsGroupGO.GetComponent<LayoutElement>();
-            groupLE.preferredWidth = 240;
+            groupLE.minWidth = 140;
 
-            var buttonDimensions = new Vector2(32, 32);
+            var buttonDimensions = new Vector2(28, 28);
 
             // - button
             var leftArrowSprite = Addressables.LoadAssetAsync<Sprite>("RoR2/Base/Common/MiscIcons/texOptionsArrowLeft.png").WaitForCompletion();
             var decreaseGO = CreateImageButton(groupName + "_Minus", buttonDimensions, leftArrowSprite);
-            ParentToRectTransform(decreaseGO, restrictionsRT);
+            FactoryUtils.ParentToRectTransform(decreaseGO, restrictionsRT);
             var decreaseRT = decreaseGO.GetComponent<RectTransform>();
 
             // text display
-            var restrictCountLabel = new GameObject(groupName + "_Label", typeof(RectTransform), typeof(TextMeshProUGUI));
-            ParentToRectTransform(restrictCountLabel, restrictionsRT);
+            var restrictCountLabel = new GameObject(groupName + "_Label", typeof(RectTransform), typeof(TextMeshProUGUI), typeof(LayoutElement));
+            FactoryUtils.ParentToRectTransform(restrictCountLabel, restrictionsRT);
 
-            var restrictCountLabelRT = restrictCountLabel.GetComponent<RectTransform>();
-            restrictCountLabelRT.anchorMin = new Vector2(0, 0);
-            restrictCountLabelRT.anchorMax = new Vector2(1, 0);
-            restrictCountLabelRT.sizeDelta = new Vector2(0, 22);
+            // HLG will control its size
+            var labelLE = restrictCountLabel.GetComponent<LayoutElement>();
+            labelLE.minWidth = 44f;   // width for "7", "10", "30" etc
+            labelLE.minHeight = 28f;   // aligns vertically with buttons
 
             var restrictText = restrictCountLabel.GetComponent<TextMeshProUGUI>();
             restrictText.text = "N/A";
             restrictText.alignment = TextAlignmentOptions.Center;
+            restrictText.fontSize = 22;
 
             // + button
             var rightArrowSprite = Addressables.LoadAssetAsync<Sprite>("RoR2/Base/Common/MiscIcons/texOptionsArrowRight.png").WaitForCompletion();
             var increaseGO = CreateImageButton(groupName + "_Plus", buttonDimensions, rightArrowSprite);
-            ParentToRectTransform(increaseGO, restrictionsRT);
+            FactoryUtils.ParentToRectTransform(increaseGO, restrictionsRT);
 
             pickerTabControls.BindItemLimitElements(decreaseGO.GetComponent<Button>(),
                 restrictText, increaseGO.GetComponent<Button>());
@@ -243,36 +218,100 @@ namespace ExamplePlugin.UI
 
 
         // 
-        private static GameObject CreateGridOptionsGroup(string groupName, RectTransform parentRT, DraftTabControls pickerTabControls)
+        private static GameObject CreateGridOptionsGroup(string groupName, RectTransform parentRT, DraftTabControls pickerTabControls, DraftItemTier itemTier)
         {
-            var gridOptionsGroup = new GameObject(groupName, typeof(RectTransform), typeof(HorizontalLayoutGroup), typeof(LayoutElement));
-            ParentToRectTransform(gridOptionsGroup, parentRT);
+            var gridOptionsGroupRT = MakeRowGroup(groupName, parentRT);
+            var gridOptionsGroup = gridOptionsGroupRT.gameObject;
 
-            // parent object for every child
-            var gridControlsRT = gridOptionsGroup.GetComponent<RectTransform>();
+            if (SHOW_DEBUG_COLORS)
+            {
+                // pinkish
+                var groupColor = ColorPalette.FromRGB(189, 58, 134);
+                var debugBackground = gridOptionsGroup.AddComponent<Image>();
+                debugBackground.color = groupColor;
+                debugBackground.raycastTarget = false;
+            }
 
-            // pinkish
-            var groupColor = ColorPalette.FromRGB(189, 58, 134);
-            var debugBackground = gridOptionsGroup.AddComponent<Image>();
-            debugBackground.color = groupColor;
-            debugBackground.raycastTarget = true;        // optional click blocker
-
-            var hlg = gridOptionsGroup.GetComponent<HorizontalLayoutGroup>();
-            hlg.childAlignment = TextAnchor.MiddleCenter;
-            hlg.spacing = 6;
-            hlg.padding = new RectOffset(2, 2, 2, 2);
-            hlg.childControlWidth = true;
-            hlg.childControlHeight = true;
-            hlg.childForceExpandWidth = false;
-            hlg.childForceExpandHeight = false;
-
-
-            var diceIcon = Addressables.LoadAssetAsync<Sprite>("RoR2/Base/Common/MiscIcons/texRandomizeIcon.png").WaitForCompletion();
-            var diceGO = CreateImageButton(groupName + "_Dice", new Vector2(40, 40), diceIcon);
-            ParentToRectTransform(diceGO, gridControlsRT);
+            //var diceIcon = Addressables.LoadAssetAsync<Sprite>("RoR2/Base/Common/MiscIcons/texRandomizeIcon.png").WaitForCompletion();
+            var colorChoices = TierTabPalette.GetDiceColors(itemTier);
+            var diceGO = CreateDiceButton(gridOptionsGroupRT, colorChoices, 36f);
+            FactoryUtils.ParentToRectTransform(diceGO, gridOptionsGroupRT);
 
             pickerTabControls.BindDiceButton(diceGO.GetComponent<Button>());
             return gridOptionsGroup;
+        }
+
+        public static GameObject CreateDiceButton(RectTransform parent, ShuffleTabColors colorChoices, float size = 40f)
+        {
+            // Root (clickable background)
+            var go = new GameObject("DiceButton",
+                typeof(RectTransform), typeof(Button), typeof(Image), typeof(LayoutElement));
+            var rt = (RectTransform)go.transform;
+            rt.SetParent(parent, false);
+            rt.sizeDelta = new Vector2(size, size);
+
+            var le = go.GetComponent<LayoutElement>();
+            le.preferredWidth = le.minWidth = size;
+            le.preferredHeight = le.minHeight = size;
+
+            // Background (clean sliced)
+            var bg = go.GetComponent<Image>();
+            bg.sprite = Addressables.LoadAssetAsync<Sprite>("RoR2/Base/UI/texUICleanButton.png").WaitForCompletion();
+            bg.type = Image.Type.Sliced;
+            bg.color = new Color(0.18f, 0.18f, 0.20f, 1f); // subtle bright
+            bg.raycastTarget = true;
+
+            // CONTENT: a single centered dice image sized to fill with padding
+            const float pad = 5f; // tweak to taste
+            var diceGO = new GameObject("Dice", typeof(RectTransform), typeof(Image));
+            var diceRT = (RectTransform)diceGO.transform;
+            diceRT.SetParent(rt, false);
+            diceRT.anchorMin = new Vector2(0, 0);
+            diceRT.anchorMax = new Vector2(1, 1);
+            diceRT.offsetMin = new Vector2(pad, pad);
+            diceRT.offsetMax = new Vector2(-pad, -pad);
+            diceRT.pivot = new Vector2(0.5f, 0.5f);
+
+            var diceImg = diceGO.GetComponent<Image>();
+            diceImg.sprite = Addressables.LoadAssetAsync<Sprite>(
+                "RoR2/Base/Common/MiscIcons/texRandomizeIcon.png").WaitForCompletion();
+            diceImg.type = Image.Type.Simple;
+            diceImg.preserveAspect = true;
+            diceImg.raycastTarget = false;
+
+            // Outline overlay (separate image, stretched; ignores layout)
+            var outlineGO = new GameObject("BaseOutline", typeof(RectTransform), typeof(Image), typeof(LayoutElement));
+            var outlineRT = (RectTransform)outlineGO.transform;
+            outlineRT.SetParent(rt, false);
+            outlineRT.anchorMin = Vector2.zero; outlineRT.anchorMax = Vector2.one;
+            outlineRT.offsetMin = Vector2.zero; outlineRT.offsetMax = Vector2.zero;
+            outlineGO.GetComponent<LayoutElement>().ignoreLayout = true;
+
+            var outlineImg = outlineGO.GetComponent<Image>();
+            outlineImg.sprite = Addressables.LoadAssetAsync<Sprite>("RoR2/Base/UI/texUIOutlineOnly.png").WaitForCompletion();
+            outlineImg.type = Image.Type.Sliced;
+            outlineImg.color = new Color(1f, 1f, 1f, 0.286f);
+            outlineImg.raycastTarget = false;
+
+            outlineGO.transform.SetAsLastSibling(); // keep outline above dice
+
+            // Button transition (optional: mild hover)
+            var btn = go.GetComponent<Button>();
+            btn.targetGraphic = bg;
+            btn.transition = Selectable.Transition.ColorTint;
+
+            //var colors = btn.colors;
+            //colors.normalColor = colorChoices.BaseColor;
+            //colors.highlightedColor = colorChoices.HighlightColor;
+            //colors.selectedColor = colorChoices.HighlightColor;
+            //colors.pressedColor = colorChoices.HighlightColor * .9f;
+            //btn.colors = colors;
+
+            // add our highlighter
+            var highlighter = go.AddComponent<ShuffleTabDiceHighlighter>();
+            highlighter.Initialize(diceImg, colorChoices.BaseColor, colorChoices.HighlightColor, colorChoices.PressedColor);
+
+            return go;
         }
 
         private static GameObject CreateImageButton(string componentName,
@@ -293,6 +332,7 @@ namespace ExamplePlugin.UI
 
             var buttonImage = buttonParentGO.GetComponent<Image>();
             buttonImage.sprite = buttonSprite;
+            buttonImage.type = Image.Type.Sliced;
 
             var button = buttonParentGO.GetComponent<Button>();
             button.targetGraphic = buttonImage;
@@ -301,19 +341,76 @@ namespace ExamplePlugin.UI
             return buttonParentGO;
         }
 
-        private static void ParentToRectTransform(GameObject child, RectTransform parentRect)
+        private static GameObject CreateBrandedImageButton(string componentName, Vector2 buttonDimensions, Sprite buttonSprite)
         {
-            var parentGO = parentRect.gameObject;
-            child.layer = parentGO.layer;
+            // Root (clickable + background raycast hitbox)
+            var go = new GameObject(componentName,
+                typeof(RectTransform), typeof(Button), typeof(Image), typeof(LayoutElement), typeof(VerticalLayoutGroup));
+            var rt = (RectTransform)go.transform;
+            rt.sizeDelta = buttonDimensions;
 
-            var childRT = child.GetComponent<RectTransform>();
-            childRT.SetParent(parentRect);
+            // LayoutElement sizing (so H/V LayoutGroups honor our size)
+            var le = go.GetComponent<LayoutElement>();
+            le.preferredWidth = le.minWidth = buttonDimensions.x;
+            le.preferredHeight = le.minHeight = buttonDimensions.y;
+            le.flexibleWidth = le.flexibleHeight = 0;
+
+            // Background (clean sliced)
+            var bg = go.GetComponent<Image>();
+            bg.sprite = buttonSprite;                       // e.g., texUICleanButton
+            bg.type = Image.Type.Sliced;
+            bg.color = new Color(0.18f, 0.18f, 0.20f, 1f);  // subtle bright panel
+            bg.raycastTarget = true;
+
+            // Vertical layout for content (centered, no expansion)
+            var group = go.GetComponent<VerticalLayoutGroup>();
+            group.childAlignment = TextAnchor.MiddleCenter;
+            group.childControlWidth = group.childControlHeight = false;
+            group.childForceExpandWidth = group.childForceExpandHeight = false;
+            group.spacing = 2f;
+            group.padding = new RectOffset(4, 4, 4, 4);
+
+            // Content: Dice (top)
+            var diceGO = new GameObject("Dice", typeof(RectTransform), typeof(Image));
+            var diceRT = (RectTransform)diceGO.transform;
+            diceRT.SetParent(rt, false);
+            // ~70% of the smaller side minus padding feels good
+            var diceSize = Mathf.Floor(Mathf.Min(buttonDimensions.x, buttonDimensions.y) * 0.7f);
+            diceRT.sizeDelta = new Vector2(diceSize, diceSize);
+            var diceImg = diceGO.GetComponent<Image>();
+            diceImg.sprite = Addressables.LoadAssetAsync<Sprite>(
+                "RoR2/Base/Common/MiscIcons/texRandomizeIcon.png").WaitForCompletion();
+            diceImg.preserveAspect = true;
+            diceImg.raycastTarget = false;
+
+            // Outline overlay (stretched, ignores layout)
+            var outlineGO = new GameObject("BaseOutline", typeof(RectTransform), typeof(Image), typeof(LayoutElement));
+            var outlineRT = (RectTransform)outlineGO.transform;
+            outlineRT.SetParent(rt, false);
+            outlineRT.anchorMin = Vector2.zero; outlineRT.anchorMax = Vector2.one;
+            outlineRT.offsetMin = Vector2.zero; outlineRT.offsetMax = Vector2.zero;
+            outlineGO.GetComponent<LayoutElement>().ignoreLayout = true;
+            var outlineImg = outlineGO.GetComponent<Image>();
+            outlineImg.sprite = Addressables.LoadAssetAsync<Sprite>("RoR2/Base/UI/texUIOutlineOnly.png").WaitForCompletion();
+            outlineImg.type = Image.Type.Sliced;
+            outlineImg.color = new Color(1f, 1f, 1f, 0.286f);
+            outlineImg.raycastTarget = false;
+            outlineGO.transform.SetAsLastSibling(); // ensure overlay sits on top
+
+            // Button setup
+            var button = go.GetComponent<Button>();
+            button.targetGraphic = bg;
+            button.transition = Selectable.Transition.ColorTint;
+            // (optional) tweak colors if you want stronger hover feedback:
+            // var colors = button.colors; colors.highlightedColor = new Color(1f,1f,1f,0.12f); button.colors = colors;
+
+            return go;
         }
 
         private static GameObject CreateSpacer(string spacerName, RectTransform parentRect)
         {
             var spacerGO = new GameObject(spacerName, typeof(RectTransform), typeof(LayoutElement));
-            ParentToRectTransform(spacerGO, parentRect);
+            FactoryUtils.ParentToRectTransform(spacerGO, parentRect);
 
             var spacerLE = spacerGO.GetComponent<LayoutElement>();
             spacerLE.flexibleWidth = 1;

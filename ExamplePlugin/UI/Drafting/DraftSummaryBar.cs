@@ -21,6 +21,8 @@ namespace ExamplePlugin.UI.Drafting
 
         private Dictionary<DraftItemTier, TextMeshProUGUI> textAreasByTier = new();
 
+        private Dictionary<DraftItemTier, Color> tintByTier = new();
+
 
         private Button randomizeButton;
 
@@ -31,35 +33,32 @@ namespace ExamplePlugin.UI.Drafting
         public Action OnRandomizeClick;
         #endregion
 
-        public void BindTextArea(DraftItemTier draftTier, TextMeshProUGUI textArea)
+        public void BindTextArea(DraftItemTier draftTier, TextMeshProUGUI textArea, Color tierTint)
         {
             textAreasByTier[draftTier] = textArea;
+            tintByTier[draftTier] = tierTint;
         }
-        
+
         public void UpdateSummary()
         {
             // TODO make each pair of label do this but for now this is fine
-            foreach(var tier  in textAreasByTier.Keys)
+            foreach (var tier in textAreasByTier.Keys)
             {
                 var mode = DraftLoadout.Instance.GetMode(tier);
 
-                var textUpdate = DraftTierLabels.GetUIName(tier) + ": ";
-                //if(mode == DraftLimitMode.None)
-                //{
-                //    textUpdate += INFINITY;
-                //}
-                //if(mode != DraftLimitMode.None)
-                //{
+                var hex = ColorUtility.ToHtmlStringRGBA(tintByTier[tier]);
+                var tierName = DraftTierLabels.GetUIName(tier);
+                var colorBlock = $"<color=#{hex}>{tierName}:</color> <color=#FFFFFFFF>";
 
-                // mode is always restricted
+                var textUpdate = colorBlock;
 
-                    var limit = DraftLoadout.Instance.GetLimit(tier);
-                    var currCount = DraftLoadout.Instance.GetCount(tier);
+                var limit = DraftLoadout.Instance.GetLimit(tier);
+                var currCount = DraftLoadout.Instance.GetCount(tier);
 
-                    textUpdate += currCount.ToString() + " / " + limit;
-                //}
+                textUpdate += currCount.ToString() + " / " + limit;
+                textUpdate += "</color>";
 
-               textAreasByTier[tier].text = textUpdate;
+                textAreasByTier[tier].text = textUpdate;
             }
         }
 
