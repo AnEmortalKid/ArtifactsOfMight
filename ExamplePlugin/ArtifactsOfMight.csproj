@@ -25,6 +25,7 @@
 
 	<ItemGroup>
 	  <Folder Include="buildScripts\" />
+	  <Folder Include="ThunderstoreMeta\docImgs\" />
 	</ItemGroup>
 
 	<Target Name="PostBuild" AfterTargets="PostBuildEvent">

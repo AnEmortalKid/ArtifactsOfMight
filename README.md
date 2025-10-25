@@ -6,4 +6,4 @@ You can clone this repository, open the visual studio solution file and compile 
 
 This repository is meant to represent best practices for starting a simple mod.
 
-Once your mod get compiled, you can utilize the Thunderstore folder for later uploading it to https://thunderstore.io/c/riskofrain2/# ArtifactsOfMight
+Once your mod get compiled, you can utilize the Thunderstore folder for later uploading it to https://thunderstore.io/c/riskofrain2/#ArtifactsOfMight
