@@ -1,12 +1,12 @@
-﻿using ExamplePlugin.Loadout.Draft;
-using ExamplePlugin.UI.Tooltips;
+﻿using ArtifactsOfMight.Loadout.Draft;
+using ArtifactsOfMight.UI.Tooltips;
 using R2API;
 using RoR2;
 using UnityEngine;
 using UnityEngine.AddressableAssets;
 using UnityEngine.UI;
 
-namespace ExamplePlugin.UI
+namespace ArtifactsOfMight.UI
 {
     public static class ItemPickerSquareFactory
     {

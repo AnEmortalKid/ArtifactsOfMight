@@ -1,12 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
-using ExamplePlugin.Loadout.Draft;
+using ArtifactsOfMight.Loadout.Draft;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-namespace ExamplePlugin.UI.Drafting.Tabs
+namespace ArtifactsOfMight.UI.Drafting.Tabs
 {
     /// <summary>
     /// Handles the mouse events and selection state for our buttons that serve as tab switching buttons

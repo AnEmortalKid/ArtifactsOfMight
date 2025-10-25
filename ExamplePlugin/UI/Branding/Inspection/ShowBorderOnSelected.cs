@@ -5,7 +5,7 @@ using UnityEngine.EventSystems;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace ExamplePlugin.UI.Branding.Inspection
+namespace ArtifactsOfMight.UI.Branding.Inspection
 {
     public class ShowBorderOnSelected :
         MonoBehaviour, ISelectHandler, IDeselectHandler, IPointerDownHandler

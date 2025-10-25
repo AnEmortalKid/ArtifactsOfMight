@@ -1,6 +1,6 @@
 ﻿using RoR2;
 
-namespace ExamplePlugin.Loadout.Draft
+namespace ArtifactsOfMight.Loadout.Draft
 {
     /// <summary>
     /// Used to track our picks in a specific order

@@ -2,7 +2,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace ExamplePlugin.UI.Tooltips
+namespace ArtifactsOfMight.UI.Tooltips
 {
     public class TooltipSystem : MonoBehaviour
     {

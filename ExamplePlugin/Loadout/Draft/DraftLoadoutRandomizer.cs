@@ -1,11 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
-using ExamplePlugin.Loadout.Corruption;
+using ArtifactsOfMight.Loadout.Corruption;
 using RoR2;
 using static RoR2.UI.CarouselController;
 
-namespace ExamplePlugin.Loadout.Draft
+namespace ArtifactsOfMight.Loadout.Draft
 {
     /// <summary>
     /// Handles the randomization options for the draft loadout

@@ -10,16 +10,15 @@ using UnityEngine.Networking;
 using System.Collections.Generic;
 using UnityEngine.XR;
 using UnityEngine.UIElements.Collections;
-using ExamplePlugin.UI;
+using ArtifactsOfMight.UI;
 using On.RoR2.UI;
 using System.Diagnostics.CodeAnalysis;
-using ExamplePlugin.Loadout.Corruption;
-using ExamplePlugin.Loadout.Draft;
-using ExamplePlugin.DraftArtifact.Game;
+using ArtifactsOfMight.Loadout.Corruption;
+using ArtifactsOfMight.DraftArtifact.Game;
 using static RoR2.Chat;
-using ExamplePlugin.RunConfig;
+using ArtifactsOfMight.RunConfig;
 
-namespace ExamplePlugin
+namespace ArtifactsOfMight
 {
     // This is an example plugin that can be put in
     // BepInEx/plugins/ExamplePlugin/ExamplePlugin.dll to test out.
@@ -36,16 +35,19 @@ namespace ExamplePlugin
     // More info in https://risk-of-thunder.github.io/R2Wiki/Mod-Creation/Assets/Localization/
     [BepInDependency(LanguageAPI.PluginGUID)]
 
+    // We do things over the network
+    [BepInDependency(NetworkingAPI.PluginGUID)]
+
     // This attribute is required, and lists metadata for your plugin.
     [BepInPlugin(PluginGUID, PluginName, PluginVersion)]
-    [BepInDependency(NetworkingAPI.PluginGUID)]
+
 
     // This is the main declaration of our plugin class.
     // BepInEx searches for all classes inheriting from BaseUnityPlugin to initialize on startup.
     // BaseUnityPlugin itself inherits from MonoBehaviour,
     // so you can use this as a reference for what you can declare and use in your plugin class
     // More information in the Unity Docs: https://docs.unity3d.com/ScriptReference/MonoBehaviour.html
-    public class ExamplePlugin : BaseUnityPlugin
+    public class ArtifactsOfMight : BaseUnityPlugin
     {
         public const string PluginGUID = PluginAuthor + "." + PluginName;
         public const string PluginAuthor = "AnEmortalKid";

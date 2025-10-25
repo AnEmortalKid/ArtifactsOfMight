@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace ExamplePlugin.UI
+namespace ArtifactsOfMight.UI
 {
     public static class ColorPalette
     {

@@ -4,7 +4,7 @@ using System.Text;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace ExamplePlugin.UI.Branding.Buttons
+namespace ArtifactsOfMight.UI.Branding.Buttons
 {
     public struct TabButtonContainer
     {

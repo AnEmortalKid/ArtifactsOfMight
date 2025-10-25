@@ -1,12 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
-using ExamplePlugin.Loadout.Draft;
-using ExamplePlugin.UI.Drafting.Tabs;
+using ArtifactsOfMight.Loadout.Draft;
+using ArtifactsOfMight.UI.Drafting.Tabs;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace ExamplePlugin.UI.Drafting
+namespace ArtifactsOfMight.UI.Drafting
 {
     /// <summary>
     /// Component that handles the select tab buttons and notifies the listener of the draft request

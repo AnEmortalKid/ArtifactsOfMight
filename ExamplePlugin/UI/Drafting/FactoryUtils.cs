@@ -5,7 +5,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace ExamplePlugin.UI.Drafting
+namespace ArtifactsOfMight.UI.Drafting
 {
     public static class FactoryUtils
     {

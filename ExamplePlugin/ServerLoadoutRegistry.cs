@@ -2,7 +2,7 @@
 using UnityEngine.Networking;
 using RoR2;
 
-namespace ExamplePlugin
+namespace ArtifactsOfMight
 {
     /// <summary>
     /// Stores loadouts for the players on the server

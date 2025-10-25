@@ -2,7 +2,7 @@
 using RoR2;
 using UnityEngine.AddressableAssets;
 
-namespace ExamplePlugin.Loadout.Corruption
+namespace ArtifactsOfMight.Loadout.Corruption
 {
     public static class CorruptedItemDefs
     {

@@ -2,14 +2,14 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using ExamplePlugin.Loadout;
-using ExamplePlugin.Loadout.Draft;
+using ArtifactsOfMight.Loadout;
+using ArtifactsOfMight.Loadout.Draft;
 using R2API.Networking.Interfaces;
 using RoR2;
 using UnityEngine.Networking;
 using UnityEngine.UIElements.Collections;
 
-namespace ExamplePlugin.Messages
+namespace ArtifactsOfMight.Messages
 {
     /// <summary>
     /// Message used by clients to send their loadout to the server

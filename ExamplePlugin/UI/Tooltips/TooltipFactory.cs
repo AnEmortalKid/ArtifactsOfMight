@@ -5,12 +5,12 @@ using TMPro;
 using UnityEngine.AddressableAssets;
 using UnityEngine.UI;
 using UnityEngine;
-using ExamplePlugin.UI.Drafting;
-using ExamplePlugin.UI.Branding.Panel;
-using ExamplePlugin.UI.Branding.Inspection;
+using ArtifactsOfMight.UI.Drafting;
+using ArtifactsOfMight.UI.Branding.Panel;
+using ArtifactsOfMight.UI.Branding.Inspection;
 using System.Collections;
 
-namespace ExamplePlugin.UI.Tooltips
+namespace ArtifactsOfMight.UI.Tooltips
 {
     public static class TooltipFactory
     {

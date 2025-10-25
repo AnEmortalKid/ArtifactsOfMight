@@ -4,7 +4,7 @@ using System.Text;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace ExamplePlugin.UI.Drafting.Tabs
+namespace ArtifactsOfMight.UI.Drafting.Tabs
 {
     public struct DraftTabColors
     {

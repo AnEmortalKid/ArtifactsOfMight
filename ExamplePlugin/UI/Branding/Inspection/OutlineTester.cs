@@ -2,7 +2,7 @@
 using UnityEngine;
 using UnityEngine.AddressableAssets;
 
-namespace ExamplePlugin.UI.Branding.Inspection
+namespace ArtifactsOfMight.UI.Branding.Inspection
 {
     /// <summary>
     /// Demo area where we figure out how to position the hover outline for it to fit correctly

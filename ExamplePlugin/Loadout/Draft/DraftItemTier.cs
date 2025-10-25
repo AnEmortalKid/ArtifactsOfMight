@@ -1,4 +1,4 @@
-﻿namespace ExamplePlugin.Loadout.Draft
+﻿namespace ArtifactsOfMight.Loadout.Draft
 {
     /// <summary>
     /// How the UI/Player understands the tiers

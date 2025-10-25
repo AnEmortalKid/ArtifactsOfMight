@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace ExamplePlugin.Messages
+namespace ArtifactsOfMight.Messages
 {
     /// <summary>
     /// Server to clients request to ask for loadouts

@@ -2,7 +2,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace ExamplePlugin.UI
+namespace ArtifactsOfMight.UI
 {
     /// <summary>
     /// Utility for visualizing UI layout bounds with a colored border.

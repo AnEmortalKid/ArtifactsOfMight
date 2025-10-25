@@ -1,9 +1,9 @@
 ﻿using UnityEngine.AddressableAssets;
 using UnityEngine;
 using UnityEngine.UI;
-using ExamplePlugin.UI.Drafting;
+using ArtifactsOfMight.UI.Drafting;
 
-namespace ExamplePlugin.UI.Branding.Panel
+namespace ArtifactsOfMight.UI.Branding.Panel
 {
     public static class GlassPanelFactory
     {

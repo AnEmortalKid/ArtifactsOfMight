@@ -1,14 +1,14 @@
 ﻿
-using ExamplePlugin.Loadout.Draft;
-using ExamplePlugin.UI.Drafting;
-using ExamplePlugin.UI.Drafting.TierTab;
+using ArtifactsOfMight.Loadout.Draft;
+using ArtifactsOfMight.UI.Drafting;
+using ArtifactsOfMight.UI.Drafting.TierTab;
 using TMPro;
 using UnityEngine;
 using UnityEngine.AddressableAssets;
 using UnityEngine.UI;
 using static UnityEngine.UIElements.StylePropertyAnimationSystem;
 
-namespace ExamplePlugin.UI
+namespace ArtifactsOfMight.UI
 {
     public static class ItemPickerTabControlsFactory
     {

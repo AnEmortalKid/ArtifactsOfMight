@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
-using ExamplePlugin.Loadout.Draft;
+using ArtifactsOfMight.Loadout.Draft;
 
-namespace ExamplePlugin.UI.Drafting
+namespace ArtifactsOfMight.UI.Drafting
 {
     public static class DraftTierLabels
     {

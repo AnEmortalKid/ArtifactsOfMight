@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace ExamplePlugin.UI.Utils
+namespace ArtifactsOfMight.UI.Utils
 {
     public static class PlacementUtils
     {

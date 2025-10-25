@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace ExamplePlugin.Loadout
+namespace ArtifactsOfMight.Loadout
 {
     /// <summary>
     /// Defines the possible tier limit options

@@ -1,13 +1,13 @@
 ﻿using System;
 using System.Diagnostics.CodeAnalysis;
-using ExamplePlugin.Loadout;
-using ExamplePlugin.Loadout.Draft;
+using ArtifactsOfMight.Loadout;
+using ArtifactsOfMight.Loadout.Draft;
 using RoR2;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-namespace ExamplePlugin.UI
+namespace ArtifactsOfMight.UI
 {
     /// <summary>
     /// Handles logic between our ItemPickerSquare display and its behavior

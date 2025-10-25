@@ -5,7 +5,7 @@ using TMPro;
 using UnityEngine.UI;
 using UnityEngine;
 
-namespace ExamplePlugin.UI.Tooltips
+namespace ArtifactsOfMight.UI.Tooltips
 {
     public class TooltipView : MonoBehaviour
     {

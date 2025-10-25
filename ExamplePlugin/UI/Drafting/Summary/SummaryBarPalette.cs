@@ -1,7 +1,7 @@
-﻿using ExamplePlugin.Loadout.Draft;
+﻿using ArtifactsOfMight.Loadout.Draft;
 using UnityEngine;
 
-namespace ExamplePlugin.UI.Drafting.Summary
+namespace ArtifactsOfMight.UI.Drafting.Summary
 {
     public static class SummaryBarPalette
     {

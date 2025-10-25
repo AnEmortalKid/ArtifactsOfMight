@@ -1,7 +1,7 @@
 ﻿using System;
 using RoR2;
 
-namespace ExamplePlugin.Loadout.Draft
+namespace ArtifactsOfMight.Loadout.Draft
 {
     /// <summary>
     /// Mapping utilities between the UI tier and the game models tiers

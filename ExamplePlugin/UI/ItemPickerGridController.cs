@@ -1,13 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Reflection.Emit;
-using ExamplePlugin.Loadout;
+using ArtifactsOfMight.Loadout;
 using RoR2;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace ExamplePlugin.UI
+namespace ArtifactsOfMight.UI
 {
     /// <summary>
     /// Parent controller for operating on the picker squares

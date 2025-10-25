@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace ExamplePlugin.Loadout.Draft
+namespace ArtifactsOfMight.Loadout.Draft
 {
     /// <summary>
     /// Defines the restrictions (if any) for a particular tier

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using RoR2;
 
-namespace ExamplePlugin.Loadout.Corruption
+namespace ArtifactsOfMight.Loadout.Corruption
 {
     /// <summary>
     /// Handles mappings of the corrupted items and what items corrupt into them

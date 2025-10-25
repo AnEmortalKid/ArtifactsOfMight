@@ -1,12 +1,12 @@
 ﻿using System;
-using ExamplePlugin.Loadout.Draft;
+using ArtifactsOfMight.Loadout.Draft;
 using TMPro;
 using UnityEngine;
 using UnityEngine.AddressableAssets;
 using UnityEngine.UI;
 using static UnityEngine.ParticleSystem;
 
-namespace ExamplePlugin.UI.Drafting.Summary
+namespace ArtifactsOfMight.UI.Drafting.Summary
 {
 
 

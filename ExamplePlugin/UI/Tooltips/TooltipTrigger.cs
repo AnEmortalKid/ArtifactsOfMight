@@ -4,7 +4,7 @@ using System.Text;
 using UnityEngine.EventSystems;
 using UnityEngine;
 
-namespace ExamplePlugin.UI.Tooltips
+namespace ArtifactsOfMight.UI.Tooltips
 {
     // Possible to use event trigger  and pointer move handler
     public class TooltipTrigger : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IPointerMoveHandler

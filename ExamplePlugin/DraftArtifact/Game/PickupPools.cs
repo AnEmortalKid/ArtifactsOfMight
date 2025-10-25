@@ -1,9 +1,9 @@
 ﻿
 using System.Collections.Generic;
-using ExamplePlugin.Loadout.Corruption;
+using ArtifactsOfMight.Loadout.Corruption;
 using RoR2;
 
-namespace ExamplePlugin.DraftArtifact.Game
+namespace ArtifactsOfMight.DraftArtifact.Game
 {
     /// <summary>
     /// Stores mappings of items that may not be draftable,

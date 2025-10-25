@@ -1,7 +1,7 @@
 ﻿using RoR2;
 using UnityEngine;
 
-namespace ExamplePlugin.DraftArtifact.Game
+namespace ArtifactsOfMight.DraftArtifact.Game
 {
     /// <summary>
     /// Server side store that tracks the original options for a PickupPickerController

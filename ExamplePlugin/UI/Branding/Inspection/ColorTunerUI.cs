@@ -1,7 +1,7 @@
 ﻿using UnityEngine.UI;
 using UnityEngine;
 
-namespace ExamplePlugin.UI.Branding.Inspection
+namespace ArtifactsOfMight.UI.Branding.Inspection
 {
     /// <summary>
     /// Useful for tweaking colors live instead of having to change, screenshot, tweak, reubild, restart

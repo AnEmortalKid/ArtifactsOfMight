@@ -1,11 +1,11 @@
 ﻿using System;
-using ExamplePlugin.UI.Drafting;
+using ArtifactsOfMight.UI.Drafting;
 using UnityEngine;
 using UnityEngine.AddressableAssets;
 using UnityEngine.UI;
 using TMPro;
 
-namespace ExamplePlugin.UI.Branding.Inspection
+namespace ArtifactsOfMight.UI.Branding.Inspection
 {
 
 

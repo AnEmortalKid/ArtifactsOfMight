@@ -3,19 +3,16 @@ using UnityEngine.SceneManagement;
 using RoR2;
 using System.Text;
 using UnityEngine.UI;
-using System.Collections;
-using TMPro;
 using System.Collections.Generic;
-using ExamplePlugin.Loadout.Draft;
-using ExamplePlugin.UI.Drafting;
+using ArtifactsOfMight.Loadout.Draft;
+using ArtifactsOfMight.UI.Drafting;
 using System.Diagnostics.CodeAnalysis;
-using ExamplePlugin.UI.Tooltips;
-using ExamplePlugin.UI.Utils;
-using ExamplePlugin.UI.Branding.Inspection;
-using ExamplePlugin.UI.Branding.Panel;
-using Rewired.UI;
+using ArtifactsOfMight.UI.Tooltips;
+using ArtifactsOfMight.UI.Utils;
+using ArtifactsOfMight.UI.Branding.Inspection;
+using ArtifactsOfMight.UI.Branding.Panel;
 
-namespace ExamplePlugin.UI
+namespace ArtifactsOfMight.UI
 {
     /// <summary>
     /// Controls the UI components for the draft picker

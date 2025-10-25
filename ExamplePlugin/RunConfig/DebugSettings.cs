@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace ExamplePlugin.RunConfig
+namespace ArtifactsOfMight.RunConfig
 {
     /// <summary>
     /// Centralized location for toggling the local development hooks

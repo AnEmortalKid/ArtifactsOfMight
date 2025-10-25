@@ -1,14 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
-using ExamplePlugin.Loadout.Draft;
+using ArtifactsOfMight.Loadout.Draft;
 using UnityEngine.UI;
 using UnityEngine;
 using RoR2;
-using ExamplePlugin.UI.Drafting.Grid;
+using ArtifactsOfMight.UI.Drafting.Grid;
 using UnityEngine.AddressableAssets;
 
-namespace ExamplePlugin.UI.Drafting
+namespace ArtifactsOfMight.UI.Drafting
 {
     public static class DraftTabFactory
     {

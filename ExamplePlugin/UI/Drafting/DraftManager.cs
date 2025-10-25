@@ -1,17 +1,17 @@
 ﻿using System;
 using System.Collections.Generic;
-using ExamplePlugin.Loadout.Corruption;
-using ExamplePlugin.Loadout.Draft;
-using ExamplePlugin.UI.Branding.Buttons;
-using ExamplePlugin.UI.Drafting.Summary;
-using ExamplePlugin.UI.Drafting.Tabs;
+using ArtifactsOfMight.Loadout.Corruption;
+using ArtifactsOfMight.Loadout.Draft;
+using ArtifactsOfMight.UI.Branding.Buttons;
+using ArtifactsOfMight.UI.Drafting.Summary;
+using ArtifactsOfMight.UI.Drafting.Tabs;
 using RoR2;
 using TMPro;
 using UnityEngine;
 using UnityEngine.AddressableAssets;
 using UnityEngine.UI;
 
-namespace ExamplePlugin.UI.Drafting
+namespace ArtifactsOfMight.UI.Drafting
 {
     /// <summary>
     /// Responsible for bridinging logic across tabs and controling which tab is displayed

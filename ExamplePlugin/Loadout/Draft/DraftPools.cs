@@ -1,13 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
-using ExamplePlugin.UI;
+using ArtifactsOfMight.UI;
 using System.Linq;
 using RoR2;
 using UnityEngine;
 using UnityEngine.AddressableAssets;
-using ExamplePlugin.Loadout.Corruption;
+using ArtifactsOfMight.Loadout.Corruption;
 
-namespace ExamplePlugin.Loadout.Draft
+namespace ArtifactsOfMight.Loadout.Draft
 {
     /// <summary>
     /// Defines what can show up in a Drafting Grid for a player to pick

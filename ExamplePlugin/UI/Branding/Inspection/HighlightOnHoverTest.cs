@@ -5,7 +5,7 @@ using UnityEngine.EventSystems;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace ExamplePlugin.UI.Branding.Inspection
+namespace ArtifactsOfMight.UI.Branding.Inspection
 {
     internal class HighlightOnHoverTest : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
     {

@@ -3,7 +3,7 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-namespace ExamplePlugin.UI.Drafting.TierTab
+namespace ArtifactsOfMight.UI.Drafting.TierTab
 {
     /// <summary>
     /// Handles highlighting the dice icon on the shuffle tab button

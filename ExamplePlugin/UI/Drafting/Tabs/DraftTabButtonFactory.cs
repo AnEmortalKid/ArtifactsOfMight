@@ -1,14 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
-using ExamplePlugin.UI.Branding.Inspection;
+using ArtifactsOfMight.UI.Branding.Inspection;
 using TMPro;
 using UnityEngine.AddressableAssets;
 using UnityEngine.UI;
 using UnityEngine;
-using ExamplePlugin.Loadout.Draft;
+using ArtifactsOfMight.Loadout.Draft;
 
-namespace ExamplePlugin.UI.Drafting.Tabs
+namespace ArtifactsOfMight.UI.Drafting.Tabs
 {
     /// <summary>
     /// Responsible for constructing the visual elements required for a DraftTabButton

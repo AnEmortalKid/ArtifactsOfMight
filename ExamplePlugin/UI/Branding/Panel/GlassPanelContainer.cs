@@ -1,8 +1,8 @@
-﻿using ExamplePlugin.UI.Drafting;
+﻿using ArtifactsOfMight.UI.Drafting;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace ExamplePlugin.UI.Branding.Panel
+namespace ArtifactsOfMight.UI.Branding.Panel
 {
     public class GlassPanelContainer
     {

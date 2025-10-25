@@ -5,11 +5,11 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 using RoR2;
-using ExamplePlugin.Loadout;
+using ArtifactsOfMight.Loadout;
 using System.Diagnostics.CodeAnalysis;
-using ExamplePlugin.Loadout.Draft;
+using ArtifactsOfMight.Loadout.Draft;
 
-namespace ExamplePlugin.UI.Drafting
+namespace ArtifactsOfMight.UI.Drafting
 {
     /// <summary>
     /// Component responsible for briding:

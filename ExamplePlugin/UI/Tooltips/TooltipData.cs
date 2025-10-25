@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using UnityEngine;
 
-namespace ExamplePlugin.UI.Tooltips
+namespace ArtifactsOfMight.UI.Tooltips
 {
     [System.Serializable]
     public struct TooltipData

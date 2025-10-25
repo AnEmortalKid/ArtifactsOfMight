@@ -1,6 +1,6 @@
 ﻿using BepInEx.Logging;
 
-namespace ExamplePlugin
+namespace ArtifactsOfMight
 {
     internal static class Log
     {

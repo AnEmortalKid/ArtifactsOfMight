@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace ExamplePlugin.UI.Branding.Panel
+namespace ArtifactsOfMight.UI.Branding.Panel
 {
     public readonly struct Insets
     {

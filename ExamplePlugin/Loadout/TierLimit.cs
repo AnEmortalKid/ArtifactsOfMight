@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using RoR2;
 
-namespace ExamplePlugin.Loadout
+namespace ArtifactsOfMight.Loadout
 {
     /// <summary>
     /// Defines the limit of items for a given tier

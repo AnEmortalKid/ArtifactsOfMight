@@ -6,7 +6,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace ExamplePlugin.UI.Utils
+namespace ArtifactsOfMight.UI.Utils
 {
     public static class HierarchyDumper
     {

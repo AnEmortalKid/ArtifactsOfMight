@@ -2,7 +2,7 @@
 using UnityEngine;
 using RoR2;
 using UnityEngine.SceneManagement;
-using ExamplePlugin;
+using ArtifactsOfMight;
 
 public class DraftPickerToggleDuringLobby : MonoBehaviour
 {

@@ -1,4 +1,4 @@
-﻿namespace ExamplePlugin.UI.Branding.Panel
+﻿namespace ArtifactsOfMight.UI.Branding.Panel
 {
     public enum BorderStyle
     {

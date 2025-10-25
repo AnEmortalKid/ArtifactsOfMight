@@ -1,13 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
-using ExamplePlugin.UI.Drafting;
+using ArtifactsOfMight.UI.Drafting;
 using TMPro;
 using UnityEngine.AddressableAssets;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace ExamplePlugin.UI.Branding.Buttons
+namespace ArtifactsOfMight.UI.Branding.Buttons
 {
     internal class TabButtonFactory
     {

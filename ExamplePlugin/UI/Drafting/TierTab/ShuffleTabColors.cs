@@ -4,7 +4,7 @@ using System.Text;
 
 using UnityEngine;
 
-namespace ExamplePlugin.UI.Drafting.TierTab
+namespace ArtifactsOfMight.UI.Drafting.TierTab
 {
     /// <summary>
     /// Encompasses the tones for our dice

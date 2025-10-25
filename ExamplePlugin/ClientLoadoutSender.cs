@@ -1,13 +1,13 @@
 ﻿using System.Collections.Generic;
-using ExamplePlugin.Messages;
+using ArtifactsOfMight.Messages;
 using R2API.Networking.Interfaces;
 using RoR2;
 using UnityEngine.Networking;
 using System;
-using ExamplePlugin.Loadout;
-using ExamplePlugin.Loadout.Draft;
+using ArtifactsOfMight.Loadout;
+using ArtifactsOfMight.Loadout.Draft;
 
-namespace ExamplePlugin
+namespace ArtifactsOfMight
 {
     /// <summary>
     /// Responsible for sending our loadout to the server

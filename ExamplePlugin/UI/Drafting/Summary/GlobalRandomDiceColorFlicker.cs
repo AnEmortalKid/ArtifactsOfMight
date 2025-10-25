@@ -2,11 +2,11 @@
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Text;
-using ExamplePlugin.UI.Drafting.TierTab;
+using ArtifactsOfMight.UI.Drafting.TierTab;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace ExamplePlugin.UI.Drafting.Summary
+namespace ArtifactsOfMight.UI.Drafting.Summary
 {
 
 

@@ -1,10 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
-using ExamplePlugin.Loadout.Draft;
+using ArtifactsOfMight.Loadout.Draft;
 using UnityEngine;
 
-namespace ExamplePlugin.UI.Drafting.TierTab
+namespace ArtifactsOfMight.UI.Drafting.TierTab
 {
     public static class TierTabPalette
     {

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using UnityEngine;
 
-namespace ExamplePlugin
+namespace ArtifactsOfMight
 {
     /// <summary>
     /// Component that just holds a reference to which user opened a picker currently,

@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Text;
 using UnityEngine.UI;
 using UnityEngine;
-using ExamplePlugin.Loadout.Draft;
+using ArtifactsOfMight.Loadout.Draft;
 
-namespace ExamplePlugin.UI.Drafting.Grid
+namespace ArtifactsOfMight.UI.Drafting.Grid
 {
     internal class GridSquarePalette
     {

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using UnityEngine;
 
-namespace ExamplePlugin.UI.Branding.Panel
+namespace ArtifactsOfMight.UI.Branding.Panel
 {
     /// <summary>
     /// Encompasses the options for our glass panel

@@ -1,10 +1,10 @@
-﻿using ExamplePlugin.UI.Branding.Panel;
-using ExamplePlugin.UI.Tooltips;
-using ExamplePlugin.UI.Utils;
+﻿using ArtifactsOfMight.UI.Branding.Panel;
+using ArtifactsOfMight.UI.Tooltips;
+using ArtifactsOfMight.UI.Utils;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace ExamplePlugin.UI.Drafting
+namespace ArtifactsOfMight.UI.Drafting
 {
 
     /// <summary>

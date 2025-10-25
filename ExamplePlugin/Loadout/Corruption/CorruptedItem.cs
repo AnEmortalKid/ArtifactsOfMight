@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace ExamplePlugin.Loadout.Corruption
+namespace ArtifactsOfMight.Loadout.Corruption
 {
     /// <summary>
     /// An enumeration of corrupted items,

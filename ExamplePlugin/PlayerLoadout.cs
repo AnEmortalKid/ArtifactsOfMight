@@ -1,12 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using ExamplePlugin.Loadout;
+using ArtifactsOfMight.Loadout;
 using Newtonsoft.Json;
 using RoR2;
 using UnityEngine.Networking;
 
-namespace ExamplePlugin
+namespace ArtifactsOfMight
 {
     /// <summary>
     /// How the server understands our item selections and limits

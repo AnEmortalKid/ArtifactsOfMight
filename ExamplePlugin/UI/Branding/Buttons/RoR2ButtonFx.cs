@@ -2,7 +2,7 @@
 using UnityEngine.EventSystems;
 using UnityEngine;
 
-namespace ExamplePlugin.UI.Branding.Buttons
+namespace ArtifactsOfMight.UI.Branding.Buttons
 {
 
     public class RoR2ButtonFx : MonoBehaviour,

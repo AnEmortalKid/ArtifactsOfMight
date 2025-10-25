@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
-using ExamplePlugin.Loadout.Draft;
+using ArtifactsOfMight.Loadout.Draft;
 
-namespace ExamplePlugin.UI.Drafting.Tabs
+namespace ArtifactsOfMight.UI.Drafting.Tabs
 {
     /// <summary>
     /// Colors for the Buttons that switch the active DraftTab
