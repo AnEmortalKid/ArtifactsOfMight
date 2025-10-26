@@ -15,7 +15,7 @@ namespace ArtifactsOfMight
         public static void SetFor(NetworkUser user, PlayerLoadout playerLoadout)
         {
             loadoutByUser[user.netId] = playerLoadout;
-            Log.Info($"Stored loadout for {user.name}: {playerLoadout}");
+            Log.Info($"Stored loadout for [netId={user.netId}]: {playerLoadout}");
         }
 
         public static bool TryGetFor(NetworkUser user, out PlayerLoadout loadout)

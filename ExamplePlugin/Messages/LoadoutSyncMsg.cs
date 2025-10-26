@@ -70,12 +70,12 @@ namespace ArtifactsOfMight.Messages
 
             if (sender != null)
             {
-                Log.Info($"[DraftArtifact] Stored loadout for {sender.userName}: {loadout}");
+                Log.Info($"LoadoutSyncMsg.Received for {sender.userName} (netId={senderNetId}) with: {loadout}");
                 ServerLoadoutRegistry.SetFor(sender, loadout);
             }
             else
             {
-                Log.Warning($"[DraftArtifact] LoadoutSync: unknown sender netId={senderNetId}");
+                Log.Warning($"LoadoutSyncMsg unknown sender netId={senderNetId}");
             }
         }
 
@@ -83,13 +83,6 @@ namespace ArtifactsOfMight.Messages
         {
             // first byte is our mode
             writer.Write((byte)nativeTier.mode);
-
-            // nothing elsse is written
-            //if (nativeTier.mode == TierLimitMode.None)
-            //{
-            //    return;
-            //}
-
 
             // selected count and data
             writer.Write((int)nativeTier.allowed.Count);
@@ -112,26 +105,20 @@ namespace ArtifactsOfMight.Messages
         {
             var tierMode = (TierLimitMode)reader.ReadByte();
 
-
             var tierLimit = new TierLimit();
             tierLimit.tier = nativeTier;
             tierLimit.mode = tierMode;
-            tierLimit.allowed.Clear();
-            tierLimit.restrictedByVoid.Clear();
-            
-            // nothing else is written
-            //if (tierMode == TierLimitMode.None)
-            //{
-            //    return tierLimit;
-            //}
+            tierLimit.allowed = new();
+            tierLimit.restrictedByVoid = new();
 
-            // handle restricted logic
+            
             var allowedCount = reader.ReadInt32();
             for (int i = 0; i < allowedCount; i++)
             {
                 tierLimit.allowed.Add((ItemIndex)reader.ReadInt32());
             }
 
+            // handle restricted logic
             var restrictedCount = reader.ReadInt32();
             for (int r = 0; r < restrictedCount; r++)
             {

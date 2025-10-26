@@ -6,6 +6,7 @@ using RoR2;
 using UnityEngine;
 using UnityEngine.AddressableAssets;
 using ArtifactsOfMight.Loadout.Corruption;
+using ArtifactsOfMight.RunConfig;
 
 namespace ArtifactsOfMight.Loadout.Draft
 {
@@ -83,7 +84,7 @@ namespace ArtifactsOfMight.Loadout.Draft
             }
 
             var allDefs = PickupCatalog.allPickups;
-            Log.Info($"[DraftPools] Going through {allDefs.Count()} defs");
+            Log.Info($"DraftPools Going through {allDefs.Count()} defs");
             foreach (var def in allDefs)
             {
                 // not sure how these happen
@@ -99,13 +100,21 @@ namespace ArtifactsOfMight.Loadout.Draft
               
                 if(!DraftTierMaps.HasDraftTier(def.itemTier))
                 {
-                    Log.Debug($"[DraftPools] Unmapped {def.nameToken}");
+                    if(DebugSettings.LOG_DRAFT_POOLS_INFO)
+                    {
+                        Log.Debug($"DraftPools Unmapped {def.nameToken}");
+                    }
+                    
                     continue;
                 }
 
                 if (bannedItems.Contains(def.itemIndex))
                 {
-                    Log.Debug($"[DraftPools] Skipping banned {def.nameToken}");
+                    if (DebugSettings.LOG_DRAFT_POOLS_INFO)
+                    {
+                        Log.Debug($"DraftPools Skipping banned {def.nameToken}");
+                    }
+
                     continue;
                 }
 

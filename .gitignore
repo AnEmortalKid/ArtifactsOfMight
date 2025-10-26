@@ -332,3 +332,6 @@ ASALocalRun/
 # Files that i def dont want up there
 ./HierarchyDump.txt
 ./ActiveHierarchyDump.md
+
+# Thunderstore testing
+./ThundestoreExport

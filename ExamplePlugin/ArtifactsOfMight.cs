@@ -17,6 +17,8 @@ using ArtifactsOfMight.Loadout.Corruption;
 using ArtifactsOfMight.DraftArtifact.Game;
 using static RoR2.Chat;
 using ArtifactsOfMight.RunConfig;
+using ArtifactsOfMight.Messages;
+using R2API.Networking.Interfaces;
 
 namespace ArtifactsOfMight
 {
@@ -52,14 +54,7 @@ namespace ArtifactsOfMight
         public const string PluginGUID = PluginAuthor + "." + PluginName;
         public const string PluginAuthor = "AnEmortalKid";
         public const string PluginName = "ArtifactsOfMight";
-        public const string PluginVersion = "0.1.0";
-
-        // We need our item definition to persist through our functions, and therefore make it a class field.
-        private static ItemDef myItemDef;
-
-        private static ItemDef HoofDef;
-
-        private DraftPickerUI DraftPickerUI;
+        public const string PluginVersion = "0.1.2";
 
         /// <summary>
         /// Unity lifecycle function, that we will use to hook our UI
@@ -73,6 +68,15 @@ namespace ArtifactsOfMight
 
             On.RoR2.UI.CharacterSelectController.ClientSetReady += OnClientSetReady;
             On.RoR2.UI.CharacterSelectController.Awake += CSC_Awake;
+
+            if (DebugSettings.LOCAL_NETWORK_TEST)
+            {
+                Log.Warning("In Network Test Mode, gonna do the thing to the System Steam");
+                On.RoR2.Networking.NetworkManagerSystemSteam.OnClientConnect += (s, u, t) =>
+                {
+                    Log.Info("Bypass OnClientConnect");
+                };
+            }
         }
 
         private void CSC_Awake(CharacterSelectController.orig_Awake orig, RoR2.UI.CharacterSelectController self)
@@ -104,6 +108,9 @@ namespace ArtifactsOfMight
 
         /// <summary>
         /// Ensure we can send our loadout on set read
+        /// 
+        /// I think this is overkill now since the server requests the messages
+        /// but ima leave it in for now b4 ripping it out
         /// </summary>
         /// <param name="orig"></param>
         /// <param name="self"></param>
@@ -134,8 +141,13 @@ namespace ArtifactsOfMight
         {
             On.RoR2.PickupPickerController.OnInteractionBegin += PopulateOnOpen;
             On.RoR2.PickupPickerController.SetOptionsServer += OnSetOptionsServer;
-        }
 
+            // Register our networked stuff
+            NetworkingAPI.RegisterMessageType<LoadoutSyncMsg>();
+            NetworkingAPI.RegisterMessageType<RequestLoadoutSyncMsg>();
+
+            On.RoR2.Stage.BeginServer += OnBeginServer;
+        }
 
         /// <summary>
         /// Copy the array of original options for further filtering, just once
@@ -150,7 +162,7 @@ namespace ArtifactsOfMight
                 // store our state for future re-evaluations
                 if (!self.TryGetComponent<PickerState>(out var originalState))
                 {
-                    Log.Debug($"[DraftArtifact] Store original options for {self.netId} count {newOptions.Length}");
+                    Log.Debug($"OnSetOptionsServer Store original options for picker:{self.netId} count {newOptions.Length}");
                     originalState = self.gameObject.AddComponent<PickerState>();
                     // make copy
                     originalState.originalOptions = newOptions.ToArray();
@@ -164,7 +176,8 @@ namespace ArtifactsOfMight
         {
             if (NetworkServer.active)
             {
-                Log.Info($"[DraftArtifact] PopulateOnOpen for {interactor.netId}");
+                // For troubleshooting what gets sent where
+                Log.Info($"PopulateOnOpen picker:{self.netId} for interactor: {interactor.netId}");
                 var user = ResolveUser(interactor); // Interactor -> CharacterBody -> NetworkUser
                 if (user != null)
                 {
@@ -181,9 +194,32 @@ namespace ArtifactsOfMight
             orig(self, interactor);
         }
 
+
+        /// <summary>
+        /// I think this fires on both he client and server
+        /// </summary>
+        /// <param name="orig"></param>
+        /// <param name="self"></param>
+        /// <exception cref="NotImplementedException"></exception>
+        private void OnBeginServer(On.RoR2.Stage.orig_BeginServer orig, Stage self)
+        {
+            // do original behavior
+            orig(self);
+
+            var isServerActive = NetworkServer.active;
+            Log.Info($"OnBeginServer serverIsActive: {isServerActive}");
+            if (isServerActive)
+            {
+                // request clients send us stuff
+                Log.Info("OnBeginServer asking clients for their loadouts");
+                new RequestLoadoutSyncMsg().Send(R2API.Networking.NetworkDestination.Clients);
+            }
+        }
+
+
         private void ApplyOptionsServer(PickupPickerController self, PickupPickerController.Option[] options)
         {
-            Log.Info($"[DraftArtifact] ApplyOptionsServer");
+            Log.Info($"ApplyOptionsServer");
             self.SetOptionsServer(options);
         }
 
@@ -202,7 +238,7 @@ namespace ArtifactsOfMight
         {
             if (ServerLoadoutRegistry.TryGetFor(opener, out PlayerLoadout playerLoadout))
             {
-                Log.Info($"[DraftArtifact] BuildDraftOptionsFor using loadout: {playerLoadout}");
+                Log.Info($"[DraftArtifact] BuildDraftOptionsFor {opener.netId} using loadout: {playerLoadout}");
 
                 // this should exist
                 var originalState = ppc.GetComponent<PickerState>();
@@ -278,50 +314,12 @@ namespace ArtifactsOfMight
                 return filteredItems.ToArray();
             }
 
-            // fallback we shoulnd't have mutated this
+            // fallback we shouldn't have mutated this
             return ppc.options;
-        }
-
-        private void PPC_OnInteractBegin(On.RoR2.PickupPickerController.orig_OnInteractionBegin orig, PickupPickerController self, Interactor activator)
-        {
-            if (!NetworkServer.active)
-            {
-                return;
-            }
-
-            var ni = self.GetComponent<NetworkIdentity>();
-            Log.Info($"[DraftArtifact] PPC_OnInteractBegin selfGO={self.gameObject.name} inst={self.gameObject.GetInstanceID()} netId={(ni ? ni.netId.ToString() : "none")}");
-
-            if (NetworkServer.active && activator)
-            {
-                if (activator.TryGetComponent<RoR2.CharacterBody>(out var body))
-                {
-                    var user = body.master?.playerCharacterMasterController?.networkUser; // ← correct chain
-                    if (user != null)
-                    {
-                        var tag = self.GetComponent<PickerOwnerTag>() ?? self.gameObject.AddComponent<PickerOwnerTag>();
-                        tag.openerNetUserId = user.netId;
-                        Log.Info($"[DraftArtifact] PPC_OnInteractBegin opener = {user.userName} ({user.netId})");
-                        Log.Info($"[DraftArtifact] Assigned tag to {self.netId}");
-                    }
-                    else
-                    {
-                        Log.Info("[DraftArtifact] No NetworkUser from activator body.");
-                    }
-                }
-                else
-                {
-                    Log.Info("[DraftArtifact] No CharacterBody on activator.");
-                }
-            }
-
-
-            orig(self, activator);
         }
 
         public void OnDisable()
         {
-            // On.RoR2.PickupPickerController.SetOptionsFromPickupForCommandArtifact -= SetOptions;
             On.RoR2.PickupPickerController.OnInteractionBegin -= PopulateOnOpen;
         }
 
@@ -413,33 +411,6 @@ namespace ArtifactsOfMight
             self.SetOptionsServer(items);
         }
 
-        private void GP_OnInteractionBegin(
-          On.RoR2.GenericPickupController.orig_OnInteractionBegin orig,
-         GenericPickupController self,
-          Interactor activator)
-        {
-            if (NetworkServer.active)
-            {
-                Log.Info("[DraftArtifact] GP_OnInteractionBegin");
-            }
-
-            if (NetworkServer.active && activator)
-            {
-                // todo here we would track
-                if (activator.TryGetComponent<CharacterBody>(out CharacterBody characterBody))
-                {
-                    var user = characterBody.master?.playerCharacterMasterController?.networkUser;
-                    Log.Info($"Activated by {user.netId}");
-                }
-                else
-                {
-                    Log.Info("No Activator");
-                }
-            }
-
-            // do the original behavior
-            orig(self, activator);
-        }
 
         private static bool HasRequiredCorruptItem(NetworkUser user, PickupDef normalDef)
         {

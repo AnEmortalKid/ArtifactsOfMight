@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Diagnostics.CodeAnalysis;
+using ArtifactsOfMight.RunConfig;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -93,7 +95,11 @@ namespace ArtifactsOfMight.UI.Tooltips
         /// </remarks>
         public void QueueShow(TooltipData data, RectTransform preferredAnchor = null, bool snapToAnchor = false)
         {
-            Log.Info($"Queued: {data}");
+            if(DebugSettings.LOG_DRAFT_UI)
+            {
+                Log.Info($"Queued: {data}");
+            }
+            
             pendingData = data;
             anchorPoint = preferredAnchor;
             lockToAnchor = snapToAnchor;
@@ -132,6 +138,7 @@ namespace ArtifactsOfMight.UI.Tooltips
             PlaceOffTileFollowingMouse(tipRT, preferredAnchor, Input.mousePosition);
         }
 
+        [SuppressMessage("CodeQuality", "IDE0051", Justification = "MonoBehavior lifecycle")]
         void Update()
         {
             if (pendingShow && Time.unscaledTime >= hoverStartTime + showDelay)
@@ -145,45 +152,6 @@ namespace ArtifactsOfMight.UI.Tooltips
                 var tipRT = (RectTransform)tooltipView.transform;
                 PlaceOffTileFollowingMouse(tipRT, anchorPoint, Input.mousePosition);
             }
-        }
-
-        /// <summary>
-        /// Position the tooltip near the desired localposition, but clamp it within the tool tips parent
-        /// </summary>
-        /// <param name="localPos">the desired position in local space,use ReturnCursorAnchor</param>
-        void PositionTipClamped(Vector2 localPos)
-        {
-            var tipRT = this.tooltipView.GetComponent<RectTransform>();
-
-            // Tooltip pivot: top-left (0,1)
-            tipRT.anchorMin = tipRT.anchorMax = new Vector2(0f, 1f);
-            tipRT.pivot = new Vector2(0f, 1f);
-
-            // Clamp inside parent space (in local/anchored space)
-            var pRect = tooltipParent.rect;
-            var size = tipRT.rect.size;
-
-            Log.Info($"pRect {pRect}");
-            const float pad = 4f;
-
-            // For TL anchors: (0,0) is top-left; +x right, +y UP? No: Unity TL anchored y is negative going down.
-            Vector2 anchored;
-            anchored.x = localPos.x - pRect.xMin;  // shift from center to left edge
-            anchored.y = localPos.y - pRect.yMax;  // shift from center to top edge (becomes negative below)
-
-            // Clamp IN ANCHORED (TL) SPACE:
-            float minAX = pad;
-            float maxAX = pRect.width - size.x - pad;
-
-            // top edge
-            float maxAY = -pad;
-            // bottom edge
-            float minAY = -(pRect.height - size.y - pad);
-
-            anchored.x = Mathf.Clamp(anchored.x, minAX, maxAX);
-            anchored.y = Mathf.Clamp(anchored.y, minAY, maxAY);
-
-            tipRT.anchoredPosition = anchored;
         }
 
         void PlaceOffTileFollowingMouse(RectTransform tipRT, RectTransform tileRT, Vector2 mouseScreen)
@@ -235,24 +203,11 @@ namespace ArtifactsOfMight.UI.Tooltips
         /// </summary>
         private enum Side { Left, Right, Top, Bottom }
 
-        Side SideFromMouse(Rect tileLocal, Vector2 mouseLocal)
-        {
-            // Find tile center
-            float cx = (tileLocal.xMin + tileLocal.xMax) * 0.5f;
-            float cy = (tileLocal.yMin + tileLocal.yMax) * 0.5f;
-
-            // Offset of mouse from center
-            float dx = mouseLocal.x - cx;
-            float dy = mouseLocal.y - cy;
-
-            // Whichever axis has greater magnitude determines the side
-            if (Mathf.Abs(dx) > Mathf.Abs(dy))
-                return dx >= 0 ? Side.Right : Side.Left;
-            else
-                return dy >= 0 ? Side.Top : Side.Bottom;
-        }
-
-        // --- Call this once right after SetData and before reading size ---
+        
+        /// <summary>
+        /// Forces a rebuild
+        /// </summary>
+        /// <param name="rt">the rect transform to rebuild</param>
         static void ForceLayout(RectTransform rt)
         {
             LayoutRebuilder.ForceRebuildLayoutImmediate(rt);
@@ -268,17 +223,6 @@ namespace ArtifactsOfMight.UI.Tooltips
             return Rect.MinMaxRect(xMin, yMin, xMax, yMax);
         }
 
-        // Does a tooltip of 'size' placed at 'pos' with 'pivot' fit in 'bounds' with padding?
-        static bool FitsIn(Rect bounds, Vector2 pos, Vector2 size, Vector2 pivot, float pad)
-        {
-            var min = pos - Vector2.Scale(size, pivot);
-            var max = min + size;
-            min.x -= -bounds.xMin + pad; max.x -= bounds.xMax - pad;
-            min.y -= -bounds.yMin + pad; max.y -= bounds.yMax - pad;
-            return (min.x >= 0 && max.x <= 0 && min.y >= 0 && max.y <= 0);
-        }
-
-       
         /// <summary>
         /// Converts a point in the tooltip parent’s local space (center-origin)
         /// into anchored-space coordinates (0,1) top-left anchor convention).
