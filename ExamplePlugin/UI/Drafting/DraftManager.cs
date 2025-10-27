@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using ArtifactsOfMight.Loadout.Corruption;
 using ArtifactsOfMight.Loadout.Draft;
+using ArtifactsOfMight.RunConfig;
 using ArtifactsOfMight.UI.Branding.Buttons;
 using ArtifactsOfMight.UI.Drafting.Summary;
 using ArtifactsOfMight.UI.Drafting.Tabs;
@@ -81,11 +82,17 @@ namespace ArtifactsOfMight.UI.Drafting
 
         private void HandleGridItemClicked(DraftItemTier tabTier, PickupDef pickupDef)
         {
-            Log.Info($"DraftManager.HandleGridItemClicked ({tabTier}, {pickupDef.internalName}");
+            if (DebugSettings.LOG_DRAFT_UI)
+            {
+                Log.Info($"DraftManager.HandleGridItemClicked ({tabTier}, {pickupDef.internalName}");
+            }
             // Nothing to do if you clicked a locked item
             if (DraftLoadout.Instance.IsLocked(pickupDef))
             {
-                Log.Info("Item already locked");
+                if (DebugSettings.LOG_DRAFT_UI)
+                {
+                    Log.Info("Item already locked");
+                }
                 return;
             }
 

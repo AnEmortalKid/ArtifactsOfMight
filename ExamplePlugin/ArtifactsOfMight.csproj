@@ -6,7 +6,7 @@
 		<AllowUnsafeBlocks>true</AllowUnsafeBlocks>
 
 		<!-- For thunderstore package setup -->
-		<Version>0.1.2</Version>
+		<Version>0.1.5</Version>
 		<PackageBaseName>ArtifactsOfMight</PackageBaseName>
 	</PropertyGroup>
 
@@ -71,9 +71,7 @@
 
 		<!-- Zipadelphia -->
 		<Delete Files="$(ZipPath)" ContinueOnError="true" Condition="Exists('$(ZipPath)')" />
-		<ZipDirectory SourceDirectory="$(PackageDir)"
-			   DestinationFile="$(ZipPath)"
-			   Overwrite="true" />
+		<ZipDirectory SourceDirectory="$(PackageDir)" DestinationFile="$(ZipPath)" Overwrite="true" />
 		<Message Text="Packaged $(ZipPath)" Importance="High" />
 	</Target>
 </Project>

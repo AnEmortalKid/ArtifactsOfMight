@@ -19,6 +19,14 @@ using static RoR2.Chat;
 using ArtifactsOfMight.RunConfig;
 using ArtifactsOfMight.Messages;
 using R2API.Networking.Interfaces;
+using ArtifactsOfMight.Artifacts;
+using System.Reflection;
+using UnityEngine.UI;
+using UnityEngine.Rendering;
+using System.Collections;
+using ArtifactsOfMight.UI.Utils;
+using ArtifactsOfMight.Loadout.Draft;
+using System.IO.Pipes;
 
 namespace ArtifactsOfMight
 {
@@ -43,7 +51,6 @@ namespace ArtifactsOfMight
     // This attribute is required, and lists metadata for your plugin.
     [BepInPlugin(PluginGUID, PluginName, PluginVersion)]
 
-
     // This is the main declaration of our plugin class.
     // BepInEx searches for all classes inheriting from BaseUnityPlugin to initialize on startup.
     // BaseUnityPlugin itself inherits from MonoBehaviour,
@@ -54,7 +61,9 @@ namespace ArtifactsOfMight
         public const string PluginGUID = PluginAuthor + "." + PluginName;
         public const string PluginAuthor = "AnEmortalKid";
         public const string PluginName = "ArtifactsOfMight";
-        public const string PluginVersion = "0.1.2";
+        public const string PluginVersion = "0.1.4";
+
+        public List<ArtifactBase> Artifacts = new List<ArtifactBase>();
 
         /// <summary>
         /// Unity lifecycle function, that we will use to hook our UI
@@ -77,6 +86,38 @@ namespace ArtifactsOfMight
                     Log.Info("Bypass OnClientConnect");
                 };
             }
+
+            // V 0.2.0 when we introduce the artifact
+            // RegisterArtifacts();
+        }
+
+        private void RegisterArtifacts()
+        {
+            Log.Info("Registering Artifacts");
+            var ArtifactTypes = Assembly.GetExecutingAssembly().GetTypes().Where(type => !type.IsAbstract && type.IsSubclassOf(typeof(ArtifactBase)));
+            foreach (var artifactType in ArtifactTypes)
+            {
+                Log.Info($"Registering artifact: {artifactType}");
+                ArtifactBase artifact = (ArtifactBase)Activator.CreateInstance(artifactType);
+                if (ValidateArtifact(artifact, Artifacts))
+                {
+                    artifact.Init(Config);
+                }
+            }
+        }
+
+        public bool ValidateArtifact(ArtifactBase artifact, List<ArtifactBase> artifactList)
+        {
+            // always add
+            artifactList.Add(artifact);
+            return true;
+            // Sample in case we anted to have config based enabling
+            //var enabled = Config.Bind<bool>("Artifact: " + artifact.ArtifactName, "Enable Artifact?", true, "Should this artifact appear for selection?").Value;
+            //if (enabled)
+            //{
+            //    artifactList.Add(artifact);
+            //}
+            //return enabled;
         }
 
         private void CSC_Awake(CharacterSelectController.orig_Awake orig, RoR2.UI.CharacterSelectController self)
@@ -141,20 +182,98 @@ namespace ArtifactsOfMight
         {
             On.RoR2.PickupPickerController.OnInteractionBegin += PopulateOnOpen;
             On.RoR2.PickupPickerController.SetOptionsServer += OnSetOptionsServer;
+            PickupPickerPanel.SetPickupOptions += PreventWeirdSizeOnClientSetPickupOptions;
 
             // Register our networked stuff
             NetworkingAPI.RegisterMessageType<LoadoutSyncMsg>();
             NetworkingAPI.RegisterMessageType<RequestLoadoutSyncMsg>();
 
+            // Pre-Artifact hook
             On.RoR2.Stage.BeginServer += OnBeginServer;
         }
 
+        public void OnDisable()
+        {
+            On.RoR2.PickupPickerController.OnInteractionBegin -= PopulateOnOpen;
+            On.RoR2.PickupPickerController.SetOptionsServer -= OnSetOptionsServer;
+            PickupPickerPanel.SetPickupOptions -= PreventWeirdSizeOnClientSetPickupOptions;
+        }
+
         /// <summary>
-        /// Copy the array of original options for further filtering, just once
+        /// See ClientPickerPanelProtection for an explanation on what the heck
         /// </summary>
         /// <param name="orig"></param>
         /// <param name="self"></param>
-        /// <param name="newOptions"></param>
+        /// <param name="options"></param>
+        /// <exception cref="NotImplementedException"></exception>
+        private void PreventWeirdSizeOnClientSetPickupOptions(PickupPickerPanel.orig_SetPickupOptions orig, RoR2.UI.PickupPickerPanel self, PickupPickerController.Option[] options)
+        {
+            // the host does not have this problem
+            bool isClientOnly = NetworkClient.active && !NetworkServer.active;
+            if (!isClientOnly)
+            {
+                orig(self, options);
+                return;
+            }
+
+            if (LoggerSettings.LOG_CLIENT_PICKUP_OPTIONS)
+            {
+                Log.Info($"SetPickupOptions Invoked with {options.Length} items for client only session.");
+            }
+
+            // On the first send, we'll get the original X items and then the updated count before the panel can re-render
+            // This happens on the initial OnDisplayBegin on the panel
+            // So we're going to use some client logic to use our copy or trust the server to avoid a silly panel render bug (wrong size)
+            var serverOptionsLength = options.Length;
+
+            var localUser = RoR2.LocalUserManager.GetFirstLocalUser()?.currentNetworkUser;
+            var localLoadout = DraftLoadout.Instance.ToPlayerLoadout();
+
+            // check if its our second go around with this picker controller
+            var referencedController = self.pickerController;
+            if (!referencedController.TryGetComponent<ClientPickerPanelProtection>(out var pickerProtect))
+            {
+                if (LoggerSettings.LOG_CLIENT_PICKUP_OPTIONS)
+                {
+                    Log.Debug($"Attaching picker protector to picker: {self.pickerController.netId}");
+                }
+
+                pickerProtect = referencedController.gameObject.AddComponent<ClientPickerPanelProtection>();
+                pickerProtect.ClientExpectedLength = GetClientExpectedCount(options, localUser, localLoadout);
+            }
+
+            if (serverOptionsLength == pickerProtect.ClientExpectedLength)
+            {
+                // trust 
+                orig(self, options);
+                return;
+            }
+
+            var clientWanted = pickerProtect.ClientExpectedLength;
+            if (LoggerSettings.LOG_CLIENT_PICKUP_OPTIONS)
+            {
+                Log.Info($"Server sent {serverOptionsLength} but we expected {clientWanted}");
+            }
+
+            // In practice this would only happen the first time, the server sends us 34
+            // then we open the panel and immediately get the correct 8
+            // the panel rendered with the original 34 so we are gonna try to avoid that
+            var clientPredictedOptions = GetDraftOptionsForPlayer(options, localUser, DraftLoadout.Instance.ToPlayerLoadout());
+            if (LoggerSettings.LOG_CLIENT_PICKUP_OPTIONS)
+            {
+                Log.Info("Using client predicted set");
+            }
+            orig(self, clientPredictedOptions);
+        }
+
+        /// <summary>
+        /// Copy the array of original options so we can use it as the set to filter from for different players,
+        /// since we constantly override the options on the server for a picker (so all clients see the same options for the current player),
+        /// that would override the original set on a 2nd retrieval and everyone gets the first persons options.
+        /// </summary>
+        /// <param name="orig">the original invocation</param>
+        /// <param name="self">the controller</param>
+        /// <param name="newOptions">the options to set on the server</param>
         private void OnSetOptionsServer(On.RoR2.PickupPickerController.orig_SetOptionsServer orig, PickupPickerController self, PickupPickerController.Option[] newOptions)
         {
             if (NetworkServer.active)
@@ -162,7 +281,7 @@ namespace ArtifactsOfMight
                 // store our state for future re-evaluations
                 if (!self.TryGetComponent<PickerState>(out var originalState))
                 {
-                    Log.Debug($"OnSetOptionsServer Store original options for picker:{self.netId} count {newOptions.Length}");
+                    Log.Debug($"OnSetOptionsServer Store original options for picker:{self.netId} count:{newOptions.Length}");
                     originalState = self.gameObject.AddComponent<PickerState>();
                     // make copy
                     originalState.originalOptions = newOptions.ToArray();
@@ -181,7 +300,7 @@ namespace ArtifactsOfMight
                 var user = ResolveUser(interactor); // Interactor -> CharacterBody -> NetworkUser
                 if (user != null)
                 {
-                    var options = BuildDraftOptionsFor(user, self);
+                    var options = ServerBuildDraftOptionsFor(user, self);
                     ApplyOptionsServer(self, options); // server-authoritative push
                 }
 
@@ -189,6 +308,8 @@ namespace ArtifactsOfMight
                 orig(self, interactor);
                 return;
             }
+
+            Log.Info($"PopulateOnOpen Client");
 
             // Client: just let vanilla open locally; options came from server.
             orig(self, interactor);
@@ -234,11 +355,11 @@ namespace ArtifactsOfMight
             return null;
         }
 
-        private PickupPickerController.Option[] BuildDraftOptionsFor(NetworkUser opener, PickupPickerController ppc)
+        private PickupPickerController.Option[] ServerBuildDraftOptionsFor(NetworkUser opener, PickupPickerController ppc)
         {
             if (ServerLoadoutRegistry.TryGetFor(opener, out PlayerLoadout playerLoadout))
             {
-                Log.Info($"[DraftArtifact] BuildDraftOptionsFor {opener.netId} using loadout: {playerLoadout}");
+                Log.Info($"ServerBuildDraftOptionsFor: {opener.netId} using loadout: {playerLoadout}");
 
                 // this should exist
                 var originalState = ppc.GetComponent<PickerState>();
@@ -246,171 +367,171 @@ namespace ArtifactsOfMight
                 // The ppc options keep changing when we override them on the server
                 // Always evaluate from the original set
                 var originalPPCOptions = originalState.originalOptions;
-
-                // find tier sure hope its command
-                var first = originalPPCOptions[0];
-                var pickupTier = PickupCatalog.GetPickupDef(first.pickupIndex).itemTier;
-
-                var limitDefByTier = playerLoadout.byTier.Get(pickupTier);
-                //if (limitDefByTier.mode == Loadout.TierLimitMode.None)
-                //{
-                //    // bypass filtering
-                //    return originalPPCOptions;
-                //}
-
-                Log.Info($"[DraftArtifact] Build filter for tier: {limitDefByTier}");
-
-                // We're going to rebuild the list
-                List<PickupPickerController.Option> filteredItems = new();
-
-                var restrictedByCorrupt = limitDefByTier.restrictedByVoid;
-                var tierAllowedItems = limitDefByTier.allowed;
-
-                // Loop through the original options to preserve order
-                foreach (var ppcOption in originalPPCOptions)
-                {
-                    var optionDef = PickupCatalog.GetPickupDef(ppcOption.pickupIndex);
-                    var optionItemIndex = optionDef.itemIndex;
-
-                    if (tierAllowedItems.Contains(optionItemIndex))
-                    {
-                        filteredItems.Add(ppcOption);
-                        continue;
-                    }
-
-                    // check if we add or disable
-                    if (restrictedByCorrupt.Contains(optionItemIndex))
-                    {
-                        Log.Info($"Checking restrict by corrupt for {optionDef.nameToken}");
-
-                        var hasRequired = HasRequiredCorruptItem(opener, optionDef);
-
-                        if (hasRequired)
-                        {
-                            filteredItems.Add(ppcOption);
-                        }
-                        else
-                        {
-                            // build a grayed out option
-                            var grayOption = new PickupPickerController.Option
-                            {
-                                pickupIndex = ppcOption.pickupIndex,
-                                available = false
-                            };
-                            filteredItems.Add(grayOption);
-                        }
-
-                        continue;
-                    }
-
-                    // allowed 
-                    if (PickupPools.IsUndraftablePickup(optionItemIndex))
-                    {
-                        filteredItems.Add(ppcOption);
-                    }
-                }
-
-                Log.Info($"[DraftArtifact] Loadout filtered item count: {filteredItems.Count}");
-                return filteredItems.ToArray();
+                return GetDraftOptionsForPlayer(originalPPCOptions, opener, playerLoadout);
             }
 
             // fallback we shouldn't have mutated this
             return ppc.options;
         }
 
-        public void OnDisable()
+
+        /// <summary>
+        /// Returns a filtered array of options based on a players loadout and our currently available options
+        /// 
+        /// This is used both for client side prediction on the first send and for the server to correctly build
+        /// the options to send for a picker to a player
+        /// </summary>
+        /// <param name="ppcOptions">an array of options to filter through</param>
+        /// <param name="opener">who the options are intended for</param>
+        /// <param name="playerLoadout">the loadout for a player</param>
+        /// <returns></returns>
+        private PickupPickerController.Option[] GetDraftOptionsForPlayer(PickupPickerController.Option[] ppcOptions, NetworkUser opener, PlayerLoadout playerLoadout)
         {
-            On.RoR2.PickupPickerController.OnInteractionBegin -= PopulateOnOpen;
-        }
+            var first = ppcOptions[0];
+            var pickupTier = PickupCatalog.GetPickupDef(first.pickupIndex).itemTier;
 
-        private void SetOptions(On.RoR2.PickupPickerController.orig_SetOptionsFromPickupForCommandArtifact orig, PickupPickerController self, PickupIndex pickupIndex)
-        {
-            // chill
-            if (!NetworkServer.active)
+            if (LoggerSettings.LOG_BUILD_DRAFT_OPTIONS)
             {
-                return;
+                Log.Info($"Building options for tier: {pickupTier}");
             }
 
-            var ni = self.GetComponent<NetworkIdentity>();
-            Log.Info($"[DraftArtifact] SetOptions selfGO={self.gameObject.name} inst={self.gameObject.GetInstanceID()} netId={(ni ? ni.netId.ToString() : "none")} pickup={pickupIndex}");
-
-
-            RoR2.NetworkUser opener = null;
-            var tag = self.GetComponent<PickerOwnerTag>();
-            if (tag != null)
-                opener = RoR2.NetworkUser.readOnlyInstancesList.FirstOrDefault(nu => nu.netId == tag.openerNetUserId);
-
-            if (opener == null)
-                Log.Info("[DraftArtifact] No opener on picker; using host default.");
-            else
-                Log.Info($"[DraftArtifact] has opener {opener.netId}");
-
-            // Here's where i'd get the loadout per user
-
-            if (ServerLoadoutRegistry.TryGetFor(opener, out PlayerLoadout playerLoadout))
+            // if its not a draftable tier, return the current options (equipment / lunar for example)
+            if (!playerLoadout.byTier.TryGetValue(pickupTier, out var limitByTier))
             {
-                Log.Info($"[DraftArtifact] using loadout: {playerLoadout}");
-                List<PickupPickerController.Option> allowedItems = new();
-
-                // TODO check if its the same tier
-                var pickupTier = PickupCatalog.GetPickupDef(pickupIndex).itemTier;
-                //if (pickupTier == ItemTier.Tier1)
-                //{
-
-                //    allowedItems.Add(new PickupPickerController.Option
-                //    {
-                //        pickupIndex = PickupCatalog.FindPickupIndex(playerLoadout.randomWhite),
-                //        available = true
-                //    }
-                //     );
-                //}
-                //if (pickupTier == ItemTier.Tier2)
-                //{
-                //    allowedItems.Add(new PickupPickerController.Option
-                //    {
-                //        pickupIndex = PickupCatalog.FindPickupIndex(playerLoadout.randomGreen),
-                //        available = true
-                //    });
-                //}
-
-                //if (pickupTier == ItemTier.Tier3)
-                //{
-                //    allowedItems.Add(new PickupPickerController.Option
-                //    {
-                //        pickupIndex = PickupCatalog.FindPickupIndex(playerLoadout.randomRed),
-                //        available = true
-                //    });
-                //}
-
-                self.SetOptionsServer(allowedItems.ToArray());
-                return;
-            }
-            else
-            {
-                // do regular stuff
-                orig(self, pickupIndex);
-            }
-
-            // TODO server needs to do stuff
-            //PickupIndex[] limitedSelection = PickupTransmutationManager.GetGroupFromPickupIndex(pickupIndex);
-
-            //foreach (var item in limitedSelection)
-            //{
-            //    Log.Info($"[DraftArtifact] currSelection {item.pickupDef.nameToken}");
-            //}
-
-            PickupPickerController.Option[] items =
-            {
-                new PickupPickerController.Option
-                   {
-                    available = true,
-                    pickupIndex = PickupCatalog.FindPickupIndex(RoR2Content.Items.Hoof.itemIndex)
+                if (LoggerSettings.LOG_BUILD_DRAFT_OPTIONS)
+                {
+                    Log.Info($"Draft has no limit for tier: {pickupTier} returning fallback");
                 }
-            };
+                return ppcOptions;
+            }
 
-            self.SetOptionsServer(items);
+            var limitDefByTier = playerLoadout.byTier.Get(pickupTier);
+            if (LoggerSettings.LOG_BUILD_DRAFT_OPTIONS)
+            {
+                Log.Info($"Build filter for tier: {pickupTier}");
+            }
+
+            // We're going to rebuild the list
+            List<PickupPickerController.Option> filteredItems = new();
+
+            var restrictedByCorrupt = limitDefByTier.restrictedByVoid;
+            var tierAllowedItems = limitDefByTier.allowed;
+
+            if (LoggerSettings.LOG_BUILD_DRAFT_OPTIONS)
+            {
+                Log.Info($"Tier {pickupTier} allows {tierAllowedItems.Count} items");
+            }
+
+            // Loop through the original options to preserve order
+            foreach (var ppcOption in ppcOptions)
+            {
+                var optionDef = PickupCatalog.GetPickupDef(ppcOption.pickupIndex);
+                var optionItemIndex = optionDef.itemIndex;
+
+                if (tierAllowedItems.Contains(optionItemIndex))
+                {
+                    filteredItems.Add(ppcOption);
+                    continue;
+                }
+
+                // check if we add or disable
+                if (restrictedByCorrupt.Contains(optionItemIndex))
+                {
+                    if (LoggerSettings.LOG_BUILD_DRAFT_OPTIONS)
+                    {
+                        Log.Info($"Checking restrict by corrupt for {optionDef.nameToken}");
+                    }
+                    var hasRequired = HasRequiredCorruptItem(opener, optionDef);
+                    if (hasRequired)
+                    {
+                        filteredItems.Add(ppcOption);
+                    }
+                    else
+                    {
+                        // add a gray
+                        var grayOption = new PickupPickerController.Option
+                        {
+                            pickupIndex = ppcOption.pickupIndex,
+                            available = false
+                        };
+                        filteredItems.Add(grayOption);
+                    }
+                    continue;
+                }
+
+                // allowed 
+                if (PickupPools.IsUndraftablePickup(optionItemIndex))
+                {
+                    filteredItems.Add(ppcOption);
+                    continue;
+                }
+
+                // if we have no voids in this category, add this void as an empty square
+                // if we are a void tier and everything is filtered
+                // add the original amount of grays so it doesn't feel like things are broken
+                if (tierAllowedItems.Count == 0 && CorruptionMaps.IsVoidTier(pickupTier))
+                {
+                    var grayOption = new PickupPickerController.Option
+                    {
+                        pickupIndex = ppcOption.pickupIndex,
+                        available = false
+                    };
+                    filteredItems.Add(grayOption);
+                }
+            }
+
+            if (LoggerSettings.LOG_BUILD_DRAFT_OPTIONS)
+            {
+                Log.Info($"Loadout filtered item count: {filteredItems.Count}");
+            }
+            return filteredItems.ToArray();
         }
 
+
+        /// <summary>
+        /// Determines how many items the client would expect in the options
+        /// 
+        /// The options here are not used for filtering , they're merely used to find the tier
+        /// 
+        /// Since the server logic sends gray squares when items are locked, we will do the same logic here,
+        /// we care about the total count (items + corrupt unlocked)
+        /// 
+        /// We will do the same void assumption when there are no void items for a tier, we just assume it will be
+        /// the full set of locked voids (for display)
+        /// </summary>
+        /// <param name="sentOptions">the options sent from the server, may already be the filtered set</param>
+        /// <returns></returns>
+        private int GetClientExpectedCount(PickupPickerController.Option[] sentOptions, NetworkUser opener, PlayerLoadout playerLoadout)
+        {
+            var first = sentOptions[0];
+            var pickupTier = PickupCatalog.GetPickupDef(first.pickupIndex).itemTier;
+
+            Log.Info($"Predicting options for tier: {pickupTier}");
+
+            // if its not a draftable tier, return the current options (equipment / lunar for example)
+            if (!playerLoadout.byTier.TryGetValue(pickupTier, out var limitByTier))
+            {
+                Log.Info($"Draft has no limit for tier: {pickupTier} assuming all items are ok");
+                return sentOptions.Length;
+            }
+
+            var limitDefByTier = playerLoadout.byTier.Get(pickupTier);
+            Log.Info($"Build predicted for tier: {pickupTier}");
+
+            // Could be a void tier with no items in it or just a tab we didnt pick stuff on
+            // In any case we will assume the server's count is right here
+            if (limitByTier.allowed.Count == 0)
+            {
+                return sentOptions.Length;
+            }
+
+            int regularExpect = limitByTier.allowed.Count;
+            int corruptedExpect = limitByTier.restrictedByVoid.Count;
+
+            // we would get gray squares but the count is what matters for rendering
+            int total = regularExpect + corruptedExpect;
+            return total;
+        }
 
         private static bool HasRequiredCorruptItem(NetworkUser user, PickupDef normalDef)
         {
@@ -418,10 +539,13 @@ namespace ArtifactsOfMight
             if (!CorruptionMaps.HasVoidMapping(normalDef.itemIndex, out ItemIndex voidIndex))
             {
                 return false;
-
             }
 
-            Log.Info($"[DraftArtifactPlugin] checking for void {voidIndex}");
+            if (DebugSettings.LOG_DRAFT_POOLS_INFO)
+            {
+                Log.Info($"Checking for void {voidIndex}");
+            }
+
             // get inventory check if we have it
             var inventory = user.master.inventory;
             return inventory.GetItemCount(voidIndex) > 0;
@@ -455,14 +579,12 @@ namespace ArtifactsOfMight
                 {
                     Log.Info("[DraftArtifact] No player master found.");
                 }
-
-
             }
-
 
             // This if statement checks if the player has currently pressed F2.
             if (Input.GetKeyDown(KeyCode.F3))
             {
+                Log.Info("Tier 1 single");
                 // shoot a needletick option for testing
                 var playerTransform = PlayerCharacterMasterController.instances[0].master.GetBodyObject().transform;
                 if (CorruptedItemDefs.TryGetItemDef(CorruptedItem.Needletick, out var itemDef))
@@ -475,13 +597,47 @@ namespace ArtifactsOfMight
 
             if (Input.GetKeyDown(KeyCode.F4))
             {
+                Log.Info("Tier 2 single");
                 var playerTransform = PlayerCharacterMasterController.instances[0].master.GetBodyObject().transform;
-                if (CorruptedItemDefs.TryGetItemDef(CorruptedItem.NewlyHatchedZoea, out var itemDef))
+                if (CorruptedItemDefs.TryGetItemDef(CorruptedItem.VoidsentFlame, out var itemDef))
                 {
                     PickupDropletController.CreatePickupDroplet(
                    PickupCatalog.FindPickupIndex(itemDef.itemIndex),
                    playerTransform.position, playerTransform.forward * 20f);
                 }
+            }
+
+            if (Input.GetKeyDown(KeyCode.F5))
+            {
+                Log.Info("Trying to make tier2 full panel");
+                var playerTransform = PlayerCharacterMasterController.instances[0].master.GetBodyObject().transform;
+                var tier2Voids = new CorruptedItem[] { CorruptedItem.VoidsentFlame, CorruptedItem.PlasmaShrimp,
+                CorruptedItem.Tentabauble, CorruptedItem.SingularityBand, CorruptedItem.Polylute,
+                CorruptedItem.LysateCell};
+
+                var pickerOptions = new PickupPickerController.Option[tier2Voids.Length];
+                for (int i = 0; i < tier2Voids.Length; i++)
+                {
+                    var lookupDef = tier2Voids[i];
+                    if (CorruptedItemDefs.TryGetItemDef(lookupDef, out var itemDef))
+                    {
+                        pickerOptions[i] = new PickupPickerController.Option()
+                        {
+                            available = true,
+                            pickupIndex = PickupCatalog.FindPickupIndex(itemDef.itemIndex)
+                        };
+                    }
+                }
+
+                GenericPickupController.CreatePickupInfo pickupInfo = new()
+                {
+                    pickerOptions = pickerOptions,
+                    position = playerTransform.position,
+                    rotation = playerTransform.rotation,
+                    artifactFlag = GenericPickupController.PickupArtifactFlag.COMMAND,
+                };
+
+                GenericPickupController.CreatePickup(pickupInfo);
             }
         }
     }

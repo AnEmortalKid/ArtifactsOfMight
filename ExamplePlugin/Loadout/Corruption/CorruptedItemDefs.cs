@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using ArtifactsOfMight.RunConfig;
 using RoR2;
 using UnityEngine.AddressableAssets;
 
@@ -53,14 +54,18 @@ namespace ArtifactsOfMight.Loadout.Corruption
         {
             defByItem = new();
 
-            foreach(var pathDef in itemDefAssettPathsByItem)
+            foreach (var pathDef in itemDefAssettPathsByItem)
             {
                 var corruptKey = pathDef.Key;
                 var assetPath = pathDef.Value;
-                Log.Info($"CorruptedItemDefs loading {assetPath}");
+                if (DebugSettings.LOG_DRAFT_POOLS_INFO)
+                {
+                    Log.Info($"CorruptedItemDefs loading {assetPath}");
+                }
+
                 ItemDef itemDef = Addressables.LoadAssetAsync<ItemDef>(assetPath).WaitForCompletion();
                 // Idk how this acts if someone doesn't have the expansion tbh
-                if(itemDef != null )
+                if (itemDef != null)
                 {
                     defByItem[corruptKey] = itemDef;
                 }

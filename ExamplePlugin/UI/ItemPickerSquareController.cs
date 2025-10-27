@@ -2,6 +2,7 @@
 using System.Diagnostics.CodeAnalysis;
 using ArtifactsOfMight.Loadout;
 using ArtifactsOfMight.Loadout.Draft;
+using ArtifactsOfMight.RunConfig;
 using RoR2;
 using UnityEngine;
 using UnityEngine.EventSystems;
@@ -75,7 +76,10 @@ namespace ArtifactsOfMight.UI
 
         private void HandleOnClick()
         {
-            Log.Info($"[DraftArtifact]ItemPickerSquareController.HandleOnClick: {pickupDef.nameToken}");
+            if (DebugSettings.LOG_DRAFT_UI)
+            {
+                Log.Info($"[DraftArtifact]ItemPickerSquareController.HandleOnClick: {pickupDef.nameToken}");
+            }
             OnSquareClicked?.Invoke(pickupDef);
         }
 

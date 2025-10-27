@@ -70,6 +70,44 @@ namespace ArtifactsOfMight.UI.Utils
             return sb.ToString();
         }
 
+
+        public static void DumpPickupPickerPanel(RoR2.UI.PickupPickerPanel panel)
+        {
+            if (!panel)
+            {
+                Log.Info("DumpPickupPickerPanel: panel is null");
+                return;
+            }
+
+            var sb = new StringBuilder(4096);
+            sb.AppendLine("========== PICKUP PICKER PANEL HIERARCHY ==========");
+            sb.AppendLine($"Panel GO: {panel.gameObject.name} active={panel.gameObject.activeInHierarchy}");
+            sb.AppendLine($"buttonContainer: {(panel.buttonContainer ? panel.buttonContainer.name : "null")}");
+            var sr = panel.GetComponentInChildren<ScrollRect>(true);
+            if (sr)
+            {
+                sb.AppendLine($"ScrollRect: content={(sr.content ? sr.content.name : "null")} viewport={(sr.viewport ? sr.viewport.name : "null")} vertical={sr.vertical} horizontal={sr.horizontal}");
+            }
+
+            // Dump the panel and its whole subtree (includes inactive children)
+            var panelRT = panel.GetComponent<RectTransform>();
+            AppendRectTree(sb, panelRT, 0, includeInactive: true);
+
+            // Also dump 2 parents up, in case fitters live higher
+            var p = panelRT ? panelRT.parent as RectTransform : null;
+            int up = 0;
+            while (p && up < 2)
+            {
+                sb.AppendLine("---------- PARENT ----------");
+                AppendRectTree(sb, p, 0, includeInactive: true);
+                p = p.parent as RectTransform;
+                up++;
+            }
+
+            sb.AppendLine("===================================================");
+            Log.Info(sb.ToString());
+        }
+
         /// <summary>
         /// Logs the properties of a RectTransform
         /// </summary>
@@ -146,5 +184,55 @@ namespace ArtifactsOfMight.UI.Utils
                 DumpRectTree(t.GetChild(i), depth + 1);
         }
 
+
+        private static void AppendRectTree(StringBuilder sb, RectTransform rt, int depth, bool includeInactive)
+        {
+            if (!rt) return;
+
+            // Skip inactive branches if requested
+            if (!includeInactive && !rt.gameObject.activeSelf) return;
+
+            string pad = new string(' ', depth * 2);
+            var go = rt.gameObject;
+            var r = rt.rect;
+
+            sb.AppendLine($"{pad}- {go.name} (active={go.activeSelf}, layer={go.layer}, tag={go.tag})");
+            sb.AppendLine($"{pad}  Rect: w={r.width:F1} h={r.height:F1} aMin={rt.anchorMin} aMax={rt.anchorMax} piv={rt.pivot} offMin={rt.offsetMin} offMax={rt.offsetMax} sd={rt.sizeDelta}");
+
+            // Common UI components + key props
+            var le = go.GetComponent<LayoutElement>();
+            if (le) sb.AppendLine($"{pad}  LayoutElement: min=({le.minWidth},{le.minHeight}) pref=({le.preferredWidth},{le.preferredHeight}) flex=({le.flexibleWidth},{le.flexibleHeight}) ignore={le.ignoreLayout}");
+
+            var csf = go.GetComponent<ContentSizeFitter>();
+            if (csf) sb.AppendLine($"{pad}  ContentSizeFitter: hor={csf.horizontalFit} ver={csf.verticalFit}");
+
+            var vlg = go.GetComponent<VerticalLayoutGroup>();
+            if (vlg) sb.AppendLine($"{pad}  VerticalLayoutGroup: spacing={vlg.spacing} pad=({vlg.padding.left},{vlg.padding.right},{vlg.padding.top},{vlg.padding.bottom}) ctrlW={vlg.childControlWidth} ctrlH={vlg.childControlHeight} expandW={vlg.childForceExpandWidth} expandH={vlg.childForceExpandHeight}");
+
+            var hlg = go.GetComponent<HorizontalLayoutGroup>();
+            if (hlg) sb.AppendLine($"{pad}  HorizontalLayoutGroup: spacing={hlg.spacing} pad=({hlg.padding.left},{hlg.padding.right},{hlg.padding.top},{hlg.padding.bottom}) ctrlW={hlg.childControlWidth} ctrlH={hlg.childControlHeight} expandW={hlg.childForceExpandWidth} expandH={hlg.childForceExpandHeight}");
+
+            var glg = go.GetComponent<GridLayoutGroup>();
+            if (glg) sb.AppendLine($"{pad}  GridLayoutGroup: cell={glg.cellSize} spacing={glg.spacing} startCorner={glg.startCorner} startAxis={glg.startAxis} constraint={glg.constraint} count={glg.constraintCount}");
+
+            var img = go.GetComponent<Image>();
+            if (img) sb.AppendLine($"{pad}  Image: type={img.type} raycast={img.raycastTarget} sprite={(img.sprite ? img.sprite.name : "null")}");
+
+            var txt = go.GetComponent<TMP_Text>();
+            if (txt) sb.AppendLine($"{pad}  TMP_Text: textLen={txt.text?.Length ?? 0} overflow={txt.overflowMode} enableAutoSize={txt.enableAutoSizing}");
+
+            var sr = go.GetComponent<ScrollRect>();
+            if (sr) sb.AppendLine($"{pad}  ScrollRect: content={(sr.content ? sr.content.name : "null")} viewport={(sr.viewport ? sr.viewport.name : "null")} inertia={sr.inertia} v={sr.vertical} h={sr.horizontal}");
+
+            // Child count (includes inactive)
+            int children = rt.childCount;
+            sb.AppendLine($"{pad}  Children: {children}");
+
+            for (int i = 0; i < children; i++)
+            {
+                var crt = rt.GetChild(i) as RectTransform;
+                AppendRectTree(sb, crt, depth + 1, includeInactive);
+            }
+        }
     }
 }

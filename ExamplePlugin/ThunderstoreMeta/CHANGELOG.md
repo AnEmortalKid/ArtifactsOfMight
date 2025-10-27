@@ -1,5 +1,21 @@
 # Changelog
 
+## 0.1.5
+
+- Resolve empty void panels by filling in with locked items, prevents the UI from not telling us if things broke or its the wrong tier
+- Attempt to fix client-only jank when the panel first opens and the server sends options halfway through
+
+## 0.1.4
+
+- Diagnostic logging for command palette
+
+## 0.1.3
+
+- Fix non draftable tiers breaking the command palette
+
+Note:
+
+- Sometimes the first command palette is a bit too big, click out of it atm
 
 ## 0.1.2
 

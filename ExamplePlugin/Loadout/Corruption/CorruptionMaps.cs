@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using ArtifactsOfMight.RunConfig;
 using RoR2;
 
 namespace ArtifactsOfMight.Loadout.Corruption
@@ -12,6 +13,11 @@ namespace ArtifactsOfMight.Loadout.Corruption
     {
         private static Dictionary<ItemIndex, ItemIndex> NormalToVoid = new();
         private static Dictionary<ItemIndex, HashSet<ItemIndex>> VoidToNormals = new();
+
+        private static HashSet<ItemTier> VoidItemTiers = new HashSet<ItemTier>
+        {
+            ItemTier.VoidTier1, ItemTier.VoidTier2, ItemTier.VoidTier3, ItemTier.VoidBoss
+        };
 
         // TODO build map RoR2 to CorruptItem index
         // Then do the build maps thing with item defs n shit
@@ -50,7 +56,7 @@ namespace ArtifactsOfMight.Loadout.Corruption
         /// <returns></returns>
         public static bool HasVoidMapping(ItemIndex normalIndex, out ItemIndex voidIndex)
         {
-            if(NormalToVoid.TryGetValue(normalIndex, out voidIndex))
+            if (NormalToVoid.TryGetValue(normalIndex, out voidIndex))
             {
                 return true;
             }
@@ -75,12 +81,14 @@ namespace ArtifactsOfMight.Loadout.Corruption
             TryToMap(RoR2Content.Items.SlowOnHit.itemIndex, CorruptedItem.Tentabauble);
             TryToMap(RoR2Content.Items.ExplodeOnDeath.itemIndex, CorruptedItem.VoidsentFlame);
             TryToMap(RoR2Content.Items.Mushroom.itemIndex, CorruptedItem.WeepingFungus);
-            // TODO this corrupts all yellows
-            // Not Draftable NewlyHatchedZoea
-            // Need to deal with still pickupable
+            
+            // Not adding hatched zoea as pickable
             //TryToMap(RoR2Content.Items.BleedOnHit.itemIndex, CorruptedItem.NewlyHatchedZoea);
 
-            Log.Info($"CorruptionMaps normalToVoid: {NormalToVoid}");
+            if (DebugSettings.LOG_DRAFT_POOLS_INFO)
+            {
+                Log.Info($"CorruptionMaps normalToVoid count: {NormalToVoid.Count}");
+            }
 
             // Do the reverse buildup
             foreach (var normalToVoidPair in NormalToVoid)
@@ -95,13 +103,23 @@ namespace ArtifactsOfMight.Loadout.Corruption
                 }
 
                 set.Add(normalIndex);
-            }            
+            }
+        }
+
+        /// <summary>
+        /// Determines whether the item tier represents a void tier
+        /// </summary>
+        /// <param name="itemTier">the RoR2 item tier</param>
+        /// <returns>true if this tier is in the void set or not</returns>
+        public static bool IsVoidTier(ItemTier itemTier)
+        {
+            return VoidItemTiers.Contains(itemTier);
         }
 
         private static void TryToMap(ItemIndex normalIndex, CorruptedItem corrupted)
         {
 
-            if(CorruptedItemDefs.TryGetItemDef(corrupted, out ItemDef corruptDef))
+            if (CorruptedItemDefs.TryGetItemDef(corrupted, out ItemDef corruptDef))
             {
                 NormalToVoid[normalIndex] = corruptDef.itemIndex;
             }
