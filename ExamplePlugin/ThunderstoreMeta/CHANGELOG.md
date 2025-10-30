@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.2.0
+
+- Introduces selectable artifact for Artifact of Choice
+![](https://imgur.com/0kbXZSV.png)
+
 ## 0.1.5
 
 - Resolve empty void panels by filling in with locked items, prevents the UI from not telling us if things broke or its the wrong tier

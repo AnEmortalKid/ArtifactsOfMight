@@ -27,6 +27,8 @@ using System.Collections;
 using ArtifactsOfMight.UI.Utils;
 using ArtifactsOfMight.Loadout.Draft;
 using System.IO.Pipes;
+using ArtifactsOfMight.Assets;
+using ArtifactsOfMight.Logger;
 
 namespace ArtifactsOfMight
 {
@@ -65,6 +67,8 @@ namespace ArtifactsOfMight
 
         public List<ArtifactBase> Artifacts = new List<ArtifactBase>();
 
+        public static PluginInfo PluginInfo { get; private set; }
+
         /// <summary>
         /// Unity lifecycle function, that we will use to hook our UI
         /// </summary>
@@ -73,10 +77,17 @@ namespace ArtifactsOfMight
         {
             // Init our logging class so that we can properly log for debugging
             Log.Init(Logger);
+            ScoppedLogger.Init(Logger);
+            EnableScopedLoggers();
+
             Log.Info("Initializing via Awake");
 
-            On.RoR2.UI.CharacterSelectController.ClientSetReady += OnClientSetReady;
-            On.RoR2.UI.CharacterSelectController.Awake += CSC_Awake;
+            // Addressable stuff
+            PluginInfo = Info;
+            RegisterAssetBundles();
+
+            // CharacterSelectController.ClientSetReady += OnClientSetReady;
+            CharacterSelectController.Awake += HookupUIDepsOnCharacterSelectAwake;
 
             if (DebugSettings.LOCAL_NETWORK_TEST)
             {
@@ -88,7 +99,18 @@ namespace ArtifactsOfMight
             }
 
             // V 0.2.0 when we introduce the artifact
-            // RegisterArtifacts();
+            RegisterArtifacts();
+        }
+
+        private void EnableScopedLoggers()
+        {
+            // let our artifact of choice log stuff
+            ScoppedLogger.EnableScope("ArtifactsOfMight.Artifacts");
+        }
+
+        private void RegisterAssetBundles()
+        {
+            ArtifactsOfMightAsset.Init();
         }
 
         private void RegisterArtifacts()
@@ -120,7 +142,7 @@ namespace ArtifactsOfMight
             //return enabled;
         }
 
-        private void CSC_Awake(CharacterSelectController.orig_Awake orig, RoR2.UI.CharacterSelectController self)
+        private void HookupUIDepsOnCharacterSelectAwake(CharacterSelectController.orig_Awake orig, RoR2.UI.CharacterSelectController self)
         {
             orig(self);
 
@@ -155,7 +177,7 @@ namespace ArtifactsOfMight
         /// </summary>
         /// <param name="orig"></param>
         /// <param name="self"></param>
-        private void OnClientSetReady(On.RoR2.UI.CharacterSelectController.orig_ClientSetReady orig, RoR2.UI.CharacterSelectController self)
+        private void OnClientSetReady(CharacterSelectController.orig_ClientSetReady orig, RoR2.UI.CharacterSelectController self)
         {
             orig(self);
 
@@ -180,23 +202,25 @@ namespace ArtifactsOfMight
         [SuppressMessage("CodeQuality", "IDE0051", Justification = "MonoBehavior lifecycle")]
         public void OnEnable()
         {
-            On.RoR2.PickupPickerController.OnInteractionBegin += PopulateOnOpen;
-            On.RoR2.PickupPickerController.SetOptionsServer += OnSetOptionsServer;
-            PickupPickerPanel.SetPickupOptions += PreventWeirdSizeOnClientSetPickupOptions;
-
             // Register our networked stuff
             NetworkingAPI.RegisterMessageType<LoadoutSyncMsg>();
             NetworkingAPI.RegisterMessageType<RequestLoadoutSyncMsg>();
 
+            ScoppedLogger.LogEnabledScopes();
+
+            //On.RoR2.PickupPickerController.OnInteractionBegin += PopulateOnOpen;
+            //On.RoR2.PickupPickerController.SetOptionsServer += OnSetOptionsServer;
+            //PickupPickerPanel.SetPickupOptions += PreventWeirdSizeOnClientSetPickupOptions;
+
             // Pre-Artifact hook
-            On.RoR2.Stage.BeginServer += OnBeginServer;
+            // On.RoR2.Stage.BeginServer += OnBeginServer;
         }
 
         public void OnDisable()
         {
-            On.RoR2.PickupPickerController.OnInteractionBegin -= PopulateOnOpen;
-            On.RoR2.PickupPickerController.SetOptionsServer -= OnSetOptionsServer;
-            PickupPickerPanel.SetPickupOptions -= PreventWeirdSizeOnClientSetPickupOptions;
+            // On.RoR2.PickupPickerController.OnInteractionBegin -= PopulateOnOpen;
+            // On.RoR2.PickupPickerController.SetOptionsServer -= OnSetOptionsServer;
+            // PickupPickerPanel.SetPickupOptions -= PreventWeirdSizeOnClientSetPickupOptions;
         }
 
         /// <summary>

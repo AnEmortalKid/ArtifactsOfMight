@@ -4,9 +4,11 @@ Adds additional artifacts that restrict your choices, you might have a good time
 
 ## Artifact of Choice
 
-The Artifact of Choice currently only works when the _Artifact of Command_ is enabled. 
+Limits your options on the command palette, make your selections with the Artifact of Choice dialog.
 
-It provides a dialog that lets you limit which items will be available on the command picker.
+![](https://imgur.com/0kbXZSV.png)
+
+_This artifact will enable command for you to ensure things work_
 
 
 1. Toggle the selection dialog with F7
