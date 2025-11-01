@@ -63,7 +63,7 @@ namespace ArtifactsOfMight
         public const string PluginGUID = PluginAuthor + "." + PluginName;
         public const string PluginAuthor = "AnEmortalKid";
         public const string PluginName = "ArtifactsOfMight";
-        public const string PluginVersion = "0.1.4";
+        public const string PluginVersion = BuildInfo.Version;
 
         public List<ArtifactBase> Artifacts = new List<ArtifactBase>();
 

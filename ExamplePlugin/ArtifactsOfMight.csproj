@@ -6,7 +6,7 @@
 		<AllowUnsafeBlocks>true</AllowUnsafeBlocks>
 
 		<!-- For thunderstore package setup -->
-		<Version>0.2.1</Version>
+		<Version>0.2.2</Version>
 		<PackageBaseName>ArtifactsOfMight</PackageBaseName>
 	</PropertyGroup>
 
@@ -32,18 +32,35 @@
 		<Folder Include="ThunderstoreMeta\docImgs\" />
 	</ItemGroup>
 
+	<Target Name="GenerateVersionClass" BeforeTargets="BeforeCompile">
+		<!-- gotta escape the semicolon with the URI encoded form -->
+		<WriteLinesToFile
+		  File="Properties/Version.g.cs"
+		  Overwrite="true"
+		  Lines="
+namespace ArtifactsOfMight {
+  internal static partial class BuildInfo {
+    public const string Version = &quot;$(Version)&quot;%3B
+  }
+}
+" />
+		<ItemGroup>
+			<Compile Include="Properties/Version.g.cs" />
+		</ItemGroup>
+	</Target>
+
 	<Target Name="PostBuild_Debug" AfterTargets="Build" Condition="'$(Configuration)'=='Debug'">
 		<Exec Command="call &quot;$(ProjectDir)buildScripts\deploy_to_modtest.bat&quot; &quot;$(TargetDir)&quot; &quot;$(TargetName)&quot;" />
 	</Target>
 
 	<Target Name="Release_Package" AfterTargets="Build" Condition="'$(Configuration)'=='Release'">
-
 		<PropertyGroup>
 			<!-- $(TargetDir) already points to bin\Release\netstandard2.1\ -->
 			<PackageDir>$(TargetDir)Package\</PackageDir>
 			<ThunderstoreMeta>$(ProjectDir)\ThunderstoreMeta\</ThunderstoreMeta>
 			<InnerFolder>$(PackageBaseName)\</InnerFolder>
 			<InnerDest>$(PackageDir)$(InnerFolder)</InnerDest>
+			<!-- From MyMod_0.0.0 to MyMod_0_0_0 -->
 			<PackageName>$(PackageBaseName)_$([System.String]::Copy('$(Version)').Replace('.','_'))</PackageName>
 			<ZipPath>$(TargetDir)$(PackageName).zip</ZipPath>
 		</PropertyGroup>
@@ -51,7 +68,7 @@
 		<!-- Clean fresh -->
 		<RemoveDir Directories="$(PackageDir)" Condition="Exists('$(PackageDir)')" />
 		<MakeDir Directories="$(PackageDir)" />
-		
+
 		<!-- DLL In inner folder -->
 		<ItemGroup>
 			<DllFiles Include="$(TargetPath)" />
