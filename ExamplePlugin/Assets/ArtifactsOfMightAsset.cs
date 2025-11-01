@@ -12,13 +12,13 @@ namespace ArtifactsOfMight.Assets
 
         public const string bundleName = "artifacts_of_might.bundle";
 
-        public const string assetBundleFolder = "assetbundles";
-
         public static string AssetBundlePath
         {
             get
             {
-                return Path.Combine(Path.GetDirectoryName(ArtifactsOfMight.PluginInfo.Location), assetBundleFolder, bundleName);
+                // R2Modman will unflatten the directory of assetbundles if we create it
+                // So always assume its next to the DLL and not in some nested directory
+                return Path.Combine(Path.GetDirectoryName(ArtifactsOfMight.PluginInfo.Location), bundleName);
             }
         }
 

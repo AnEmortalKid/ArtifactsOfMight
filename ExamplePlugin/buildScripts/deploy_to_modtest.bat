@@ -14,7 +14,8 @@ set DEST_DIR=%APPDATA%\r2modmanPlus-local\RiskOfRain2\profiles\ModTest\BepInEx\p
 
 :: === Local assetbundles folder  ===
 set ASSET_BUNDLE_SRC=%SOURCE_ROOT%\assetbundles
-set ASSET_BUNDLE_DEST=%DEST_DIR%\assetbundles
+:: Must be placed next to the DLL
+set ASSET_BUNDLE_DEST=%DEST_DIR%
 
 echo Deploying %PROJECT_NAME% from "%SOURCE_DIR%" to "%DEST_DIR%"
 if not exist "%DEST_DIR%" (

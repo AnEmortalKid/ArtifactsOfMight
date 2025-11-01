@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.2.1
+
+- Fix asset bundle location
+
 ## 0.2.0
 
 - Introduces selectable artifact for Artifact of Choice

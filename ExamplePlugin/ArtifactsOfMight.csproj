@@ -6,7 +6,7 @@
 		<AllowUnsafeBlocks>true</AllowUnsafeBlocks>
 
 		<!-- For thunderstore package setup -->
-		<Version>0.2.0</Version>
+		<Version>0.2.1</Version>
 		<PackageBaseName>ArtifactsOfMight</PackageBaseName>
 	</PropertyGroup>
 
@@ -68,6 +68,13 @@
 
 		<!-- copy our files -->
 		<Copy SourceFiles="@(ThunderstoreFiles)" DestinationFolder="$(PackageDir)" SkipUnchangedFiles="true" />
+
+		<!-- Asset bundles -->
+		<ItemGroup>
+			<AssetBundles Include="$(ProjectDir)\assetbundles\artifacts_of_might.bundle" />
+		</ItemGroup>
+		<!-- Has to land next to dll -->
+		<Copy SourceFiles="@(AssetBundles)" DestinationFolder="$(InnerDest)" SkipUnchangedFiles="true" />
 
 		<!-- Zipadelphia -->
 		<Delete Files="$(ZipPath)" ContinueOnError="true" Condition="Exists('$(ZipPath)')" />
