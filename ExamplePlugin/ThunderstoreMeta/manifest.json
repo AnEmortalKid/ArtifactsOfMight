@@ -1,14 +1,14 @@
 {
-    "name": "Artifacts_Of_Might",
-    "version_number": "0.2.1",
-    "website_url": "https://github.com/AnEmortalKid/ArtifactsOfMight",
-    "description": "Adds additional artifacts that restrict your choices, you might have a good time, you might not.",
-    "dependencies": [
-        "bbepis-BepInExPack-5.4.2120",
-        "RiskofThunder-HookGenPatcher-1.2.9",
-        "RiskofThunder-R2API_Core-5.1.7",
-        "RiskofThunder-R2API_Items-1.0.7",
-        "RiskofThunder-R2API_Language-1.0.1",
-        "RiskofThunder-R2API_Networking-1.0.3"
-    ]
+"name": "Artifacts_Of_Might",
+"version_number": "0.4.0",
+"website_url": "https://github.com/AnEmortalKid/ArtifactsOfMight",
+"description": "Adds additional artifacts that restrict your choices, you might have a good time, you might not.",
+"dependencies": [
+"bbepis-BepInExPack-5.4.2120",
+"RiskofThunder-HookGenPatcher-1.2.9",
+"RiskofThunder-R2API_Core-5.1.7",
+"RiskofThunder-R2API_Items-1.0.7",
+"RiskofThunder-R2API_Language-1.0.1",
+"RiskofThunder-R2API_Networking-1.0.3"
+]
 }

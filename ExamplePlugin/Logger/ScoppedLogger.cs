@@ -71,7 +71,7 @@ namespace ArtifactsOfMight.Logger
         /// </summary>
         /// <typeparam name="T"></typeparam>
         /// <returns></returns>
-        internal static Scoped For<T>() => new Scoped(_root, typeof(T).FullName ?? typeof(T).Name);
+        internal static Scoped For<T>() => new Scoped(_root, ResolveScopeName(typeof(T)));
 
         /// <summary>
         /// Create a scope logger for the desired name
@@ -96,6 +96,7 @@ namespace ArtifactsOfMight.Logger
             // this should count the class as enabled
             foreach (var es in enabledScopes)
             {
+                Log.Info($"Checking {es} against {scope}");
                 if (scope.StartsWith(es, StringComparison.Ordinal))
                 {
                     return true;
@@ -105,18 +106,41 @@ namespace ArtifactsOfMight.Logger
             return false;
         }
 
+        private static string ResolveScopeName(Type t)
+        {
+            // Try FullName first
+            var name = t.FullName;
+
+            // Fallback if null (e.g., some generic/nested cases)
+            if (string.IsNullOrEmpty(name))
+            {
+                if (!string.IsNullOrEmpty(t.Namespace))
+                    name = $"{t.Namespace}.{t.Name}";
+                else
+                    name = t.Name;
+            }
+
+            // Normalize nested type separator
+            // (nested types show up as Outer+Inner — convert to dotted form)
+            name = name.Replace('+', '.');
+
+            return name;
+        }
+
 
         internal readonly struct Scoped
         {
             private readonly ManualLogSource src;
             private readonly string scope;
+            private readonly string shortScope;
 
             public Scoped(ManualLogSource src, string scope)
             {
                 this.src = src;
 
                 // trim to last part so a long namespace:namespace:namespace ends up as just a class name
-                this.scope = scope = scope.Contains('.') ? scope[(scope.LastIndexOf('.') + 1)..] : scope;
+                this.scope = scope;
+                this.shortScope = scope.Contains('.') ? scope[(scope.LastIndexOf('.') + 1)..] : scope;
             }
 
             // Add member name automatically for breadcrumbs
@@ -124,7 +148,7 @@ namespace ArtifactsOfMight.Logger
             {
                 if (IsEnabled(scope))
                 {
-                    src.LogDebug($"[{scope}::{member}] {msg}");
+                    src.LogDebug($"[{shortScope}::{member}] {msg}");
                 }
             }
 
@@ -132,7 +156,7 @@ namespace ArtifactsOfMight.Logger
             {
                 if (IsEnabled(scope))
                 {
-                    src.LogInfo($"[{scope}::{member}] {msg}");
+                    src.LogInfo($"[{shortScope}::{member}] {msg}");
                 }
             }
 
@@ -140,7 +164,7 @@ namespace ArtifactsOfMight.Logger
             {
                 if (IsEnabled(scope))
                 {
-                    src.LogWarning($"[{scope}::{member}] {msg}");
+                    src.LogWarning($"[{shortScope}::{member}] {msg}");
                 }
             }
 
@@ -148,7 +172,7 @@ namespace ArtifactsOfMight.Logger
             {
                 if (IsEnabled(scope))
                 {
-                    src.LogError($"[{scope}::{member}] {msg}");
+                    src.LogError($"[{shortScope}::{member}] {msg}");
                 }
             }
         }

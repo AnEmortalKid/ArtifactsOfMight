@@ -22,5 +22,21 @@ _This artifact will enable command for you to ensure things work_
 
 ### Corrupted Items
 
+![](https://imgur.com/HzFUpKT.png)
+
 The _Artifact of Choice_ automatically unlocks the curroptible version of the item once you have acquired the corrupted version,
 for example if you have Needletick selected, Tri-Tip daggers will be available **once** you've acquired at least 1 Needletick.
+
+![](https://imgur.com/yZ5QV5W.png)
+
+![](https://imgur.com/GxTKYQR.png)
+
+If you don't have that tier of void unlocked, you will see the number of items available in the panel
+
+![](https://imgur.com/bviCXEm.png)
+
+## Aritfact of Royalty
+
+Grants a _Brittle Crown_ to each player on every non-intermission stage. (Don't get hit)
+
+![](https://imgur.com/WQJGa4c.png)

@@ -6,7 +6,7 @@
 		<AllowUnsafeBlocks>true</AllowUnsafeBlocks>
 
 		<!-- For thunderstore package setup -->
-		<Version>0.2.2</Version>
+		<Version>0.4.0</Version>
 		<PackageBaseName>ArtifactsOfMight</PackageBaseName>
 	</PropertyGroup>
 
@@ -22,8 +22,8 @@
 		<PackageReference Include="R2API.Language" Version="1.0.*" />
 
 		<PackageReference Include="UnityEngine.Modules" Version="2021.3.33" IncludeAssets="compile" />
-		<PackageReference Include="RiskOfRain2.GameLibs" Version="1.3.9-r.0" />
-		<PackageReference Include="MMHOOK.RoR2" Version="2025.6.3" NoWarn="NU1701" />
+		<PackageReference Include="RiskOfRain2.GameLibs" Version="1.4.0-r.0" />
+		<PackageReference Include="MMHOOK.RoR2" Version="2025.11.19" NoWarn="NU1701" />
 		<PackageReference Include="R2API.Networking" Version="1.0.3" />
 	</ItemGroup>
 
@@ -34,16 +34,7 @@
 
 	<Target Name="GenerateVersionClass" BeforeTargets="BeforeCompile">
 		<!-- gotta escape the semicolon with the URI encoded form -->
-		<WriteLinesToFile
-		  File="Properties/Version.g.cs"
-		  Overwrite="true"
-		  Lines="
-namespace ArtifactsOfMight {
-  internal static partial class BuildInfo {
-    public const string Version = &quot;$(Version)&quot;%3B
-  }
-}
-" />
+		<WriteLinesToFile File="Properties/Version.g.cs" Overwrite="true" Lines="&#xA;namespace ArtifactsOfMight {&#xA;  internal static partial class BuildInfo {&#xA;    public const string Version = &quot;$(Version)&quot;%3B&#xA;  }&#xA;}&#xA;" />
 		<ItemGroup>
 			<Compile Include="Properties/Version.g.cs" />
 		</ItemGroup>
@@ -53,13 +44,36 @@ namespace ArtifactsOfMight {
 		<Exec Command="call &quot;$(ProjectDir)buildScripts\deploy_to_modtest.bat&quot; &quot;$(TargetDir)&quot; &quot;$(TargetName)&quot;" />
 	</Target>
 
+	<Target Name="StampThunderstoreManifest" BeforeTargets="Release_Package" Condition="'$(Configuration)'=='Release'">
+		<PropertyGroup>
+			<ThunderstoreMeta>$(ProjectDir)\ThunderstoreMeta\</ThunderstoreMeta>
+		</PropertyGroup>
+
+		<MakeDir Directories="$(ThunderstoreMeta)" Condition="!Exists('$(ThunderstoreMeta)')" />
+
+		<ReadLinesFromFile File="$(ThunderstoreMeta)manifest.template.json">
+			<Output TaskParameter="Lines" ItemName="_ManifestTemplate" />
+		</ReadLinesFromFile>
+
+		<!-- replace __VERSION__ with $(Version) -->
+		<ItemGroup>
+			<_ManifestStamped Include="$([System.String]::Copy('%(_ManifestTemplate.Identity)').Replace('__VERSION__','$(Version)'))" />
+		</ItemGroup>
+
+		<WriteLinesToFile File="$(ThunderstoreMeta)manifest.json" Lines="@(_ManifestStamped)" Overwrite="true" />
+
+		<Message Importance="High" Text="Wrote $(ThunderstoreMeta)manifest.json with version $(Version)" />
+	</Target>
+
 	<Target Name="Release_Package" AfterTargets="Build" Condition="'$(Configuration)'=='Release'">
 		<PropertyGroup>
 			<!-- $(TargetDir) already points to bin\Release\netstandard2.1\ -->
 			<PackageDir>$(TargetDir)Package\</PackageDir>
 			<ThunderstoreMeta>$(ProjectDir)\ThunderstoreMeta\</ThunderstoreMeta>
+			
 			<InnerFolder>$(PackageBaseName)\</InnerFolder>
-			<InnerDest>$(PackageDir)$(InnerFolder)</InnerDest>
+			<InnerDest>$(PackageDir)$(InnerFolder)</InnerDest>			
+			
 			<!-- From MyMod_0.0.0 to MyMod_0_0_0 -->
 			<PackageName>$(PackageBaseName)_$([System.String]::Copy('$(Version)').Replace('.','_'))</PackageName>
 			<ZipPath>$(TargetDir)$(PackageName).zip</ZipPath>

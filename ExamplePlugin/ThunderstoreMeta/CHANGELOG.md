@@ -1,5 +1,16 @@
 # Changelog
 
+## 0.4.0
+
+- Upgraded to be compatible with new DLC (core API 1.4.0)
+
+## 0.3.0
+
+- Fix artifact of choice messing with command only runs
+- Removes Prayer beads from draftable
+- Introduces the _Artifact of Royalty_
+![](https://imgur.com/WQJGa4c.png)
+
 ## 0.2.1
 
 - Fix asset bundle location

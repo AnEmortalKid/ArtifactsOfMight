@@ -52,6 +52,7 @@ namespace ArtifactsOfMight.Loadout.Draft
 
             // green
             bannedItems.Add(RoR2Content.Items.ScrapGreen.itemIndex);
+            bannedItems.Add(DLC2Content.Items.ExtraStatsOnLevelUp.itemIndex);
 
             // red
             bannedItems.Add(RoR2Content.Items.ScrapRed.itemIndex);
@@ -64,7 +65,7 @@ namespace ArtifactsOfMight.Loadout.Draft
             bannedItems.Add(RoR2Content.Items.TitanGoldDuringTP.itemIndex);
             bannedItems.Add(RoR2Content.Items.Pearl.itemIndex);
 
-            // voids
+            // voids TODO use DLC1 refs
             if (CorruptedItemDefs.TryGetItemDef(CorruptedItem.EncrustedKey, out var voidTreasureDef))
             {
                 bannedItems.Add(voidTreasureDef.itemIndex);

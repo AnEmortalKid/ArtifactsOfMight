@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
+using ArtifactsOfMight.Artifacts;
 using ArtifactsOfMight.Loadout.Corruption;
 using ArtifactsOfMight.Loadout.Draft;
+using ArtifactsOfMight.Logger;
 using ArtifactsOfMight.RunConfig;
 using ArtifactsOfMight.UI.Branding.Buttons;
 using ArtifactsOfMight.UI.Drafting.Summary;
@@ -40,9 +42,11 @@ namespace ArtifactsOfMight.UI.Drafting
         /// </summary>
         private static Dictionary<DraftItemTier, DraftTabController> tabControllersByTier = new();
 
+        private static readonly ScoppedLogger.Scoped LOGGER = ScoppedLogger.For<DraftManager>();
+
         public void Initialize(RectTransform parentRectTransform)
         {
-            Log.Info("DraftManager.Initialize");
+            LOGGER.Info("Initializing");
 
             BuildDialogShell(parentRectTransform);
             BuildUI();
@@ -82,18 +86,12 @@ namespace ArtifactsOfMight.UI.Drafting
 
         private void HandleGridItemClicked(DraftItemTier tabTier, PickupDef pickupDef)
         {
-            if (DebugSettings.LOG_DRAFT_UI)
-            {
-                Log.Info($"DraftManager.HandleGridItemClicked ({tabTier}, {pickupDef.internalName}");
-            }
+            LOGGER.Info($"Click ({tabTier}, {pickupDef.internalName}");
+
             // Nothing to do if you clicked a locked item
             if (DraftLoadout.Instance.IsLocked(pickupDef))
             {
-                if (DebugSettings.LOG_DRAFT_UI)
-                {
-                    Log.Info("Item already locked");
-                }
-                return;
+                LOGGER.Info("Item already locked");
             }
 
             var shouldUpdateSummary = AttemptItemChange(tabTier, pickupDef);
@@ -565,11 +563,11 @@ namespace ArtifactsOfMight.UI.Drafting
             bgRt.offsetMin = Vector2.zero;   // no margins
             bgRt.offsetMax = Vector2.zero;
 
-            if(SHOW_DEBUG_COLORS)
+            if (SHOW_DEBUG_COLORS)
             {
                 var img = bg.AddComponent<Image>();
-                img.color = Color.yellow;        
-                img.raycastTarget = false;       
+                img.color = Color.yellow;
+                img.raycastTarget = false;
             }
 
 
