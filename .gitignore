@@ -52,6 +52,11 @@ BenchmarkDotNet.Artifacts/
 project.lock.json
 project.fragment.lock.json
 artifacts/
+
+# Allow this specific one for the example plugin
+!ExamplePlugin/Artifacts/
+!ExamplePlugin/Artifacts/**
+
 **/Properties/launchSettings.json
 
 # StyleCop
