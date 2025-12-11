@@ -6,7 +6,7 @@
 		<AllowUnsafeBlocks>true</AllowUnsafeBlocks>
 
 		<!-- For thunderstore package setup -->
-		<Version>0.4.0</Version>
+		<Version>0.4.1</Version>
 		<PackageBaseName>ArtifactsOfMight</PackageBaseName>
 	</PropertyGroup>
 

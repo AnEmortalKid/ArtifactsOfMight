@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.AddressableAssets;
 using UnityEngine.UI;
 using TMPro;
+using ArtifactsOfMight.Assets;
 
 namespace ArtifactsOfMight.UI.Branding.Inspection
 {
@@ -339,7 +340,7 @@ namespace ArtifactsOfMight.UI.Branding.Inspection
 
             // Background (texUICleanButton)
             var bg = go.AddComponent<Image>();
-            bg.sprite = Addressables.LoadAssetAsync<Sprite>("RoR2/Base/UI/texUICleanButton.png").WaitForCompletion();
+            bg.sprite = AssetCache.LoadSprite(AssetCacheKeys.texUICleanButton);
             bg.type = Image.Type.Sliced;
             bg.color = tint;
 
@@ -355,7 +356,7 @@ namespace ArtifactsOfMight.UI.Branding.Inspection
             baseRT.offsetMax = Vector2.zero;
 
             var baseImg = baseOutlineGO.GetComponent<Image>();
-            baseImg.sprite = Addressables.LoadAssetAsync<Sprite>("RoR2/Base/UI/texUIOutlineOnly.png").WaitForCompletion();
+            baseImg.sprite = AssetCache.LoadSprite(AssetCacheKeys.texUIOutlineOnly);
             baseImg.type = Image.Type.Sliced;
             baseImg.color = new Color(1f, 1f, 1f, 0.286f);
             baseImg.raycastTarget = false;

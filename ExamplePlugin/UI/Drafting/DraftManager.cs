@@ -390,7 +390,7 @@ namespace ArtifactsOfMight.UI.Drafting
             RectTransform contentArea = BuildContentArea();
             contentArea.SetParent(draftingDialogRect, false);
             var contentAreaLE = contentArea.gameObject.AddComponent<LayoutElement>();
-            contentAreaLE.preferredHeight = 472;
+            contentAreaLE.preferredHeight = 500;
 
             RectTransform bottomBar = BuildBottomBar();
             bottomBar.SetParent(draftingDialogRect, false);
@@ -543,11 +543,6 @@ namespace ArtifactsOfMight.UI.Drafting
             return tabsBarRt;
         }
 
-        private static readonly string RimPath = "RoR2/Base/UI/texUIAnimateSliceNakedButton.png";
-        private static readonly string CleanBtnPath = "RoR2/Base/UI/texUICleanButton.png";
-        private static readonly string CleanPanelPath = "RoR2/Base/UI/texUICleanPanel.png";
-        private static readonly string BackdropPath = "RoR2/Base/UI/texUIBackdrop.png";
-
         private RectTransform BuildContentArea()
         {
             var contentArea = new GameObject("ContentArea", typeof(RectTransform));
@@ -573,7 +568,7 @@ namespace ArtifactsOfMight.UI.Drafting
 
             foreach (DraftItemTier draftTier in Enum.GetValues(typeof(DraftItemTier)))
             {
-                var draftTab = DraftTabFactory.BuildDraftTabNew(contentAreaRt, nameof(draftTier) + "_Tab", draftTier);
+                var draftTab = DraftTabFactory.BuildDraftTabNew(contentAreaRt, DraftTierLabels.GetUIName(draftTier) + "_Tab", draftTier);
                 tabControllersByTier[draftTier] = draftTab;
                 // all off
                 draftTab.gameObject.SetActive(false);

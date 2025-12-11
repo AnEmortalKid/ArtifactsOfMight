@@ -15,7 +15,8 @@ namespace ArtifactsOfMight.UI
     public class ItemPickerGridController : MonoBehaviour
     {
 
-        private List<ItemPickerSquareController> squareControllers;
+        // Empty will be overridden
+        private List<ItemPickerSquareController> squareControllers = new();
 
         public Action<PickupDef> OnSquareClicked;
 

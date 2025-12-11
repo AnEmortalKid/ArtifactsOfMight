@@ -177,13 +177,10 @@ namespace ArtifactsOfMight.UI
             img.raycastTarget = true;        // optional click blocker
 
 
-            var tabsGroup = BuildTabsGroup(rootRt);
-
             // DEBUG: print rect sizes to verify
             LogRect("SafeArea", SafeArea);
             LogRect("Root", rootRt);
             LogRect("BG", bgRt);
-            LogRect("TabsGroup", tabsGroup);
 
             return root;
         }
@@ -227,7 +224,7 @@ namespace ArtifactsOfMight.UI
         }
 
 
-        private GameObject BuildDraftPickerRootStructureNoWorky()
+        private GameObject BuildDraftPickerRootStructureFull()
         {
             var draftManagerRoot = DraftManagerFactory.Create(SafeArea);
             return draftManagerRoot;
@@ -240,34 +237,9 @@ namespace ArtifactsOfMight.UI
                 SetLayerRecursively(go.transform.GetChild(i).gameObject, layer);
         }
 
-        private void TestPopulateGrid()
+        private GameObject BuildDraftManagerCorrectly()
         {
-            // Attach draft manager to our root and then let it do its thing
-
-            // add fraft
-            // draft manager initialize()
-
-            //var draftManagerRoot = new GameObject(DraftManagerRootName, typeof(RectTransform));
-            //FactoryUtils.ParentToRectTransform(draftManagerRoot, SafeArea);
-
-            //// Make sure we're on the UI layer so the UI camera draws it
-            //SetLayerRecursively(draftManagerRoot, SafeArea.gameObject.layer);
-
-            //var draftManager = draftManagerRoot.AddComponent<DraftManager>();
-            //draftManager.Initialize(draftManagerRoot.GetComponent<RectTransform>());
-            // todo pass whatever
-            // draftManager.Initialize();
-
-            // TODO this will be the draft manager probs
-            rootGameObject = BuildDraftPickerRootStructure("DraftPickerCanvas");
-            var rootRectTransform = rootGameObject.GetComponent<RectTransform>();
-        }
-
-        private GameObject TestDraftManagerParenting()
-        {
-            //var testMO = BuildDraftPickerRootStructureNoContents("TestNoContents");
-            var testHierarchyObject = BuildDraftPickerRootStructureNoWorky();
-            //var tooltipGO = BuildToolTipStructure();
+            var testHierarchyObject = BuildDraftPickerRootStructureFull();
 
             return testHierarchyObject;
         }
@@ -379,35 +351,6 @@ namespace ArtifactsOfMight.UI
             //if (mpES != null && (mpES.isActiveAndEnabled))
             //    return;
 
-
-            if (Input.GetKeyDown(KeyCode.F3))
-            {
-                var sceneName = SceneManager.GetActiveScene().name;
-                if (sceneName != "lobby")
-                {
-                    Log.Warning("DraftPickerToggleDuringLobby in scene " + sceneName);
-                    return;
-                }
-
-                Log.Info("DraftPickerToggle Respond F3");
-                if (!gridsInitialized)
-                {
-                    Log.Info("Initializing Grids");
-                    gridsInitialized = true;
-                    // starts active
-                    TestPopulateGrid();
-                    return;
-                }
-
-                if (!rootGameObject)
-                {
-                    Log.Warning("DraftPickerToggleDuringLobby no RootObject after init");
-                    return;
-                }
-
-                ToggleVisibility();
-            }
-
             if (Input.GetKeyDown(KeyCode.F6))
             {
                 if (!testAssetGrid)
@@ -446,7 +389,7 @@ namespace ArtifactsOfMight.UI
                 if (testDraftMObject == null)
                 {
                     Log.Info("DraftPickerToggle TestDraftManagerFlow");
-                    testDraftMObject = TestDraftManagerParenting();
+                    testDraftMObject = BuildDraftManagerCorrectly();
                     return;
                 }
 
@@ -469,7 +412,7 @@ namespace ArtifactsOfMight.UI
 
             if (Input.GetKeyDown(KeyCode.F5))
             {
-                var hierarchyResult = HierarchyDumper.DumpActiveHierarchy("SceneHierarchy", 10);
+                var hierarchyResult = HierarchyDumper.DumpActiveHierarchy("SceneHierarchy", 20);
                 Log.Debug(hierarchyResult);
             }
 
@@ -614,54 +557,7 @@ namespace ArtifactsOfMight.UI
         }
 
 
-        private static RectTransform BuildTabsGroup(RectTransform parentRectTransform)
-        {
-            // TODO add the draft manager here
-
-
-            var group = new GameObject("TabGroup", typeof(RectTransform), typeof(VerticalLayoutGroup));
-            var groupRt = (RectTransform)group.transform;
-            groupRt.SetParent(parentRectTransform, false);
-            // Possibly could do like 680 x 780
-            // The artifacts one is like tilted a bit and is 660 by like 690
-            // character select is like 657 by 850
-            // This might be a good group for the like Overall Floating Panel Tab Group Holder thing
-            groupRt.sizeDelta = new Vector2(720, 720);
-
-            // probs do want scroll rects in the inner grids
-
-            var layout = group.GetComponent<VerticalLayoutGroup>();
-            layout.spacing = 8;
-            layout.childControlHeight = true;
-            layout.childControlWidth = true;
-            layout.childForceExpandHeight = true;
-            layout.childForceExpandWidth = true;
-
-            RectTransform tabsBar = BuildTabsBar();
-            tabsBar.SetParent(groupRt, false);
-            var tabsLE = tabsBar.gameObject.AddComponent<LayoutElement>();
-            tabsLE.preferredHeight = 64;
-            tabsLE.flexibleHeight = 0;
-
-            // let it fill rest
-            RectTransform contentArea = BuildContentArea();
-            contentArea.SetParent(groupRt, false);
-            var contentAreaLE = contentArea.gameObject.AddComponent<LayoutElement>();
-            contentAreaLE.flexibleHeight = 1;
-            contentAreaLE.preferredHeight = 472;
-
-            RectTransform bottomBar = BuildBottomBar();
-            bottomBar.SetParent(groupRt, false);
-            var bottomAreaLE = bottomBar.gameObject.AddComponent<LayoutElement>();
-            bottomAreaLE.preferredHeight = 64;
-            bottomAreaLE.flexibleHeight = 0;
-
-            // TODO here we would have the Summary area
-
-            return groupRt;
-        }
-
-        private static RectTransform BuildTabsBar()
+       private static RectTransform BuildTabsBar()
         {
             // build the tabs bar
             var tabsBar = new GameObject("TabsBar", typeof(RectTransform), typeof(HorizontalLayoutGroup));
@@ -707,41 +603,6 @@ namespace ArtifactsOfMight.UI
             draftTabsBar.OnTabButtonClicked += WipTabToggles;
 
             return tabsBarRt;
-        }
-
-        public static RectTransform BuildContentArea()
-        {
-
-            var contentArea = new GameObject("ContentArea", typeof(RectTransform));
-            var contentAreaRt = (RectTransform)contentArea.transform;
-
-            // ==== Full-bleed blue background ====
-            var bg = new GameObject("ContentAreaBG", typeof(RectTransform), typeof(Image));
-            var bgRt = (RectTransform)bg.transform;
-            bgRt.SetParent(contentAreaRt, worldPositionStays: false);
-            bgRt.anchorMin = Vector2.zero;
-            bgRt.anchorMax = Vector2.one;
-            bgRt.pivot = new Vector2(0.5f, 0.5f);
-            bgRt.offsetMin = Vector2.zero;   // no margins
-            bgRt.offsetMax = Vector2.zero;
-
-            var img = bg.GetComponent<Image>();
-            img.color = Color.yellow;           // solid red to verify full stretch
-
-            img.raycastTarget = true;        // optional click blocker
-
-            var whiteTab = DraftTabFactory.BuildDraftTab(contentAreaRt, "Whites", DraftItemTier.White);
-            tabsByTier[DraftItemTier.White] = whiteTab.gameObject;
-
-            var greenTab = DraftTabFactory.BuildDraftTab(contentAreaRt, "Greens", DraftItemTier.Green);
-            tabsByTier[DraftItemTier.Green] = greenTab.gameObject;
-
-            // turn green off
-            greenTab.gameObject.SetActive(false);
-
-            //BuildWhiteTabs(contentAreaRt);
-
-            return contentAreaRt;
         }
 
 

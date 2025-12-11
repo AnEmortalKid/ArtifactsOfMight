@@ -1,4 +1,4 @@
-# Color Tuner
+﻿# Color Tuner
 
 
 Sample usage, basically create a parent that the UI is going to stretch into,

@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.4.1
+
+- Adds scroll view around grid so higher item counts display properly
+
 ## 0.4.0
 
 - Upgraded to be compatible with new DLC (core API 1.4.0)

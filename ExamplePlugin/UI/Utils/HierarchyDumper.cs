@@ -11,7 +11,7 @@ namespace ArtifactsOfMight.UI.Utils
     public static class HierarchyDumper
     {
 
-        public static string DumpActiveHierarchy(string title, int maxDepth = 6)
+        public static string DumpActiveHierarchy(string title, int maxDepth = 10)
         {
             var sb = new StringBuilder();
             sb.AppendLine($"==== {title} ====");

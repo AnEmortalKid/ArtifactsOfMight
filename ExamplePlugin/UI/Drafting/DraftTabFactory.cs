@@ -7,6 +7,8 @@ using UnityEngine;
 using RoR2;
 using ArtifactsOfMight.UI.Drafting.Grid;
 using UnityEngine.AddressableAssets;
+using static UnityEngine.RemoteConfigSettingsHelper;
+using ArtifactsOfMight.Assets;
 
 namespace ArtifactsOfMight.UI.Drafting
 {
@@ -14,102 +16,11 @@ namespace ArtifactsOfMight.UI.Drafting
     {
 
         /// <summary>
-        ///  Use Top-Center as our anchoring point for the grid to position itself within the shell with the outline
+        ///  We use top-center
         /// </summary>
         private static Vector2 GRID_ANCHOR_PIVOT = new Vector2(0.5f, 1f);
 
-        public static DraftTabController BuildDraftTab(RectTransform parentRectTransform,
-            string tabName, DraftItemTier tabTier)
-        {
-            var parentObject = parentRectTransform.gameObject;
-
-            // set tab up correctly then everything hangs off tab
-            var tabGO = new GameObject(tabName, typeof(RectTransform), typeof(VerticalLayoutGroup), typeof(DraftTabController));
-            FactoryUtils.ParentToRectTransform(tabGO, parentRectTransform);
-
-            var tabRootRT = (RectTransform)tabGO.transform;
-            // stretch tab to fill
-            StretchFull(tabRootRT);
-
-            var layout = tabGO.GetComponent<VerticalLayoutGroup>();
-            layout.spacing = 8;
-            layout.childControlHeight = true;
-            layout.childControlWidth = true;
-            // dont let it expand
-            layout.childForceExpandHeight = false;
-            layout.childForceExpandWidth = true;
-            var controlsBar = ItemPickerTabControlsFactory.CreateTabControls(tabName + "_Controls", tabRootRT, tabTier);
-            var controlsBarGO = controlsBar.gameObject;
-
-            // shrink it
-            var tabsLE = controlsBarGO.AddComponent<LayoutElement>();
-            tabsLE.preferredHeight = 36;
-            tabsLE.flexibleHeight = 0;
-            tabsLE.flexibleWidth = 1;
-
-            var gridGO = new GameObject(tabName + "_Grid", typeof(RectTransform), typeof(GridLayoutGroup), typeof(ItemPickerGridController));
-            gridGO.layer = parentObject.layer;
-            var gridRt = (RectTransform)gridGO.transform;
-            gridRt.SetParent(tabRootRT, worldPositionStays: false);
-
-            var itemsControls = controlsBar.GetComponent<DraftTabControls>();
-
-            var tabController = tabGO.GetComponent<DraftTabController>();
-            tabController.SetTabTier(tabTier);
-            tabController.SetControls(itemsControls);
-
-            var gridController = gridGO.GetComponent<ItemPickerGridController>();
-            tabController.SetGridController(gridController);
-
-            // gonna use top left corner to position
-            gridRt.anchorMin = gridRt.anchorMax = new Vector2(0f, 1f);
-            gridRt.pivot = new Vector2(0f, 1f);
-
-            gridRt.offsetMin = new Vector2(16, 16);
-            gridRt.offsetMax = new Vector2(-16, -16);
-
-            var gridRtLE = gridGO.AddComponent<LayoutElement>();
-            //gridRtLE.flexibleHeight = 1;
-            gridRtLE.preferredHeight = 472;
-
-            var gridBG = gridGO.AddComponent<Image>();
-            // blue gray ish
-            gridBG.color = ColorPalette.FromRGB(49, 60, 77);
-            gridBG.raycastTarget = false;
-
-            var grid = gridGO.GetComponent<GridLayoutGroup>();
-            grid.startCorner = GridLayoutGroup.Corner.UpperLeft;
-            grid.startAxis = GridLayoutGroup.Axis.Horizontal;
-            grid.childAlignment = TextAnchor.UpperLeft;
-
-            grid.cellSize = new Vector2(72, 72);
-            // formula is selection offset * 2 + 4
-            grid.spacing = new Vector2(10, 10);
-            grid.padding = new RectOffset(10, 10, 10, 10);
-
-            // The command card uses 5 columns
-            // but we have more real estate here so we will go with 8
-            grid.constraint = GridLayoutGroup.Constraint.FixedColumnCount;
-            grid.constraintCount = 8;
-
-            var squareControllers = new List<ItemPickerSquareController>();
-            var draftPickups = DraftPools.Instance.GetDraftablePickups(tabTier);
-            var squareOutline = GetSelectionOutlineColor(tabTier);
-            var hoverColor = GridSquarePalette.GetHoverOutlineColor(tabTier);
-            foreach (var pickIndex in draftPickups)
-            {
-                var pickDef = PickupCatalog.GetPickupDef(pickIndex);
-                var singleSquare = ItemPickerSquareFactory.TestItemSquare(gridRt, pickDef, squareOutline, hoverColor);
-                var singleController = singleSquare.GetComponent<ItemPickerSquareController>();
-                squareControllers.Add(singleController);
-            }
-
-            // set our reffies
-            gridController.SetSquares(squareControllers);
-
-            return tabController;
-        }
-
+  
         private static void StretchFull(RectTransform rt)
         {
             rt.anchorMin = Vector2.zero;   // bottom-left
@@ -169,8 +80,9 @@ namespace ArtifactsOfMight.UI.Drafting
             fillRT.offsetMin = new Vector2(2, 2);
             fillRT.offsetMax = new Vector2(-2, -2);
 
+            var cleanPanel = AssetCache.LoadSprite(AssetCacheKeys.texUICleanPanel);
             var fillImg = fillGO.GetComponent<Image>();
-            fillImg.sprite = Addressables.LoadAssetAsync<Sprite>("RoR2/Base/UI/texUICleanPanel.png").WaitForCompletion();
+            fillImg.sprite = cleanPanel;
             fillImg.type = Image.Type.Sliced;
             fillImg.color = new Color(0.16f, 0.17f, 0.20f, 1f);
 
@@ -182,13 +94,19 @@ namespace ArtifactsOfMight.UI.Drafting
             var anchorGO = new GameObject("GridAnchor", typeof(RectTransform));
             var anchorRT = (RectTransform)anchorGO.transform;
             anchorRT.SetParent(fillRT, false);
-            anchorRT.anchorMin = GRID_ANCHOR_PIVOT;
-            anchorRT.anchorMax = GRID_ANCHOR_PIVOT;
-            anchorRT.pivot = GRID_ANCHOR_PIVOT;
+            // Anchor stretch shell
+            anchorRT.anchorMin = new Vector2(0f, 0f);
+            anchorRT.anchorMax = new Vector2(1f, 1f);
+            anchorRT.pivot = new Vector2(0.5f, 0.5f);
 
-            // move down a bit within that square
-            const float topPad = 12f; 
-            anchorRT.anchoredPosition = new Vector2(0f, -topPad);
+            // move a bit within that square
+            const float innerPadX = 8f;
+            const float innerPadTop = 12f;   
+            const float innerPadBottom = 8f;
+            // left, bottom
+            anchorRT.offsetMin = new Vector2(innerPadX, innerPadBottom);
+            // right, top
+            anchorRT.offsetMax = new Vector2(-innerPadX, -innerPadTop);
 
             // Outline (9-slice, tintable)
             var outlineGO = new GameObject("Outline", typeof(RectTransform), typeof(Image));
@@ -237,29 +155,110 @@ namespace ArtifactsOfMight.UI.Drafting
             // make the shell + anchor
             var (shellRT, outlineImg, fillRT, anchorRT) = CreateTieredGridShell(
                 parent: tabRootRT,
-                preferredHeight: 472,
+                preferredHeight: 500,
                 outlineTint: outlineTint
             );
 
-            // actual Grid lives under the anchor
-            var gridGO = new GameObject(tabName + "_Grid", typeof(RectTransform), typeof(GridLayoutGroup), typeof(ItemPickerGridController));
-            gridGO.layer = parentObject.layer;
-            var gridRt = (RectTransform)gridGO.transform;
-            // parent to the anchor rect
-            gridRt.SetParent(anchorRT, false);
+            // Scrollview adds itself to the anchor
+            var scrollGO = new GameObject(tabName + "_ScrollView", typeof(RectTransform), typeof(ScrollRect), typeof(Image));
+            scrollGO.layer = parentObject.layer;
 
-            gridRt.anchorMin = GRID_ANCHOR_PIVOT;
-            gridRt.anchorMax = GRID_ANCHOR_PIVOT;
-            gridRt.pivot = GRID_ANCHOR_PIVOT;
+            var scrollRT = (RectTransform)scrollGO.transform;
+            FactoryUtils.ParentToRectTransform(scrollGO, anchorRT);
 
-            // controller wiring (unchanged)
+            var debugSCROLl = scrollGO.GetComponent<Image>();
+            debugSCROLl.color = new Color(0.2f, 0f, 0f, 0.1f);
+
+            var scrollLE = scrollGO.AddComponent<LayoutElement>();
+            scrollLE.flexibleHeight = 1f;
+            scrollLE.preferredHeight = 0f;
+
+            // stretch within its bounds
+            scrollRT.anchorMin = new Vector2(0f, 0f);
+            scrollRT.anchorMax = new Vector2(1f, 1f);
+            scrollRT.offsetMin = Vector2.zero;
+            scrollRT.offsetMax = Vector2.zero;
+
+            var viewportGO = new GameObject("Viewport", typeof(RectTransform), typeof(Image), typeof(Mask));
+            viewportGO.layer = scrollGO.layer;
+
+            FactoryUtils.ParentToRectTransform(viewportGO, scrollRT);
+
+            // stretch within scroll rect
+            var viewportRT = (RectTransform)viewportGO.transform;
+            viewportRT.anchorMin = Vector2.zero;
+            viewportRT.anchorMax = Vector2.one;
+            viewportRT.offsetMin = Vector2.zero;
+            viewportRT.offsetMax = Vector2.zero;
+
+            // needed for a mask
+            var viewportImage = viewportGO.GetComponent<Image>();
+
+            var cleanSprite = AssetCache.LoadSprite(AssetCacheKeys.texUICleanPanel);
+            viewportImage.sprite = cleanSprite;
+            viewportImage.type = Image.Type.Sliced;
+            // need 1 alpha to mask correctly
+            viewportImage.color = Color.white;
+            // make it opaque
+            var mask = viewportGO.GetComponent<Mask>();
+            mask.showMaskGraphic = false;
+
+            // controller wiring
             var itemsControls = controlsBar.GetComponent<DraftTabControls>();
             var tabController = tabGO.GetComponent<DraftTabController>();
             tabController.SetTabTier(tabTier);
             tabController.SetControls(itemsControls);
 
-            var gridController = gridGO.GetComponent<ItemPickerGridController>();
+            var gridController = CreateGridWithContent(tabName, parentObject, viewportRT, tabTier, outlineTint);
             tabController.SetGridController(gridController);
+
+            var scrollRect = scrollGO.GetComponent<ScrollRect>();
+            scrollRect.viewport = viewportRT;
+            scrollRect.content = (RectTransform)gridController.transform;
+            scrollRect.horizontal = false;
+            scrollRect.vertical = true;
+            scrollRect.movementType = ScrollRect.MovementType.Clamped;
+            scrollRect.scrollSensitivity = 20f;
+
+            return tabController;
+        }
+
+        private static void CenterGrid(RectTransform gridRT, GridLayoutGroup grid, int itemCount)
+        {
+            // how many columns/rows in the grid
+            int cols = Mathf.Max(1, grid.constraintCount);
+            int rows = Mathf.CeilToInt(itemCount / (float)cols);
+
+            var cs = grid.cellSize;
+            var sp = grid.spacing;
+            var pad = grid.padding;
+
+            // total width and height including padding
+            float width = cols * cs.x + (cols - 1) * sp.x + pad.left + pad.right;
+            float height = rows * cs.y + (rows - 1) * sp.y + pad.top + pad.bottom;
+
+            // gridRT is anchored at (0.5, 1) with pivot (0.5, 1),
+            // so giving it a width/height centers it horizontally and sticks it to the top.
+            gridRT.SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, width);
+            gridRT.SetSizeWithCurrentAnchors(RectTransform.Axis.Vertical, height);
+        }
+
+
+        private static ItemPickerGridController CreateGridWithContent(string tabName, GameObject parentForLayer, 
+            RectTransform parentForGrid,DraftItemTier tabTier, Color outlineTint)
+        {
+            // actual Grid lives under the anchor
+            var gridGO = new GameObject(tabName + "_Grid", typeof(RectTransform), typeof(GridLayoutGroup), typeof(ItemPickerGridController));
+            gridGO.layer = parentForLayer.layer;
+            var gridRt = (RectTransform)gridGO.transform;
+            // parent to the desired rect
+            gridRt.SetParent(parentForGrid, false);
+
+            // anchor to the right pviot
+            gridRt.anchorMin = GRID_ANCHOR_PIVOT;
+            gridRt.anchorMax = GRID_ANCHOR_PIVOT;
+            gridRt.pivot = GRID_ANCHOR_PIVOT;
+            gridRt.anchoredPosition = Vector2.zero;
 
             // Grid settings (centered; no padding since shell provides spacing)
             var grid = gridGO.GetComponent<GridLayoutGroup>();
@@ -285,32 +284,17 @@ namespace ArtifactsOfMight.UI.Drafting
                 squareControllers.Add(singleSquare.GetComponent<ItemPickerSquareController>());
             }
 
-            CenterGrid(gridRt, anchorRT, grid, draftPickups.Count);
+            CenterGrid(gridRt, grid, draftPickups.Count);
 
+            var fitter = gridGO.AddComponent<ContentSizeFitter>();
+            fitter.verticalFit = ContentSizeFitter.FitMode.PreferredSize;
+            fitter.horizontalFit = ContentSizeFitter.FitMode.Unconstrained;
+
+            var gridController = gridGO.GetComponent<ItemPickerGridController>();
             // hand refs back to the grid controller
             gridController.SetSquares(squareControllers);
 
-            return tabController;
+            return gridController;
         }
-
-        private static void CenterGrid(RectTransform gridRT, RectTransform anchorRT, GridLayoutGroup grid, int itemCount)
-        {
-            int cols = Mathf.Max(1, grid.constraintCount);
-            int rows = Mathf.CeilToInt(itemCount / (float)cols);
-
-            var cs = grid.cellSize;
-            var sp = grid.spacing;
-
-            float w = cols * cs.x + (cols - 1) * sp.x;
-            float h = Mathf.Max(1, rows) * cs.y + (rows - 1) * sp.y;
-
-            // Size grid and anchor exactly; anchor is middle-center so this centers the grid visually.
-            gridRT.SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, w);
-            gridRT.SetSizeWithCurrentAnchors(RectTransform.Axis.Vertical, h);
-            anchorRT.SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, w);
-            anchorRT.SetSizeWithCurrentAnchors(RectTransform.Axis.Vertical, h);
-        }
-
-
     }
 }

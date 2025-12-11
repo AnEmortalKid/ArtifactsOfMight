@@ -9,6 +9,7 @@ using ArtifactsOfMight.UI.Drafting;
 using ArtifactsOfMight.UI.Branding.Panel;
 using ArtifactsOfMight.UI.Branding.Inspection;
 using System.Collections;
+using ArtifactsOfMight.Assets;
 
 namespace ArtifactsOfMight.UI.Tooltips
 {
@@ -205,7 +206,7 @@ namespace ArtifactsOfMight.UI.Tooltips
 
             // Configure the outline
             var outlineImg = outlineGO.GetComponent<Image>();
-            outlineImg.sprite = Addressables.LoadAssetAsync<Sprite>("RoR2/Base/UI/texUIOutlineOnly.png").WaitForCompletion();
+            outlineImg.sprite =AssetCache.LoadSprite(AssetCacheKeys.texUIOutlineOnly);
             outlineImg.type = UnityEngine.UI.Image.Type.Sliced;
             outlineImg.fillCenter = true;
             outlineImg.raycastTarget = false;
@@ -441,7 +442,7 @@ namespace ArtifactsOfMight.UI.Tooltips
             outlineGO.GetComponent<LayoutElement>().ignoreLayout = true;
 
             var outlineImg = outlineGO.GetComponent<Image>();
-            outlineImg.sprite = Addressables.LoadAssetAsync<Sprite>("RoR2/Base/UI/texUIOutlineOnly.png").WaitForCompletion();
+            outlineImg.sprite = AssetCache.LoadSprite(AssetCacheKeys.texUIOutlineOnly);
             outlineImg.type = Image.Type.Sliced;
             outlineImg.fillCenter = true;              
             outlineImg.raycastTarget = false;

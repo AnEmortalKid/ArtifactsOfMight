@@ -1,12 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 using UnityEngine;
-using UnityEngine.UI;
-using TMPro;
 using RoR2;
-using ArtifactsOfMight.Loadout;
-using System.Diagnostics.CodeAnalysis;
 using ArtifactsOfMight.Loadout.Draft;
 
 namespace ArtifactsOfMight.UI.Drafting
