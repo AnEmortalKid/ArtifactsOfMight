@@ -1,12 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
-using ArtifactsOfMight.UI;
 using System.Linq;
 using RoR2;
-using UnityEngine;
-using UnityEngine.AddressableAssets;
 using ArtifactsOfMight.Loadout.Corruption;
-using ArtifactsOfMight.RunConfig;
+using ArtifactsOfMight.Logger;
 
 namespace ArtifactsOfMight.Loadout.Draft
 {
@@ -36,6 +33,8 @@ namespace ArtifactsOfMight.Loadout.Draft
         private Dictionary<DraftItemTier, List<PickupIndex>> allowedByDraftTier = new();
 
         private static HashSet<ItemIndex> bannedItems = new();
+
+        private static readonly ScoppedLogger.Scoped LOGGER = ScoppedLogger.For<DraftPools>();
 
         private DraftPools()
         {
@@ -74,6 +73,16 @@ namespace ArtifactsOfMight.Loadout.Draft
             {
                 bannedItems.Add(zoeaDef.itemIndex);
             }
+
+            // Alloyed Draft Bans (like the ones from cerebellum shit)
+            bannedItems.Add(DLC3Content.Items.MasterCore.itemIndex);
+            bannedItems.Add(DLC3Content.Items.MasterBattery.itemIndex);
+            bannedItems.Add(DLC3Content.Items.PowerCube.itemIndex);
+            bannedItems.Add(DLC3Content.Items.PowerPyramid.itemIndex);
+
+            // ExtraEquipment = functional coupler, allowed
+            // ShockDamageAura = faulty conductor , allowed
+
         }
 
         private void BuildDraftableTiers()
@@ -85,7 +94,7 @@ namespace ArtifactsOfMight.Loadout.Draft
             }
 
             var allDefs = PickupCatalog.allPickups;
-            Log.Info($"DraftPools Going through {allDefs.Count()} defs");
+            LOGGER.Info($"Going through {allDefs.Count()} defs");
             foreach (var def in allDefs)
             {
                 // not sure how these happen
@@ -101,20 +110,14 @@ namespace ArtifactsOfMight.Loadout.Draft
               
                 if(!DraftTierMaps.HasDraftTier(def.itemTier))
                 {
-                    if(DebugSettings.LOG_DRAFT_POOLS_INFO)
-                    {
-                        Log.Debug($"DraftPools Unmapped {def.nameToken}");
-                    }
+                    LOGGER.Debug($"Unmapped {def.nameToken}");
                     
                     continue;
                 }
 
                 if (bannedItems.Contains(def.itemIndex))
                 {
-                    if (DebugSettings.LOG_DRAFT_POOLS_INFO)
-                    {
-                        Log.Debug($"DraftPools Skipping banned {def.nameToken}");
-                    }
+                    LOGGER.Debug($" Skipping banned {def.nameToken}");
 
                     continue;
                 }

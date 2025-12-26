@@ -1,11 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Reflection.Emit;
-using ArtifactsOfMight.Loadout;
 using RoR2;
-using TMPro;
 using UnityEngine;
-using UnityEngine.UI;
 
 namespace ArtifactsOfMight.UI
 {
@@ -22,11 +18,13 @@ namespace ArtifactsOfMight.UI
 
         public void SetSquares(List<ItemPickerSquareController> squareControllers)
         {
+            Log.Info($"Setting {squareControllers.Count} squares");
+
             this.squareControllers = squareControllers;
 
             foreach (var squareController in squareControllers)
             {
-                squareController.OnSquareClicked += OnSquareClicked;
+                squareController.OnSquareClicked += ForwardSquareClicked;
             }
         }
 
@@ -36,6 +34,14 @@ namespace ArtifactsOfMight.UI
             {
                 squareController.RefreshSquare();
             }
+        }
+
+        /// <summary>
+        /// Do it this way so we don't take a reference to an unassigned action
+        /// </summary>
+        private void ForwardSquareClicked(PickupDef def)
+        {
+            OnSquareClicked?.Invoke(def);
         }
     }
 }

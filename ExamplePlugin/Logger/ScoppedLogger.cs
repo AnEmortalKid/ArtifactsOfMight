@@ -1,12 +1,19 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
+using ArtifactsOfMight.RunConfig;
 using BepInEx.Logging;
 
 namespace ArtifactsOfMight.Logger
 {
     /// <summary>
     /// An abstraction on top of the logging system so we can enable/disable specific namespaces/classes
+    /// 
+    /// 1. Usage: make a static ref with your class name
+    /// 
+    /// private static readonly ScoppedLogger.Scoped LOGGER = ScoppedLogger.For<DraftManager>();
+    /// 
+    /// 2. Then use it like the regular Log object via LOGGER.Info
     /// </summary>
     internal static class ScoppedLogger
     {
@@ -92,11 +99,17 @@ namespace ArtifactsOfMight.Logger
                 return true;
             }
 
+            var logMatches = LoggerSettings.Scopped.LOG_LOGGER_MATCHES;
+
             // lets say we enabled a namespace, and not just a class
             // this should count the class as enabled
             foreach (var es in enabledScopes)
             {
-                Log.Info($"Checking {es} against {scope}");
+                if(LoggerSettings.Scopped.LOG_LOGGER_MATCHES)
+                {
+                    Log.Info($"[ScoppedLogger] Checking {es} against {scope}");
+                }
+
                 if (scope.StartsWith(es, StringComparison.Ordinal))
                 {
                     return true;

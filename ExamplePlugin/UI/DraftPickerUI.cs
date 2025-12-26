@@ -99,29 +99,6 @@ namespace ArtifactsOfMight.UI
                 Log.Warning("[DraftArtifact] Safe area not exist");
                 return;
             }
-
-            // Add the F3 toggle listener here (lives only during lobby)
-            //var toggle = this.gameObject.AddComponent<DraftPickerToggleDuringLobby>();
-
-            //if (!SafeArea.Find("DraftPickerCanvas"))
-            //{
-            //    var picker = BuildPickerRoot("DraftPickerCanvas");
-            //    var rt = picker.GetComponent<RectTransform>();
-            //    rt.SetParent(SafeArea, worldPositionStays: false);
-            //    StretchFull(rt);
-
-            //    // Start hidden
-            //    picker.SetActive(false);
-            //    //toggle.RootObject = picker;
-            //    PanelRoot = rt;
-            //    PanelsGO = picker;
-
-            //    //   Log.Info("[DraftArtifact] toggle RootObject=" + toggle.RootObject);
-
-            //    Log.Info("[DraftArtifact] DraftPickerCanvas attached under SafeArea.");
-
-            //    Log.Info("Picker layer=" + LayerMask.LayerToName(picker.layer));
-            //}
         }
 
         private static void WipTabToggles(DraftItemTier desiredTier)
@@ -423,47 +400,10 @@ namespace ArtifactsOfMight.UI
                 //var currVis = _glassHolder.gameObject.activeSelf;
                 //Log.Debug("F8: " + currVis + " => " + !currVis);
                 //_glassHolder.gameObject.SetActive(!currVis);
-                HierarchyDumper.TryDumpAllTooltips();
+                // HierarchyDumper.TryDumpAllTooltips();
+                ItemCatalogDumper.ParseAndLog();
             }
 
-            // We know this works
-            //if(Input.GetKeyDown(KeyCode.F8))
-            //{
-            //    var canvas = SafeArea.GetComponentInParent<Canvas>();
-            //    var uiCam = canvas && canvas.renderMode != RenderMode.ScreenSpaceOverlay
-            //        ? canvas.worldCamera
-            //        : null;
-
-            //    this.wipSpawnOverlay.SetActive(false);
-
-            //    var overlayRect = wipSpawnOverlay.GetComponent<RectTransform>();
-
-            //    bool nowActive = !wipSpawnOverlay.activeSelf;
-            //    wipSpawnOverlay.SetActive(nowActive);
-
-            //    if (nowActive)
-            //    {
-            //        Vector2 local;
-            //        RectTransformUtility.ScreenPointToLocalPointInRectangle(
-            //            SafeArea, Input.mousePosition, uiCam, out local);
-
-            //        // optional: set anchors to top-left so anchoredPosition behaves consistently
-            //        overlayRect.anchorMin = overlayRect.anchorMax = new Vector2(0, 1);
-            //        overlayRect.pivot = new Vector2(0, 1);
-
-            //        // local is centered; convert to top-left space (safeArea pivot = 0.5,0.5)
-            //        Vector2 half = SafeArea.rect.size * 0.5f;
-            //        Vector2 anchored = local + new Vector2(half.x, -half.y);
-
-            //        overlayRect.anchoredPosition = anchored;
-
-            //        Debug.Log($"[SpawnOverlay] Activated at mouse {Input.mousePosition} => anchored {anchored}");
-            //    }
-            //    else
-            //    {
-            //        Debug.Log("[SpawnOverlay] Deactivated");
-            //    }
-            //}
         }
 
 

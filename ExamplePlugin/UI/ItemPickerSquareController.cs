@@ -2,7 +2,9 @@
 using System.Diagnostics.CodeAnalysis;
 using ArtifactsOfMight.Loadout;
 using ArtifactsOfMight.Loadout.Draft;
+using ArtifactsOfMight.Logger;
 using ArtifactsOfMight.RunConfig;
+using ArtifactsOfMight.UI.Drafting;
 using RoR2;
 using UnityEngine;
 using UnityEngine.EventSystems;
@@ -47,6 +49,8 @@ namespace ArtifactsOfMight.UI
         /// </summary>
         public Action<PickupDef> OnSquareClicked;
 
+        private static readonly ScoppedLogger.Scoped LOGGER = ScoppedLogger.For<ItemPickerSquareController>();
+
         public void BindComponents(PickupDef pickupDef, Button button, Image background, Image icon, Outline hoverOutline = null,
             GameObject lockOverlay = null, Image selectionOverlayImg = null,
             Image dimmingOverlayImg = null,
@@ -76,10 +80,8 @@ namespace ArtifactsOfMight.UI
 
         private void HandleOnClick()
         {
-            if (DebugSettings.LOG_DRAFT_UI)
-            {
-                Log.Info($"[DraftArtifact]ItemPickerSquareController.HandleOnClick: {pickupDef.nameToken}");
-            }
+            LOGGER.Info($"Click on: {pickupDef.nameToken}");
+
             OnSquareClicked?.Invoke(pickupDef);
         }
 

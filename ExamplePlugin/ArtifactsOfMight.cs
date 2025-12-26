@@ -96,6 +96,9 @@ namespace ArtifactsOfMight
             ScoppedLogger.Only([
                 "ArtifactsOfMight.Artifacts"
             ]);
+            
+            // FOR BIG DEBUG
+            // ScoppedLogger.EnableAll();
         }
 
         private void RegisterAssetBundles()

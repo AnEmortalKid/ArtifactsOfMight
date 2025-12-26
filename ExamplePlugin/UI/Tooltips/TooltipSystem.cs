@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Diagnostics.CodeAnalysis;
+using ArtifactsOfMight.Logger;
 using ArtifactsOfMight.RunConfig;
 using UnityEngine;
 using UnityEngine.UI;
@@ -53,6 +54,8 @@ namespace ArtifactsOfMight.UI.Tooltips
 
         private Camera uiCamera;
 
+        private static readonly ScoppedLogger.Scoped LOGGER = ScoppedLogger.For<TooltipSystem>();
+
         public void Initialize(RectTransform tooltipParent, TooltipView tooltipView)
         {
             Instance = this;
@@ -95,10 +98,7 @@ namespace ArtifactsOfMight.UI.Tooltips
         /// </remarks>
         public void QueueShow(TooltipData data, RectTransform preferredAnchor = null, bool snapToAnchor = false)
         {
-            if(DebugSettings.LOG_DRAFT_UI)
-            {
-                Log.Info($"Queued: {data}");
-            }
+            LOGGER.Info($"Queued: {data}");
             
             pendingData = data;
             anchorPoint = preferredAnchor;

@@ -40,3 +40,10 @@ If you don't have that tier of void unlocked, you will see the number of items a
 Grants a _Brittle Crown_ to each player on every non-intermission stage. (Don't get hit)
 
 ![](https://imgur.com/WQJGa4c.png)
+
+
+## Artifact of Shelldivers
+
+Gifts you a Sonorous Whispers and enables every artifact that requires that earn your items by killing monsters. 
+
+![](https://imgur.com/Jn6jaWK.png)

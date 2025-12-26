@@ -37,11 +37,28 @@ namespace ArtifactsOfMight.DraftArtifact.Game
             allowedSet.Add(RoR2Content.Items.TitanGoldDuringTP.itemIndex);
             allowedSet.Add(RoR2Content.Items.Pearl.itemIndex);
 
+
+            // cerebellums
+            allowedSet.Add(DLC3Content.Items.MasterCore.itemIndex); 
+            allowedSet.Add(DLC3Content.Items.MasterBattery.itemIndex);
+            // prison matrix
+            allowedSet.Add(DLC3Content.Items.PowerCube.itemIndex);
+            // sentry key
+            allowedSet.Add(DLC3Content.Items.PowerPyramid.itemIndex);
+
             // Voids
             if (CorruptedItemDefs.TryGetItemDef(CorruptedItem.NewlyHatchedZoea, out var zoeaDef))
             {
                 allowedSet.Add(zoeaDef.itemIndex);
             }
+
+            // alloyed special oranges
+            allowedSet.Add(DLC3Content.Items.BonusHealthBoost.itemIndex);
+            allowedSet.Add(DLC3Content.Items.CookedSteak.itemIndex);
+            allowedSet.Add(DLC3Content.Items.MoneyLoan.itemIndex);
+            allowedSet.Add(DLC3Content.Items.Stew.itemIndex);
+            allowedSet.Add(DLC3Content.Items.UltimateMeal.itemIndex);
+            allowedSet.Add(DLC3Content.Items.WyrmOnHit.itemIndex);            
 
             return allowedSet;
         }

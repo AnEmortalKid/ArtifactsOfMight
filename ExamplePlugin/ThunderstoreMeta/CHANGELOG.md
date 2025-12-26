@@ -1,5 +1,19 @@
 # Changelog
 
+## 0.5.0
+
+- Fix for grid view being clipped
+- Introduces the _Artifact of Shelldivers_ 
+![](https://imgur.com/Jn6jaWK.png)
+
+## 0.4.3
+
+- Fix ability to unselect items in draft dialog
+
+## 0.4.2
+
+- Make cerebellum/prison matrix items not draftable but still pickable
+
 ## 0.4.1
 
 - Adds scroll view around grid so higher item counts display properly

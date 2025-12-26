@@ -399,12 +399,6 @@ namespace ArtifactsOfMight.UI.Drafting
             bottomAreaLE.flexibleHeight = 0;
         }
 
-        static void LogRect(string name, RectTransform rt)
-        {
-            var r = rt.rect;
-            Debug.Log($"[{name}] {r.width}x{r.height}  anchors {rt.anchorMin}->{rt.anchorMax}  pivot {rt.pivot}");
-        }
-
         private void WipTabToggles(DraftItemTier desiredTier)
         {
             // TODO track inactive and swap

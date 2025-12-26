@@ -1,13 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using System.Collections.Generic;
 using ArtifactsOfMight.Loadout.Draft;
 using UnityEngine.UI;
 using UnityEngine;
 using RoR2;
 using ArtifactsOfMight.UI.Drafting.Grid;
 using UnityEngine.AddressableAssets;
-using static UnityEngine.RemoteConfigSettingsHelper;
 using ArtifactsOfMight.Assets;
 
 namespace ArtifactsOfMight.UI.Drafting
@@ -160,14 +157,11 @@ namespace ArtifactsOfMight.UI.Drafting
             );
 
             // Scrollview adds itself to the anchor
-            var scrollGO = new GameObject(tabName + "_ScrollView", typeof(RectTransform), typeof(ScrollRect), typeof(Image));
+            var scrollGO = new GameObject(tabName + "_ScrollView", typeof(RectTransform), typeof(ScrollRect));
             scrollGO.layer = parentObject.layer;
 
             var scrollRT = (RectTransform)scrollGO.transform;
             FactoryUtils.ParentToRectTransform(scrollGO, anchorRT);
-
-            var debugSCROLl = scrollGO.GetComponent<Image>();
-            debugSCROLl.color = new Color(0.2f, 0f, 0f, 0.1f);
 
             var scrollLE = scrollGO.AddComponent<LayoutElement>();
             scrollLE.flexibleHeight = 1f;
@@ -199,6 +193,7 @@ namespace ArtifactsOfMight.UI.Drafting
             viewportImage.type = Image.Type.Sliced;
             // need 1 alpha to mask correctly
             viewportImage.color = Color.white;
+            viewportImage.raycastTarget = false;
             // make it opaque
             var mask = viewportGO.GetComponent<Mask>();
             mask.showMaskGraphic = false;
@@ -267,7 +262,7 @@ namespace ArtifactsOfMight.UI.Drafting
             grid.childAlignment = TextAnchor.UpperLeft;
             grid.cellSize = new Vector2(72, 72);
             grid.spacing = new Vector2(10, 10);
-            grid.padding = new RectOffset(0, 0, 0, 0);
+            grid.padding = new RectOffset(0, 0, 8, 8);
             grid.constraint = GridLayoutGroup.Constraint.FixedColumnCount;
             grid.constraintCount = 8;
 

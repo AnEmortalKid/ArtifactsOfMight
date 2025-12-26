@@ -2,6 +2,7 @@
 using UnityEngine;
 using RoR2;
 using ArtifactsOfMight.Loadout.Draft;
+using ArtifactsOfMight.Logger;
 
 namespace ArtifactsOfMight.UI.Drafting
 {
@@ -54,6 +55,8 @@ namespace ArtifactsOfMight.UI.Drafting
         public Action<DraftItemTier> OnRandomizeTabRequest;
         #endregion
 
+        private static readonly ScoppedLogger.Scoped LOGGER = ScoppedLogger.For<DraftTabController>();
+
         public void SetTabTier(DraftItemTier tabTier)
         {
             this.tabTier = tabTier;
@@ -97,6 +100,7 @@ namespace ArtifactsOfMight.UI.Drafting
         #region EventHandlers
         private void OnSquareClicked(PickupDef pickup)
         {
+            LOGGER.Info("Propagating OnSquareClicked");
             OnItemClicked?.Invoke(tabTier, pickup);
         }
 

@@ -21,11 +21,5 @@
         /// Determines whether im gonna log all the draft pool spam or not
         /// </summary>
         public static bool LOG_DRAFT_POOLS_INFO = false;
-
-        /// <summary>
-        /// Whether we log the actions taken on the drafting ui or not,
-        /// as well as the tooltip system and everything related to that ui
-        /// </summary>
-        public static bool LOG_DRAFT_UI = false;
     }
 }
